@@ -1,6 +1,8 @@
+public class NoFieldException extends Exception {
+	
+	private static final long serialVersionUID = -7017646333565985665L;
 
-public class NoFieldException extends Exception{
-	public NoFieldException(String msg){
+	public NoFieldException(String msg) {
 		super(msg);
 	}
 }
