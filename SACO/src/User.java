@@ -6,7 +6,8 @@ public class User {
 	private static int posicaoInicio = 0;
 	private static int caracteresPhone = 10;
 
-	public User(String name, String email, String phone) {
+	public User(String name, String email, String phone) throws EmailException,
+			NameException, PhoneException {
 
 		this.setName(name);
 		this.setEmail(email);
@@ -14,12 +15,10 @@ public class User {
 
 	}
 
-	public boolean setName(String name) {
-		if (validName(name)) {
-			this.name = name;
-			return true;
-		} else
-			return false;
+	public void setName(String name) throws NameException {
+		if (!validName(name))
+			throw new NameException("Invalid Name");
+		this.name = name;
 	}
 
 	private boolean isLetterDownCase(char letter) {
@@ -79,12 +78,10 @@ public class User {
 		return name;
 	}
 
-	public boolean setEmail(String email) {
-		if (validEmail(email)) {
-			this.email = email;
-			return true;
-		} else
-			return false;
+	public void setEmail(String email) throws EmailException {
+		if (!validEmail(email))
+			throw new EmailException("Invalid Email");
+		this.email = email;
 	}
 
 	private boolean validEmail(String email2) {
@@ -108,7 +105,7 @@ public class User {
 					return false;
 				if (email2.charAt(i) == '@')
 					arrobas++;
-			} 
+			}
 			if (arrobas != 1)
 				return false;
 		}
@@ -119,12 +116,10 @@ public class User {
 		return email;
 	}
 
-	public boolean setPhone(String phone) {
-		if (validPhone(phone)) {
-			this.phone = phone;
-			return true;
-		} else
-			return false;
+	public void setPhone(String phone) throws PhoneException {
+		if (!validPhone(phone))
+			throw new PhoneException("Invalid Phone");
+		this.phone = phone;
 	}
 
 	private boolean validPhone(String phone2) {
