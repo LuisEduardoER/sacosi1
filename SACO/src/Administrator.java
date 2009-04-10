@@ -1,4 +1,4 @@
-public class Administrator extends Pessoa {
+public class Administrator extends Costumer {
 
 	private String login;
 	private static int posicaoInicio = 0;

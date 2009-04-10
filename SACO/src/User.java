@@ -1,4 +1,4 @@
-public class User extends Pessoa {
+public class User extends Costumer {
 
 	private String login;
 	private static int posicaoInicio = 0;
