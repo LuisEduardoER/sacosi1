@@ -1,3 +1,9 @@
+package Users;
+
+import Exceptions.EmailException;
+import Exceptions.NameException;
+import Exceptions.PhoneException;
+
 public class Costumer implements Alugadores {
 
 	private String name;

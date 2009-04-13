@@ -1,3 +1,11 @@
+package Users;
+
+import javax.security.auth.login.LoginException;
+
+import Exceptions.EmailException;
+import Exceptions.NameException;
+import Exceptions.PhoneException;
+
 public class Administrator extends Costumer {
 
 	private String login;
