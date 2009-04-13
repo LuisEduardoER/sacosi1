@@ -1,3 +1,8 @@
+package Users;
+
+import Exceptions.EmailException;
+import Exceptions.NameException;
+import Exceptions.PhoneException;
 
 public interface Alugadores {
 	
