@@ -3,7 +3,7 @@ package Vehicles;
 import Exceptions.InvalidFieldException;
 import Exceptions.NoFieldException;
 
-public class Vehicle {
+public abstract class Vehicle {
 	
 	private String type;
 	

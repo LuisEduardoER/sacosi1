@@ -6,7 +6,7 @@ import Exceptions.EmailException;
 import Exceptions.NameException;
 import Exceptions.PhoneException;
 
-public class User extends Costumer {
+public class User extends Person {
 
 	private String login;
 	private static int posicaoInicio = 0;

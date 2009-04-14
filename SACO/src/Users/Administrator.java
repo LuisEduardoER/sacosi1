@@ -1,12 +1,12 @@
 package Users;
 
-import javax.security.auth.login.LoginException;
+import Exceptions.LoginException;
 
 import Exceptions.EmailException;
 import Exceptions.NameException;
 import Exceptions.PhoneException;
 
-public class Administrator extends Costumer {
+public class Administrator extends Person {
 
 	private String login;
 	private static int posicaoInicio = 0;
