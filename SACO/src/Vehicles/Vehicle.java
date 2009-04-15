@@ -2,6 +2,12 @@ package Vehicles;
 
 import Exceptions.InvalidFieldException;
 import Exceptions.NoFieldException;
+import Exceptions.PriceException;
+import Exceptions.ColorException;
+import Exceptions.PlateException;
+import Exceptions.TypeException;
+import Exceptions.YearException;
+import Exceptions.ModelException;
 
 public abstract class Vehicle {
 	
@@ -18,7 +24,8 @@ public abstract class Vehicle {
 	private Double price;
 	
 	public Vehicle(String type, String model, String color, String plate,
-			int year, Double price) throws InvalidFieldException, NoFieldException {
+			int year, Double price) throws InvalidFieldException, NoFieldException, TypeException, ModelException,
+								    ColorException, PlateException, PriceException, YearException {
 		
 		if (!(type.equals("motorcycle") || type.equals("car"))) {
 			throw new InvalidFieldException("error: invalid field!");
@@ -34,12 +41,12 @@ public abstract class Vehicle {
 			throw new NoFieldException("error: all fields are mandatory!");
 		}
 		
-		this.type = type;
-		this.year = year;
-		this.model = model;
-		this.color = color;
-		this.plate = plate;
-		this.price = price;
+		this.setType(type);
+		this.setYear(year);
+		this.setModel(model);
+		this.setColor(color);
+		this.setPlate(plate);
+		this.setPrice(price);
 	}
 	
 	boolean isValid(String str) {
@@ -65,7 +72,75 @@ public abstract class Vehicle {
 		return false;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println("9".hashCode());
+	public void setType(String type) throws TypeException{
+		if (!validType(type))
+			throw new TypeException("error: all fields are mandatory!");
+		this.type = type;
+	}
+	
+	boolean validType(String type){
+		if (type.equals(null) || type.equals(""))
+			return false;
+		return true;
+	}
+	
+	public void setYear(int year) throws YearException{
+		if (!validYear(year))
+				throw new YearException("error: all fields are mandatory!");
+		this.year = year;
+	}
+	
+	boolean validYear(int number){
+		if (number <= 0 || String.valueOf(number).equals(null) || String.valueOf(number).equals(""))
+			return false;
+	return true;
+	}
+	
+	public void setModel(String model) throws ModelException{
+		if (!validModel(model))
+			throw new ModelException("error: all fields are mandatory!");
+		this.model = model;
+	}
+
+	boolean validModel(String model) {
+		if (model.equals(null) || model.equals(""))
+			return false;
+		return true;
+	}
+	
+	public void setColor(String color) throws ColorException{
+		if(!validColor(color))
+			throw new ColorException("error: all fields are mandatory!");
+		this.color = color;
+	}
+
+	boolean validColor(String color) {
+		if (color.equals(null) || color.equals(""))
+			return false;
+		return true;
+	}
+	
+	public void setPlate(String plate) throws PlateException{
+		if (!validPlate(plate))
+			throw new PlateException("error: all fields are mandatory!");
+		this.plate = plate;
+	}
+
+	boolean validPlate(String plate2) {
+		if (plate.equals(null) || plate.equals(""))
+			return false;
+		return true;
+	}
+	
+	public void setPrice(Double price) throws PriceException{
+		if (validPrice(price))
+			throw new PriceException("error: all fields are mandatory!");
+		this.price = price;
+	}
+
+	boolean validPrice(Double price) {
+		if (price <= 0 || String.valueOf(price).equals(null) || String.valueOf(price).equals(""))
+			return false;
+		return true;
 	}
 }
