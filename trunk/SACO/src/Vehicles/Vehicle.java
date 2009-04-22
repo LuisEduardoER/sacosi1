@@ -127,19 +127,19 @@ public abstract class Vehicle {
 	}
 
 	boolean validPlate(String plate2) {
-		if (plate.equals(null) || plate.equals(""))
+		if (plate2.equals(null) || plate2.equals(""))
 			return false;
 		return true;
 	}
 	
 	public void setPrice(Double price) throws PriceException{
-		if (validPrice(price))
+		if (!validPrice(price))
 			throw new PriceException("error: all fields are mandatory!");
 		this.price = price;
 	}
 
-	boolean validPrice(Double price) {
-		if (price <= 0 || String.valueOf(price).equals(null) || String.valueOf(price).equals(""))
+	boolean validPrice(Double price2) {
+		if (price2 <= 0 || String.valueOf(price2).equals(null) || String.valueOf(price2).equals(""))
 			return false;
 		return true;
 	}

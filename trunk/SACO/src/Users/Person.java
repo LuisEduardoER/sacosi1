@@ -114,8 +114,9 @@ public abstract class Person implements Alugadores {
 						&& !isNumber(email2.charAt(i))
 						&& !isLetterDownCase(email2.charAt(i))
 						&& !isLetterUpperCase(email2.charAt(i))
-						&& !isSpace(email2.charAt(i)))
+						&& !isSpace(email2.charAt(i))){
 					return false;
+				}
 				if (email2.charAt(i) == '@')
 					arrobas++;
 			}
