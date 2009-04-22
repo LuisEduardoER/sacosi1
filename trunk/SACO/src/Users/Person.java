@@ -33,7 +33,7 @@ public abstract class Person implements Alugadores {
 			throw new NameException("error: invalid field!");
 		this.name = name;
 	}
-	
+
 	protected boolean isLetterDownCase(char letter) {
 		if (letter < 'a' || letter > 'z')
 			return false;
@@ -74,16 +74,15 @@ public abstract class Person implements Alugadores {
 				|| name2.charAt(name2.length() - 1) == ','
 				|| name2.charAt(name2.length() - 1) == '-') {
 			return false;
-		} else {
-			for (int i = 0; i < name2.length(); i++) {
-				if (!isPermitedChar(name2.charAt(i))
-						&& !isNumber(name2.charAt(i))
-						&& !isLetterDownCase(name2.charAt(i))
-						&& !isLetterUpperCase(name2.charAt(i))
-						&& !isSpace(name2.charAt(i)))
-					return false;
-			}
 		}
+		for (int i = 0; i < name2.length(); i++) {
+			if (!isPermitedChar(name2.charAt(i)) && !isNumber(name2.charAt(i))
+					&& !isLetterDownCase(name2.charAt(i))
+					&& !isLetterUpperCase(name2.charAt(i))
+					&& !isSpace(name2.charAt(i)))
+				return false;
+		}
+
 		return true;
 	}
 
@@ -99,6 +98,7 @@ public abstract class Person implements Alugadores {
 
 	private boolean validEmail(String email2) {
 		int arrobas = 0;
+		int posicaoArroba = 0;
 		if (email2.charAt(posicaoInicio) == '_'
 				|| email2.charAt(posicaoInicio) == '.'
 				|| email2.charAt(posicaoInicio) == ','
@@ -108,21 +108,28 @@ public abstract class Person implements Alugadores {
 				|| email2.charAt(email2.length() - 1) == ','
 				|| email2.charAt(email2.length() - 1) == '-') {
 			return false;
-		} else {
-			for (int i = 0; i < email2.length(); i++) {
+		}
+		//Procura a posicao do arroba
+		for (int i = 0; i < email2.length(); i++) {
+			if (email2.charAt(i) == '@'){
+				arrobas++;
+				posicaoArroba = i;
+			}
+		}
+		
+		if (arrobas != 1)
+			return false;
+		
+		for (int i = 0; i < email2.length(); i++) {
+			if (i != posicaoArroba)
 				if (!isPermitedChar(email2.charAt(i))
 						&& !isNumber(email2.charAt(i))
 						&& !isLetterDownCase(email2.charAt(i))
 						&& !isLetterUpperCase(email2.charAt(i))
-						&& !isSpace(email2.charAt(i))){
+						&& !isSpace(email2.charAt(i)))
 					return false;
-				}
-				if (email2.charAt(i) == '@')
-					arrobas++;
-			}
-			if (arrobas != 1)
-				return false;
 		}
+
 		return true;
 	}
 
