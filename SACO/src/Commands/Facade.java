@@ -13,6 +13,7 @@ import Exceptions.PriceException;
 import Exceptions.TypeException;
 import Exceptions.YearException;
 import Users.Administrator;
+import Vehicles.Car;
 import Vehicles.Motorcycle;
 import Vehicles.Vehicle;
 
@@ -41,33 +42,7 @@ public class Facade {
 			System.err.println(e.getMessage());
 		}
 		
-		try {
-			Vehicle veiculo = new Motorcycle("motorcycle", "cb250", "amarela", "mbx2255", 2009, 200.00);
-		} catch (InvalidFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TypeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ModelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ColorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (PlateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (PriceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (YearException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 }

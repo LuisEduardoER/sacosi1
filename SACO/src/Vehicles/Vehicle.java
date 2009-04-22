@@ -143,4 +143,29 @@ public abstract class Vehicle {
 			return false;
 		return true;
 	}
+	
+	public String getColor() {
+		return color;
+	}
+	
+	public String getModel() {
+		return model;
+	}
+	
+	public String getPlate() {
+		return plate;
+	}
+	
+	public Double getPrice() {
+		return price;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public int getYear() {
+		return year;
+	}
+	
 }
