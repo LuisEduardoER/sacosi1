@@ -1,0 +1,37 @@
+# US05 - Adicionar veículo
+
+expect 0 getAllVehicles
+
+addVehicle type="motorcycle" model="titan" color="black" plate="ABC1234" year=2007 price=35
+addVehicle type="car" model="corsa" color="black" plate="XYZ9876" year=2008 price=70
+addVehicle type="car" model="gol" color="black" plate="RAH6587" year=2009 price=70
+addVehicle type="motorcycle" model="twister" color="black" plate="ABD1234" year=2005 price=50
+addVehicle type="car" model="celta" color="black" plate="KJR3475" year=2008 price=60
+addVehicle type="motorcycle" model="titan" color="black" plate="ZOM1489" year=2006 price=30
+addVehicle type="car" model="ferrari" color="red" plate="FER9632" year=2009 price=5000
+addVehicle type="motorcycle" model="fan" color="black" plate="CBA1234" year=2008 price=25
+
+expect 8 getAllVehicles
+
+expectError "error: all fields are mandatory!" addVehicle type="" model="titan" color="black" plate="ABC1234" year=2007 price=35
+expectError "error: all fields are mandatory!" addVehicle type= model="titan" color="black" plate="ABC1234" year=2007 price=35
+expectError "error: all fields are mandatory!" addVehicle type="car" model="" color="black" plate="XYZ9876" year=2008 price=70
+expectError "error: all fields are mandatory!" addVehicle type="car" model= color="black" plate="XYZ9876" year=2008 price=70
+expectError "error: all fields are mandatory!" addVehicle type="car" model="gol" color="" plate="RAH6587" year=2009 price=70
+expectError "error: all fields are mandatory!" addVehicle type="car" model="gol" color= plate="RAH6587" year=2009 price=70
+expectError "error: all fields are mandatory!" addVehicle type="motorcycle" model="twister" color="black" plate="" year=2005 price=50
+expectError "error: all fields are mandatory!" addVehicle type="motorcycle" model="twister" color="black" plate= year=2005 price=50
+expectError "error: all fields are mandatory!" addVehicle type="car" model="celta" color="black" plate="KJR3475" year= price=60
+expectError "error: all fields are mandatory!" addVehicle type="car" model="ferrari" color="red" plate="FER9632" year=2009 price=
+
+expectError "error: invalid field!" addVehicle type="m@torcycle" model="titan" color="black" plate="ABC1234" year=2007 price=35
+expectError "error: invalid field!" addVehicle type="car" model="corsa" color="black" plate="XZ9876" year=2008 price=70
+expectError "error: invalid field!" addVehicle type="motorcycle" model="twister#" color="black" plate="ABD1234" year=2005 price=50
+expectError "error: invalid field!" addVehicle type="car" model="ferr@ri" color="red" plate="FER9632" year=2009 price=5000
+expectError "error: invalid field!" addVehicle type="bike" model="fan" color="blac k" plate="CBA1234" year=2008 price=25
+expectError "error: invalid field!" addVehicle type="car" model="celta" color="black" plate="KJR3475" year=0 price=60
+expectError "error: invalid field!" addVehicle type="motorcycle" model="titan" color="black" plate="ZOM1489" year=2006 price=0
+
+expect 8 getAllVehicles
+
+expectError "error: this vehicle already exists!" addVehicle type="car" model="astra" color="black" plate="ABC1234" year=2009 price=90
