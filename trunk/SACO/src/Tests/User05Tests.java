@@ -17,7 +17,7 @@ public class User05Tests {
 
 		//Instantiate the Monopoly Game façade
 
-		UserControllerTest test = new UserControllerTest();
+		VehiclesControllerTest test = new VehiclesControllerTest();
 
 		//Instantiate EasyAccept façade
 

@@ -16,7 +16,7 @@ public class VehiclesControllerTest {
 	private VehiclesController test;
 	
 	public VehiclesControllerTest() {
-		VehiclesController.getInstance();
+		test = VehiclesController.getInstance();
 	}
 	
 	public int getAllVehicles() {
