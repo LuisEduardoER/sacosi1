@@ -3,6 +3,7 @@ package Users;
 import Exceptions.LoginException;
 
 import Exceptions.EmailException;
+import Exceptions.InvalidFieldException;
 import Exceptions.NameException;
 import Exceptions.PhoneException;
 
@@ -13,7 +14,7 @@ public class Administrator extends Person {
 
 	public Administrator(String name, String email, String phone, String login)
 			throws EmailException, NameException, PhoneException,
-			LoginException {
+			LoginException, InvalidFieldException {
 
 		super(name, email, phone);
 		if (login.equals(null) || login.equals(""))

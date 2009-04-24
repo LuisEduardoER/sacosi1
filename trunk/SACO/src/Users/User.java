@@ -3,6 +3,7 @@ package Users;
 import javax.security.auth.login.LoginException;
 
 import Exceptions.EmailException;
+import Exceptions.InvalidFieldException;
 import Exceptions.NameException;
 import Exceptions.PhoneException;
 
@@ -13,7 +14,7 @@ public class User extends Person {
 
 	public User(String name, String email, String phone, String login)
 			throws EmailException, NameException, PhoneException,
-			LoginException {
+			LoginException, InvalidFieldException {
 
 		super(name, email, phone);
 		if (login.equals(null) || login.equals(""))

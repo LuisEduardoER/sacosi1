@@ -1,6 +1,7 @@
 package Users;
 
 import Exceptions.EmailException;
+import Exceptions.InvalidFieldException;
 import Exceptions.NameException;
 import Exceptions.PhoneException;
 
@@ -12,9 +13,23 @@ public abstract class Person implements Alugadores {
 	private static final int posicaoInicio = 0;
 	private static final int caracteresPhone = 10;
 
+	/**
+	 * 
+	 * @param name
+	 * @param email
+	 * @param phone
+	 * @throws EmailException
+	 * @throws NameException
+	 * @throws PhoneException
+	 * @throws InvalidFieldException 
+	 */
 	public Person(String name, String email, String phone)
-			throws EmailException, NameException, PhoneException {
+			throws EmailException, NameException, PhoneException, InvalidFieldException {
 
+		if ( (name.equals(null) || name.equals("")) &&
+			 (email.equals(null) || email.equals("")) &&
+			 (phone.equals(null) || phone.equals("")))
+			throw new InvalidFieldException("error: all fields are mandatory!");
 		if (name.equals(null) || name.equals(""))
 			throw new NameException("error: name is a mandatory field!");
 		if (email.equals(null) || email.equals(""))
