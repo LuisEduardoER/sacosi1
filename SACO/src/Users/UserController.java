@@ -19,7 +19,7 @@ import Exceptions.UserNotFoundException;
 public class UserController {
 	
 	/** */
-	private UserController instance;
+	private static UserController instance;
 	/** */
 	private CustomerCollection registeredCustomers;
 	/** */
@@ -37,7 +37,7 @@ public class UserController {
 	 * Retorna uma unica instancia da classe. Padrao singleton.
 	 * @return UserController a instancia da classe.
 	 */
-	public UserController getInstance() {
+	public static UserController getInstance() {
 		return instance == null ? 
 			   instance = new UserController() : 
 			   instance;
