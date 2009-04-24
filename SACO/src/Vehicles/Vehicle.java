@@ -9,7 +9,7 @@ import Exceptions.TypeException;
 import Exceptions.YearException;
 import Exceptions.ModelException;
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Alugavel {
 	
 	private String type;
 	
