@@ -1,0 +1,24 @@
+# US06 - Remover veiculo
+
+expect 0 getAllVehicles
+
+expectError "error: there is no vehicles on database" removeVehicle key="xpt123"
+
+addVehicle type="motorcycle" model="titan" color="black" plate="ABC1234" year=2007 price=35
+addVehicle type="car" model="corsa" color="black" plate="XYZ9876" year=2008 price=70
+addVehicle type="car" model="gol" color="black" plate="RAH6587" year=2009 price=70
+addVehicle type="motorcycle" model="twister" color="black" plate="ABD1234" year=2005 price=50
+
+expect 4 getAllVehicles
+
+removeVehicle key="xyz9876"
+removeVehicle key="RAH6587"
+
+expect 2 getAllVehicles
+
+expectError "error: no such vehicle!" removeVehicle key="xyz9876"
+
+expectError "error: invalid parameter!" removeVehicle key=""
+expectError "error: invalid parameter!" removeVehicle key=
+
+expect 2 getAllVehicles

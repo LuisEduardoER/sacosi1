@@ -5,6 +5,7 @@ package Controller;
  * 
  * @author Filipe Costa
  */
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -118,6 +119,9 @@ public class VehiclesCollection {
 			NoVehicleOnDatabaseException {
 		if (size() == 0){
 			throw new NoVehicleOnDatabaseException("error: there is no vehicles on database");
+		}
+		if (plate == null || plate.equals("")){
+			throw new InvalidParameterException("error: invalid parameter!");
 		}
 		if (findVehicle(plate) == null){
 			throw new NoSuchVehicleException("error: no such vehicle!");
