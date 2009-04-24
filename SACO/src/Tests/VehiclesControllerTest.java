@@ -25,7 +25,7 @@ public class VehiclesControllerTest {
 		return test.getAllVehicles();
 	}
 	
-	public void addVehicle(String type, String model, String color, String plate, int year, double price) throws InvalidFieldException, NoFieldException, TypeException, ModelException, ColorException, PlateException, PriceException, YearException, PlateAlreadyExistsException {
+	public void addVehicle(String type, String model, String color, String plate, String year, String price) throws InvalidFieldException, NoFieldException, TypeException, ModelException, ColorException, PlateException, PriceException, YearException, PlateAlreadyExistsException {
 		test.addVehicle(type, model, color, plate, year, price);
 	}
 	

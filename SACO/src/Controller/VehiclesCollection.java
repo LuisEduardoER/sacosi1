@@ -64,7 +64,7 @@ public class VehiclesCollection {
 	 * @throws PlateAlreadyExistsException
 	 */
 	public void add(String type, String model, String color, String plate,
-			int year, Double price) throws InvalidFieldException,
+			String year, String price) throws InvalidFieldException,
 			NoFieldException, TypeException, ModelException, ColorException,
 			PlateException, PriceException, YearException,
 			PlateAlreadyExistsException {

@@ -12,7 +12,7 @@ import Exceptions.ModelException;
 public class Motorcycle extends Vehicle{
 
 	public Motorcycle(String type, String model, String color, String plate,
-			int year, Double price) throws InvalidFieldException, NoFieldException, TypeException, 
+			String year, String price) throws InvalidFieldException, NoFieldException, TypeException, 
 									ModelException, ColorException, PlateException, PriceException, YearException {
 		super(type, model, color, plate, year, price);
 		
