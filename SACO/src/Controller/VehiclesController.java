@@ -14,7 +14,7 @@ import Exceptions.YearException;
 
 public class VehiclesController {
 	/***/
-	private VehiclesController instance;
+	private static VehiclesController instance;
 	/***/
 	private VehiclesCollection registeredVehicles;
 
@@ -27,7 +27,7 @@ public class VehiclesController {
 	 * 
 	 * @return uma unica instancia da classe
 	 */
-	public VehiclesController getInstance() {
+	public static VehiclesController getInstance() {
 		if (instance == null) {
 			instance = new VehiclesController();
 		}
