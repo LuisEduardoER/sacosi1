@@ -67,21 +67,28 @@ public class VehiclesCollection {
 			NoFieldException, TypeException, ModelException, ColorException,
 			PlateException, PriceException, YearException,
 			PlateAlreadyExistsException {
-		if (plateAlreadyExists(plate)) {
-			throw new PlateAlreadyExistsException(
-					"error: this vehicle already exists!");
-		}
+
+		
+		
 		if (type == null || type.equals("")) {
 			throw new NoFieldException("error: all fields are mandatory!");
 		} else if (type.equals("car")) {
+			if (plateAlreadyExists(plate)) {
+				throw new PlateAlreadyExistsException(
+						"error: this vehicle already exists!");
+			}
 			vehiclesList.add(new Car(type, model, color, plate, year, price));
 		} else if (type.equals("motorcycle")) {
+			if (plateAlreadyExists(plate)) {
+				throw new PlateAlreadyExistsException(
+						"error: this vehicle already exists!");
+			}
 			vehiclesList.add(new Motorcycle(type, model, color, plate, year,
 					price));
 		} else {
 			throw new InvalidFieldException("error: invalid field!");
 		}
-
+		
 	}
 
 	/**

@@ -28,12 +28,13 @@ public abstract class Vehicle implements Alugavel {
 			NoFieldException, TypeException, ModelException, ColorException,
 			PlateException, PriceException, YearException {
 
-		if (!(type.equals("motorcycle") || type.equals("car"))) {
-			throw new InvalidFieldException("error: invalid field!");
-		}
 		if (type == null || model == null || color == null || price == null
 				|| plate == null) {
 			throw new NoFieldException("error: all fields are mandatory!");
+		}
+		
+		if (!(type.equals("motorcycle") || type.equals("car"))) {
+			throw new InvalidFieldException("error: invalid field!");
 		}
 
 		if (!isValid(model) || !isValid(color) || !isValid(plate)
