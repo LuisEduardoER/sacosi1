@@ -37,8 +37,7 @@ public abstract class Vehicle implements Alugavel {
 			throw new InvalidFieldException("error: invalid field!");
 		}
 
-		if (!isValid(model) || !isValid(color) || !isValid(plate)
-				|| !validPlate(plate) || !validPrice(price) || !validYear(year)) {
+		if (!isValid(model) || !isValid(color) || !isValid(plate)) {
 			throw new InvalidFieldException("error: invalid field!");
 		}
 		if (model.equals("") || color.equals("") || plate.equals("")) {
@@ -92,16 +91,24 @@ public abstract class Vehicle implements Alugavel {
 	public void setYear(int year) throws YearException {
 		if (!validYear(year))
 			throw new YearException("error: all fields are mandatory!");
+		if (!isValidYear(year))
+			throw new YearException("error: invalid field!");
 		this.year = year;
 	}
 
 	boolean validYear(int number) {
-		if (number <= 0 || String.valueOf(number).equals(null)
+		if (String.valueOf(number).equals(null)
 				|| String.valueOf(number).equals(""))
 			return false;
 		return true;
 	}
 
+	boolean isValidYear(int number){
+		if (number <= 0){
+			return false;
+		}
+		return true;
+	}
 	public void setModel(String model) throws ModelException {
 		if (!validModel(model))
 			throw new ModelException("error: all fields are mandatory!");
@@ -129,15 +136,20 @@ public abstract class Vehicle implements Alugavel {
 	public void setPlate(String plate) throws PlateException {
 		if (!validPlate(plate))
 			throw new PlateException("error: all fields are mandatory!");
+		if (!isValidPlate(plate))
+			throw new PlateException("error: invalid field!");
 		this.plate = plate;
 	}
 
 	boolean validPlate(String plate2) {
 		if (plate2 == null || plate2.equals(""))
 			return false;
-		if (!validLetterPlate(plate2.substring(0,3)))
+		return true;
+	}
+	boolean isValidPlate(String plate){
+		if (!validLetterPlate(plate.substring(0,3)))
 			return false;
-		if (!validNumberPlate(plate2.substring(3,plate2.length())))
+		if (!validNumberPlate(plate.substring(3,plate.length())))
 			return false;
 		return true;
 	}
@@ -175,16 +187,23 @@ public abstract class Vehicle implements Alugavel {
 	public void setPrice(Double price) throws PriceException {
 		if (!validPrice(price))
 			throw new PriceException("error: all fields are mandatory!");
+		if (!isValidPrice(price))
+			throw new PriceException("error: invalid field!");
 		this.price = price;
 	}
 
 	boolean validPrice(Double price2) {
-		if (String.valueOf(price2) == null || price2 <= 0
-				|| String.valueOf(price2).equals(""))
+		if (String.valueOf(price2) == null || String.valueOf(price2).equals(""))
 			return false;
 		return true;
 	}
 
+	boolean isValidPrice(double price){
+		if (price <= 0){
+			return false;
+		}
+		return true;
+	}
 	public String getColor() {
 		return color;
 	}
