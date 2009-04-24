@@ -5,6 +5,8 @@ import Exceptions.ColorException;
 import Exceptions.InvalidFieldException;
 import Exceptions.ModelException;
 import Exceptions.NoFieldException;
+import Exceptions.NoSuchVehicleException;
+import Exceptions.NoVehicleOnDatabaseException;
 import Exceptions.PlateAlreadyExistsException;
 import Exceptions.PlateException;
 import Exceptions.PriceException;
@@ -25,6 +27,10 @@ public class VehiclesControllerTest {
 	
 	public void addVehicle(String type, String model, String color, String plate, int year, double price) throws InvalidFieldException, NoFieldException, TypeException, ModelException, ColorException, PlateException, PriceException, YearException, PlateAlreadyExistsException {
 		test.addVehicle(type, model, color, plate, year, price);
+	}
+	
+	public void removeVehicle(String plate) throws NoSuchVehicleException, NoVehicleOnDatabaseException{
+		test.removeVehicle(plate);
 	}
 
 }
