@@ -12,8 +12,8 @@ import Exceptions.ModelException;
 
 public class Car extends Vehicle{
 
-	public Car(String type, String model, String color, String plate, int year,
-			Double price) throws InvalidFieldException, NoFieldException, TypeException, ModelException, 
+	public Car(String type, String model, String color, String plate, String year,
+			String price) throws InvalidFieldException, NoFieldException, TypeException, ModelException, 
 						  ColorException, PlateException, PriceException, YearException {
 		super(type, model, color, plate, year, price);
 		

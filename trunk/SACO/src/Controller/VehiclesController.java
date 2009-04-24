@@ -53,7 +53,7 @@ public class VehiclesController {
 	 * @throws PlateAlreadyExistsException
 	 */
 	public void addVehicle(String type, String model, String color,
-			String plate, int year, double price) throws InvalidFieldException,
+			String plate, String year, String price) throws InvalidFieldException,
 			NoFieldException, TypeException, ModelException, ColorException,
 			PlateException, PriceException, YearException,
 			PlateAlreadyExistsException {

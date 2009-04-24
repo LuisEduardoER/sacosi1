@@ -24,12 +24,12 @@ public abstract class Vehicle implements Alugavel {
 	private Double price;
 
 	public Vehicle(String type, String model, String color, String plate,
-			int year, Double price) throws InvalidFieldException,
+			String year, String price) throws InvalidFieldException,
 			NoFieldException, TypeException, ModelException, ColorException,
 			PlateException, PriceException, YearException {
 
 		if (type == null || model == null || color == null || price == null
-				|| plate == null) {
+				|| plate == null || year == null || price == null) {
 			throw new NoFieldException("error: all fields are mandatory!");
 		}
 		
@@ -45,11 +45,11 @@ public abstract class Vehicle implements Alugavel {
 		}
 
 		this.setType(type);
-		this.setYear(year);
+		this.setYear(Integer.parseInt(year));
 		this.setModel(model);
 		this.setColor(color);
 		this.setPlate(plate);
-		this.setPrice(price);
+		this.setPrice(Double.parseDouble(price));
 	}
 
 	boolean isValid(String str) {
