@@ -64,12 +64,20 @@ public class UserController {
 																			PhoneException, 
 																			CustomerAlreadyExistException, 
 																			InvalidFieldException {
+		if (verification.allCustomerFieldsInvalids(name, email, phone))
+			throw new InvalidFieldException("error: all fields are mandatory!");
+		if (!verification.nameIsAMandatoryField(name)) 
+			throw new InvalidFieldException("error: name is a mandatory field!");
 		if (!verification.validateName(name)) 
-			throw new InvalidNameException("error: name is a mandatory field!");
+			throw new InvalidNameException("error: invalid field!");
+		if (!verification.emailIsAMandatoryField(email))
+			throw new EmailException("error: e-mail is a mandatory field!");
 		if (!verification.validateEmail(email))
-			throw new EmailException("error: email is a mandatory field!");
+			throw new EmailException("error: invalid field!");
+		if (!verification.phoneNumberIsAMandatoryField(phone)) 
+			throw new PhoneException("error: phone number is a mandatory field!");
 		if (!verification.validatePhoneNumber(phone))
-			throw new PhoneException("error: phone is a mandatory field!");
+			throw new PhoneException("error: invalid field!");
 		if (!verification.allCustomerFieldsInvalids(name, email, phone));
 		registeredCustomers.add(name, email, phone);
 	}
