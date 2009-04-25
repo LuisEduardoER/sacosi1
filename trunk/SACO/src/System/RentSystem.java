@@ -17,7 +17,7 @@ public class RentSystem {
 		listOfVehicles = new ArrayList<Vehicle>();
 	}
 	
-	public void addUser(User user) throws NameException, EmailException, LoginException, PhoneException {
+	public void addUser(User user) throws InvalidNameException, EmailException, LoginException, PhoneException {
 		listOfUsers.add(user);
 	}
 	
