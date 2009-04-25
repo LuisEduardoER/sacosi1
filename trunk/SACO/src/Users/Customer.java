@@ -1,9 +1,5 @@
 package Users;
 
-import Exceptions.EmailException;
-import Exceptions.InvalidFieldException;
-import Exceptions.NameException;
-import Exceptions.PhoneException;
 
 /**
  * 
@@ -13,18 +9,11 @@ import Exceptions.PhoneException;
 public class Customer extends Person {
 
 	/**
-	 * 
 	 * @param name
 	 * @param email
 	 * @param phone
-	 * @throws EmailException
-	 * @throws NameException
-	 * @throws PhoneException
-	 * @throws InvalidFieldException 
 	 */
-	public Customer(String name, String email, String phone)
-			throws EmailException, NameException, PhoneException, InvalidFieldException {
-
+	public Customer(String name, String email, String phone) {
 		super(name, email, phone);
 
 	}

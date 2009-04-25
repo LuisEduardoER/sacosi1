@@ -1,13 +1,13 @@
 package Users;
 
 import Exceptions.EmailException;
-import Exceptions.NameException;
+import Exceptions.InvalidNameException;
 import Exceptions.PhoneException;
 
 public interface Alugadores {
 	
 		public String getName();
-		public void setName(String nome) throws NameException;
+		public void setName(String nome) throws InvalidNameException;
 		
 		public String getEmail();
 		public void setEmail(String email) throws EmailException;

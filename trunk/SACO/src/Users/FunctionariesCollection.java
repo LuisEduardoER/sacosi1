@@ -6,9 +6,6 @@ import java.util.List;
 import javax.security.auth.login.LoginException;
 
 import Exceptions.EmailException;
-import Exceptions.InvalidFieldException;
-import Exceptions.NameException;
-import Exceptions.PhoneException;
 import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
 
@@ -29,23 +26,28 @@ public class FunctionariesCollection {
 	 * @param name o nome do usuario;
 	 * @param email o email do usuario;
 	 * @param phone o telefone do usuario;
-	 * @throws PhoneException telefone invalido;
-	 * @throws NameException nome invalido;
-	 * @throws EmailException email invalido;
-	 * @throws LoginException login invalido;
-	 * @throws InvalidFieldException 
 	 * @throws UserAlreadyExistException 
 	 */
-	public void add(String login, String name, String email, String phone) throws LoginException, 
-																				  EmailException, 
-																				  NameException, 
-																				  PhoneException, 
-																				  InvalidFieldException, 
-																				  UserAlreadyExistException {
-		if (findUser(login) != null || findUser(email) != null) 
-			throw new UserAlreadyExistException("error: customer already exists!");
+	public void add(String login, String name, String email, String phone) throws UserAlreadyExistException {
+		if (findUserByLogin(login) != null || findUserByEmail(email) != null) 
+			throw new UserAlreadyExistException("error: user already exists!");
 		usersList.add(new User(login, name, email, phone));
 		
+	}
+
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 * @throws EmailException 
+	 */
+	private Object findUserByEmail(String email) {
+		for (User user : usersList) {
+			if (user.getEmail().equalsIgnoreCase(email) 
+					|| user.getLogin().equalsIgnoreCase(email))
+				return user;
+		}
+		return null;
 	}
 
 	/**
@@ -58,11 +60,14 @@ public class FunctionariesCollection {
 
 	/**
 	 * Remove um funcionario do sistema.
-	 * @param emailOrLogin o email ou o login do funcionario.
+	 * @param email o email do funcionario.
 	 * @throws UserNotFoundException funcionario nao encontrado. 
+	 * @throws LoginException 
+	 * @throws EmailException 
 	 */
-	public void remove(String emailOrLogin) throws UserNotFoundException {
-		if (!usersList.remove(findUser(emailOrLogin))) 
+	public void remove(String loginOrEmail) throws UserNotFoundException, LoginException, EmailException {
+		if (!usersList.remove(findUserByLogin(loginOrEmail)) 
+				&& !usersList.remove(findUserByEmail(loginOrEmail))) 
 			throw new UserNotFoundException("error: no such user!"); 
 	}
 
@@ -70,10 +75,10 @@ public class FunctionariesCollection {
 	 * Encontra um funcionario no sistema utilizando como base de pesquisa
 	 * seu email ou login. Retorna null caso nao o encontre. 
 	 */
-	private User findUser(String emailOrLogin) {
+	private User findUserByLogin(String login) {
 		for (User user : usersList) {
-			if (user.getEmail().equalsIgnoreCase(emailOrLogin) 
-					|| user.getLogin().equalsIgnoreCase(emailOrLogin))
+			if (user.getEmail().equalsIgnoreCase(login) 
+					|| user.getLogin().equalsIgnoreCase(login))
 				return user;
 		}
 		return null;
