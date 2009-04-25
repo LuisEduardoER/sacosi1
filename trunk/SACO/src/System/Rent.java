@@ -1,7 +1,7 @@
 package System;
 
-import java.util.Date;
 
+import p1.aplic.geral.Data;
 import Users.Alugadores;
 import Vehicles.Alugavel;
 
@@ -9,14 +9,14 @@ public class Rent {
 
 	private Alugavel vehicle;
 	private Alugadores costumer;
-	private Date devolutionDate;
-	private Date rentDate;
+	private Data devolutionDate;
+	private Data rentDate;
 
-	public Rent(Alugavel vehicle, Alugadores costumer, Date devolutionDate) {
+	public Rent(Alugavel vehicle, Alugadores costumer, Data devolutionDate) {
 		this.setVehicle(vehicle);
 		this.setCostumer(costumer);
-		this.setDevolutionDate(devolutionDate);
-		this.setRentDate(new Date());
+		this.setDevolutionData(devolutionDate);
+		this.setRentData(new Data());
 	}
 
 	public void setVehicle(Alugavel vehicle) {
@@ -35,19 +35,19 @@ public class Rent {
 		return costumer;
 	}
 
-	public void setDevolutionDate(Date devolutionDate) {
+	public void setDevolutionData(Data devolutionDate) {
 		this.devolutionDate = devolutionDate;
 	}
 
-	public Date getDevolutionDate() {
+	public Data getDevolutionDate() {
 		return devolutionDate;
 	}
 
-	private void setRentDate(Date rentDate) {
+	private void setRentData(Data rentDate) {
 		this.rentDate = rentDate;
 	}
 
-	public Date getRentDate() {
+	public Data getRentDate() {
 		return rentDate;
 	}
 }
