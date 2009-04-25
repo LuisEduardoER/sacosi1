@@ -1,11 +1,11 @@
 package Exceptions;
 
 
-public class LoginException extends Exception {
+public class InvalidLoginException extends Exception {
 
 	private static final long serialVersionUID = 3698122668479070214L;
 
-	public LoginException(String msg) {
+	public InvalidLoginException(String msg) {
 		super(msg);
 	}
 }

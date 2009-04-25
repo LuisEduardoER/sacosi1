@@ -1,9 +1,9 @@
 package Exceptions;
-public class NameException extends Exception {
+public class InvalidNameException extends Exception {
 
 	private static final long serialVersionUID = 3979213664745987544L;
 
-	public NameException(String msg) {
+	public InvalidNameException(String msg) {
 		super(msg);
 	}
 }
