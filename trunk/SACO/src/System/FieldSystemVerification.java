@@ -20,7 +20,7 @@ public class FieldSystemVerification {
 	 * @return
 	 */
 	public boolean nameIsAMandatoryField(String name) {
-		return name != null && name != "";
+		return name != null && !name.equals("");
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class FieldSystemVerification {
 	 * @return
 	 */
 	public boolean emailIsAMandatoryField(String email) {
-		return email != null && email != "";
+		return email != null && !email.equals("");
 	}
 	
 	/**
@@ -114,9 +114,9 @@ public class FieldSystemVerification {
 	 * @return
 	 */
 	public boolean allCustomerFieldsInvalids(String name, String email, String phone) {
-		return !validateName(name) && 
-			   !validateEmail(email) && 
-			   !validatePhoneNumber(phone);
+		return !nameIsAMandatoryField(name) && 
+			   !emailIsAMandatoryField(email) && 
+			   !phoneNumberIsAMandatoryField(phone);
 	}
 	
 	/**
