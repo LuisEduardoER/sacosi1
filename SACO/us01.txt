@@ -1,0 +1,39 @@
+# US1 - Adicionar usuario
+
+expect 0 getAllUsers
+
+addUser login="foo" name="foo bar" email="foo@bar.com" phone="6666666666"
+addUser login="romulo" name="paulo romulo" email="paulo@embedded.ufcg.edu.br" phone="8388242424"
+addUser login="xpto" name="moo" email="moo@xpto.com.br" phone="8388888888"
+addUser login="user" name="user" email="user@company.com" phone="1234567890"
+
+expect 4 getAllUsers
+
+expectError "error: login is a mandatory field!" addUser login= name="foo bar" email="foo@bar.com" phone="6666666666"
+expectError "error: login is a mandatory field!" addUser login="" name="foo bar" email="foo@bar.com" phone="6666666666"
+expectError "error: name is a mandatory field!" addUser login="romulo" name="" email="paulo@embedded.ufcg.edu.br" phone="8388242424"
+expectError "error: name is a mandatory field!" addUser login="romulo" name= email="paulo@embedded.ufcg.edu.br" phone="8388242424"
+expectError "error: e-mail is a mandatory field!" addUser login="xpto" name="moo" email= phone="8388888888"
+expectError "error: e-mail is a mandatory field!" addUser login="xpto" name="moo" email="" phone="8388888888"
+expectError "error: phone number is a mandatory field!" addUser login="user" name="user" email="user@company.com" phone=""
+expectError "error: phone number is a mandatory field!" addUser login="user" name="user" email="user@company.com" phone=
+
+expectError "error: all fields are mandatory!" addUser login="" name="" email="" phone=""
+expectError "error: all fields are mandatory!" addUser login= name= email= phone=
+
+expectError "error: invalid field!" addUser login="foo" name="foo bar." email="foo@bar.com" phone="6666666666"
+expectError "error: invalid field!" addUser login="foo@" name="foo bar" email="foo@bar.com" phone="6666666666"
+expectError "error: invalid field!" addUser login="foo." name="foo bar." email="foo@bar.com" phone="6666666666"
+expectError "error: invalid field!" addUser login="foo" name="foo bar" email="foo@bar.com." phone="6666666666"
+expectError "error: invalid field!" addUser login="foo" name="_foo bar_" email="foo@bar.com" phone="6666666666"
+expectError "error: invalid field!" addUser login="foo_" name="foo bar" email="foo@bar.com" phone="6666666666"
+expectError "error: invalid field!" addUser login="foo" name="foo bar" email="foo@bar.com" phone="666666666a"
+expectError "error: invalid field!" addUser login="foo" name="foo bar" email="foo@bar.com" phone="666666666"
+
+expect 4 getAllUsers
+
+expectError "error: user already exists!" addUser login="fooo" name="foo bar" email="foo@bar.com" phone="6666666666"
+expectError "error: user already exists!" addUser login="foo" name="foo bar" email="foo@bar.com.br" phone="6666666666"
+
+expect 4 getAllUsers
+

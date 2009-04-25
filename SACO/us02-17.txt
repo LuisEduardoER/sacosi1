@@ -1,0 +1,35 @@
+# US2 - Adicionar cliente
+# US17 - Cadastro de cliente
+
+expect 0 getAllCustomers
+
+addCustomer name="foo bar" email="foo@bar.com" phone="6666666666"
+addCustomer name="paulo romulo" email="paulo@embedded.ufcg.edu.br" phone="8388242424"
+addCustomer name="moo" email="moo@xpto.com.br" phone="8388888888"
+addCustomer name="user" email="user@company.com" phone="1234567890"
+
+expect 4 getAllCustomers
+
+expectError "error: name is a mandatory field!" addCustomer name="" email="paulo@embedded.ufcg.edu.br" phone="8388242424"
+expectError "error: name is a mandatory field!" addCustomer name= email="paulo@embedded.ufcg.edu.br" phone="8388242424"
+expectError "error: e-mail is a mandatory field!" addCustomer name="moo" email= phone="8388888888"
+expectError "error: e-mail is a mandatory field!" addCustomer name="moo" email="" phone="8388888888"
+expectError "error: phone number is a mandatory field!" addCustomer name="user" email="user@company.com" phone=""
+expectError "error: phone number is a mandatory field!" addCustomer name="user" email="user@company.com" phone=
+
+expectError "error: all fields are mandatory!" addCustomer name="" email="" phone=""
+expectError "error: all fields are mandatory!" addCustomer name= email= phone=
+
+expectError "error: invalid field!" addCustomer name="foo bar." email="foo@bar.com" phone="6666666666"
+expectError "error: invalid field!" addCustomer name="foo bar" email="foo@bar." phone="6666666666"
+expectError "error: invalid field!" addCustomer name="_foo bar" email="foo@bar.com" phone="6666666666"
+expectError "error: invalid field!" addCustomer name="foo b@r" email="foo@bar.com." phone="6666666666"
+expectError "error: invalid field!" addCustomer name="_foo bar_" email="foo@bar.com" phone="6666666666"
+expectError "error: invalid field!" addCustomer name="foo bar" email="foo@bar.com" phone="666666666"
+expectError "error: invalid field!" addCustomer name="foo bar" email="foo@bar.com" phone="666666666a"
+
+expect 4 getAllCustomers
+
+expectError "error: customer already exists!" addCustomer name="foo bar" email="foo@bar.com" phone="6666666666"
+
+expect 4 getAllCustomers
