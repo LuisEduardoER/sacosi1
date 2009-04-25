@@ -44,7 +44,7 @@ public class CustomerCollection {
 	 */
 	public void add(String name, String email, String phone) throws CustomerAlreadyExistException {
 		if (customerAlreadyExist(email)) 
-			throw new CustomerAlreadyExistException("customer already exist.");
+			throw new CustomerAlreadyExistException("error: customer already exists!");
 		customerList.add(new Customer(name, email, phone));
 	}
 	
