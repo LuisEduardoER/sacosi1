@@ -7,7 +7,7 @@ import Exceptions.ClientNotRegisteredException;
 import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
 import Exceptions.InvalidFieldException;
-import Exceptions.NameException;
+import Exceptions.InvalidNameException;
 import Exceptions.PhoneException;
 
 /**
@@ -38,16 +38,11 @@ public class CustomerCollection {
 	 * Adiciona um cliente ao sistema.
 	 * 
 	 * @throws PhoneException excecao lancada ao tentar adicionar um usuario sem o numero do seu telefone 
-	 * @throws NameException excecao lancada ao tentar adicionar um usuario sem o seu nome
+	 * @throws InvalidNameException excecao lancada ao tentar adicionar um usuario sem o seu nome
 	 * @throws EmailException excecao lancada ao tentar adicionar um usuario sem o email
 	 * @throws InvalidFieldException 
 	 */
-	public void add(String name, String email, String phone) throws EmailException, 
-																	NameException, 
-																	PhoneException,
-																	CustomerAlreadyExistException, 
-																	InvalidFieldException {
-		
+	public void add(String name, String email, String phone) throws CustomerAlreadyExistException {
 		if (customerAlreadyExist(email)) 
 			throw new CustomerAlreadyExistException("customer already exist.");
 		customerList.add(new Customer(name, email, phone));
