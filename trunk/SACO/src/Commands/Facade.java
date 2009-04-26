@@ -45,11 +45,7 @@ public class Facade {
 		this.userController.addCustomer(name, email, phone);
 	}
 	
-	public void registerLateRent(String plate, String email, String initialDate, 
-			String finalDate) throws InvalidParameterException, InvalidDateException {
-		this.reController.registerLateRent(plate, email, initialDate, finalDate);
-	}
-	
+
 	public void addVehicle(String type, String model, String color,
 			String plate, String year, String price) throws InvalidFieldException,
 			NoFieldException, TypeException, ModelException, ColorException,

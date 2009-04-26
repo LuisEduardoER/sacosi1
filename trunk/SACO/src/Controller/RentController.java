@@ -43,9 +43,16 @@ public class RentController {
 		this.verification = new FieldSystemVerification();
 	}
 	
+	
+	
 	public void registerRent(String plate, String email, String initialDate, 
 			String finalDate) throws InvalidParameterException, InvalidDateException {
-		 
+		this.register(plate, email, initialDate, finalDate, "active");
+	}
+	
+	public void register(String plate, String email, String initialDate, 
+			String finalDate, String rentSituation) throws InvalidParameterException, InvalidDateException {
+		
 		if (!this.verification.validPlate(plate) || !this.verification.emailIsAMandatoryField(email) ||
 				!this.verification.dateIsMandatoryField(initialDate) ||
 				!this.verification.dateIsMandatoryField(finalDate))
@@ -74,17 +81,16 @@ public class RentController {
 					}
 				}
 				try{
-				this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate ,finalDate, "active"));
+				this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate ,finalDate, rentSituation));
 				}catch(Exception e) {
 					System.out.println(e.getMessage());
 				}
 			}
 			
 		}
-
-		
-		
 	}
+	
+
 	
 	public String getRentSituation(String email, String plate, String inicialDate,
 			String finalDate){
