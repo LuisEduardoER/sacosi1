@@ -80,7 +80,6 @@ public class UserController {
 			throw new PhoneException("error: phone number is a mandatory field!");
 		if (!verification.validatePhoneNumber(phone))
 			throw new PhoneException("error: invalid field!");
-		if (!verification.allCustomerFieldsInvalids(name, email, phone));
 		registeredCustomers.add(name, email, phone);
 	}
 	

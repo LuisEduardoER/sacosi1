@@ -4,48 +4,13 @@ public class FieldSystemVerification {
 	
 	private final int INITIAL_POSITION = 0;
 	private static final int  PHONE_CARACTERES = 10;
-	
-	/*
-	 * 
-	 */
-	public boolean validateName(String name) {
-		return this.isPermitedChar(name.charAt(INITIAL_POSITION)) && 
-			   this.isPermitedChar(name.charAt(name.length() - 1)) &&
-			   findInvalidChar(name);
-	}
-	
-	/**
-	 * 
-	 * @param name
-	 * @return
-	 */
+		
 	public boolean nameIsAMandatoryField(String name) {
 		return name != null && !name.equals("");
 	}
 	
-	/**
-	 * 
-	 * @param email
-	 * @return
-	 */
 	public boolean emailIsAMandatoryField(String email) {
 		return email != null && !email.equals("");
-	}
-	
-	/**
-	 * 
-	 * @param login
-	 * @return
-	 */
-	public boolean validateLogin(String login) {
-		return this.isPermitedChar(login.charAt(INITIAL_POSITION)) && 
-				this.isPermitedChar(login.charAt(login.length() - 1));
-	}
-	
-	public boolean validPlate(String plate2) {
-		if (plate2 == null || plate2.equals(""))
-			return false;
-		return true;
 	}
 	
 	public boolean dateIsMandatoryField(String date) {
@@ -53,6 +18,56 @@ public class FieldSystemVerification {
 			return false;
 		return true;
 	}
+	
+	public boolean loginIsAMandatoryField(String login) {
+		return login != null && !login.equals("");
+	}
+	
+	public boolean phoneNumberIsAMandatoryField(String phone) {
+		return phone != null && !phone.equals("");
+	}
+	
+	public boolean typeIsAMandatoryField(String type){
+		return type != null && !type.equals("");
+	}
+	
+	public boolean modelIsAMandatoryField(String model){
+		return model != null && !model.equals("");
+	}
+	
+	public boolean colorIsAMandatoryField(String color){
+		return color != null && !color.equals("");
+	}
+	
+	public boolean yearIsAMandatoryField(String year){
+		return year != null && !year.equals("");
+	}
+	
+	public boolean plateIsAMandatoryField(String plate){
+		return plate != null && !plate.equals("");
+	}
+	
+	public boolean priceIsAMandatoryField(String price){
+		return price != null && !price.equals("");
+	}
+
+	public boolean validateName(String name) {
+		return this.isPermitedChar(name.charAt(INITIAL_POSITION)) && 
+			   this.isPermitedChar(name.charAt(name.length() - 1)) &&
+			   findInvalidChar(name);
+	}
+	
+	public boolean validateLogin(String login) {
+		return this.isPermitedChar(login.charAt(INITIAL_POSITION)) && 
+				this.isPermitedChar(login.charAt(login.length() - 1));
+	}
+	
+	public boolean validPlate(String plate) {
+		if (plate == null || plate.equals(""))
+			return false;
+		return true;
+	}
+	
 	
 	public boolean isValidPlate(String plate){
 		if (plate.length() != 7) return false; 
@@ -126,24 +141,6 @@ public class FieldSystemVerification {
 		return true;
 	}
 	
-	/**
-	 * 
-	 * @param login
-	 * @return
-	 */
-	public boolean loginIsAMandatoryField(String login) {
-		return login != null && !login.equals("");
-	}
-	
-	/**
-	 * 
-	 * @param phone
-	 * @return
-	 */
-	public boolean phoneNumberIsAMandatoryField(String phone) {
-		return phone != null && !phone.equals("");
-	}
-	
 	
 	/**
 	 * 
@@ -156,6 +153,30 @@ public class FieldSystemVerification {
 			if (!isNumber(phone.charAt(i))) return false;
 		}
 		return true;
+	}
+	
+	public boolean validateType(String type){
+		return type.equals("car") || type.equals("motorcycle");
+	}
+	
+	public boolean validateModel(String model){
+		return isValid(model);
+	}
+	
+	public boolean validateColor(String color){
+		return isValid(color);
+	}
+	
+	public boolean validatePlate(String plate){
+		return isValid(plate) && isValidPlate(plate) ;
+	}
+	
+	public boolean validateYear(String year){
+		return isValidYear(Integer.parseInt(year));
+	}
+	
+	public boolean validatePrice(String price){
+		return isValidPrice(Double.valueOf(price));
 	}
 	
 	/**
@@ -171,14 +192,17 @@ public class FieldSystemVerification {
 			   !phoneNumberIsAMandatoryField(phone);
 	}
 	
-	/**
-	 * 
-	 * @param login
-	 * @param name
-	 * @param email
-	 * @param phone
-	 * @return
-	 */
+	public boolean allShitVehiclesFieldsInvalids(String type, String model, String color,
+											 String plate, String year, String price){
+		return !typeIsAMandatoryField(type) || 
+			   !modelIsAMandatoryField(model) || 
+			   !colorIsAMandatoryField(color) ||
+			   !plateIsAMandatoryField (plate)|| 
+			   !yearIsAMandatoryField(year) || 
+			   !priceIsAMandatoryField(price);
+	}
+	
+
 	public boolean allUserFieldsInvalids(String login, String name, String email, String phone) {
 		return !loginIsAMandatoryField(login) && 
 			   !nameIsAMandatoryField(name) && 
@@ -236,4 +260,41 @@ public class FieldSystemVerification {
 		return space == ' ';
 	}
 
+	boolean isValid(String str) {
+		String character;
+		for (int i = 0; i < str.length(); i++) {
+			character = str.substring(i, i + 1);
+			if (!(isLetter(character) || isNumber(character)))
+				return false;
+		}
+		return true;
+	}
+	
+	boolean isLetter(String str) {
+		int hashCode = str.hashCode();
+		if ((hashCode >= 97 && hashCode <= 122)
+				|| (hashCode >= 65 && hashCode <= 90))
+			return true;
+		return false;
+	}
+	
+	boolean isNumber(String str) {
+		if (str.hashCode() >= 48 && str.hashCode() <= 57)
+			return true;
+		return false;
+	}
+	
+	boolean isValidYear(int number){
+		if (number <= 0){
+			return false;
+		}
+		return true;
+	}
+	
+	boolean isValidPrice(double price){
+		if (price <= 0){
+			return false;
+		}
+		return true;
+	}
 }
