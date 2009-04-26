@@ -10,6 +10,9 @@ import Exceptions.EmailException;
 import Exceptions.InvalidFieldException;
 import Exceptions.InvalidLoginException;
 import Exceptions.InvalidNameException;
+import Exceptions.InvalidParameterException;
+import Exceptions.NoCustomerOnDatabaseException;
+import Exceptions.NoUserOnDatabaseException;
 import Exceptions.PhoneException;
 import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
@@ -96,8 +99,10 @@ public class UserController {
 	 * esteja cadastrado.
 	 * @param email o email do cliente a ser removido do sistema.
 	 * @throws ClientNotRegisteredException cliente nao registrado no sistema.
+	 * @throws NoCustomerOnDatabaseException 
+	 * @throws InvalidParameterException 
 	 */
-	public void removeCustomer(String email) throws ClientNotRegisteredException {
+	public void removeCustomer(String email) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException {
 		registeredCustomers.remove(email);
 	}
 	
@@ -156,8 +161,10 @@ public class UserController {
 	 * @throws UserNotFoundException funcionario nao encontrado.
 	 * @throws EmailException 
 	 * @throws LoginException 
+	 * @throws InvalidParameterException 
+	 * @throws NoUserOnDatabaseException 
 	 */
-	public void removeUser(String emailOrLogin) throws UserNotFoundException, LoginException, EmailException {
+	public void removeUser(String emailOrLogin) throws UserNotFoundException, LoginException, EmailException, NoUserOnDatabaseException, InvalidParameterException {
 		registeredFunctionaries.remove(emailOrLogin);
 	}
 	

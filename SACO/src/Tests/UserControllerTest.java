@@ -1,13 +1,20 @@
 package Tests;
 
+import javax.security.auth.login.LoginException;
+
 import junit.framework.TestCase;
+import Exceptions.ClientNotRegisteredException;
 import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
 import Exceptions.InvalidFieldException;
 import Exceptions.InvalidLoginException;
 import Exceptions.InvalidNameException;
+import Exceptions.InvalidParameterException;
+import Exceptions.NoCustomerOnDatabaseException;
+import Exceptions.NoUserOnDatabaseException;
 import Exceptions.PhoneException;
 import Exceptions.UserAlreadyExistException;
+import Exceptions.UserNotFoundException;
 import Users.UserController;
 
 public class UserControllerTest extends TestCase {
@@ -33,4 +40,13 @@ public class UserControllerTest extends TestCase {
 	public int getAllCustomers(){
 		return test.getAllCustomers();
 	}
+	
+	public void removeCustomer(String key) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException{
+		test.removeCustomer(key);
+	}
+	
+	public void removeUser(String key) throws LoginException, UserNotFoundException, EmailException, NoUserOnDatabaseException, InvalidParameterException{
+		test.removeUser(key);
+	}
+		
 }
