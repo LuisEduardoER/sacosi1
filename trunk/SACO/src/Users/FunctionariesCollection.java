@@ -6,6 +6,8 @@ import java.util.List;
 import javax.security.auth.login.LoginException;
 
 import Exceptions.EmailException;
+import Exceptions.InvalidParameterException;
+import Exceptions.NoUserOnDatabaseException;
 import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
 
@@ -73,8 +75,14 @@ public class FunctionariesCollection {
 	 * @throws UserNotFoundException funcionario nao encontrado. 
 	 * @throws LoginException 
 	 * @throws EmailException 
+	 * @throws NoUserOnDatabaseException 
+	 * @throws InvalidParameterException 
 	 */
-	public void remove(String loginOrEmail) throws UserNotFoundException, LoginException, EmailException {
+	public void remove(String loginOrEmail) throws UserNotFoundException, LoginException, EmailException, NoUserOnDatabaseException, InvalidParameterException {
+		if (usersList.size() == 0)
+			throw new NoUserOnDatabaseException("error: there is no users on database");
+		if (loginOrEmail == null || loginOrEmail.equals(""))
+			throw new InvalidParameterException("error: invalid parameter!");
 		if (!usersList.remove(findUserByLogin(loginOrEmail)) 
 				&& !usersList.remove(findUserByEmail(loginOrEmail))) 
 			throw new UserNotFoundException("error: no such user!"); 

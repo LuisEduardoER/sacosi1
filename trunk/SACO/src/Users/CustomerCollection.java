@@ -8,6 +8,8 @@ import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
 import Exceptions.InvalidFieldException;
 import Exceptions.InvalidNameException;
+import Exceptions.InvalidParameterException;
+import Exceptions.NoCustomerOnDatabaseException;
 import Exceptions.PhoneException;
 
 /**
@@ -79,8 +81,14 @@ public class CustomerCollection {
 	 * Remove um cliente do sistema.
 	 * @param email o email do cliente a ser removido.
 	 * @throws ClientNotRegisteredException  cliente nao registrado no sistema.
+	 * @throws NoCustomerOnDatabaseException 
+	 * @throws InvalidParameterException 
 	 */
-	public void remove(String email) throws ClientNotRegisteredException {
+	public void remove(String email) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException {
+		if (customerList.size() == 0)
+			throw new NoCustomerOnDatabaseException("error: there is no customers on database");
+		if (email == null || email.equals(""))
+			throw new InvalidParameterException("error: invalid parameter!");
 		if (!customerList.remove(customerNotRegistered(email))) 
 			throw new ClientNotRegisteredException("error: no such customer!");
 	}
