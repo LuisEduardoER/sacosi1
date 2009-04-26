@@ -1,0 +1,22 @@
+# US14 - Consultar situação de veículo
+
+expect 0 getAllVehicles
+
+addVehicle type="motorcycle" model="titan" color="black" plate="ABC1234" year=2007 price=35
+addVehicle type="car" model="corsa" color="black" plate="XYZ9876" year=2008 price=70
+addVehicle type="car" model="gol" color="black" plate="RAH6587" year=2009 price=70
+addVehicle type="motorcycle" model="twister" color="black" plate="ABD1234" year=2005 price=50
+
+expect 4 getAllVehicles
+
+expect 0 getAllActiveRents
+
+registerRent plate="ABC1234" email="foo@bar.com" init="07/04/09" end="14/04/09"
+registerRent plate="xyz9876" email="moo@xpto.com.br" init="06/04/09" end="10/04/09"
+
+expect 2 getAllActiveRents
+
+expect "unavailable" getVehicleSituation plate="ABC1234"
+expect "unavailable" getVehicleSituation plate="xyz9876"
+expect "available" getVehicleSituation plate="RAH6587"
+expect "available" getVehicleSituation plate="ABD1234"

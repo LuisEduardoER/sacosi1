@@ -36,4 +36,3 @@ expectError "error: user already exists!" addUser login="fooo" name="foo bar" em
 expectError "error: user already exists!" addUser login="foo" name="foo bar" email="foo@bar.com.br" phone="6666666666"
 
 expect 4 getAllUsers
-
