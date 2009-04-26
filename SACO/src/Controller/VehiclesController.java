@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.Collection;
 
+import System.FieldSystemVerification;
 import Vehicles.Vehicle;
 
 import Exceptions.ColorException;
@@ -22,8 +23,11 @@ public class VehiclesController {
 	/***/
 	private VehiclesCollection registeredVehicles;
 
+	private FieldSystemVerification verification;
+
 	private VehiclesController() {
 		registeredVehicles = new VehiclesCollection();
+		verification = new FieldSystemVerification();
 	}
 
 	/**
@@ -37,7 +41,7 @@ public class VehiclesController {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -45,9 +49,10 @@ public class VehiclesController {
 	public Collection<Vehicle> getRegisteredVehicles() {
 		return this.registeredVehicles.getVehiclesList();
 	}
-	
+
 	/**
 	 * Adiciona um veiculo ao sistema de controlador de veiculos
+	 * 
 	 * @param type
 	 * @param model
 	 * @param color
@@ -55,6 +60,14 @@ public class VehiclesController {
 	 * @param year
 	 * @param price
 	 * @throws InvalidFieldException
+	 * @throws PlateAlreadyExistsException 
+	 * @throws YearException 
+	 * @throws PriceException 
+	 * @throws PlateException 
+	 * @throws ColorException 
+	 * @throws ModelException 
+	 * @throws TypeException 
+	 * @throws NoFieldException 
 	 * @throws NoFieldException
 	 * @throws TypeException
 	 * @throws ModelException
@@ -65,30 +78,45 @@ public class VehiclesController {
 	 * @throws PlateAlreadyExistsException
 	 */
 	public void addVehicle(String type, String model, String color,
-			String plate, String year, String price) throws InvalidFieldException,
-			NoFieldException, TypeException, ModelException, ColorException,
-			PlateException, PriceException, YearException,
-			PlateAlreadyExistsException {
+			String plate, String year, String price)
+			throws InvalidFieldException, NoFieldException, TypeException, ModelException, ColorException, PlateException, PriceException, YearException, PlateAlreadyExistsException {
 		
+		if (verification.allShitVehiclesFieldsInvalids(type, model, color, plate,
+				year, price))
+			throw new InvalidFieldException("error: all fields are mandatory!");
+		if (!verification.validateType(type))
+			throw new InvalidFieldException("error: invalid field!");
+		if (!verification.validateModel(model))
+			throw new InvalidFieldException("error: invalid field!");
+		if (!verification.validateColor(color))
+			throw new InvalidFieldException("error: invalid field!");
+		if (!verification.validatePlate(plate))
+			throw new InvalidFieldException("error: invalid field!");
+		if (!verification.validateYear(year))
+			throw new InvalidFieldException("error: invalid field!");
+		if (!verification.validatePrice(price))
+			throw new InvalidFieldException("error: invalid field!");
 		registeredVehicles.add(type, model, color, plate, year, price);
 	}
-	
+
 	/**
 	 * Obtem a quantidade de veiculos do sistema controlador
-	 * @return	
-	 * 			um inteiro com a quantidade de veiculos no sistema.
+	 * 
+	 * @return um inteiro com a quantidade de veiculos no sistema.
 	 */
-	public int getAllVehicles(){
+	public int getAllVehicles() {
 		return registeredVehicles.size();
 	}
 
 	/**
 	 * Remove um veiculo, atraves da placa, do sistema de controle
+	 * 
 	 * @param plate
 	 * @throws NoSuchVehicleException
 	 * @throws NoVehicleOnDatabaseException
 	 */
-	public void removeVehicle (String plate) throws NoSuchVehicleException, NoVehicleOnDatabaseException{
+	public void removeVehicle(String plate) throws NoSuchVehicleException,
+			NoVehicleOnDatabaseException {
 		registeredVehicles.remove(plate);
 	}
 }
