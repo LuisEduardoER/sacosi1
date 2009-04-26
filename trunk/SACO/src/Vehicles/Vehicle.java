@@ -147,6 +147,7 @@ public abstract class Vehicle implements Alugavel {
 		return true;
 	}
 	boolean isValidPlate(String plate){
+		if (plate.length() != 7) return false;
 		if (!validLetterPlate(plate.substring(0,3)))
 			return false;
 		if (!validNumberPlate(plate.substring(3,plate.length())))

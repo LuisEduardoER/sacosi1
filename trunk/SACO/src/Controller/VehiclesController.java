@@ -1,5 +1,9 @@
 package Controller;
 
+import java.util.Collection;
+
+import Vehicles.Vehicle;
+
 import Exceptions.ColorException;
 import Exceptions.InvalidFieldException;
 import Exceptions.ModelException;
@@ -33,7 +37,15 @@ public class VehiclesController {
 		}
 		return instance;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Collection<Vehicle> getRegisteredVehicles() {
+		return this.registeredVehicles.getVehiclesList();
+	}
+	
 	/**
 	 * Adiciona um veiculo ao sistema de controlador de veiculos
 	 * @param type

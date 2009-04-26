@@ -7,6 +7,7 @@ package Controller;
  */
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -127,6 +128,13 @@ public class VehiclesCollection {
 			throw new NoSuchVehicleException("error: no such vehicle!");
 		}
 		vehiclesList.remove(findVehicle(plate));
+	}
+	
+	/**
+	 * 
+	 */
+	public Collection<Vehicle> getVehiclesList() {
+		return this.vehiclesList;
 	}
 	
 	/**
