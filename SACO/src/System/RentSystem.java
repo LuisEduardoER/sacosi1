@@ -28,4 +28,6 @@ public class RentSystem {
 	public int getAllUsers(){
 		return listOfUsers.size();
 	}
+	
+	
 }

@@ -1,5 +1,7 @@
 package Users;
 
+import java.util.List;
+
 import javax.security.auth.login.LoginException;
 
 import Exceptions.ClientNotRegisteredException;
@@ -158,6 +160,18 @@ public class UserController {
 	 */
 	public void removeUser(String emailOrLogin) throws UserNotFoundException, LoginException, EmailException {
 		registeredFunctionaries.remove(emailOrLogin);
+	}
+	
+	public FunctionariesCollection getFunctionariesCollection() {
+		return this.registeredFunctionaries;
+	}
+	
+	public CustomerCollection getCustomerCollection() {
+		return this.registeredCustomers;
+	}
+	
+	public List<Customer> getCustomerList() {
+		return this.registeredCustomers.getCustomerList();
 	}
 
 }

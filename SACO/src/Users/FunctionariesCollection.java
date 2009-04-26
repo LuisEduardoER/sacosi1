@@ -35,6 +35,15 @@ public class FunctionariesCollection {
 		
 	}
 
+	public boolean functionarieAlreadyExists(String email) {
+		for (User user : usersList) {
+			if (user.getEmail().equals(email)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * 
 	 * @param email

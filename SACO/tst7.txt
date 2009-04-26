@@ -1,0 +1,27 @@
+# US07 - Consultar requisicoes de reserva de veículos		
+
+expect 0 getAllVehicles
+
+addVehicle type="motorcycle" model="titan" color="black" plate="ABC1234" year=2007 price=35
+addVehicle type="car" model="corsa" color="black" plate="XYZ9876" year=2008 price=70
+addVehicle type="car" model="gol" color="black" plate="RAH6587" year=2009 price=70
+addVehicle type="motorcycle" model="twister" color="black" plate="ABD1234" year=2005 price=50
+
+expect 4 getAllVehicles
+
+expect 0 getAllPendentRentRequests
+
+requestRent email="paulo@embedded.ufcg.edu.br" plate="ABC1234"
+requestRent email="paulo@embedded.ufcg.edu.br" plate="XYZ9876"
+requestRent email="foo@bar.ufcg.edu.br" plate="RAH6587"
+requestRent email="moo@embedded.ufcg.edu.br" plate="ABD1234"
+
+expect 4 getAllPendentRentRequests
+
+expectError "error: all fields are mandatory!" requestRent email="" plate="ABC1234"
+expectError "error: all fields are mandatory!" requestRent email= plate="ABC1234"
+expectError "error: all fields are mandatory!" requestRent email="paulo@embedded.ufcg.edu.br" plate=""
+expectError "error: all fields are mandatory!" requestRent email="paulo@embedded.ufcg.edu.br" plate=
+
+//TODO melhorar
+

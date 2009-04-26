@@ -42,6 +42,58 @@ public class FieldSystemVerification {
 				this.isPermitedChar(login.charAt(login.length() - 1));
 	}
 	
+	public boolean validPlate(String plate2) {
+		if (plate2 == null || plate2.equals(""))
+			return false;
+		return true;
+	}
+	
+	public boolean dateIsMandatoryField(String date) {
+		if (date == null || date.equals(""))
+			return false;
+		return true;
+	}
+	
+	public boolean isValidPlate(String plate){
+		if (plate.length() != 7) return false; 
+		if (!validLetterPlate(plate.substring(0,3)))
+			return false;
+		if (!validNumberPlate(plate.substring(3,plate.length())))
+			return false;
+		return true;
+	}
+
+	/**
+	 * Verifica se os tres primeiros 'chars' sao letras
+	 * @param word
+	 * @return
+	 */
+	public boolean validLetterPlate(String word){
+		char letra;
+		for (int i = 0; i < word.length(); i++){
+			letra = word.charAt(i);
+			if (!(letra >= 'A' && letra <= 'Z') && !(letra>= 'a' && letra <= 'z'))
+				return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Verifica se os quatro ultimos 'chars' sao numeros
+	 * @param word
+	 * @return
+	 */
+	boolean validNumberPlate(String word){
+		char numero;
+		for (int i = 0; i < word.length(); i++){
+			numero = word.charAt(i);
+			if (numero < '0' || numero > '9'){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/*
 	 * 
 	 */

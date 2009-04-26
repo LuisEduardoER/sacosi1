@@ -28,6 +28,13 @@ public class CustomerCollection {
 	}
 	
 	/**
+	 * 
+	 */
+	public List<Customer> getCustomerList() {
+		return this.customerList;
+	}
+	
+	/**
 	 * Retorna a quantidade de clientes adicionados ao sistema.
 	 */
 	public int size() {
@@ -51,7 +58,7 @@ public class CustomerCollection {
 	/*
 	 * Verifica se no sistema há um cliente cadastrado com o email especificado.
 	 */
-	private boolean customerAlreadyExist(String email) {
+	public boolean customerAlreadyExist(String email) {
 		for (Customer customer : customerList) {
 			if (customer.getEmail().equalsIgnoreCase(email)) return true;
 		}
