@@ -56,6 +56,10 @@ public class Rent {
 		
 	}
 	
+	public void setRentSituation(String rentSit) {
+		this.rentSituation = rentSit;
+	}
+	
 	public Alugavel getVehicle() {
 		return vehicle;
 	}
