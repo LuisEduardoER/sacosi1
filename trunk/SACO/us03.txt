@@ -1,0 +1,27 @@
+# US03 - Remover cliente
+# US19 - Remocao de cliente
+
+expect 0 getAllCustomers
+
+expectError "error: there is no customers on database" removeCustomer key="xpto"
+expectError "error: there is no customers on database" removeCustomer key="xpto@foo.bar"
+
+addCustomer name="foo bar" email="foo@bar.com" phone="6666666666"
+addCustomer name="paulo romulo" email="paulo@embedded.ufcg.edu.br" phone="8388242424"
+addCustomer name="moo" email="moo@xpto.com.br" phone="8388888888"
+addCustomer name="user" email="user@company.com" phone="1234567890"
+
+expect 4 getAllCustomers
+
+removeCustomer key="foo@bar.com"
+removeCustomer key="paulo@embedded.ufcg.edu.br"
+
+expect 2 getAllCustomers
+
+expectError "error: no such customer!" removeCustomer key="foo@bar.com"
+expectError "error: no such customer!" removeCustomer key="paulo@embedded.ufcg.edu.br"
+
+expectError "error: invalid parameter!" removeCustomer key=""
+expectError "error: invalid parameter!" removeCustomer key=
+
+expect 2 getAllCustomers

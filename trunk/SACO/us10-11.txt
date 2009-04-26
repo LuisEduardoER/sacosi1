@@ -1,0 +1,37 @@
+# US10 - Registrar liberação de veículo
+# US11 - Notificar cliente sobre liberação de veículo
+
+# Observacoes:
+
+# Nao eh possivel testar se o e-mail de fato chegou na conta do cliente, mas pelo menos podemos verificar se o metodo responsavel por isso eh
+# chamado e nao lanca nenhuma excecao. Para isso, o metodo releaseVehicle deve retornar um boolean. Na correcao, eu verificarei se o e-mail esta
+# mesmo sendo mandado :)
+
+expect 0 getAllVehicles
+
+addVehicle type="motorcycle" model="titan" color="black" plate="ABC1234" year=2007 price=35
+addVehicle type="car" model="corsa" color="black" plate="XYZ9876" year=2008 price=70
+addVehicle type="car" model="gol" color="black" plate="RAH6587" year=2009 price=70
+addVehicle type="motorcycle" model="twister" color="black" plate="ABD1234" year=2005 price=50
+
+expect 4 getAllVehicles
+
+expect 0 getAllActiveRents
+
+registerRent plate="ABC1234" email="foo@bar.com" init="07/04/09" end="14/04/09"
+registerRent plate="xyz9876" email="moo@xpto.com.br" init="06/04/09" end="10/04/09"
+
+expect 2 getAllActiveRents
+
+expect "unavailable" getVehicleSituation plate="ABC1234"
+expect "unavailable" getVehicleSituation plate="xyz9876"
+
+expect true releaseVehicle plate="ABC1234"
+
+expect "available" getVehicleSituation plate="ABC1234"
+expect "unavailable" getVehicleSituation plate="xyz9876"
+
+expect true releaseVehicle plate="xyz9876"
+
+expect "available" getVehicleSituation plate="ABC1234"
+expect "available" getVehicleSituation plate="xyz9876"
