@@ -75,4 +75,16 @@ public class Facade {
 	public int getRentsByVehicle(String plate) {
 		return this.reController.getRentsByVehicle(plate);
 	}
+	
+	public int getAllPendentRentRequests(){
+		return this.reController.getAllPendentRentRequests();
+	}
+	
+	public void requestRent(String clientEmail, String plate) throws InvalidParameterException{
+		this.reController.requestRent(clientEmail, plate);
+	}
+	
+	public int getAllVehicles(){
+		return this.vehController.getAllVehicles();
+	}
 }

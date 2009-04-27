@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import p1.aplic.geral.Data;
 import Exceptions.InvalidDateException;
 import Exceptions.InvalidParameterException;
 import System.FieldSystemVerification;
 import System.Rent;
+import System.RequestRentCollection;
 import Users.Customer;
 import Users.CustomerCollection;
 import Users.FunctionariesCollection;
@@ -24,6 +24,7 @@ public class RentController {
 	private String status;
 	private FieldSystemVerification verification;
 	private VehiclesController vehicleCollection;
+	private RequestRentCollection requestList;
 	public static RentController instance;
 	
 	
@@ -41,6 +42,7 @@ public class RentController {
 		this.status = "active";
 		this.vehicleCollection = VehiclesController.getInstance(); 
 		this.verification = new FieldSystemVerification();
+		this.requestList = new RequestRentCollection();
 	}
 	
 	
@@ -157,5 +159,16 @@ public class RentController {
 			}
 		}
 		return false;
+	}
+	
+	public int getAllPendentRentRequests(){
+		return this.requestList.size();
+	}
+	
+	public void requestRent(String clientEmail, String plate) throws InvalidParameterException{
+		if (!verification.emailIsAMandatoryField(clientEmail) ||
+				!verification.plateIsAMandatoryField(plate))
+			throw new InvalidParameterException("error: all fields are mandatory!");
+		requestList.add(clientEmail, plate);
 	}
 }
