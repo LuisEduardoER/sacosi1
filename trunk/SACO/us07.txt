@@ -23,5 +23,4 @@ expectError "error: all fields are mandatory!" requestRent email= plate="ABC1234
 expectError "error: all fields are mandatory!" requestRent email="paulo@embedded.ufcg.edu.br" plate=""
 expectError "error: all fields are mandatory!" requestRent email="paulo@embedded.ufcg.edu.br" plate=
 
-//TODO melhorar
 
