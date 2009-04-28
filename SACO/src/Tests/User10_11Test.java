@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Commands.Facade;
-
 import easyaccept.EasyAcceptFacade;
 
-
-public class User08Tests {
-	
-	
-
+public class User10_11Test {
 	
 	public static void main(String[] args) throws Exception {
 
@@ -19,7 +14,7 @@ public class User08Tests {
 
 		//Put the us1.txt file into the "test scripts" list
 
-		files.add("us08.txt");
+		files.add("us10-11.txt");
 
 		//Instantiate the Monopoly Game façade
 
