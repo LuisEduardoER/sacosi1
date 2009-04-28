@@ -3,8 +3,9 @@ package Controller;
 import java.util.Collection;
 
 import System.FieldSystemVerification;
+import System.VehiclesCollection;
 import Vehicles.Vehicle;
-import Vehicles.VehiclesCollection;
+
 
 import Exceptions.ColorException;
 import Exceptions.InvalidFieldException;

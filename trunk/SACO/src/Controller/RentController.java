@@ -11,12 +11,12 @@ import Exceptions.InvalidFieldException;
 import Exceptions.InvalidNameException;
 import Exceptions.InvalidParameterException;
 import Exceptions.PhoneException;
+import System.CustomerCollection;
 import System.FieldSystemVerification;
+import System.FunctionariesCollection;
 import System.Rent;
 import System.RequestRentCollection;
 import Users.Customer;
-import Users.CustomerCollection;
-import Users.FunctionariesCollection;
 import Vehicles.Vehicle;
 
 public class RentController {

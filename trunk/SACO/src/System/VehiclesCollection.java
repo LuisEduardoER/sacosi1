@@ -1,4 +1,4 @@
-package Vehicles;
+package System;
 
 /**
  * Classe que armazena todos os veiculos do sistema.
