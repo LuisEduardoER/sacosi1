@@ -16,10 +16,11 @@ import Exceptions.NoUserOnDatabaseException;
 import Exceptions.PhoneException;
 import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
+import System.CustomerCollection;
 import System.FieldSystemVerification;
+import System.FunctionariesCollection;
 import Users.Customer;
-import Users.CustomerCollection;
-import Users.FunctionariesCollection;
+
 
 /**
  * 

@@ -1,7 +1,9 @@
-package Users;
+package System;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Users.Customer;
 
 import Exceptions.ClientNotRegisteredException;
 import Exceptions.CustomerAlreadyExistException;
