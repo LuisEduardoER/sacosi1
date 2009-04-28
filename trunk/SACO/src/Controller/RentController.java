@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import Exceptions.CustomerAlreadyExistException;
+import Exceptions.EmailException;
 import Exceptions.InvalidDateException;
+import Exceptions.InvalidFieldException;
+import Exceptions.InvalidNameException;
 import Exceptions.InvalidParameterException;
+import Exceptions.PhoneException;
 import System.FieldSystemVerification;
 import System.Rent;
 import System.RequestRentCollection;
@@ -21,7 +26,6 @@ public class RentController {
 	private UserController userController;
 	private CustomerCollection customerCollection;
 	private FunctionariesCollection functionariesCollection;
-	private String status;
 	private FieldSystemVerification verification;
 	private VehiclesController vehicleCollection;
 	private RequestRentCollection requestList;
@@ -39,7 +43,6 @@ public class RentController {
 		this.userController = UserController.getInstance();
 		this.functionariesCollection = this.userController.getFunctionariesCollection();
 		this.customerCollection = this.userController.getCustomerCollection();
-		this.status = "active";
 		this.vehicleCollection = VehiclesController.getInstance(); 
 		this.verification = new FieldSystemVerification();
 		this.requestList = new RequestRentCollection();
@@ -48,12 +51,12 @@ public class RentController {
 	
 	
 	public void registerRent(String plate, String email, String initialDate, 
-			String finalDate) throws InvalidParameterException, InvalidDateException {
+			String finalDate) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
 		this.register(plate, email, initialDate, finalDate, "active");
 	}
 	
 	public void register(String plate, String email, String initialDate, 
-			String finalDate, String rentSituation) throws InvalidParameterException, InvalidDateException {
+			String finalDate, String rentSituation) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
 		
 		if (!this.verification.validPlate(plate) || !this.verification.emailIsAMandatoryField(email) ||
 				!this.verification.dateIsMandatoryField(initialDate) ||
@@ -65,7 +68,8 @@ public class RentController {
 			throw new InvalidParameterException("error: invalid parameter(s)"); 
 			
 		if (!this.vehicleIsRent(plate)) {
-			if (this.userExists(email)) {
+			if (!this.userExists(email))
+				this.userController.addCustomer("name", email, "8388888888");
 				Collection<Vehicle> vehicleList = this.vehicleCollection.getRegisteredVehicles();
 				Vehicle rentVehicle = null;
 				for (Vehicle vehicle : vehicleList) {
@@ -89,10 +93,37 @@ public class RentController {
 				}
 			}
 			
-		}
 	}
 	
-
+	
+	public boolean releaseVehicle(String plate) {
+		for (Rent rent : rents) {
+			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
+				rents.remove(rent);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int getAllActiveRents() {
+		int cont = 0;
+		for (Rent rent : rents) {
+			if (rent.getRentSituation().equals("active")) {
+				cont++;
+			}
+		}
+		return cont;
+	}
+	
+	public String getVehicleSituation(String plate) {
+		for (Rent rent : rents) {
+			if (rent.getVehiclePlate().equalsIgnoreCase(plate))
+				return "unavailable";
+		}
+		return "available";
+	}
+	
 	
 	public String getRentSituation(String email, String plate, String inicialDate,
 			String finalDate){

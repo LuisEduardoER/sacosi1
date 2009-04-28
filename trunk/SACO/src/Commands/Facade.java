@@ -55,7 +55,7 @@ public class Facade {
 	}
 	
 	public void registerRent(String plate, String email, String initialDate, 
-			String finalDate) throws InvalidParameterException, InvalidDateException {
+			String finalDate) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
 		this.reController.registerRent(plate, email, initialDate, finalDate);
 	}
 	
@@ -78,6 +78,18 @@ public class Facade {
 	
 	public int getAllPendentRentRequests(){
 		return this.reController.getAllPendentRentRequests();
+	}
+	
+	public int getAllActiveRents() {
+		return this.reController.getAllActiveRents();
+	}
+	
+	public boolean releaseVehicle(String plate) {
+		return this.reController.releaseVehicle(plate);
+	}
+	
+	public String getVehicleSituation(String plate) {
+		return this.reController.getVehicleSituation(plate);
 	}
 	
 	public void requestRent(String clientEmail, String plate) throws InvalidParameterException{

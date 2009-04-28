@@ -19,7 +19,7 @@ public class User07Test {
 
 		//Put the us1.txt file into the "test scripts" list
 
-		files.add("tst7.txt");
+		files.add("us07.txt");
 
 		//Instantiate the Monopoly Game façade
 
