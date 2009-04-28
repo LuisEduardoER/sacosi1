@@ -3,6 +3,7 @@ package Tests;
 import javax.security.auth.login.LoginException;
 
 import junit.framework.TestCase;
+import Controller.UserController;
 import Exceptions.ClientNotRegisteredException;
 import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
@@ -15,7 +16,6 @@ import Exceptions.NoUserOnDatabaseException;
 import Exceptions.PhoneException;
 import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
-import Users.UserController;
 
 public class UserControllerTest extends TestCase {
 	

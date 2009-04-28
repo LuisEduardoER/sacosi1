@@ -1,4 +1,4 @@
-package Controller;
+package Vehicles;
 
 /**
  * Classe que armazena todos os veiculos do sistema.

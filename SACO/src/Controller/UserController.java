@@ -1,4 +1,4 @@
-package Users;
+package Controller;
 
 import java.util.List;
 
@@ -17,6 +17,9 @@ import Exceptions.PhoneException;
 import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
 import System.FieldSystemVerification;
+import Users.Customer;
+import Users.CustomerCollection;
+import Users.FunctionariesCollection;
 
 /**
  * 

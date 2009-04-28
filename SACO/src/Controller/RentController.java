@@ -17,7 +17,6 @@ import System.RequestRentCollection;
 import Users.Customer;
 import Users.CustomerCollection;
 import Users.FunctionariesCollection;
-import Users.UserController;
 import Vehicles.Vehicle;
 
 public class RentController {

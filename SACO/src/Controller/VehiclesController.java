@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import System.FieldSystemVerification;
 import Vehicles.Vehicle;
+import Vehicles.VehiclesCollection;
 
 import Exceptions.ColorException;
 import Exceptions.InvalidFieldException;
