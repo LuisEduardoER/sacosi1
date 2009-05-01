@@ -22,6 +22,6 @@ registerLateRent plate="xyz9876" email="moo@xpto.com.br" init="06/04/09" end="10
 expect "late" getRentSituation customer="moo@xpto.com.br" vehicle="XYZ9876" init="06/04/09" end="10/04/09"
 
 #mudar para uma data apos a data de hoje
-expectError "error: end date is greater than today date!" registerLateRent plate="ABC1234" email="foo@bar.com" init="07/04/09" end="14/04/09"
+expectError "error: end date is greater than today date!" registerLateRent plate="ABC1234" email="foo@bar.com" init="07/04/09" end="06/04/09"
 
 expect "active" getRentSituation customer="foo@bar.com" vehicle="ABC1234" init="07/04/09" end="14/04/09"

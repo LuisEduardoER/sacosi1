@@ -47,7 +47,18 @@ public class RentController {
 		this.requestList = new RequestRentCollection();
 	}
 	
-	
+	public void registerLateRent(String plate, String email, String initialDate, 
+			String finalDate) throws InvalidDateException, InvalidParameterException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
+
+		if (!this.correctPeriod(initialDate, finalDate))
+			throw new InvalidDateException("error: end date is greater than today date!");
+		for(Rent rent: rents) {
+			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
+				rent.setRentSituation("late");
+				break;
+			}
+		}
+	}
 	
 	public void registerRent(String plate, String email, String initialDate, 
 			String finalDate) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
@@ -138,14 +149,25 @@ public class RentController {
 	
 	private boolean correctPeriod(String init, String end) {
 		int day1 = Integer.valueOf(init.substring(0,2));
-		int day2 = Integer.valueOf(init.substring(0,2));
-		int month1 = Integer.valueOf(init.substring(2,4));
-		int month2 = Integer.valueOf(init.substring(2,4));
-		int year1 = Integer.valueOf(init.substring(4,6));
-		int year2 = Integer.valueOf(init.substring(4,6));
-		if (year1 <= year2 && month1 <= month2 && day1 < day2) {
-			return true;
+		int day2 = Integer.valueOf(end.substring(0,2));
+		int month1 = Integer.valueOf(init.substring(3,5));
+		int month2 = Integer.valueOf(end.substring(3,5));
+		int year1 = Integer.valueOf(init.substring(6,8));
+		int year2 = Integer.valueOf(end.substring(6,8));
+		if (year1 <= year2) {
+			if (year1 == year2) {
+				if (month1 <= month2) {
+					if (month1 == month2) {
+						if (day1 <= day2) {
+							return true;
+						}
+					} else
+					return true;
+				}
+			} else
+				return true;
 		}
+			
 		return false;
 		
 	}

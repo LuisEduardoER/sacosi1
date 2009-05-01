@@ -60,6 +60,11 @@ public class Facade {
 		this.reController.registerRent(plate, email, initialDate, finalDate);
 	}
 	
+	public void registerLateRent(String plate, String email, String initialDate, 
+			String finalDate) throws InvalidDateException, InvalidParameterException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
+		this.reController.registerLateRent(plate, email, initialDate, finalDate);
+	}
+	
 	public String getRentSituation(String email, String plate, String inicialDate,
 			String finalDate){
 		return this.reController.getRentSituation(email, plate, inicialDate, finalDate);
