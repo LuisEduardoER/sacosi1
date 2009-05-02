@@ -1,8 +1,14 @@
 package Controller;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
@@ -222,5 +228,81 @@ public class RentController {
 				!verification.plateIsAMandatoryField(plate))
 			throw new InvalidParameterException("error: all fields are mandatory!");
 		requestList.add(clientEmail, plate);
+	}
+	
+	public void writeXML() {
+		writeRents();
+		writeRequestRents();
+	}
+
+	private void writeRents() {
+		if (rents != null) {
+			try {
+
+				FileOutputStream rentsWriter = new FileOutputStream(
+						"Rents.xml");
+				XStream xmlEncoder = new XStream();
+				String rentsEmXML = xmlEncoder
+						.toXML(rents);
+				byte[] rentsByteArray = rentsEmXML
+						.getBytes();
+				rentsWriter.write(rentsByteArray);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void readRents() throws Exception {
+		FileInputStream file = new FileInputStream("Rents.xml");
+
+		if (file == null) {
+			throw new Exception("File does not exist.");
+		} else if (file.available() == 0) {
+			throw new Exception("deu nao");
+		}
+		XStream xmlDecoder = new XStream(new DomDriver());
+		Collection<Rent> rentsArchive = (Collection<Rent>) xmlDecoder
+				.fromXML(new BufferedInputStream(file));
+
+		rents = rentsArchive;
+
+	}
+
+	private void writeRequestRents() {
+		if (requestList != null) {
+			try {
+
+				FileOutputStream requesListWriter = new FileOutputStream(
+						"RequestRents.xml");
+				XStream xmlEncoder = new XStream();
+				String requestListEmXML = xmlEncoder
+						.toXML(requestList);
+				byte[] requestListByteArray = requestListEmXML
+						.getBytes();
+				requesListWriter.write(requestListByteArray);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void readRequestRents() throws Exception {
+		FileInputStream file = new FileInputStream("RequestRents.xml");
+
+		if (file == null) {
+			throw new Exception("File does not exist.");
+		} else if (file.available() == 0) {
+			throw new Exception("deu nao");
+		}
+		
+		XStream xmlDecoder = new XStream(new DomDriver());
+		RequestRentCollection requestListArchive = (RequestRentCollection) xmlDecoder
+				.fromXML(new BufferedInputStream(file));
+		
+		requestList = requestListArchive;
+
 	}
 }

@@ -251,7 +251,7 @@ public class UserController {
 	}
 
 	private void writeFunctionaries() {
-		if (registeredCustomers != null) {
+		if (registeredFunctionaries != null) {
 			try {
 
 				FileOutputStream functionariesWriter = new FileOutputStream(
