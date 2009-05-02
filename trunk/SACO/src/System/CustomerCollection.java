@@ -28,7 +28,11 @@ public class CustomerCollection {
 	 * Construtor principal da classe.
 	 */
 	public CustomerCollection() {
-		customerList = new ArrayList<Customer>();
+		this.customerList = new ArrayList<Customer>();
+	}
+	
+	public CustomerCollection(ArrayList<Customer> customers) {
+		this.customerList = customers;
 	}
 	
 	/**
@@ -60,7 +64,7 @@ public class CustomerCollection {
 	}
 	
 	/*
-	 * Verifica se no sistema há um cliente cadastrado com o email especificado.
+	 * Verifica se no sistema hï¿½ um cliente cadastrado com o email especificado.
 	 */
 	public boolean customerAlreadyExist(String email) {
 		for (Customer customer : customerList) {
