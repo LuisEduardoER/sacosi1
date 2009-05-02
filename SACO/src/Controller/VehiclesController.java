@@ -1,11 +1,9 @@
 package Controller;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Collection;
-
-import System.FieldSystemVerification;
-import System.VehiclesCollection;
-import Vehicles.Vehicle;
-
 
 import Exceptions.ColorException;
 import Exceptions.InvalidFieldException;
@@ -18,6 +16,12 @@ import Exceptions.PlateException;
 import Exceptions.PriceException;
 import Exceptions.TypeException;
 import Exceptions.YearException;
+import System.FieldSystemVerification;
+import System.VehiclesCollection;
+import Vehicles.Vehicle;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class VehiclesController {
 	/***/
@@ -120,5 +124,41 @@ public class VehiclesController {
 	public void removeVehicle(String plate) throws NoSuchVehicleException,
 			NoVehicleOnDatabaseException {
 		registeredVehicles.remove(plate);
+	}
+	
+	public void writeVehicles() {
+		if (registeredVehicles != null) {
+			try {
+
+				FileOutputStream vehiclesWriter = new FileOutputStream(
+						"Vehicles.xml");
+				XStream xmlEncoder = new XStream();
+				String registeredVehiclesEmXML = xmlEncoder
+						.toXML(registeredVehicles);
+				byte[] registeredVehiclesByteArray = registeredVehiclesEmXML
+						.getBytes();
+				vehiclesWriter.write(registeredVehiclesByteArray);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void readVehicles() throws Exception {
+		FileInputStream file = new FileInputStream("Vehicles.xml");
+
+		if (file == null) {
+			throw new Exception("File does not exist.");
+		} else if (file.available() == 0) {
+			throw new Exception("deu nao");
+		}
+		
+		XStream xmlDecoder = new XStream(new DomDriver());
+		VehiclesCollection vehiclesArchive = (VehiclesCollection) xmlDecoder
+				.fromXML(new BufferedInputStream(file));
+		
+		registeredVehicles = vehiclesArchive;
+
 	}
 }
