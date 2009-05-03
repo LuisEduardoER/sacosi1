@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
@@ -228,6 +229,19 @@ public class RentController {
 				!verification.plateIsAMandatoryField(plate))
 			throw new InvalidParameterException("error: all fields are mandatory!");
 		requestList.add(clientEmail, plate);
+	}
+	
+	public void seeCars(){
+		List<Vehicle> list = new ArrayList<Vehicle>();
+		Iterator<Vehicle> it = vehicleCollection.getRegisteredVehicles().iterator();
+		while (it.hasNext()){
+			Vehicle vehicle = it.next();
+			if (!vehicleIsRent(vehicle.getPlate()))
+				list.add(vehicle);
+		}
+		List<Integer> listOfYears = vehicleCollection.getListOfYears();
+		for (int i = 0; i < list.size(); i++)
+			vehicleCollection.printCarsByYear(list, listOfYears.get(i));
 	}
 	
 	public void writeXML() {
