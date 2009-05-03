@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,17 +49,19 @@ public class RentController {
 	/**
 	 * 
 	 * @return
+	 * @throws Exception 
 	 */
-	public static RentController getInstance() {
+	public static RentController getInstance() throws Exception {
 		return instance == null ? 
 			   instance = new RentController() : 
 			   instance;
 	}
 	
 	/**
+	 * @throws Exception 
 	 * 
 	 */
-	public RentController() {
+	public RentController() throws Exception {
 		calendar = Calendar.getInstance();
 		this.rents = new ArrayList<Rent>();
 		this.userController = UserController.getInstance();
@@ -67,6 +70,8 @@ public class RentController {
 		this.vehicleCollection = VehiclesController.getInstance(); 
 		this.verification = new FieldSystemVerification();
 		this.requestList = new RequestRentCollection();
+		this.readRents();
+		this.readRequestRents();
 	}
 	
 	/**
@@ -434,15 +439,22 @@ public class RentController {
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
-		} else if (file.available() == 0) {
-			throw new Exception("deu nao");
-		}
+		} else if (file.available() != 0) {
+			
+		
 		XStream xmlDecoder = new XStream(new DomDriver());
 		Collection<Rent> rentsArchive = (Collection<Rent>) xmlDecoder
 				.fromXML(new BufferedInputStream(file));
 
 		rents = rentsArchive;
-
+		}
+	}
+	
+	public void emptyXML() throws FileNotFoundException {
+		FileOutputStream rentsWriter = new FileOutputStream(
+		"Rents.xml");
+		FileOutputStream requesListWriter = new FileOutputStream(
+		"RequestRents.xml");
 	}
 
 	/**
@@ -476,15 +488,15 @@ public class RentController {
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
-		} else if (file.available() == 0) {
-			throw new Exception("deu nao");
-		}
+		} else if (file.available() != 0) {
+			
+		
 		
 		XStream xmlDecoder = new XStream(new DomDriver());
 		RequestRentCollection requestListArchive = (RequestRentCollection) xmlDecoder
 				.fromXML(new BufferedInputStream(file));
 		
 		requestList = requestListArchive;
-
+		}
 	}
 }

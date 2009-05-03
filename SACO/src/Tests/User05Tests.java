@@ -32,6 +32,6 @@ public class User05Tests {
 		//Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
-
+		test.emptyXML();
 	}
 }

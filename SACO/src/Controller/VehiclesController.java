@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Collection;
 import java.util.List;
@@ -17,6 +18,7 @@ import Exceptions.PlateException;
 import Exceptions.PriceException;
 import Exceptions.TypeException;
 import Exceptions.YearException;
+import System.CustomerCollection;
 import System.FieldSystemVerification;
 import System.VehiclesCollection;
 import Vehicles.Vehicle;
@@ -32,17 +34,19 @@ public class VehiclesController {
 
 	private FieldSystemVerification verification;
 
-	private VehiclesController() {
+	private VehiclesController() throws Exception {
 		registeredVehicles = new VehiclesCollection();
 		verification = new FieldSystemVerification();
+		this.readVehicles();
 	}
 
 	/**
 	 * Padrao Singleton para a classe VehiclesController
 	 * 
 	 * @return uma unica instancia da classe
+	 * @throws Exception 
 	 */
-	public static VehiclesController getInstance() {
+	public static VehiclesController getInstance() throws Exception {
 		if (instance == null) {
 			instance = new VehiclesController();
 		}
@@ -56,6 +60,9 @@ public class VehiclesController {
 	public Collection<Vehicle> getRegisteredVehicles() {
 		return this.registeredVehicles.getVehiclesList();
 	}
+	
+
+
 
 	/**
 	 * Adiciona um veiculo ao sistema de controlador de veiculos
@@ -158,22 +165,27 @@ public class VehiclesController {
 			}
 		}
 	}
-
+	
+	public void emptyXML() throws FileNotFoundException {
+		FileOutputStream vehiclesWriter = new FileOutputStream(
+		"Vehicles.xml");
+	}
+	
 	public void readVehicles() throws Exception {
 		FileInputStream file = new FileInputStream("Vehicles.xml");
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
-		} else if (file.available() == 0) {
-			throw new Exception("deu nao");
-		}
+		} else if (file.available() != 0) {
+			
+		
 		
 		XStream xmlDecoder = new XStream(new DomDriver());
 		VehiclesCollection vehiclesArchive = (VehiclesCollection) xmlDecoder
 				.fromXML(new BufferedInputStream(file));
 		
 		registeredVehicles = vehiclesArchive;
-
+		}
 	}
 
 }

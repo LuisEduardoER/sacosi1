@@ -30,8 +30,10 @@ public class User02Test {
 		eaFacade.executeTests();
 
 		//Print the tests execution results
+		
 
 		System.out.println(eaFacade.getCompleteResults());
 
+		test.emptyXML();
 	}
 }

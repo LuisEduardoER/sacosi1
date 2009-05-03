@@ -1,5 +1,6 @@
 package LogicalSystem;
 
+import Commands.Facade;
 import Controller.RentController;
 import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
@@ -11,17 +12,18 @@ import Exceptions.PhoneException;
 
 public class LogicOfTheUser {
 	
-	private RentController rentController;
+	private Facade facade;
 	
-	public LogicOfTheUser(){
+	public LogicOfTheUser() throws Exception{
+		this.facade = new Facade();
 	}
 	
 	public void seeRequisitions(){
-		rentController.listAllRequests();
+		facade.listAllRequests();
 	}
 	
 	public void addRent(String email, String plate, String initialDate, String finalDate) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException{
-		rentController.registerRent(plate, email, initialDate, finalDate);
+		facade.registerRent(plate, email, initialDate, finalDate);
 	}
 	
 	public void addManyRents(){
@@ -29,7 +31,7 @@ public class LogicOfTheUser {
 	}
 	
 	public void releaseRent(String plate){
-		rentController.releaseVehicle(plate);
+		facade.releaseVehicle(plate);
 	}
 	
 	public void notifyRelease(String plate){
@@ -37,7 +39,7 @@ public class LogicOfTheUser {
 	}
 	
 	public void registerLateRent(String email, String plate, String initialDate, String finalDate) throws InvalidDateException, InvalidParameterException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException{
-		rentController.registerLateRent(plate, email, initialDate, finalDate);
+		facade.registerLateRent(plate, email, initialDate, finalDate);
 	}
 	
 	public void notifyLateRent(){
@@ -45,7 +47,7 @@ public class LogicOfTheUser {
 	}
 	
 	public void getVehicleSituation(String plate){
-		rentController.getVehicleSituation(plate);
+		facade.getVehicleSituation(plate);
 	}
 	
 	public void getAllVehiclesSituation(){
@@ -53,10 +55,10 @@ public class LogicOfTheUser {
 	}
 	
 	public void seeCurrentRent(String date){
-		rentController.listAllNonPendingRents(date);
+		facade.listAllNonPendingRents(date);
 	}
 	
 	public void seeLateRent(String date){
-		rentController.listAllPendingRents(date);
+		facade.listAllPendingRents(date);
 	}
 }

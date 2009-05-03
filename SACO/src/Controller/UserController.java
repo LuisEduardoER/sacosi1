@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 
@@ -42,18 +43,21 @@ public class UserController {
 	/*
 	 * Construtor privado. Serve para o padrao Singleton.
 	 */
-	private UserController() {
+	private UserController() throws Exception {
 		registeredCustomers = new CustomerCollection();
 		registeredFunctionaries = new FunctionariesCollection();
 		verification = new FieldSystemVerification();
+		this.readCostumers();
+		this.readFunctionaries();
 	}
 
 	/**
 	 * Retorna uma unica instancia da classe. Padrao singleton.
 	 * 
 	 * @return UserController a instancia da classe.
+	 * @throws Exception 
 	 */
-	public static UserController getInstance() {
+	public static UserController getInstance() throws Exception {
 		return instance == null ? instance = new UserController() : instance;
 	}
 
@@ -240,17 +244,22 @@ public class UserController {
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
-		} else if (file.available() == 0) {
-			throw new Exception("deu nao");
+		} else if (!(file.available() == 0)) {
+			XStream xmlDecoder = new XStream(new DomDriver());
+			CustomerCollection costumersArchive = (CustomerCollection) xmlDecoder
+			.fromXML(new BufferedInputStream(file));
+
+			registeredCustomers = costumersArchive;
 		}
-		XStream xmlDecoder = new XStream(new DomDriver());
-		CustomerCollection costumersArchive = (CustomerCollection) xmlDecoder
-				.fromXML(new BufferedInputStream(file));
-
-		registeredCustomers = costumersArchive;
-
 	}
-
+	
+	public void emptyXML() throws FileNotFoundException {
+		FileOutputStream customersWriter = new FileOutputStream(
+		"Customers.xml");
+		FileOutputStream functionariesWriter = new FileOutputStream(
+		"Functionaries.xml");
+	}
+	
 	private void writeFunctionaries() {
 		if (registeredFunctionaries != null) {
 			try {
@@ -275,16 +284,16 @@ public class UserController {
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
-		} else if (file.available() == 0) {
-			throw new Exception("deu nao");
-		}
+		} else if (file.available() != 0) {
+			
+		
 		
 		XStream xmlDecoder = new XStream(new DomDriver());
 		FunctionariesCollection functionariesArchive = (FunctionariesCollection) xmlDecoder
 				.fromXML(new BufferedInputStream(file));
 		
 		registeredFunctionaries = functionariesArchive;
-
+		}
 	}
 
 }
