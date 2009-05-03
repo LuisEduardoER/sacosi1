@@ -1,9 +1,5 @@
 package LogicalSystem;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import Controller.RentController;
 import Controller.UserController;
 import Controller.VehiclesController;
@@ -15,7 +11,6 @@ import Exceptions.InvalidNameException;
 import Exceptions.InvalidParameterException;
 import Exceptions.NoCustomerOnDatabaseException;
 import Exceptions.PhoneException;
-import Vehicles.Vehicle;
 
 public class LogicOfTheCustomer {
 	UserController userController;
