@@ -9,6 +9,7 @@ import Vehicles.*;
 import Exceptions.*;
 
 public class RentSystem {
+	
 	private Collection<User> listOfUsers;
 	private Collection<Vehicle> listOfVehicles;
 	
