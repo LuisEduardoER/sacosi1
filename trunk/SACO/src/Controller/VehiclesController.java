@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Collection;
+import java.util.List;
 
 import Exceptions.ColorException;
 import Exceptions.InvalidFieldException;
@@ -125,6 +126,20 @@ public class VehiclesController {
 			NoVehicleOnDatabaseException {
 		registeredVehicles.remove(plate);
 	}
+
+	
+	public void printCarsByYear(List<Vehicle> vehicles, int year){
+		for (int i = 0; i < vehicles.size(); i++){
+			if (vehicles.get(i).getYear() == year){
+				System.out.println(vehicles.get(i).toString());
+			}
+		}
+	}
+	
+	public List<Integer> getListOfYears(){
+		return registeredVehicles.getListOfCarsYear();
+	}
+
 	
 	public void writeVehicles() {
 		if (registeredVehicles != null) {
@@ -161,4 +176,5 @@ public class VehiclesController {
 		registeredVehicles = vehiclesArchive;
 
 	}
+
 }

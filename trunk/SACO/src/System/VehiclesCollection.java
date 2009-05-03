@@ -7,7 +7,9 @@ package System;
  */
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -146,4 +148,21 @@ public class VehiclesCollection {
 		}
 		return null;
 	}
+	
+	public List<Integer> getListOfCarsYear(){
+		List<Integer> list = new ArrayList<Integer>();
+		Iterator<Vehicle> it = vehiclesList.iterator();
+		while (it.hasNext()){
+			Vehicle vehicle = it.next();
+			if (!list.contains(vehicle.getYear()))
+					list.add(vehicle.getYear());
+		}
+		sortByYear(list);
+		return list;
+	}
+	
+	private void sortByYear(List<Integer> year){
+		Collections.sort(year);
+	}
+
 }
