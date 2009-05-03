@@ -4,7 +4,6 @@ package System;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import p1.aplic.geral.Data;
 import Users.Alugadores;
 import Vehicles.Alugavel;
 
@@ -51,9 +50,7 @@ public class Rent {
 	}
 	
 	public String getRentSituation() {
-		
 		return this.rentSituation;
-		
 	}
 	
 	public void setRentSituation(String rentSit) {
@@ -90,6 +87,18 @@ public class Rent {
 
 	public String getRentDate() {
 		return rentDate;
+	}
+	
+	public String toString() {
+		String output = "\n";
+		output += "===========================================================\n";
+		output += this.costumer.toString() + "\n";
+		output += "Veiculo: " + this.vehicle.toString() + "\n";
+		output += "Data de locacao: " + this.rentDate + "\n";
+		output += "Data de entrega: " + this.devolutionDate + "\n";
+		output += "Dias atrasados: " + this.diasAtraso + "\n";
+		output += "===========================================================\n";
+		return output;
 	}
 
 }
