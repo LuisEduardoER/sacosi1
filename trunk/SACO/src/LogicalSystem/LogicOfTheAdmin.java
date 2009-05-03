@@ -2,8 +2,7 @@ package LogicalSystem;
 
 import javax.security.auth.login.LoginException;
 
-import Controller.UserController;
-import Controller.VehiclesController;
+import Commands.Facade;
 import Exceptions.ClientNotRegisteredException;
 import Exceptions.ColorException;
 import Exceptions.CustomerAlreadyExistException;
@@ -28,33 +27,33 @@ import Exceptions.UserNotFoundException;
 import Exceptions.YearException;
 
 public class LogicOfTheAdmin extends LogicOfTheUser {
-	private UserController userController;
-	private VehiclesController vehicleController;
+	private Facade facade;
 	
-	public LogicOfTheAdmin(){
+	public LogicOfTheAdmin() throws Exception {
+		this.facade = new Facade();
 	}
 	
 	public void addUser(String login, String name, String email, String phone) throws InvalidLoginException, EmailException, InvalidNameException, PhoneException, InvalidFieldException, UserAlreadyExistException{
-		userController.addUser(login, name, email, phone);
+		facade.addUser(login, name, email, phone);
 	}
 	
 	public void addCustomer(String name, String email, String phone) throws EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException{
-		userController.addCustomer(name, email, phone);
+		facade.addCustomer(name, email, phone);
 	}
 	
 	public void removeCustomer(String email) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException{
-		userController.removeCustomer(email);
+		facade.removeCustomer(email);
 	}
 	
 	public void removeUser(String emailOrLogin) throws LoginException, UserNotFoundException, EmailException, NoUserOnDatabaseException, InvalidParameterException{
-		userController.removeUser(emailOrLogin);
+		facade.removeUser(emailOrLogin);
 	}
 	
 	public void addVehicle(String type, String model, String color, String year, String plate, String price) throws InvalidFieldException, NoFieldException, TypeException, ModelException, ColorException, PlateException, PriceException, YearException, PlateAlreadyExistsException{
-		vehicleController.addVehicle(type, model, color, plate, year, price);
+		facade.addVehicle(type, model, color, plate, year, price);
 	}
 	
 	public void removeVehicle(String plate) throws NoSuchVehicleException, NoVehicleOnDatabaseException{
-		vehicleController.removeVehicle(plate);
+		facade.removeVehicle(plate);
 	}
 }

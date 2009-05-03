@@ -1,8 +1,6 @@
 package LogicalSystem;
 
-import Controller.RentController;
-import Controller.UserController;
-import Controller.VehiclesController;
+import Commands.Facade;
 import Exceptions.ClientNotRegisteredException;
 import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
@@ -13,22 +11,21 @@ import Exceptions.NoCustomerOnDatabaseException;
 import Exceptions.PhoneException;
 
 public class LogicOfTheCustomer {
-	UserController userController;
-	RentController rentController;
-	VehiclesController vehicleController;
+	Facade facade;
 	
-	public LogicOfTheCustomer(){
+	public LogicOfTheCustomer() throws Exception{
+		facade = new Facade();
 	}
 	
 	public void addCustomer(String name, String email, String phone) throws EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException{
-		userController.addCustomer(name, email, phone);
+		facade.addCustomer(name, email, phone);
 	}
 	
 	public void removeCustomer(String email) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException{
-		userController.removeCustomer(email);
+		facade.removeCustomer(email);
 	}
 	
 	public void seeCars(){
-		rentController.seeCars();
+		facade.seeCars();
 	}
 }

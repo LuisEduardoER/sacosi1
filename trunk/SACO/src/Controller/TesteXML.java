@@ -1,12 +1,15 @@
 package Controller;
 
+import Commands.Facade;
+
 
 public class TesteXML {
 
 	/**
 	 * @param args
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		UserController teste = UserController.getInstance();
 
 		try {
@@ -47,6 +50,8 @@ public class TesteXML {
 		}
 
 		System.out.println(teste.getAllCustomers());
+		//Facade facade = new Facade();
+		//facade.emptyXML();
 	}
 
 }

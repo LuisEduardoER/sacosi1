@@ -32,7 +32,7 @@ public class User04Test {
 		//Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
-
+		test.emptyXML();
 	}
 }
 

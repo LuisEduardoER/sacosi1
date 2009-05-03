@@ -1,5 +1,7 @@
 package Commands;
 
+import java.io.FileNotFoundException;
+
 import javax.security.auth.login.LoginException;
 
 import Controller.RentController;
@@ -41,7 +43,7 @@ public class Facade {
 	private VehiclesController vehController;
 	private RentController reController;
 	
-	public Facade() {
+	public Facade() throws Exception {
 		this.userController = UserController.getInstance();
 		this.vehController = VehiclesController.getInstance();
 		this.reController = RentController.getInstance();
@@ -51,7 +53,9 @@ public class Facade {
 	
 	public void removeVehicle(String plate) throws NoSuchVehicleException, NoVehicleOnDatabaseException{
 		vehController.removeVehicle(plate);
+		this.vehController.writeVehicles();
 	}
+
 	
 	public int getAllUsers() {
 		return userController.getAllUsers();
@@ -59,6 +63,7 @@ public class Facade {
 	
 	public void addUser(String login, String name, String email, String phone) throws InvalidLoginException, EmailException, InvalidNameException, PhoneException, UserAlreadyExistException, InvalidFieldException {
 		userController.addUser(login, name, email, phone);
+		this.userController.writeXML();
 	}
 	
 	
@@ -68,10 +73,12 @@ public class Facade {
 	
 	public void removeCustomer(String key) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException{
 		userController.removeCustomer(key);
+		this.userController.writeXML();
 	}
 	
 	public void removeUser(String key) throws LoginException, UserNotFoundException, EmailException, NoUserOnDatabaseException, InvalidParameterException{
 		userController.removeUser(key);
+		this.userController.writeXML();
 	}
 	
 	public void addCustomer(String name, String email, String phone) throws EmailException, 
@@ -81,6 +88,7 @@ public class Facade {
 	InvalidFieldException {
 		
 		this.userController.addCustomer(name, email, phone);
+		this.userController.writeXML();
 	}
 	
 
@@ -90,16 +98,19 @@ public class Facade {
 			PlateException, PriceException, YearException,
 			PlateAlreadyExistsException {
 		this.vehController.addVehicle(type, model, color, plate, year, price);
+		this.vehController.writeVehicles();
 	}
 	
 	public void registerRent(String plate, String email, String initialDate, 
 			String finalDate) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
 		this.reController.registerRent(plate, email, initialDate, finalDate);
+		this.reController.writeXML();
 	}
 	
 	public void registerLateRent(String plate, String email, String initialDate, 
 			String finalDate) throws InvalidDateException, InvalidParameterException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
 		this.reController.registerLateRent(plate, email, initialDate, finalDate);
+		this.reController.writeXML();
 	}
 	
 	public String getRentSituation(String email, String plate, String inicialDate,
@@ -128,7 +139,9 @@ public class Facade {
 	}
 	
 	public boolean releaseVehicle(String plate) {
-		return this.reController.releaseVehicle(plate);
+		boolean result = this.reController.releaseVehicle(plate); 
+		this.reController.writeXML();
+		return result;
 	}
 	
 	public String getVehicleSituation(String plate) {
@@ -137,9 +150,45 @@ public class Facade {
 	
 	public void requestRent(String clientEmail, String plate) throws InvalidParameterException{
 		this.reController.requestRent(clientEmail, plate);
+		this.reController.writeXML();
 	}
 	
 	public int getAllVehicles(){
 		return this.vehController.getAllVehicles();
 	}
+	
+	public void emptyXML() throws FileNotFoundException {
+		this.reController.emptyXML();
+		this.vehController.emptyXML();
+		this.userController.emptyXML();
+	}
+
+
+
+	public void seeCars() {
+		this.reController.seeCars();
+		
+	}
+
+
+
+	public void listAllRequests() {
+		this.reController.listAllRequests();
+		
+	}
+
+
+
+	public void listAllNonPendingRents(String date) {
+		this.reController.listAllNonPendingRents(date);
+		
+	}
+
+
+
+	public void listAllPendingRents(String date) {
+		this.reController.listAllPendingRents(date);
+		
+	}
+
 }
