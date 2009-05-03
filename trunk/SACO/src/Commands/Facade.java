@@ -1,22 +1,32 @@
 package Commands;
 
+import javax.security.auth.login.LoginException;
+
 import Controller.RentController;
 import Controller.UserController;
 import Controller.VehiclesController;
+import Exceptions.ClientNotRegisteredException;
 import Exceptions.ColorException;
 import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
 import Exceptions.InvalidDateException;
 import Exceptions.InvalidFieldException;
+import Exceptions.InvalidLoginException;
 import Exceptions.InvalidNameException;
 import Exceptions.InvalidParameterException;
 import Exceptions.ModelException;
+import Exceptions.NoCustomerOnDatabaseException;
 import Exceptions.NoFieldException;
+import Exceptions.NoSuchVehicleException;
+import Exceptions.NoUserOnDatabaseException;
+import Exceptions.NoVehicleOnDatabaseException;
 import Exceptions.PhoneException;
 import Exceptions.PlateAlreadyExistsException;
 import Exceptions.PlateException;
 import Exceptions.PriceException;
 import Exceptions.TypeException;
+import Exceptions.UserAlreadyExistException;
+import Exceptions.UserNotFoundException;
 import Exceptions.YearException;
 
 
@@ -35,6 +45,33 @@ public class Facade {
 		this.userController = UserController.getInstance();
 		this.vehController = VehiclesController.getInstance();
 		this.reController = RentController.getInstance();
+	}
+	
+	
+	
+	public void removeVehicle(String plate) throws NoSuchVehicleException, NoVehicleOnDatabaseException{
+		vehController.removeVehicle(plate);
+	}
+	
+	public int getAllUsers() {
+		return userController.getAllUsers();
+	}
+	
+	public void addUser(String login, String name, String email, String phone) throws InvalidLoginException, EmailException, InvalidNameException, PhoneException, UserAlreadyExistException, InvalidFieldException {
+		userController.addUser(login, name, email, phone);
+	}
+	
+	
+	public int getAllCustomers(){
+		return userController.getAllCustomers();
+	}
+	
+	public void removeCustomer(String key) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException{
+		userController.removeCustomer(key);
+	}
+	
+	public void removeUser(String key) throws LoginException, UserNotFoundException, EmailException, NoUserOnDatabaseException, InvalidParameterException{
+		userController.removeUser(key);
 	}
 	
 	public void addCustomer(String name, String email, String phone) throws EmailException, 
