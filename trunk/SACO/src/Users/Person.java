@@ -42,5 +42,13 @@ public abstract class Person implements Alugadores {
 	public String getPhone() {
 		return phone;
 	}
+	
+	public String toString() {
+		String output = "";
+		output += "Nome: " + this.getName() + "\n";
+		output += "Email: " + this.getEmail() + "\n";
+		output += "Telefone: " + this.getPhone() + "\n";
+		return output;
+	}
 
 }
