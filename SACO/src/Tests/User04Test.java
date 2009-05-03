@@ -3,6 +3,8 @@ package Tests;
 import java.util.ArrayList;
 import java.util.List;
 
+import Commands.Facade;
+
 import easyaccept.EasyAcceptFacade;
 
 public class User04Test {
@@ -17,7 +19,7 @@ public class User04Test {
 
 		//Instantiate the Monopoly Game façade
 
-		UserControllerTest test = new UserControllerTest();
+		Facade test = new Facade();
 
 		//Instantiate EasyAccept façade
 
