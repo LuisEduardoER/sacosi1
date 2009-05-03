@@ -1,6 +1,7 @@
 package Commands;
 
 import java.io.FileNotFoundException;
+import java.util.Calendar;
 
 import javax.security.auth.login.LoginException;
 
@@ -46,7 +47,11 @@ public class Facade {
 	public Facade() throws Exception {
 		this.userController = UserController.getInstance();
 		this.vehController = VehiclesController.getInstance();
-		this.reController = RentController.getInstance();
+		try {
+			this.reController = RentController.getInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -177,16 +182,12 @@ public class Facade {
 		
 	}
 
-
-
-	public void listAllNonPendingRents(String date) {
+	public void listAllNonPendingRents(Calendar date) {
 		this.reController.listAllNonPendingRents(date);
 		
 	}
 
-
-
-	public void listAllPendingRents(String date) {
+	public void listAllPendingRents(Calendar date) {
 		this.reController.listAllPendingRents(date);
 		
 	}
