@@ -181,7 +181,8 @@ public class UserController {
 	}
 
 	/**
-	 * Remove um funcionario do sistema.
+	 * Remove um funcionario do sistema. Um funcionario eh removido pelo email ou 
+	 * pelo seu login.
 	 * 
 	 * @param emailOrLogin
 	 *            o email ou login do funcionario.
