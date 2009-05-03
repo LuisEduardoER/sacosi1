@@ -3,7 +3,9 @@ package Controller;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import Exceptions.ColorException;
@@ -139,7 +141,6 @@ public class VehiclesController {
 	public List<Integer> getListOfYears(){
 		return registeredVehicles.getListOfCarsYear();
 	}
-
 	
 	public void writeVehicles() {
 		if (registeredVehicles != null) {

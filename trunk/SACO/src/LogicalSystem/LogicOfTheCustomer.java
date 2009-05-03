@@ -34,15 +34,6 @@ public class LogicOfTheCustomer {
 	}
 	
 	public void seeCars(){
-		List<Vehicle> list = new ArrayList<Vehicle>();
-		Iterator<Vehicle> it = vehicleController.getRegisteredVehicles().iterator();
-		while (it.hasNext()){
-			Vehicle vehicle = it.next();
-			if (!rentController.vehicleIsRent(vehicle.getPlate()))
-				list.add(vehicle);
-		}
-		List<Integer> listOfYears = vehicleController.getListOfYears();
-		for (int i = 0; i < list.size(); i++)
-			vehicleController.printCarsByYear(list, listOfYears.get(i));
+		rentController.seeCars();
 	}
 }
