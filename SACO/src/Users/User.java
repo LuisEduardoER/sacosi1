@@ -1,4 +1,4 @@
-package Users;
+package Users; 
 
 public class User extends Person {
 
@@ -15,6 +15,14 @@ public class User extends Person {
 
 	public String getLogin() {
 		return login;
+	}
+	
+	public String toString() {
+		String output = "";
+		output += "Nome: " + this.getName() + "\n";
+		output += "Email: " + this.getEmail() + "\n";
+		output += "Telefone: " + this.getPhone() + "\n";
+		return output;
 	}
 
 }
