@@ -39,7 +39,7 @@ public class TesteXML {
 		}
 
 		System.out.println(teste.getAllCustomers());
-
+		teste.writeXML();
 		try {
 			teste.readCostumers();
 		} catch (Exception e) {

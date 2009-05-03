@@ -210,7 +210,7 @@ public class RentController {
 		return cont;
 	}
 	
-	private boolean vehicleIsRent(String plate) {
+	public boolean vehicleIsRent(String plate) {
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equals(plate)) {
 				return true;

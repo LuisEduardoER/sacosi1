@@ -1,11 +1,6 @@
 <System.CustomerCollection>
   <customerList>
     <Users.Customer>
-      <name>Luiz</name>
-      <email>luizinho16@gmail.com</email>
-      <phone>1111111111</phone>
-    </Users.Customer>
-    <Users.Customer>
       <name>Luiz3</name>
       <email>luizinho216@gmail.com</email>
       <phone>1111111111</phone>
