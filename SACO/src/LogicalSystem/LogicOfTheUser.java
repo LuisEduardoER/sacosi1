@@ -1,7 +1,8 @@
 package LogicalSystem;
 
+import java.util.Calendar;
+
 import Commands.Facade;
-import Controller.RentController;
 import Exceptions.CustomerAlreadyExistException;
 import Exceptions.EmailException;
 import Exceptions.InvalidDateException;
@@ -54,11 +55,11 @@ public class LogicOfTheUser {
 		//Implementar um metodo que faca o relatorio da situacao de todos os carros
 	}
 	
-	public void seeCurrentRent(String date){
+	public void seeCurrentRent(Calendar date){
 		facade.listAllNonPendingRents(date);
 	}
 	
-	public void seeLateRent(String date){
+	public void seeLateRent(Calendar date){
 		facade.listAllPendingRents(date);
 	}
 }
