@@ -30,7 +30,11 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
  * 
- * @author Ramon Lopes Brasileiro
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
  * 
  */
 public class UserController {
@@ -202,24 +206,44 @@ public class UserController {
 			InvalidParameterException {
 		registeredFunctionaries.remove(emailOrLogin);
 	}
-
+	
+	/**
+	 * Retorna uma colecao de todos os funcionarios.
+	 * @return colecao de todos os funcionarios.
+	 */
 	public FunctionariesCollection getFunctionariesCollection() {
 		return this.registeredFunctionaries;
 	}
-
+	
+	/**
+	 * Retorna uma lista de todos os clientes cadastrados
+	 * @return lista de todos os clientes cadastrados
+	 *
+	 */
 	public CustomerCollection getCustomerCollection() {
 		return this.registeredCustomers;
 	}
-
+	
+	/**
+	 * Retorna uma colecao de todos os clientes.
+	 * @return colecao de todos os clientes.
+	 *
+	 */
 	public List<Customer> getCustomerList() {
 		return this.registeredCustomers.getCustomerList();
 	}
-
+	
+	/**
+	 *Escreve os alugueis e os pedidos de aluguel em um arquivo .xml 
+	 */
 	public void writeXML() {
 		writeCustomers();
 		writeFunctionaries();
 	}
-
+	
+	/**
+	 * Escreve todos os clientes em um arquivo .xml
+	 */
 	private void writeCustomers() {
 		if (registeredCustomers != null) {
 			try {
@@ -239,6 +263,10 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * Faz a leitura no arquivo .xml de todos os clientes
+	 * @throws Exception
+	 */
 	public void readCostumers() throws Exception {
 		FileInputStream file = new FileInputStream("Customers.xml");
 
@@ -253,6 +281,10 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * Apaga o conteudo dos arquivos .xml
+	 * @throws FileNotFoundException
+	 */
 	public void emptyXML() throws FileNotFoundException {
 		FileOutputStream customersWriter = new FileOutputStream(
 		"Customers.xml");
@@ -260,6 +292,9 @@ public class UserController {
 		"Functionaries.xml");
 	}
 	
+	/**
+	 * Escreve todos os funcionarios em um arquivo .xml
+	 */
 	private void writeFunctionaries() {
 		if (registeredFunctionaries != null) {
 			try {
@@ -278,7 +313,11 @@ public class UserController {
 			}
 		}
 	}
-
+	
+	/**
+	 * Faz a leitura de todos os funcionarios de um arquivo .xml
+	 * @throws Exception
+	 */
 	public void readFunctionaries() throws Exception {
 		FileInputStream file = new FileInputStream("Functionaries.xml");
 
