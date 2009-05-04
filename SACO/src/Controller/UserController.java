@@ -43,6 +43,8 @@ public class UserController {
 	private CustomerCollection registeredCustomers;
 	private FunctionariesCollection registeredFunctionaries;
 	private FieldSystemVerification verification;
+	private static final String FUNCTIONARIES_FILE = "Functionaries.xml";
+	private static final String CUSTOMERS_FILE = "Customers.xml";
 
 	/*
 	 * Construtor privado. Serve para o padrao Singleton.
@@ -249,7 +251,7 @@ public class UserController {
 			try {
 
 				FileOutputStream customersWriter = new FileOutputStream(
-						"Customers.xml");
+						CUSTOMERS_FILE);
 				XStream xmlEncoder = new XStream();
 				String registeredCustomersEmXML = xmlEncoder
 						.toXML(registeredCustomers);
@@ -268,7 +270,7 @@ public class UserController {
 	 * @throws Exception
 	 */
 	public void readCostumers() throws Exception {
-		FileInputStream file = new FileInputStream("Customers.xml");
+		FileInputStream file = new FileInputStream(CUSTOMERS_FILE);
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
@@ -287,9 +289,9 @@ public class UserController {
 	 */
 	public void emptyXML() throws FileNotFoundException {
 		FileOutputStream customersWriter = new FileOutputStream(
-		"Customers.xml");
+		CUSTOMERS_FILE);
 		FileOutputStream functionariesWriter = new FileOutputStream(
-		"Functionaries.xml");
+		FUNCTIONARIES_FILE);
 	}
 	
 	/**
@@ -300,7 +302,7 @@ public class UserController {
 			try {
 
 				FileOutputStream functionariesWriter = new FileOutputStream(
-						"Functionaries.xml");
+						FUNCTIONARIES_FILE);
 				XStream xmlEncoder = new XStream();
 				String registeredFunctionariesEmXML = xmlEncoder
 						.toXML(registeredFunctionaries);
@@ -313,25 +315,24 @@ public class UserController {
 			}
 		}
 	}
-	
+
 	/**
 	 * Faz a leitura de todos os funcionarios de um arquivo .xml
+	 * 
 	 * @throws Exception
 	 */
 	public void readFunctionaries() throws Exception {
-		FileInputStream file = new FileInputStream("Functionaries.xml");
+		FileInputStream file = new FileInputStream(FUNCTIONARIES_FILE);
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
 		} else if (file.available() != 0) {
-			
-		
-		
-		XStream xmlDecoder = new XStream(new DomDriver());
-		FunctionariesCollection functionariesArchive = (FunctionariesCollection) xmlDecoder
-				.fromXML(new BufferedInputStream(file));
-		
-		registeredFunctionaries = functionariesArchive;
+
+			XStream xmlDecoder = new XStream(new DomDriver());
+			FunctionariesCollection functionariesArchive = (FunctionariesCollection) xmlDecoder
+					.fromXML(new BufferedInputStream(file));
+
+			registeredFunctionaries = functionariesArchive;
 		}
 	}
 
