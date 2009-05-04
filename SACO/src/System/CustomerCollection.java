@@ -15,7 +15,7 @@ import Exceptions.NoCustomerOnDatabaseException;
 import Exceptions.PhoneException;
 
 /**
- * Classe que armazena todos os clientes cadastrados do sistema.
+ * Classe que armazena todos os clientes cadastrados no sistema.
  * 
  * @author Filipe
  * @author Melina
@@ -35,12 +35,17 @@ public class CustomerCollection {
 		this.customerList = new ArrayList<Customer>();
 	}
 	
+	/**
+	 * Construtor
+	 * @param customers
+	 */
 	public CustomerCollection(ArrayList<Customer> customers) {
 		this.customerList = customers;
 	}
 	
 	/**
-	 * 
+	 * get Customer List
+	 * @return Customer List
 	 */
 	public List<Customer> getCustomerList() {
 		return this.customerList;
@@ -48,6 +53,7 @@ public class CustomerCollection {
 	
 	/**
 	 * Retorna a quantidade de clientes adicionados ao sistema.
+	 *@return quantidade de clientes adicionados ao sistema.
 	 */
 	public int size() {
 		return customerList.size();
@@ -67,8 +73,9 @@ public class CustomerCollection {
 		customerList.add(new Customer(name, email, phone));
 	}
 	
-	/*
+	/**
 	 * Verifica se no sistema h� um cliente cadastrado com o email especificado.
+	 *@return true se o cliente existe ou false caso contrario
 	 */
 	public boolean customerAlreadyExist(String email) {
 		for (Customer customer : customerList) {
@@ -77,8 +84,9 @@ public class CustomerCollection {
 		return false;
 	}
 	
-	/*
+	/**
 	 * Retorna o cliente registrado com o email especificado.
+	 * @return o cliente
 	 */
 	private Customer customerNotRegistered(String email) {
 		for (Customer customer : customerList) {

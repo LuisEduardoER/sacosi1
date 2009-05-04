@@ -8,7 +8,7 @@ import Users.Alugadores;
 import Vehicles.Alugavel;
 
 /**
- * 
+ * Esta classe representa um aluguel de um veiculo
  * @author Filipe
  * @author Melina
  * @author Luiz
@@ -27,7 +27,7 @@ public class Rent implements Comparable<Calendar>{
 	private Calendar calendar;
 
 	/**
-	 * 
+	 * Construtor
 	 * @param vehicle
 	 * @param costumer
 	 * @param initialDate
@@ -46,34 +46,34 @@ public class Rent implements Comparable<Calendar>{
 	}
 	
 	/**
-	 * 
+	 * get day
 	 * @param date
-	 * @return
+	 * @return dia
 	 */
 	private int getDay(String date) {
 		return Integer.valueOf(date.substring(0,2));
 	}
 	
 	/**
-	 * 
+	 * get month
 	 * @param date
-	 * @return
+	 * @return mês
 	 */
 	private int getMonth(String date) {
 		return Integer.valueOf(date.substring(3,5));
 	}
 	
 	/**
-	 * 
+	 * get year
 	 * @param date
-	 * @return
+	 * @return ano
 	 */
 	private int getYear(String date) {
 		return Integer.valueOf("20" + date.substring(6,8));
 	}
 	
 	/**
-	 * 
+	 * se Calendar Date
 	 * @param date
 	 */
 	@SuppressWarnings("unused")
@@ -82,7 +82,7 @@ public class Rent implements Comparable<Calendar>{
 	}
 
 	/**
-	 * 
+	 * set vehicle
 	 * @param vehicle
 	 */
 	public void setVehicle(Alugavel vehicle) {
@@ -90,15 +90,15 @@ public class Rent implements Comparable<Calendar>{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * get Rent Situation
+	 * @return situacao do aluguel
 	 */
 	public String getRentSituation() {
 		return this.rentSituation;
 	}
 	
 	/**
-	 * 
+	 * set rent situation
 	 * @param rentSit
 	 */
 	public void setRentSituation(String rentSit) {
@@ -106,23 +106,23 @@ public class Rent implements Comparable<Calendar>{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * get vehicle
+	 * @return veiculo
 	 */
 	public Alugavel getVehicle() {
 		return vehicle;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * get vehicle plate
+	 * @return placa do veiculo
 	 */
 	public String getVehiclePlate() {
 		return this.getVehicle().getPlate();
 	}
 
 	/**
-	 * 
+	 * set costumer
 	 * @param costumer
 	 */
 	public void setCostumer(Alugadores costumer) {
@@ -130,15 +130,15 @@ public class Rent implements Comparable<Calendar>{
 	}
 
 	/**
-	 * 
-	 * @return
+	 * get costumer
+	 * @return costumer
 	 */
 	public Alugadores getCostumer() {
 		return costumer;
 	}
 
 	/**
-	 * 
+	 * set devolution date
 	 * @param devolutionDate
 	 */
 	public void setDevolutionData(String devolutionDate) {
@@ -146,7 +146,7 @@ public class Rent implements Comparable<Calendar>{
 	}
 
 	/**
-	 * 
+	 * get devolution date
 	 * @return
 	 */
 	public String getDevolutionDate() {
@@ -154,7 +154,7 @@ public class Rent implements Comparable<Calendar>{
 	}
 
 	/**
-	 * 
+	 * set rent date
 	 * @param rentDate
 	 */
 	private void setRentData(String rentDate) {
@@ -162,7 +162,7 @@ public class Rent implements Comparable<Calendar>{
 	}
 
 	/**
-	 * 
+	 * get rent date
 	 * @return
 	 */
 	public String getRentDate() {
@@ -170,7 +170,7 @@ public class Rent implements Comparable<Calendar>{
 	}
 	
 	/**
-	 * 
+	 * toString do aluguel
 	 */
 	public String toString() {
 		String output = "\n";
@@ -185,15 +185,15 @@ public class Rent implements Comparable<Calendar>{
 	}
 
 	/**
-	 * 
+	 * Compara as datas
 	 */
 	public int compareTo(Calendar o) {
 		return this.getCalendar().compareTo(o);
 	}
 
 	/**
-	 * 
-	 * @return
+	 * get Calendar
+	 * @return calendar
 	 */
 	private Calendar getCalendar() {
 		return this.calendar;
