@@ -5,6 +5,8 @@ import java.util.Calendar;
 
 import javax.security.auth.login.LoginException;
 
+import Users.Alugadores;
+
 import Controller.RentController;
 import Controller.UserController;
 import Controller.VehiclesController;
@@ -89,10 +91,10 @@ public class Facade {
 	
 	/**
 	 * Este metodo cadastra um usuario no sistema.
-	 * @param login
-	 * @param name
-	 * @param email
-	 * @param phone
+	 * @param login login do funcionario
+	 * @param name o nome do funcionario
+	 * @param email o email do funcionario
+	 * @param phone o telefone do funcionario
 	 * @throws InvalidLoginException
 	 * @throws EmailException
 	 * @throws InvalidNameException
@@ -116,35 +118,35 @@ public class Facade {
 	
 	/**
 	 * Este metodo remove um cliente do sistema.
-	 * @param key
+	 * @param email o email do cliente
 	 * @throws ClientNotRegisteredException
 	 * @throws NoCustomerOnDatabaseException
 	 * @throws InvalidParameterException
 	 */
-	public void removeCustomer(String key) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException{
-		userController.removeCustomer(key);
+	public void removeCustomer(String email) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException{
+		userController.removeCustomer(email);
 		this.userController.writeXML();
 	}
 	
 	/**
 	 * Este metodo remove um usuario do sistema
-	 * @param key
+	 * @param emailOrLogin o email ou login do funcionario   
 	 * @throws LoginException
 	 * @throws UserNotFoundException
 	 * @throws EmailException
 	 * @throws NoUserOnDatabaseException
 	 * @throws InvalidParameterException
 	 */
-	public void removeUser(String key) throws LoginException, UserNotFoundException, EmailException, NoUserOnDatabaseException, InvalidParameterException{
-		userController.removeUser(key);
+	public void removeUser(String emailOrLogin) throws LoginException, UserNotFoundException, EmailException, NoUserOnDatabaseException, InvalidParameterException{
+		userController.removeUser(emailOrLogin);
 		this.userController.writeXML();
 	}
 	
 	/**
 	 * Este metodo cadastra um novo cliente no sistema.
-	 * @param name
-	 * @param email
-	 * @param phone
+	 * @param name nome do cliente
+	 * @param email o email do cliente
+	 * @param phone o telefone do cliente
 	 * @throws EmailException
 	 * @throws InvalidNameException
 	 * @throws PhoneException
@@ -164,12 +166,12 @@ public class Facade {
 	
 	/**
 	 * Este metodo adiciona um novo veículo no sistema.
-	 * @param type
-	 * @param model
-	 * @param color
-	 * @param plate
-	 * @param year
-	 * @param price
+	 * @param type o tipo do veiculo
+	 * @param model o modelo do veiculo
+	 * @param color a cor do veiculo
+	 * @param plate a placa do veiculo
+	 * @param year o ano de fabricacao do veiculo
+	 * @param price o preco de aluguel do veiculo
 	 * @throws InvalidFieldException
 	 * @throws NoFieldException
 	 * @throws TypeException
@@ -191,10 +193,10 @@ public class Facade {
 	
 	/**
 	 * Este metodo registra um novo aluguel no sistema.
-	 * @param plate
-	 * @param email
-	 * @param initialDate
-	 * @param finalDate
+	 * @param plate a placa do veiculo
+	 * @param email o email do cliente
+	 * @param initialDate a data do aluguel
+	 * @param finalDate a data de entrega 
 	 * @throws InvalidParameterException
 	 * @throws InvalidDateException
 	 * @throws EmailException
@@ -211,10 +213,10 @@ public class Facade {
 	
 	/**
 	 * Este metodo registra um aluguel atrasado no sistema.
-	 * @param plate
-	 * @param email
-	 * @param initialDate
-	 * @param finalDate
+	 * @param plate a placa do veiculo
+	 * @param email o email do cliente
+	 * @param initialDate a data do aluguel
+	 * @param finalDate a data de entrega 
 	 * @throws InvalidDateException
 	 * @throws InvalidParameterException
 	 * @throws EmailException
@@ -231,10 +233,10 @@ public class Facade {
 	
 	/**
 	 * Este metodo retorna a situacao de um aluguel que pode ser late ou active
-	 * @param email
-	 * @param plate
-	 * @param inicialDate
-	 * @param finalDate
+	 * @param email o email do cliente
+	 * @param plate a placa do veiculo
+	 * @param inicialDate data do aluguel
+	 * @param finalDate data da entrega
 	 * @return
 	 */
 	public String getRentSituation(String email, String plate, String inicialDate,
@@ -261,7 +263,7 @@ public class Facade {
 	
 	/**
 	 * Este metodo retorna a quantidade de algueis por veiculo.
-	 * @param plate
+	 * @param plate a placa do veiculo
 	 * @return quantidade de algueis por veiculo
 	 */
 	public int getRentsByVehicle(String plate) {
@@ -286,7 +288,7 @@ public class Facade {
 	
 	/**
 	 * Este metodo faz a liberacao de um veiculo alugado
-	 * @param plate
+	 * @param plate a placa do veiculo
 	 * @return uma confirmacao da liberacao
 	 */
 	public boolean releaseVehicle(String plate) {
@@ -297,7 +299,7 @@ public class Facade {
 	
 	/**
 	 * Este metodo retorna a situcao do veiculo.
-	 * @param plate
+	 * @param plate a placa do veiculo
 	 * @return situcao do veiculo.
 	 */
 	public String getVehicleSituation(String plate) {
@@ -307,7 +309,7 @@ public class Facade {
 	/**
 	 * Este metodo faz uma requisicao de aluguel de um cliente por um veiculo.
 	 * @param clientEmail
-	 * @param plate
+	 * @param plate a placa do veiculo
 	 * @throws InvalidParameterException
 	 */
 	public void requestRent(String clientEmail, String plate) throws InvalidParameterException{
@@ -353,7 +355,8 @@ public class Facade {
 	
 	/**
 	 * Este metodo permite a visualizacao de todos os alugueis nao pendentes.
-	 * @param date
+	 * @param date 
+	 *		a data de atual  		
 	 */
 	public void listAllNonPendingRents(Calendar date) {
 		this.reController.listAllNonPendingRents(date);
@@ -362,11 +365,36 @@ public class Facade {
 
 	/**
 	 * Este metodo permite a visualizacao de todos os alugueis pendentes.
-	 * @param date
+	 * @param date a data atual
 	 */
 	public void listAllPendingRents(Calendar date) {
 		this.reController.listAllPendingRents(date);
 		
+	}
+
+	/**
+	 * Este metodo permite a visualizacao da situacao de todos os 
+	 * veiculos.
+	 * @return a situacao de todos os veiculos
+	 */
+	public String getAllVehiclesSituation() {
+		return this.reController.getAllVehiclesSituation();
+	}
+
+	/**
+	 * Registra o aluguel de varios veiculos a um cliente.
+	 * @param customer o alugador
+	 * @param plates as placas dos carros que o cliente deseja alugar
+	 * @throws InvalidFieldException 
+	 * @throws CustomerAlreadyExistException 
+	 * @throws PhoneException 
+	 * @throws InvalidNameException 
+	 * @throws EmailException 
+	 * @throws InvalidDateException 
+	 * @throws InvalidParameterException 
+	 */
+	public void addManyRents(Alugadores customer, String[] plates, String[] initialDates, String[] devolutionDates) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
+		this.reController.addManyRents(customer, plates, initialDates, devolutionDates);
 	}
 
 }

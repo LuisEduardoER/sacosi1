@@ -10,6 +10,7 @@ import Exceptions.InvalidFieldException;
 import Exceptions.InvalidNameException;
 import Exceptions.InvalidParameterException;
 import Exceptions.PhoneException;
+import Users.Alugadores;
 
 /**
  * 
@@ -36,8 +37,8 @@ public class LogicOfTheUser {
 		facade.registerRent(plate, email, initialDate, finalDate);
 	}
 	
-	public void addManyRents(){
-		//Implementar um metodo que faca varias leituras para registrar aluguel
+	public void addManyRents(Alugadores customer, String[] plates, String[] initialDates, String[] devolutionDates) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException{
+		facade.addManyRents(customer, plates, initialDates, devolutionDates);
 	}
 	
 	public void releaseRent(String plate){
@@ -61,7 +62,7 @@ public class LogicOfTheUser {
 	}
 	
 	public void getAllVehiclesSituation(){
-		//Implementar um metodo que faca o relatorio da situacao de todos os carros
+		facade.getAllVehiclesSituation();
 	}
 	
 	public void seeCurrentRent(Calendar date){

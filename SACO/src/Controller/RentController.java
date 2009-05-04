@@ -22,6 +22,7 @@ import System.FieldSystemVerification;
 import System.FunctionariesCollection;
 import System.Rent;
 import System.RequestRentCollection;
+import Users.Alugadores;
 import Users.Customer;
 import Vehicles.Vehicle;
 
@@ -46,7 +47,7 @@ public class RentController {
 	private FieldSystemVerification verification;
 	private VehiclesController vehicleCollection;
 	private RequestRentCollection requestList;
-	public static RentController instance;
+	private static RentController instance;
 	private Calendar calendar;
 	private static final String REQUEST_RENTS_FILE = "RequestRents.xml";
 	private static final String RENTS_FILE = "Rents.xml";
@@ -66,7 +67,7 @@ public class RentController {
 	 * @throws Exception
 	 * 
 	 */
-	public RentController() throws Exception {
+	private RentController() throws Exception {
 		calendar = Calendar.getInstance();
 		this.rents = new ArrayList<Rent>();
 		this.userController = UserController.getInstance();
@@ -203,7 +204,7 @@ public class RentController {
 	 * LIbera um veiculo
 	 * 
 	 * @param plate
-	 * @return uma confirma�ao
+	 * @return uma confirmacao
 	 */
 	public boolean releaseVehicle(String plate) {
 		for (Rent rent : rents) {
@@ -543,6 +544,39 @@ public class RentController {
 					.fromXML(new BufferedInputStream(file));
 
 			requestList = requestListArchive;
+		}
+	}
+	
+	/**
+	 * Retorna a situacao vigente de todos os veiculos cadastrados.
+	 * @return a situacao dos veiculos
+	 */
+	public String getAllVehiclesSituation() {
+		String output = "";
+		Iterator<Vehicle> it = vehicleCollection.getRegisteredVehicles().iterator();
+		while (it.hasNext()) {
+			Vehicle vehicle = it.next();
+			output += vehicle.toString() + "\n" + this.getVehicleSituation(vehicle.getPlate());
+			output += "================================================\n";
+		}
+		return output;
+	}
+
+	/**
+	 * Registra o aluguel de varios veiculos a um cliente.
+	 * @param customer o alugador
+	 * @param plates as placas dos carros que o cliente deseja alugar
+	 * @throws InvalidFieldException 
+	 * @throws CustomerAlreadyExistException 
+	 * @throws PhoneException 
+	 * @throws InvalidNameException 
+	 * @throws EmailException 
+	 * @throws InvalidDateException 
+	 * @throws InvalidParameterException 
+	 */
+	public void addManyRents(Alugadores customer, String[] plates, String[] initialDates, String[] devolutionDates) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
+		for (int i = 0; i < plates.length; i++) {
+			this.registerRent(plates[i], customer.getEmail(), initialDates[i], devolutionDates[i]);
 		}
 	}
 }
