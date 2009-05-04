@@ -26,7 +26,6 @@ import Vehicles.Vehicle;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-
 /**
  * @author Filipe
  * @author Melina
@@ -34,7 +33,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * @author Raissa
  * @author Ramon
  * @author Melina
- *
+ * 
  */
 public class VehiclesController {
 	/***/
@@ -43,6 +42,7 @@ public class VehiclesController {
 	private VehiclesCollection registeredVehicles;
 
 	private FieldSystemVerification verification;
+	private static final String VEHICLES_FILE = "Vehicles.xml";
 
 	private VehiclesController() throws Exception {
 		registeredVehicles = new VehiclesCollection();
@@ -54,7 +54,7 @@ public class VehiclesController {
 	 * Padrao Singleton para a classe VehiclesController
 	 * 
 	 * @return uma unica instancia da classe
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static VehiclesController getInstance() throws Exception {
 		if (instance == null) {
@@ -65,14 +65,12 @@ public class VehiclesController {
 
 	/**
 	 * Retorna todos os veiculos registrados
+	 * 
 	 * @return uma colecao de todos os veiculos registrados
 	 */
 	public Collection<Vehicle> getRegisteredVehicles() {
 		return this.registeredVehicles.getVehiclesList();
 	}
-	
-
-
 
 	/**
 	 * Adiciona um veiculo ao sistema de controlador de veiculos
@@ -84,14 +82,14 @@ public class VehiclesController {
 	 * @param year
 	 * @param price
 	 * @throws InvalidFieldException
-	 * @throws PlateAlreadyExistsException 
-	 * @throws YearException 
-	 * @throws PriceException 
-	 * @throws PlateException 
-	 * @throws ColorException 
-	 * @throws ModelException 
-	 * @throws TypeException 
-	 * @throws NoFieldException 
+	 * @throws PlateAlreadyExistsException
+	 * @throws YearException
+	 * @throws PriceException
+	 * @throws PlateException
+	 * @throws ColorException
+	 * @throws ModelException
+	 * @throws TypeException
+	 * @throws NoFieldException
 	 * @throws NoFieldException
 	 * @throws TypeException
 	 * @throws ModelException
@@ -103,10 +101,12 @@ public class VehiclesController {
 	 */
 	public void addVehicle(String type, String model, String color,
 			String plate, String year, String price)
-			throws InvalidFieldException, NoFieldException, TypeException, ModelException, ColorException, PlateException, PriceException, YearException, PlateAlreadyExistsException {
-		
-		if (verification.allShitVehiclesFieldsInvalids(type, model, color, plate,
-				year, price))
+			throws InvalidFieldException, NoFieldException, TypeException,
+			ModelException, ColorException, PlateException, PriceException,
+			YearException, PlateAlreadyExistsException {
+
+		if (verification.allShitVehiclesFieldsInvalids(type, model, color,
+				plate, year, price))
 			throw new InvalidFieldException("error: all fields are mandatory!");
 		if (!verification.validateType(type))
 			throw new InvalidFieldException("error: invalid field!");
@@ -144,28 +144,29 @@ public class VehiclesController {
 		registeredVehicles.remove(plate);
 	}
 
-	
 	/**
 	 * Imprime todos os carro por um dado ano
+	 * 
 	 * @param vehicles
 	 * @param year
 	 */
-	public void printCarsByYear(List<Vehicle> vehicles, int year){
-		for (int i = 0; i < vehicles.size(); i++){
-			if (vehicles.get(i).getYear() == year){
+	public void printCarsByYear(List<Vehicle> vehicles, int year) {
+		for (int i = 0; i < vehicles.size(); i++) {
+			if (vehicles.get(i).getYear() == year) {
 				System.out.println(vehicles.get(i).toString());
 			}
 		}
 	}
-	
+
 	/**
 	 * Retorna lista dos anos dos carros
+	 * 
 	 * @return lista dos anos dos carros
 	 */
-	public List<Integer> getListOfYears(){
+	public List<Integer> getListOfYears() {
 		return registeredVehicles.getListOfCarsYear();
 	}
-	
+
 	/**
 	 * Escreve todos os veiculos em um arquivo .xml
 	 */
@@ -174,7 +175,7 @@ public class VehiclesController {
 			try {
 
 				FileOutputStream vehiclesWriter = new FileOutputStream(
-						"Vehicles.xml");
+						VEHICLES_FILE);
 				XStream xmlEncoder = new XStream();
 				String registeredVehiclesEmXML = xmlEncoder
 						.toXML(registeredVehicles);
@@ -187,34 +188,33 @@ public class VehiclesController {
 			}
 		}
 	}
-	
+
 	/**
 	 * Apaga o conteudo dos arquivos .xml
+	 * 
 	 * @throws FileNotFoundException
 	 */
 	public void emptyXML() throws FileNotFoundException {
-		FileOutputStream vehiclesWriter = new FileOutputStream(
-		"Vehicles.xml");
+		FileOutputStream vehiclesWriter = new FileOutputStream(VEHICLES_FILE);
 	}
-	
+
 	/**
 	 * Faz a leitura de todos os veiculos de um arquivo .xml
+	 * 
 	 * @throws Exception
 	 */
 	public void readVehicles() throws Exception {
-		FileInputStream file = new FileInputStream("Vehicles.xml");
+		FileInputStream file = new FileInputStream(VEHICLES_FILE);
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
 		} else if (file.available() != 0) {
-			
-		
-		
-		XStream xmlDecoder = new XStream(new DomDriver());
-		VehiclesCollection vehiclesArchive = (VehiclesCollection) xmlDecoder
-				.fromXML(new BufferedInputStream(file));
-		
-		registeredVehicles = vehiclesArchive;
+
+			XStream xmlDecoder = new XStream(new DomDriver());
+			VehiclesCollection vehiclesArchive = (VehiclesCollection) xmlDecoder
+					.fromXML(new BufferedInputStream(file));
+
+			registeredVehicles = vehiclesArchive;
 		}
 	}
 

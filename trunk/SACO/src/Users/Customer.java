@@ -11,10 +11,10 @@ package Users;
  */
 public class Customer extends Person {
 
-	/**
-	 * @param name
-	 * @param email
-	 * @param phone
+	/** Construtor de um Cliente
+	 * @param name nome do cliente
+	 * @param email email do cliente
+	 * @param phone telefone do cliente
 	 */
 	public Customer(String name, String email, String phone) {
 		super(name, email, phone);

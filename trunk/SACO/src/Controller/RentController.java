@@ -35,7 +35,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * @author Luiz
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
 public class RentController {
 
@@ -48,31 +48,32 @@ public class RentController {
 	private RequestRentCollection requestList;
 	public static RentController instance;
 	private Calendar calendar;
-
+	private static final String REQUEST_RENTS_FILE = "RequestRents.xml";
+	private static final String RENTS_FILE = "Rents.xml";
 
 	/**
 	 * 
 	 * @return uma unica instancia da classe
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static RentController getInstance() throws Exception {
-		return instance == null ? 
-				instance = new RentController() : 
-					instance;
+		return instance == null ? instance = new RentController() : instance;
 	}
 
 	/**
 	 * Construtor
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 * 
 	 */
 	public RentController() throws Exception {
 		calendar = Calendar.getInstance();
 		this.rents = new ArrayList<Rent>();
 		this.userController = UserController.getInstance();
-		this.functionariesCollection = this.userController.getFunctionariesCollection();
+		this.functionariesCollection = this.userController
+				.getFunctionariesCollection();
 		this.customerCollection = this.userController.getCustomerCollection();
-		this.vehicleCollection = VehiclesController.getInstance(); 
+		this.vehicleCollection = VehiclesController.getInstance();
 		this.verification = new FieldSystemVerification();
 		this.requestList = new RequestRentCollection();
 		this.readRents();
@@ -81,6 +82,7 @@ public class RentController {
 
 	/**
 	 * Registra um aluguel atrasado
+	 * 
 	 * @param plate
 	 * @param email
 	 * @param initialDate
@@ -93,12 +95,16 @@ public class RentController {
 	 * @throws CustomerAlreadyExistException
 	 * @throws InvalidFieldException
 	 */
-	public void registerLateRent(String plate, String email, String initialDate, 
-			String finalDate) throws InvalidDateException, InvalidParameterException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
+	public void registerLateRent(String plate, String email,
+			String initialDate, String finalDate) throws InvalidDateException,
+			InvalidParameterException, EmailException, InvalidNameException,
+			PhoneException, CustomerAlreadyExistException,
+			InvalidFieldException {
 
 		if (!this.correctPeriod(initialDate, finalDate))
-			throw new InvalidDateException("error: end date is greater than today date!");
-		for(Rent rent: rents) {
+			throw new InvalidDateException(
+					"error: end date is greater than today date!");
+		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
 				rent.setRentSituation("late");
 				break;
@@ -108,6 +114,7 @@ public class RentController {
 
 	/**
 	 * Registra um aluguel
+	 * 
 	 * @param plate
 	 * @param email
 	 * @param initialDate
@@ -120,13 +127,17 @@ public class RentController {
 	 * @throws CustomerAlreadyExistException
 	 * @throws InvalidFieldException
 	 */
-	public void registerRent(String plate, String email, String initialDate, 
-			String finalDate) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
+	public void registerRent(String plate, String email, String initialDate,
+			String finalDate) throws InvalidParameterException,
+			InvalidDateException, EmailException, InvalidNameException,
+			PhoneException, CustomerAlreadyExistException,
+			InvalidFieldException {
 		this.register(plate, email, initialDate, finalDate, "active");
 	}
 
 	/**
 	 * Registra um aluguel
+	 * 
 	 * @param plate
 	 * @param email
 	 * @param initialDate
@@ -140,22 +151,29 @@ public class RentController {
 	 * @throws CustomerAlreadyExistException
 	 * @throws InvalidFieldException
 	 */
-	public void register(String plate, String email, String initialDate, 
-			String finalDate, String rentSituation) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
+	public void register(String plate, String email, String initialDate,
+			String finalDate, String rentSituation)
+			throws InvalidParameterException, InvalidDateException,
+			EmailException, InvalidNameException, PhoneException,
+			CustomerAlreadyExistException, InvalidFieldException {
 
-		if (!this.verification.validPlate(plate) || !this.verification.emailIsAMandatoryField(email) ||
-				!this.verification.dateIsMandatoryField(initialDate) ||
-				!this.verification.dateIsMandatoryField(finalDate))
-			throw new InvalidParameterException("error: all parameters are mandatory!");
+		if (!this.verification.validPlate(plate)
+				|| !this.verification.emailIsAMandatoryField(email)
+				|| !this.verification.dateIsMandatoryField(initialDate)
+				|| !this.verification.dateIsMandatoryField(finalDate))
+			throw new InvalidParameterException(
+					"error: all parameters are mandatory!");
 
-		if (!this.verification.validateEmail(email) ||
-				!this.verification.isValidPlate(plate) || this.vehicleIsRent(plate))
-			throw new InvalidParameterException("error: invalid parameter(s)"); 
+		if (!this.verification.validateEmail(email)
+				|| !this.verification.isValidPlate(plate)
+				|| this.vehicleIsRent(plate))
+			throw new InvalidParameterException("error: invalid parameter(s)");
 
 		if (!this.vehicleIsRent(plate)) {
 			if (!this.userExists(email))
 				this.userController.addCustomer("name", email, "8388888888");
-			Collection<Vehicle> vehicleList = this.vehicleCollection.getRegisteredVehicles();
+			Collection<Vehicle> vehicleList = this.vehicleCollection
+					.getRegisteredVehicles();
 			Vehicle rentVehicle = null;
 			for (Vehicle vehicle : vehicleList) {
 				if (vehicle.getPlate().equalsIgnoreCase(plate)) {
@@ -171,20 +189,21 @@ public class RentController {
 					break;
 				}
 			}
-			try{
-				this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate ,finalDate, rentSituation));
-			}catch(Exception e) {
+			try {
+				this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,
+						finalDate, rentSituation));
+			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
 		}
 
 	}
 
-
 	/**
 	 * LIbera um veiculo
+	 * 
 	 * @param plate
-	 * @return uma confirmaçao
+	 * @return uma confirmaï¿½ao
 	 */
 	public boolean releaseVehicle(String plate) {
 		for (Rent rent : rents) {
@@ -198,6 +217,7 @@ public class RentController {
 
 	/**
 	 * Retorna a quantidade de algueis ativos
+	 * 
 	 * @return quantidade de algueis ativos
 	 */
 	public int getAllActiveRents() {
@@ -212,6 +232,7 @@ public class RentController {
 
 	/**
 	 * Retorna a situacao do veiculo.
+	 * 
 	 * @param plate
 	 * @return situacao do veiculo.
 	 */
@@ -225,38 +246,39 @@ public class RentController {
 
 	/**
 	 * Retorna a situcao do aluguel
+	 * 
 	 * @param email
 	 * @param plate
 	 * @param inicialDate
 	 * @param finalDate
 	 * @return situcao do aluguel
 	 */
-	public String getRentSituation(String email, String plate, String inicialDate,
-			String finalDate){
-		for(Rent rent : rents) {
-			if (rent.getCostumer().getEmail().equals(email) &&
-					rent.getVehiclePlate().equals(plate) )
+	public String getRentSituation(String email, String plate,
+			String inicialDate, String finalDate) {
+		for (Rent rent : rents) {
+			if (rent.getCostumer().getEmail().equals(email)
+					&& rent.getVehiclePlate().equals(plate))
 				return rent.getRentSituation();
 		}
 		return null;
 
 	}
 
-
 	/**
-	 * Verifica se o periodo esta correto, ou seja, se a data final é maior
-	 * que a data inicial
+	 * Verifica se o periodo esta correto, ou seja, se a data final ï¿½ maior que
+	 * a data inicial
+	 * 
 	 * @param init
 	 * @param end
 	 * @return true se o periodo for correto e false caso contrario
 	 */
 	private boolean correctPeriod(String init, String end) {
-		int day1 = Integer.valueOf(init.substring(0,2));
-		int day2 = Integer.valueOf(end.substring(0,2));
-		int month1 = Integer.valueOf(init.substring(3,5));
-		int month2 = Integer.valueOf(end.substring(3,5));
-		int year1 = Integer.valueOf(init.substring(6,8));
-		int year2 = Integer.valueOf(end.substring(6,8));
+		int day1 = Integer.valueOf(init.substring(0, 2));
+		int day2 = Integer.valueOf(end.substring(0, 2));
+		int month1 = Integer.valueOf(init.substring(3, 5));
+		int month2 = Integer.valueOf(end.substring(3, 5));
+		int year1 = Integer.valueOf(init.substring(6, 8));
+		int year2 = Integer.valueOf(end.substring(6, 8));
 		if (year1 <= year2) {
 			if (year1 == year2) {
 				if (month1 <= month2) {
@@ -277,22 +299,26 @@ public class RentController {
 
 	/**
 	 * Verifica se o email existe no sistema.
+	 * 
 	 * @param email
 	 * @return true se tem no sistema e false caso contrario
 	 */
 	private boolean userExists(String email) {
-		if (this.customerCollection.customerAlreadyExist(email)) return true;
-		if (this.functionariesCollection.functionarieAlreadyExists(email)) return true;
+		if (this.customerCollection.customerAlreadyExist(email))
+			return true;
+		if (this.functionariesCollection.functionarieAlreadyExists(email))
+			return true;
 		return false;
 	}
 
 	/**
 	 * Lista todos os alugueis pendentes
+	 * 
 	 * @return toString de todos os alugueis pendentes
 	 */
 	public String listAllPendingRents(Calendar date) {
 		String output = "";
-		for (Rent rent: rents) {
+		for (Rent rent : rents) {
 			if (rent.compareTo(date) < 1)
 				output += rent.toString();
 		}
@@ -301,12 +327,13 @@ public class RentController {
 
 	/**
 	 * Lista todos os alugueis nao pendentes
+	 * 
 	 * @param date
 	 * @return toString de todos os alugueis nao pendentes
 	 */
 	public String listAllNonPendingRents(Calendar date) {
 		String output = "";
-		for (Rent rent: rents) {
+		for (Rent rent : rents) {
 			if (rent.compareTo(date) >= 1)
 				output += rent.toString();
 		}
@@ -315,6 +342,7 @@ public class RentController {
 
 	/**
 	 * Quantidade de alugueis
+	 * 
 	 * @return Quantidade de alugueis
 	 */
 	public int getAllRents() {
@@ -323,13 +351,14 @@ public class RentController {
 
 	/**
 	 * Quantidade de alugueis por cliente
+	 * 
 	 * @param email
 	 * @return quantidade de alugueis por cliente
 	 */
 	public int getRentsByCustomer(String email) {
 		int cont = 0;
 		if (rents != null)
-			for(Rent rent: rents) {
+			for (Rent rent : rents) {
 				if (rent.getCostumer().getEmail().equals(email)) {
 					cont++;
 				}
@@ -339,13 +368,14 @@ public class RentController {
 
 	/**
 	 * Quantidade de alugueis por veiculo
+	 * 
 	 * @param plate
 	 * @return Quantidade de alugueis por veiculo
 	 */
 	public int getRentsByVehicle(String plate) {
 		int cont = 0;
 		if (rents != null)
-			for(Rent rent: rents) {
+			for (Rent rent : rents) {
 				if (rent.getVehiclePlate().equals(plate)) {
 					cont++;
 				}
@@ -355,6 +385,7 @@ public class RentController {
 
 	/**
 	 * Verifica se um veiculo esta alugado.
+	 * 
 	 * @param plate
 	 * @return true se estiver alugado ou false caso contrario
 	 */
@@ -369,27 +400,32 @@ public class RentController {
 
 	/**
 	 * Retorna todas as requisicoes de alugueis pendentes
+	 * 
 	 * @return quantidade de requisicoes de alugueis pendentes.
 	 */
-	public int getAllPendentRentRequests(){
+	public int getAllPendentRentRequests() {
 		return this.requestList.size();
 	}
 
 	/**
 	 * Faz um pedido de aluguel
+	 * 
 	 * @param clientEmail
 	 * @param plate
 	 * @throws InvalidParameterException
 	 */
-	public void requestRent(String clientEmail, String plate) throws InvalidParameterException{
-		if (!verification.emailIsAMandatoryField(clientEmail) ||
-				!verification.plateIsAMandatoryField(plate))
-			throw new InvalidParameterException("error: all fields are mandatory!");
+	public void requestRent(String clientEmail, String plate)
+			throws InvalidParameterException {
+		if (!verification.emailIsAMandatoryField(clientEmail)
+				|| !verification.plateIsAMandatoryField(plate))
+			throw new InvalidParameterException(
+					"error: all fields are mandatory!");
 		requestList.add(clientEmail, plate, calendar.getTime());
 	}
 
 	/**
 	 * Lista todos os pedidos de aluguel
+	 * 
 	 * @return toSting de todos os pedidos de aluguel.
 	 */
 	public String listAllRequests() {
@@ -399,10 +435,11 @@ public class RentController {
 	/**
 	 * Visualiza todos os carros
 	 */
-	public void seeCars(){
+	public void seeCars() {
 		List<Vehicle> list = new ArrayList<Vehicle>();
-		Iterator<Vehicle> it = vehicleCollection.getRegisteredVehicles().iterator();
-		while (it.hasNext()){
+		Iterator<Vehicle> it = vehicleCollection.getRegisteredVehicles()
+				.iterator();
+		while (it.hasNext()) {
 			Vehicle vehicle = it.next();
 			if (!vehicleIsRent(vehicle.getPlate()))
 				list.add(vehicle);
@@ -413,7 +450,7 @@ public class RentController {
 	}
 
 	/**
-	 *Escreve os alugueis e os pedidos de aluguel em um arquivo .xml 
+	 *Escreve os alugueis e os pedidos de aluguel em um arquivo .xml
 	 */
 	public void writeXML() {
 		writeRents();
@@ -426,13 +463,10 @@ public class RentController {
 	private void writeRents() {
 		if (rents != null) {
 			try {
-				FileOutputStream rentsWriter = new FileOutputStream(
-				"Rents.xml");
+				FileOutputStream rentsWriter = new FileOutputStream(RENTS_FILE);
 				XStream xmlEncoder = new XStream();
-				String rentsEmXML = xmlEncoder
-				.toXML(rents);
-				byte[] rentsByteArray = rentsEmXML
-				.getBytes();
+				String rentsEmXML = xmlEncoder.toXML(rents);
+				byte[] rentsByteArray = rentsEmXML.getBytes();
 				rentsWriter.write(rentsByteArray);
 
 			} catch (Exception e) {
@@ -443,33 +477,33 @@ public class RentController {
 
 	/**
 	 * Faz a leitura no arquivo .xml de todos os alugueis
+	 * 
 	 * @throws Exception
 	 */
 	public void readRents() throws Exception {
-		FileInputStream file = new FileInputStream("Rents.xml");
+		FileInputStream file = new FileInputStream(RENTS_FILE);
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
 		} else if (file.available() != 0) {
-			
-		
-		XStream xmlDecoder = new XStream(new DomDriver());
-		Collection<Rent> rentsArchive = (Collection<Rent>) xmlDecoder
-		.fromXML(new BufferedInputStream(file));
 
-		rents = rentsArchive;
+			XStream xmlDecoder = new XStream(new DomDriver());
+			Collection<Rent> rentsArchive = (Collection<Rent>) xmlDecoder
+					.fromXML(new BufferedInputStream(file));
+
+			rents = rentsArchive;
 		}
 	}
-	
+
 	/**
 	 * Apaga o conteudo dos arquivos .xml
+	 * 
 	 * @throws FileNotFoundException
 	 */
 	public void emptyXML() throws FileNotFoundException {
-		FileOutputStream rentsWriter = new FileOutputStream(
-		"Rents.xml");
+		FileOutputStream rentsWriter = new FileOutputStream(RENTS_FILE);
 		FileOutputStream requesListWriter = new FileOutputStream(
-		"RequestRents.xml");
+				REQUEST_RENTS_FILE);
 	}
 
 	/**
@@ -480,12 +514,10 @@ public class RentController {
 			try {
 
 				FileOutputStream requesListWriter = new FileOutputStream(
-				"RequestRents.xml");
+						REQUEST_RENTS_FILE);
 				XStream xmlEncoder = new XStream();
-				String requestListEmXML = xmlEncoder
-				.toXML(requestList);
-				byte[] requestListByteArray = requestListEmXML
-				.getBytes();
+				String requestListEmXML = xmlEncoder.toXML(requestList);
+				byte[] requestListByteArray = requestListEmXML.getBytes();
 				requesListWriter.write(requestListByteArray);
 
 			} catch (Exception e) {
@@ -496,22 +528,21 @@ public class RentController {
 
 	/**
 	 * Faz a leitura de todos os pedidos de um arquivo .xml
+	 * 
 	 * @throws Exception
 	 */
 	public void readRequestRents() throws Exception {
-		FileInputStream file = new FileInputStream("RequestRents.xml");
+		FileInputStream file = new FileInputStream(REQUEST_RENTS_FILE);
 
 		if (file == null) {
 			throw new Exception("File does not exist.");
 		} else if (file.available() != 0) {
-			
 
-		
-		XStream xmlDecoder = new XStream(new DomDriver());
-		RequestRentCollection requestListArchive = (RequestRentCollection) xmlDecoder
-		.fromXML(new BufferedInputStream(file));
+			XStream xmlDecoder = new XStream(new DomDriver());
+			RequestRentCollection requestListArchive = (RequestRentCollection) xmlDecoder
+					.fromXML(new BufferedInputStream(file));
 
-		requestList = requestListArchive;
+			requestList = requestListArchive;
 		}
 	}
 }
