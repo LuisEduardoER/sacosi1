@@ -1,7 +1,5 @@
 package LogicalSystem;
 
-import java.util.ArrayList;
-
 import javax.security.auth.login.LoginException;
 
 import Commands.Facade;
@@ -44,9 +42,8 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 		this.facade = new Facade();
 	}
 	
-	public void addUser(String login, String name, String email, String phone) throws InvalidLoginException, EmailException, InvalidNameException, PhoneException, InvalidFieldException, UserAlreadyExistException{
-		ArrayList <String>qualker = inteface.addUser();
-		facade.addUser(qualker.get(0), qualker.get(1), qualker.get(2), qualker.get(3));
+	public void addUser(String login, String name, String email, String phone) throws InvalidLoginException, EmailException, InvalidNameException, PhoneException, InvalidFieldException, UserAlreadyExistException{  
+		facade.addUser(login, name, email, phone);
 	}
 	
 	public void addCustomer(String name, String email, String phone) throws EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException{
