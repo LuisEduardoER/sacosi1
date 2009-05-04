@@ -127,7 +127,17 @@ public abstract class Vehicle implements Alugavel {
 	}
 
 
-
+	public String toString() {
+		String output = "\n";
+		output += "===================================================\n";
+		output += "Tipo: " + this.getType() + "\n";
+		output += "Modelo: " + this.getModel() + "\n";
+		output += "Cor: " + this.getColor() + "\n";
+		output += "Placa: " + this.getPlate() + "\n";
+		output += "Ano: " + this.getYear() + "\n";
+		output += "Preço de aluguel: " + this.getPrice() + "\n";
+		return output;
+	}
 
 
 

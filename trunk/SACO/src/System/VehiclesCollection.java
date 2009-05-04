@@ -178,5 +178,17 @@ public class VehiclesCollection {
 	private void sortByYear(List<Integer> year){
 		Collections.sort(year);
 	}
+	
+	public String toString(){
+		String output = "";
+		for (Vehicle vehicle: vehiclesList) {
+			output += vehicle.toString();
+		}
+		return output;
+	}
+	
+	public Iterator<Vehicle> iterator() {
+		return vehiclesList.iterator();
+	}
 
 }
