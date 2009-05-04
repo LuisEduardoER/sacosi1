@@ -30,7 +30,11 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
  * 
- * @author
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
  *
  */
 public class RentController {
@@ -48,7 +52,7 @@ public class RentController {
 
 	/**
 	 * 
-	 * @return
+	 * @return uma unica instancia da classe
 	 * @throws Exception 
 	 */
 	public static RentController getInstance() throws Exception {
@@ -58,6 +62,7 @@ public class RentController {
 	}
 
 	/**
+	 * Construtor
 	 * @throws Exception 
 	 * 
 	 */
@@ -75,7 +80,7 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Registra um aluguel atrasado
 	 * @param plate
 	 * @param email
 	 * @param initialDate
@@ -102,7 +107,7 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Registra um aluguel
 	 * @param plate
 	 * @param email
 	 * @param initialDate
@@ -121,7 +126,7 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Registra um aluguel
 	 * @param plate
 	 * @param email
 	 * @param initialDate
@@ -177,9 +182,9 @@ public class RentController {
 
 
 	/**
-	 * 
+	 * LIbera um veiculo
 	 * @param plate
-	 * @return
+	 * @return uma confirmaçao
 	 */
 	public boolean releaseVehicle(String plate) {
 		for (Rent rent : rents) {
@@ -192,8 +197,8 @@ public class RentController {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Retorna a quantidade de algueis ativos
+	 * @return quantidade de algueis ativos
 	 */
 	public int getAllActiveRents() {
 		int cont = 0;
@@ -206,9 +211,9 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Retorna a situacao do veiculo.
 	 * @param plate
-	 * @return
+	 * @return situacao do veiculo.
 	 */
 	public String getVehicleSituation(String plate) {
 		for (Rent rent : rents) {
@@ -219,12 +224,12 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Retorna a situcao do aluguel
 	 * @param email
 	 * @param plate
 	 * @param inicialDate
 	 * @param finalDate
-	 * @return
+	 * @return situcao do aluguel
 	 */
 	public String getRentSituation(String email, String plate, String inicialDate,
 			String finalDate){
@@ -239,10 +244,11 @@ public class RentController {
 
 
 	/**
-	 * 
+	 * Verifica se o periodo esta correto, ou seja, se a data final é maior
+	 * que a data inicial
 	 * @param init
 	 * @param end
-	 * @return
+	 * @return true se o periodo for correto e false caso contrario
 	 */
 	private boolean correctPeriod(String init, String end) {
 		int day1 = Integer.valueOf(init.substring(0,2));
@@ -270,9 +276,9 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Verifica se o email existe no sistema.
 	 * @param email
-	 * @return
+	 * @return true se tem no sistema e false caso contrario
 	 */
 	private boolean userExists(String email) {
 		if (this.customerCollection.customerAlreadyExist(email)) return true;
@@ -281,8 +287,8 @@ public class RentController {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Lista todos os alugueis pendentes
+	 * @return toString de todos os alugueis pendentes
 	 */
 	public String listAllPendingRents(Calendar date) {
 		String output = "";
@@ -294,9 +300,9 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Lista todos os alugueis nao pendentes
 	 * @param date
-	 * @return
+	 * @return toString de todos os alugueis nao pendentes
 	 */
 	public String listAllNonPendingRents(Calendar date) {
 		String output = "";
@@ -308,17 +314,17 @@ public class RentController {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Quantidade de alugueis
+	 * @return Quantidade de alugueis
 	 */
 	public int getAllRents() {
 		return rents.size();
 	}
 
 	/**
-	 * 
+	 * Quantidade de alugueis por cliente
 	 * @param email
-	 * @return
+	 * @return quantidade de alugueis por cliente
 	 */
 	public int getRentsByCustomer(String email) {
 		int cont = 0;
@@ -332,9 +338,9 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Quantidade de alugueis por veiculo
 	 * @param plate
-	 * @return
+	 * @return Quantidade de alugueis por veiculo
 	 */
 	public int getRentsByVehicle(String plate) {
 		int cont = 0;
@@ -348,9 +354,9 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Verifica se um veiculo esta alugado.
 	 * @param plate
-	 * @return
+	 * @return true se estiver alugado ou false caso contrario
 	 */
 	public boolean vehicleIsRent(String plate) {
 		for (Rent rent : rents) {
@@ -362,15 +368,15 @@ public class RentController {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Retorna todas as requisicoes de alugueis pendentes
+	 * @return quantidade de requisicoes de alugueis pendentes.
 	 */
 	public int getAllPendentRentRequests(){
 		return this.requestList.size();
 	}
 
 	/**
-	 * 
+	 * Faz um pedido de aluguel
 	 * @param clientEmail
 	 * @param plate
 	 * @throws InvalidParameterException
@@ -383,15 +389,15 @@ public class RentController {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Lista todos os pedidos de aluguel
+	 * @return toSting de todos os pedidos de aluguel.
 	 */
 	public String listAllRequests() {
 		return requestList.toString();
 	}
 
 	/**
-	 * 
+	 * Visualiza todos os carros
 	 */
 	public void seeCars(){
 		List<Vehicle> list = new ArrayList<Vehicle>();
@@ -407,7 +413,7 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 *Escreve os alugueis e os pedidos de aluguel em um arquivo .xml 
 	 */
 	public void writeXML() {
 		writeRents();
@@ -415,7 +421,7 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Escreve todos os alugueis em um arquivo .xml
 	 */
 	private void writeRents() {
 		if (rents != null) {
@@ -436,7 +442,7 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Faz a leitura no arquivo .xml de todos os alugueis
 	 * @throws Exception
 	 */
 	public void readRents() throws Exception {
@@ -455,6 +461,10 @@ public class RentController {
 		}
 	}
 	
+	/**
+	 * Apaga o conteudo dos arquivos .xml
+	 * @throws FileNotFoundException
+	 */
 	public void emptyXML() throws FileNotFoundException {
 		FileOutputStream rentsWriter = new FileOutputStream(
 		"Rents.xml");
@@ -463,7 +473,7 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Escreve todos os pedidos de aluguel em um arquivo .xml
 	 */
 	private void writeRequestRents() {
 		if (requestList != null) {
@@ -485,7 +495,7 @@ public class RentController {
 	}
 
 	/**
-	 * 
+	 * Faz a leitura de todos os pedidos de um arquivo .xml
 	 * @throws Exception
 	 */
 	public void readRequestRents() throws Exception {

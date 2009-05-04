@@ -26,6 +26,16 @@ import Vehicles.Vehicle;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+
+/**
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ * @author Melina
+ *
+ */
 public class VehiclesController {
 	/***/
 	private static VehiclesController instance;
@@ -54,8 +64,8 @@ public class VehiclesController {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Retorna todos os veiculos registrados
+	 * @return uma colecao de todos os veiculos registrados
 	 */
 	public Collection<Vehicle> getRegisteredVehicles() {
 		return this.registeredVehicles.getVehiclesList();
@@ -135,6 +145,11 @@ public class VehiclesController {
 	}
 
 	
+	/**
+	 * Imprime todos os carro por um dado ano
+	 * @param vehicles
+	 * @param year
+	 */
 	public void printCarsByYear(List<Vehicle> vehicles, int year){
 		for (int i = 0; i < vehicles.size(); i++){
 			if (vehicles.get(i).getYear() == year){
@@ -143,10 +158,17 @@ public class VehiclesController {
 		}
 	}
 	
+	/**
+	 * Retorna lista dos anos dos carros
+	 * @return lista dos anos dos carros
+	 */
 	public List<Integer> getListOfYears(){
 		return registeredVehicles.getListOfCarsYear();
 	}
 	
+	/**
+	 * Escreve todos os veiculos em um arquivo .xml
+	 */
 	public void writeVehicles() {
 		if (registeredVehicles != null) {
 			try {
@@ -166,11 +188,19 @@ public class VehiclesController {
 		}
 	}
 	
+	/**
+	 * Apaga o conteudo dos arquivos .xml
+	 * @throws FileNotFoundException
+	 */
 	public void emptyXML() throws FileNotFoundException {
 		FileOutputStream vehiclesWriter = new FileOutputStream(
 		"Vehicles.xml");
 	}
 	
+	/**
+	 * Faz a leitura de todos os veiculos de um arquivo .xml
+	 * @throws Exception
+	 */
 	public void readVehicles() throws Exception {
 		FileInputStream file = new FileInputStream("Vehicles.xml");
 
