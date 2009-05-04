@@ -3,6 +3,15 @@ package System;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class RentList {
 	
 	private List<Rent> rentList;

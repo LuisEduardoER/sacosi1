@@ -11,6 +11,15 @@ import Exceptions.InvalidNameException;
 import Exceptions.InvalidParameterException;
 import Exceptions.PhoneException;
 
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class LogicOfTheUser {
 	
 	private Facade facade;

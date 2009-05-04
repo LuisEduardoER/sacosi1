@@ -2,6 +2,15 @@ package System;
 
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class FieldSystemVerificationTest extends TestCase {
 
 	private String email;

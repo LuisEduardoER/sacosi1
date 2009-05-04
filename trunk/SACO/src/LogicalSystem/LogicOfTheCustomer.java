@@ -10,6 +10,13 @@ import Exceptions.InvalidParameterException;
 import Exceptions.NoCustomerOnDatabaseException;
 import Exceptions.PhoneException;
 
+/**
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ */
 public class LogicOfTheCustomer {
 	Facade facade;
 	

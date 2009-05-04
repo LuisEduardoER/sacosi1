@@ -1,5 +1,14 @@
 package System;
 
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class FieldSystemVerification {
 	
 	private final int INITIAL_POSITION = 0;
