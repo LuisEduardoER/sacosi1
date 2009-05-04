@@ -132,7 +132,8 @@ public class VehiclesCollection {
 	}
 	
 	/**
-	 * 
+	 * get vehicle list
+	 * @return lista de veiculos
 	 */
 	public Collection<Vehicle> getVehiclesList() {
 		return this.vehiclesList;
@@ -154,6 +155,10 @@ public class VehiclesCollection {
 		return null;
 	}
 	
+	/**
+	 * get lista dos anos dos carros cadastrados no sistema
+	 * @return lista dos anos dos carros cadastrados no sistema
+	 */
 	public List<Integer> getListOfCarsYear(){
 		List<Integer> list = new ArrayList<Integer>();
 		Iterator<Vehicle> it = vehiclesList.iterator();
@@ -166,6 +171,10 @@ public class VehiclesCollection {
 		return list;
 	}
 	
+	/**
+	 * Ordenar por ano
+	 * @param year
+	 */
 	private void sortByYear(List<Integer> year){
 		Collections.sort(year);
 	}

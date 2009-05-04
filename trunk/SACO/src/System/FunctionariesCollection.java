@@ -14,7 +14,7 @@ import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
 
 /**
- * 
+ * Classe que armazena todos os funcionarios cadastrados no sistema.
  * @author Filipe
  * @author Melina
  * @author Luiz
@@ -47,7 +47,12 @@ public class FunctionariesCollection {
 		usersList.add(new User(login, name, email, phone));
 		
 	}
-
+	
+	/**
+	 * Verifica se o funcionario já existe no sistema
+	 * @param email
+	 * @return true se existir ou false caso contrario
+	 */
 	public boolean functionarieAlreadyExists(String email) {
 		for (User user : usersList) {
 			if (user.getEmail().equals(email)) {
@@ -58,9 +63,9 @@ public class FunctionariesCollection {
 	}
 	
 	/**
-	 * 
+	 * Encontra um usuario por um email
 	 * @param email
-	 * @return
+	 * @return usuario
 	 * @throws EmailException 
 	 */
 	private Object findUserByEmail(String email) {
@@ -99,7 +104,7 @@ public class FunctionariesCollection {
 			throw new UserNotFoundException("error: no such user!"); 
 	}
 
-	/*
+	/**
 	 * Encontra um funcionario no sistema utilizando como base de pesquisa
 	 * seu email ou login. Retorna null caso nao o encontre. 
 	 */

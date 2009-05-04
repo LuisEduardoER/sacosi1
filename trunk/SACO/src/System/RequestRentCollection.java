@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 
+ * Classe que armazena todos os pedidos de alugueis cadastrados no sistema. 
  * @author Filipe
  * @author Melina
  * @author Luiz
@@ -17,6 +17,9 @@ public class RequestRentCollection {
 	
 	private List<RequestObject> requestList;
 	
+	/**
+	 * Construtor
+	 */
 	public  RequestRentCollection(){
 		requestList = new ArrayList<RequestObject>();
 	}
