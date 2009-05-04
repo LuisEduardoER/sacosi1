@@ -1,5 +1,14 @@
 package Users;
 
+/**
+ * 
+ * @author Filipe
+ * @author Luiz
+ * @author Melina
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public abstract class Person implements Alugadores {
 
 	private String name;

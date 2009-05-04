@@ -1,10 +1,7 @@
 package System;
 
-/**
- * Classe que armazena todos os veiculos do sistema.
- * 
- * @author Filipe Costa
- */
+
+
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +24,15 @@ import Vehicles.Car;
 import Vehicles.Motorcycle;
 import Vehicles.Vehicle;
 
+/**
+ * Classe que armazena todos os veiculos do sistema.
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class VehiclesCollection {
 	private List<Vehicle> vehiclesList;
 

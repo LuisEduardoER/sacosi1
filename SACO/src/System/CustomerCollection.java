@@ -17,7 +17,11 @@ import Exceptions.PhoneException;
 /**
  * Classe que armazena todos os clientes cadastrados do sistema.
  * 
- * @author Ramon Lopes Brasileiro
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
  *
  */
 public class CustomerCollection {

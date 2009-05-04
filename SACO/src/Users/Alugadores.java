@@ -4,6 +4,15 @@ import Exceptions.EmailException;
 import Exceptions.InvalidNameException;
 import Exceptions.PhoneException;
 
+/**
+ * 
+ * @author Filipe
+ * @author Luiz
+ * @author Melina
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public interface Alugadores {
 	
 		public String getName();

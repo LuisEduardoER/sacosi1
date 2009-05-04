@@ -1,9 +1,12 @@
 package Users;
 
-
 /**
  * 
- * @author Luiz Teixeira Neto
+ * @author Filipe
+ * @author Luiz
+ * @author Melina
+ * @author Raissa
+ * @author Ramon
  *
  */
 public class Customer extends Person {

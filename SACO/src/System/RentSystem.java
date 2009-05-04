@@ -8,6 +8,15 @@ import Users.*;
 import Vehicles.*;
 import Exceptions.*;
 
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class RentSystem {
 	
 	private Collection<User> listOfUsers;

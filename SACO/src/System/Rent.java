@@ -7,6 +7,15 @@ import java.util.GregorianCalendar;
 import Users.Alugadores;
 import Vehicles.Alugavel;
 
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class Rent implements Comparable<Calendar>{
 
 	private Alugavel vehicle;

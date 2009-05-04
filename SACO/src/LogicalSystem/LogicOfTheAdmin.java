@@ -26,6 +26,15 @@ import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
 import Exceptions.YearException;
 
+/**
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ * 
+ *
+ */
 public class LogicOfTheAdmin extends LogicOfTheUser {
 	private Facade facade;
 	

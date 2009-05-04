@@ -2,6 +2,15 @@ package System;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class RequestObject {
 	
 	private String clientEmail;

@@ -13,6 +13,15 @@ import Exceptions.NoUserOnDatabaseException;
 import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
 
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class FunctionariesCollection {
 	
 	private List<User> usersList;
