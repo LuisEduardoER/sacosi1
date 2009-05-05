@@ -11,245 +11,245 @@ public class AllTests {
 
 		List<String> files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us01.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		Facade test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		EasyAcceptFacade eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
-		
+
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us02-17.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
-		
+
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us03.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us04.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us05.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us06.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us07.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us08.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us10-11.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us12-13.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();
 		files = new ArrayList<String>();
 
-		//Put the us1.txt file into the "test scripts" list
+		// Put the us1.txt file into the "test scripts" list
 
 		files.add("us14.txt");
 
-		//Instantiate the Monopoly Game façade
+		// Instantiate the Monopoly Game façade
 
 		test = new Facade();
 
-		//Instantiate EasyAccept façade
+		// Instantiate EasyAccept façade
 
 		eaFacade = new EasyAcceptFacade(test, files);
 
-		//Execute the tests
+		// Execute the tests
 
 		eaFacade.executeTests();
 
-		//Print the tests execution results
+		// Print the tests execution results
 
 		System.out.println(eaFacade.getCompleteResults());
 		test.emptyXML();

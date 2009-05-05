@@ -1,6 +1,5 @@
 package Vehicles;
 
-
 import Exceptions.InvalidFieldException;
 import Exceptions.NoFieldException;
 import Exceptions.PriceException;
@@ -12,17 +11,19 @@ import Exceptions.ModelException;
 
 /**
  * Esta classe representa um carro no sistema
+ * 
  * @author Filipe
  * @author Luiz
  * @author Melina
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
-public class Car extends Vehicle{
-	
+public class Car extends Vehicle {
+
 	/**
 	 * Contrutor
+	 * 
 	 * @param type
 	 * @param model
 	 * @param color
@@ -38,14 +39,11 @@ public class Car extends Vehicle{
 	 * @throws PriceException
 	 * @throws YearException
 	 */
-	public Car(String type, String model, String color, String plate, String year,
-			String price) throws InvalidFieldException, NoFieldException, TypeException, ModelException, 
-						  ColorException, PlateException, PriceException, YearException {
+	public Car(String type, String model, String color, String plate,
+			String year, String price) throws InvalidFieldException,
+			NoFieldException, TypeException, ModelException, ColorException,
+			PlateException, PriceException, YearException {
 		super(type, model, color, plate, year, price);
-		
+
 	}
-	
-	
-	
-	
 }

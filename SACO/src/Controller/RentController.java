@@ -158,7 +158,7 @@ public class RentController {
 			EmailException, InvalidNameException, PhoneException,
 			CustomerAlreadyExistException, InvalidFieldException {
 
-		if (!this.verification.validPlate(plate)
+		if (!this.verification.plateIsAMandatoryField(plate)
 				|| !this.verification.emailIsAMandatoryField(email)
 				|| !this.verification.dateIsMandatoryField(initialDate)
 				|| !this.verification.dateIsMandatoryField(finalDate))
@@ -266,8 +266,8 @@ public class RentController {
 	}
 
 	/**
-	 * Verifica se o periodo esta correto, ou seja, se a data final � maior que
-	 * a data inicial
+	 * Verifica se o periodo esta correto, ou seja, se a data final � maior
+	 * que a data inicial
 	 * 
 	 * @param init
 	 * @param end
@@ -548,17 +548,20 @@ public class RentController {
 			requestList = requestListArchive;
 		}
 	}
-	
+
 	/**
 	 * Retorna a situacao vigente de todos os veiculos cadastrados.
+	 * 
 	 * @return a situacao dos veiculos
 	 */
 	public String getAllVehiclesSituation() {
 		String output = "";
-		Iterator<Vehicle> it = vehicleCollection.getRegisteredVehicles().iterator();
+		Iterator<Vehicle> it = vehicleCollection.getRegisteredVehicles()
+				.iterator();
 		while (it.hasNext()) {
 			Vehicle vehicle = it.next();
-			output += vehicle.toString() + "\n" + this.getVehicleSituation(vehicle.getPlate());
+			output += vehicle.toString() + "\n"
+					+ this.getVehicleSituation(vehicle.getPlate());
 			output += "================================================\n";
 		}
 		return output;
@@ -566,19 +569,27 @@ public class RentController {
 
 	/**
 	 * Registra o aluguel de varios veiculos a um cliente.
-	 * @param customer o alugador
-	 * @param plates as placas dos carros que o cliente deseja alugar
-	 * @throws InvalidFieldException 
-	 * @throws CustomerAlreadyExistException 
-	 * @throws PhoneException 
-	 * @throws InvalidNameException 
-	 * @throws EmailException 
-	 * @throws InvalidDateException 
-	 * @throws InvalidParameterException 
+	 * 
+	 * @param customer
+	 *            o alugador
+	 * @param plates
+	 *            as placas dos carros que o cliente deseja alugar
+	 * @throws InvalidFieldException
+	 * @throws CustomerAlreadyExistException
+	 * @throws PhoneException
+	 * @throws InvalidNameException
+	 * @throws EmailException
+	 * @throws InvalidDateException
+	 * @throws InvalidParameterException
 	 */
-	public void addManyRents(Alugadores customer, String[] plates, String[] initialDates, String[] devolutionDates) throws InvalidParameterException, InvalidDateException, EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException {
+	public void addManyRents(Alugadores customer, String[] plates,
+			String[] initialDates, String[] devolutionDates)
+			throws InvalidParameterException, InvalidDateException,
+			EmailException, InvalidNameException, PhoneException,
+			CustomerAlreadyExistException, InvalidFieldException {
 		for (int i = 0; i < plates.length; i++) {
-			this.registerRent(plates[i], customer.getEmail(), initialDates[i], devolutionDates[i]);
+			this.registerRent(plates[i], customer.getEmail(), initialDates[i],
+					devolutionDates[i]);
 		}
 	}
 }

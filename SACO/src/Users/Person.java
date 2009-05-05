@@ -7,7 +7,7 @@ package Users;
  * @author Melina
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
 public abstract class Person implements Alugadores {
 
@@ -17,9 +17,13 @@ public abstract class Person implements Alugadores {
 
 	/**
 	 * Construtor de uma Pessoa
-	 * @param name nome da pessoa
-	 * @param email email da pessoa
-	 * @param phone telefone da pessoa
+	 * 
+	 * @param name
+	 *            nome da pessoa
+	 * @param email
+	 *            email da pessoa
+	 * @param phone
+	 *            telefone da pessoa
 	 */
 	public Person(String name, String email, String phone) {
 		this.setName(name);
@@ -27,10 +31,12 @@ public abstract class Person implements Alugadores {
 		this.setPhone(phone);
 
 	}
-	
+
 	/**
 	 * Metodo que altera o nome da pessoa
-	 * @param name nome da pessoa
+	 * 
+	 * @param name
+	 *            nome da pessoa
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -45,7 +51,9 @@ public abstract class Person implements Alugadores {
 
 	/**
 	 * Metodo que altera o nome da pessoa
-	 * @param email email da pessoa
+	 * 
+	 * @param email
+	 *            email da pessoa
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -60,7 +68,9 @@ public abstract class Person implements Alugadores {
 
 	/**
 	 * Metodo que altera o telefone da pessoa
-	 * @param phone telefone da pessoa
+	 * 
+	 * @param phone
+	 *            telefone da pessoa
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
@@ -72,9 +82,10 @@ public abstract class Person implements Alugadores {
 	public String getPhone() {
 		return phone;
 	}
-	
+
 	/**
-	 * Metodo que retorna uma string correspondendo a todos os dados de uma pessoa.
+	 * Metodo que retorna uma string correspondendo a todos os dados de uma
+	 * pessoa.
 	 */
 	public String toString() {
 		String output = "";

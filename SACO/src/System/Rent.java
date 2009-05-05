@@ -1,6 +1,5 @@
 package System;
 
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -9,14 +8,15 @@ import Vehicles.Alugavel;
 
 /**
  * Esta classe representa um aluguel de um veiculo
+ * 
  * @author Filipe
  * @author Melina
  * @author Luiz
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
-public class Rent implements Comparable<Calendar>{
+public class Rent implements Comparable<Calendar> {
 
 	private Alugavel vehicle;
 	private Alugadores costumer;
@@ -28,14 +28,15 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * Construtor
+	 * 
 	 * @param vehicle
 	 * @param costumer
 	 * @param initialDate
 	 * @param devolutionDate
 	 * @param status
 	 */
-	public Rent(Alugavel vehicle, Alugadores costumer, 
-			String initialDate, String devolutionDate, String status) {
+	public Rent(Alugavel vehicle, Alugadores costumer, String initialDate,
+			String devolutionDate, String status) {
 		this.setVehicle(vehicle);
 		this.setCostumer(costumer);
 		this.setDevolutionData(devolutionDate);
@@ -44,69 +45,78 @@ public class Rent implements Comparable<Calendar>{
 		this.diasAtraso = 0;
 		this.calendar = GregorianCalendar.getInstance();
 	}
-	
+
 	/**
 	 * get day
+	 * 
 	 * @param date
 	 * @return dia
 	 */
 	private int getDay(String date) {
-		return Integer.valueOf(date.substring(0,2));
+		return Integer.valueOf(date.substring(0, 2));
 	}
-	
+
 	/**
 	 * get month
+	 * 
 	 * @param date
 	 * @return mês
 	 */
 	private int getMonth(String date) {
-		return Integer.valueOf(date.substring(3,5));
+		return Integer.valueOf(date.substring(3, 5));
 	}
-	
+
 	/**
 	 * get year
+	 * 
 	 * @param date
 	 * @return ano
 	 */
 	private int getYear(String date) {
-		return Integer.valueOf("20" + date.substring(6,8));
+		return Integer.valueOf("20" + date.substring(6, 8));
 	}
-	
+
 	/**
 	 * se Calendar Date
+	 * 
 	 * @param date
 	 */
 	@SuppressWarnings("unused")
 	private void setCalendarDate(String date) {
-		this.calendar.set(this.getYear(date), this.getMonth(date), this.getDay(date));
+		this.calendar.set(this.getYear(date), this.getMonth(date), this
+				.getDay(date));
 	}
 
 	/**
 	 * set vehicle
+	 * 
 	 * @param vehicle
 	 */
 	public void setVehicle(Alugavel vehicle) {
 		this.vehicle = vehicle;
 	}
-	
+
 	/**
 	 * get Rent Situation
+	 * 
 	 * @return situacao do aluguel
 	 */
 	public String getRentSituation() {
 		return this.rentSituation;
 	}
-	
+
 	/**
 	 * set rent situation
+	 * 
 	 * @param rentSit
 	 */
 	public void setRentSituation(String rentSit) {
 		this.rentSituation = rentSit;
 	}
-	
+
 	/**
 	 * get vehicle
+	 * 
 	 * @return veiculo
 	 */
 	public Alugavel getVehicle() {
@@ -115,6 +125,7 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * get vehicle plate
+	 * 
 	 * @return placa do veiculo
 	 */
 	public String getVehiclePlate() {
@@ -123,6 +134,7 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * set costumer
+	 * 
 	 * @param costumer
 	 */
 	public void setCostumer(Alugadores costumer) {
@@ -131,6 +143,7 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * get costumer
+	 * 
 	 * @return costumer
 	 */
 	public Alugadores getCostumer() {
@@ -139,6 +152,7 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * set devolution date
+	 * 
 	 * @param devolutionDate
 	 */
 	public void setDevolutionData(String devolutionDate) {
@@ -147,6 +161,7 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * get devolution date
+	 * 
 	 * @return
 	 */
 	public String getDevolutionDate() {
@@ -155,6 +170,7 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * set rent date
+	 * 
 	 * @param rentDate
 	 */
 	private void setRentData(String rentDate) {
@@ -163,12 +179,13 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * get rent date
+	 * 
 	 * @return
 	 */
 	public String getRentDate() {
 		return rentDate;
 	}
-	
+
 	/**
 	 * toString do aluguel
 	 */
@@ -193,6 +210,7 @@ public class Rent implements Comparable<Calendar>{
 
 	/**
 	 * get Calendar
+	 * 
 	 * @return calendar
 	 */
 	private Calendar getCalendar() {

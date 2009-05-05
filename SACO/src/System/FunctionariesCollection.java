@@ -15,17 +15,18 @@ import Exceptions.UserNotFoundException;
 
 /**
  * Classe que armazena todos os funcionarios cadastrados no sistema.
+ * 
  * @author Filipe
  * @author Melina
  * @author Luiz
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
 public class FunctionariesCollection {
-	
+
 	private List<User> usersList;
-	
+
 	/**
 	 * Construtor da classe.
 	 */
@@ -35,21 +36,28 @@ public class FunctionariesCollection {
 
 	/**
 	 * Adiciona um funcionario ao sistema.
-	 * @param login o login do usuario;
-	 * @param name o nome do usuario;
-	 * @param email o email do usuario;
-	 * @param phone o telefone do usuario;
-	 * @throws UserAlreadyExistException 
+	 * 
+	 * @param login
+	 *            o login do usuario;
+	 * @param name
+	 *            o nome do usuario;
+	 * @param email
+	 *            o email do usuario;
+	 * @param phone
+	 *            o telefone do usuario;
+	 * @throws UserAlreadyExistException
 	 */
-	public void add(String login, String name, String email, String phone) throws UserAlreadyExistException {
-		if (findUserByLogin(login) != null || findUserByEmail(email) != null) 
+	public void add(String login, String name, String email, String phone)
+			throws UserAlreadyExistException {
+		if (findUserByLogin(login) != null || findUserByEmail(email) != null)
 			throw new UserAlreadyExistException("error: user already exists!");
 		usersList.add(new User(login, name, email, phone));
-		
+
 	}
-	
+
 	/**
 	 * Verifica se o funcionario já existe no sistema
+	 * 
 	 * @param email
 	 * @return true se existir ou false caso contrario
 	 */
@@ -61,16 +69,17 @@ public class FunctionariesCollection {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Encontra um usuario por um email
+	 * 
 	 * @param email
 	 * @return usuario
-	 * @throws EmailException 
+	 * @throws EmailException
 	 */
-	private Object findUserByEmail(String email) {
+	private User findUserByEmail(String email) {
 		for (User user : usersList) {
-			if (user.getEmail().equalsIgnoreCase(email) 
+			if (user.getEmail().equalsIgnoreCase(email)
 					|| user.getLogin().equalsIgnoreCase(email))
 				return user;
 		}
@@ -79,6 +88,7 @@ public class FunctionariesCollection {
 
 	/**
 	 * Retorna a quantidade de usuarios do sistema.
+	 * 
 	 * @return
 	 */
 	public int size() {
@@ -87,36 +97,42 @@ public class FunctionariesCollection {
 
 	/**
 	 * Remove um funcionario do sistema.
-	 * @param email o email do funcionario.
-	 * @throws UserNotFoundException funcionario nao encontrado. 
-	 * @throws LoginException 
-	 * @throws EmailException 
-	 * @throws NoUserOnDatabaseException 
-	 * @throws InvalidParameterException 
+	 * 
+	 * @param email
+	 *            o email do funcionario.
+	 * @throws UserNotFoundException
+	 *             funcionario nao encontrado.
+	 * @throws LoginException
+	 * @throws EmailException
+	 * @throws NoUserOnDatabaseException
+	 * @throws InvalidParameterException
 	 */
-	public void remove(String loginOrEmail) throws UserNotFoundException, LoginException, EmailException, NoUserOnDatabaseException, InvalidParameterException {
+	public void remove(String loginOrEmail) throws UserNotFoundException,
+			LoginException, EmailException, NoUserOnDatabaseException,
+			InvalidParameterException {
 		if (usersList.size() == 0)
-			throw new NoUserOnDatabaseException("error: there is no users on database");
+			throw new NoUserOnDatabaseException(
+					"error: there is no users on database");
 		if (loginOrEmail == null || loginOrEmail.equals(""))
 			throw new InvalidParameterException("error: invalid parameter!");
-		if (!usersList.remove(findUserByLogin(loginOrEmail)) 
-				&& !usersList.remove(findUserByEmail(loginOrEmail))) 
-			throw new UserNotFoundException("error: no such user!"); 
+		if (!usersList.remove(findUserByLogin(loginOrEmail))
+				&& !usersList.remove(findUserByEmail(loginOrEmail)))
+			throw new UserNotFoundException("error: no such user!");
 	}
 
 	/**
-	 * Encontra um funcionario no sistema utilizando como base de pesquisa
-	 * seu email ou login. Retorna null caso nao o encontre. 
+	 * Encontra um funcionario no sistema utilizando como base de pesquisa seu
+	 * email ou login. Retorna null caso nao o encontre.
 	 */
 	private User findUserByLogin(String login) {
 		for (User user : usersList) {
-			if (user.getEmail().equalsIgnoreCase(login) 
+			if (user.getEmail().equalsIgnoreCase(login)
 					|| user.getLogin().equalsIgnoreCase(login))
 				return user;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Zera Lista
 	 */

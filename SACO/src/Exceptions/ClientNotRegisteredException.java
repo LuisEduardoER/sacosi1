@@ -1,4 +1,5 @@
 package Exceptions;
+
 /**
  * 
  * @author Filipe
@@ -9,9 +10,9 @@ package Exceptions;
  * 
  */
 public class ClientNotRegisteredException extends Exception {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 * @param message

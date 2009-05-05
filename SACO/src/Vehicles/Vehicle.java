@@ -1,21 +1,21 @@
 package Vehicles;
 
-
 /**
  * Esta classe representa um veiculo no sistema
+ * 
  * @author Filipe
  * @author Luiz
  * @author Melina
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
 public abstract class Vehicle implements Alugavel {
-	
+
 	private int year;
 
 	private Double price;
-	
+
 	private String type;
 
 	private String model;
@@ -23,9 +23,10 @@ public abstract class Vehicle implements Alugavel {
 	private String color;
 
 	private String plate;
-	
+
 	/**
 	 * Contrutor
+	 * 
 	 * @param type
 	 * @param model
 	 * @param color
@@ -42,6 +43,7 @@ public abstract class Vehicle implements Alugavel {
 		this.setPlate(plate);
 		this.setPrice(Double.parseDouble(price));
 	}
+
 	/**
 	 * @return the type
 	 */
@@ -50,7 +52,8 @@ public abstract class Vehicle implements Alugavel {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -64,7 +67,8 @@ public abstract class Vehicle implements Alugavel {
 	}
 
 	/**
-	 * @param model the model to set
+	 * @param model
+	 *            the model to set
 	 */
 	public void setModel(String model) {
 		this.model = model;
@@ -78,7 +82,8 @@ public abstract class Vehicle implements Alugavel {
 	}
 
 	/**
-	 * @param color the color to set
+	 * @param color
+	 *            the color to set
 	 */
 	public void setColor(String color) {
 		this.color = color;
@@ -92,7 +97,8 @@ public abstract class Vehicle implements Alugavel {
 	}
 
 	/**
-	 * @param plate the plate to set
+	 * @param plate
+	 *            the plate to set
 	 */
 	public void setPlate(String plate) {
 		this.plate = plate;
@@ -106,7 +112,8 @@ public abstract class Vehicle implements Alugavel {
 	}
 
 	/**
-	 * @param year the year to set
+	 * @param year
+	 *            the year to set
 	 */
 	public void setYear(int year) {
 		this.year = year;
@@ -120,7 +127,8 @@ public abstract class Vehicle implements Alugavel {
 	}
 
 	/**
-	 * @param price the price to set
+	 * @param price
+	 *            the price to set
 	 */
 	public void setPrice(Double price) {
 		this.price = price;
@@ -140,7 +148,5 @@ public abstract class Vehicle implements Alugavel {
 		output += "Preço de aluguel: " + this.getPrice() + "\n";
 		return output;
 	}
-
-
 
 }

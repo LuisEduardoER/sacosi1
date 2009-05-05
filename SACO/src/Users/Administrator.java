@@ -7,7 +7,7 @@ package Users;
  * @author Melina
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
 public class Administrator extends Person {
 
@@ -23,7 +23,9 @@ public class Administrator extends Person {
 
 	/**
 	 * Recebe o login do administrador para ser guardado
-	 * @param login login do administrador
+	 * 
+	 * @param login
+	 *            login do administrador
 	 */
 	public void setLogin(String login) {
 		this.login = login;
@@ -31,6 +33,7 @@ public class Administrator extends Person {
 
 	/**
 	 * Metodo para pegar o login do administrador
+	 * 
 	 * @return login do administrador
 	 */
 	public String getLogin() {

@@ -61,7 +61,7 @@ public class UserController {
 	 * Retorna uma unica instancia da classe. Padrao singleton.
 	 * 
 	 * @return UserController a instancia da classe.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static UserController getInstance() throws Exception {
 		return instance == null ? instance = new UserController() : instance;
@@ -191,8 +191,8 @@ public class UserController {
 	}
 
 	/**
-	 * Remove um funcionario do sistema. Um funcionario eh removido pelo email ou 
-	 * pelo seu login.
+	 * Remove um funcionario do sistema. Um funcionario eh removido pelo email
+	 * ou pelo seu login.
 	 * 
 	 * @param emailOrLogin
 	 *            o email ou login do funcionario.
@@ -208,41 +208,44 @@ public class UserController {
 			InvalidParameterException {
 		registeredFunctionaries.remove(emailOrLogin);
 	}
-	
+
 	/**
 	 * Retorna uma colecao de todos os funcionarios.
+	 * 
 	 * @return colecao de todos os funcionarios.
 	 */
 	public FunctionariesCollection getFunctionariesCollection() {
 		return this.registeredFunctionaries;
 	}
-	
+
 	/**
 	 * Retorna uma lista de todos os clientes cadastrados
+	 * 
 	 * @return lista de todos os clientes cadastrados
-	 *
+	 * 
 	 */
 	public CustomerCollection getCustomerCollection() {
 		return this.registeredCustomers;
 	}
-	
+
 	/**
 	 * Retorna uma colecao de todos os clientes.
+	 * 
 	 * @return colecao de todos os clientes.
-	 *
+	 * 
 	 */
 	public List<Customer> getCustomerList() {
 		return this.registeredCustomers.getCustomerList();
 	}
-	
+
 	/**
-	 *Escreve os alugueis e os pedidos de aluguel em um arquivo .xml 
+	 *Escreve os alugueis e os pedidos de aluguel em um arquivo .xml
 	 */
 	public void writeXML() {
 		writeCustomers();
 		writeFunctionaries();
 	}
-	
+
 	/**
 	 * Escreve todos os clientes em um arquivo .xml
 	 */
@@ -267,6 +270,7 @@ public class UserController {
 
 	/**
 	 * Faz a leitura no arquivo .xml de todos os clientes
+	 * 
 	 * @throws Exception
 	 */
 	public void readCostumers() throws Exception {
@@ -277,25 +281,25 @@ public class UserController {
 		} else if (!(file.available() == 0)) {
 			XStream xmlDecoder = new XStream(new DomDriver());
 			CustomerCollection costumersArchive = (CustomerCollection) xmlDecoder
-			.fromXML(new BufferedInputStream(file));
+					.fromXML(new BufferedInputStream(file));
 
 			registeredCustomers = costumersArchive;
 		}
 	}
-	
+
 	/**
 	 * Apaga o conteudo dos arquivos .xml
+	 * 
 	 * @throws FileNotFoundException
 	 */
 	public void emptyXML() throws FileNotFoundException {
-		FileOutputStream customersWriter = new FileOutputStream(
-		CUSTOMERS_FILE);
+		FileOutputStream customersWriter = new FileOutputStream(CUSTOMERS_FILE);
 		FileOutputStream functionariesWriter = new FileOutputStream(
-		FUNCTIONARIES_FILE);
+				FUNCTIONARIES_FILE);
 		this.registeredCustomers.emptyList();
 		this.registeredFunctionaries.emptyList();
 	}
-	
+
 	/**
 	 * Escreve todos os funcionarios em um arquivo .xml
 	 */

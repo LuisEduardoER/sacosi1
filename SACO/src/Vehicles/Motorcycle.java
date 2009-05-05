@@ -11,17 +11,19 @@ import Exceptions.ModelException;
 
 /**
  * Esta classe representa uma moto no sistema
+ * 
  * @author Filipe
  * @author Luiz
  * @author Melina
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
-public class Motorcycle extends Vehicle{
+public class Motorcycle extends Vehicle {
 
 	/**
 	 * Construtor
+	 * 
 	 * @param type
 	 * @param model
 	 * @param color
@@ -38,10 +40,11 @@ public class Motorcycle extends Vehicle{
 	 * @throws YearException
 	 */
 	public Motorcycle(String type, String model, String color, String plate,
-			String year, String price) throws InvalidFieldException, NoFieldException, TypeException, 
-									ModelException, ColorException, PlateException, PriceException, YearException {
+			String year, String price) throws InvalidFieldException,
+			NoFieldException, TypeException, ModelException, ColorException,
+			PlateException, PriceException, YearException {
 		super(type, model, color, plate, year, price);
-		
+
 	}
 
 }
