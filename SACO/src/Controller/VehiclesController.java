@@ -196,6 +196,7 @@ public class VehiclesController {
 	 */
 	public void emptyXML() throws FileNotFoundException {
 		FileOutputStream vehiclesWriter = new FileOutputStream(VEHICLES_FILE);
+		this.registeredVehicles.emptyList();
 	}
 
 	/**

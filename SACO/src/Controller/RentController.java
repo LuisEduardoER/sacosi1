@@ -505,6 +505,8 @@ public class RentController {
 		FileOutputStream rentsWriter = new FileOutputStream(RENTS_FILE);
 		FileOutputStream requesListWriter = new FileOutputStream(
 				REQUEST_RENTS_FILE);
+		this.rents = new ArrayList<Rent>();
+		this.requestList.emptyList();
 	}
 
 	/**

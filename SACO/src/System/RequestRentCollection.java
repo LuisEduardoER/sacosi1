@@ -25,6 +25,13 @@ public class RequestRentCollection {
 	}
 	
 	/**
+	 * Zera a lista
+	 */
+	public void emptyList() {
+		this.requestList = new ArrayList<RequestObject>();
+	}
+	
+	/**
 	 * Retorna a lista de requisicoes do sistema.
 	 * 
 	 * @return
