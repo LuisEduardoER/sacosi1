@@ -186,6 +186,9 @@ public class VehiclesCollection {
 		this.vehiclesList = new ArrayList<Vehicle>();
 	}
 	
+	/**
+	 * toString
+	 */
 	public String toString(){
 		String output = "";
 		for (Vehicle vehicle: vehiclesList) {
@@ -194,6 +197,10 @@ public class VehiclesCollection {
 		return output;
 	}
 	
+	/**
+	 * Retorna um iterador da lista de veiculos
+	 * @return iterador da lista de veiculos
+	 */
 	public Iterator<Vehicle> iterator() {
 		return vehiclesList.iterator();
 	}
