@@ -11,6 +11,7 @@ import Exceptions.NoCustomerOnDatabaseException;
 import Exceptions.PhoneException;
 
 /**
+ * Logica do cliente
  * @author Filipe
  * @author Melina
  * @author Luiz
@@ -20,18 +21,43 @@ import Exceptions.PhoneException;
 public class LogicOfTheCustomer {
 	Facade facade;
 	
+	/**
+	 * Construtor
+	 * @throws Exception
+	 */
 	public LogicOfTheCustomer() throws Exception{
 		facade = new Facade();
 	}
 	
+	/**
+	 * Adiciona cliente
+	 * @param name
+	 * @param email
+	 * @param phone
+	 * @throws EmailException
+	 * @throws InvalidNameException
+	 * @throws PhoneException
+	 * @throws CustomerAlreadyExistException
+	 * @throws InvalidFieldException
+	 */
 	public void addCustomer(String name, String email, String phone) throws EmailException, InvalidNameException, PhoneException, CustomerAlreadyExistException, InvalidFieldException{
 		facade.addCustomer(name, email, phone);
 	}
 	
+	/**Remove cliente
+	 * 
+	 * @param email
+	 * @throws ClientNotRegisteredException
+	 * @throws NoCustomerOnDatabaseException
+	 * @throws InvalidParameterException
+	 */
 	public void removeCustomer(String email) throws ClientNotRegisteredException, NoCustomerOnDatabaseException, InvalidParameterException{
 		facade.removeCustomer(email);
 	}
 	
+	/**
+	 * Visualiza carros
+	 */
 	public void seeCars(){
 		facade.seeCars();
 	}
