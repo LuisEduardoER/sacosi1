@@ -126,7 +126,9 @@ public abstract class Vehicle implements Alugavel {
 		this.price = price;
 	}
 
-
+	/**
+	 * toSTring
+	 */
 	public String toString() {
 		String output = "\n";
 		output += "===================================================\n";
