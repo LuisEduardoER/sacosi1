@@ -117,4 +117,10 @@ public class FunctionariesCollection {
 		return null;
 	}
 	
+	/**
+	 * Zera Lista
+	 */
+	public void emptyList() {
+		this.usersList = new ArrayList<User>();
+	}
 }

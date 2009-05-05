@@ -292,6 +292,8 @@ public class UserController {
 		CUSTOMERS_FILE);
 		FileOutputStream functionariesWriter = new FileOutputStream(
 		FUNCTIONARIES_FILE);
+		this.registeredCustomers.emptyList();
+		this.registeredFunctionaries.emptyList();
 	}
 	
 	/**

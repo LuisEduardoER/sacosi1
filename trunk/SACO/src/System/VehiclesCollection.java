@@ -179,6 +179,13 @@ public class VehiclesCollection {
 		Collections.sort(year);
 	}
 	
+	/**
+	 * Zera lista
+	 */
+	public void emptyList() {
+		this.vehiclesList = new ArrayList<Vehicle>();
+	}
+	
 	public String toString(){
 		String output = "";
 		for (Vehicle vehicle: vehiclesList) {

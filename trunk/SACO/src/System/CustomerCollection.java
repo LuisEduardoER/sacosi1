@@ -110,5 +110,12 @@ public class CustomerCollection {
 		if (!customerList.remove(customerNotRegistered(email))) 
 			throw new ClientNotRegisteredException("error: no such customer!");
 	}
+	
+	/**
+	 * Zera Lista
+	 */
+	public void emptyList() {
+		this.customerList = new ArrayList<Customer>();
+	}
 
 }
