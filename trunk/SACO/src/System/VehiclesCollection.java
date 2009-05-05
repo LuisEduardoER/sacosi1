@@ -1,7 +1,5 @@
 package System;
 
-
-
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,12 +24,13 @@ import Vehicles.Vehicle;
 
 /**
  * Classe que armazena todos os veiculos do sistema.
+ * 
  * @author Filipe
  * @author Melina
  * @author Luiz
  * @author Raissa
  * @author Ramon
- *
+ * 
  */
 public class VehiclesCollection {
 	private List<Vehicle> vehiclesList;
@@ -85,18 +84,20 @@ public class VehiclesCollection {
 			}
 			vehiclesList.add(carro);
 		} else if (type.equals("motorcycle")) {
-			Motorcycle moto = new Motorcycle(type, model, color, plate, year, price);
+			Motorcycle moto = new Motorcycle(type, model, color, plate, year,
+					price);
 			if (plateAlreadyExists(plate)) {
 				throw new PlateAlreadyExistsException(
 						"error: this vehicle already exists!");
 			}
 			vehiclesList.add(moto);
-		} 
-		
+		}
+
 	}
 
 	/**
 	 * Verifica se uma determinada placa ja existe no sistema
+	 * 
 	 * @param plate
 	 * @return
 	 */
@@ -113,92 +114,99 @@ public class VehiclesCollection {
 
 	/**
 	 * Remove um veiculo do sistema
+	 * 
 	 * @param plate
 	 * @throws NoSuchVehicleException
 	 * @throws NoVehicleOnDatabaseException
 	 */
 	public void remove(String plate) throws NoSuchVehicleException,
 			NoVehicleOnDatabaseException {
-		if (size() == 0){
-			throw new NoVehicleOnDatabaseException("error: there is no vehicles on database");
+		if (size() == 0) {
+			throw new NoVehicleOnDatabaseException(
+					"error: there is no vehicles on database");
 		}
-		if (plate == null || plate.equals("")){
+		if (plate == null || plate.equals("")) {
 			throw new InvalidParameterException("error: invalid parameter!");
 		}
-		if (findVehicle(plate) == null){
+		if (findVehicle(plate) == null) {
 			throw new NoSuchVehicleException("error: no such vehicle!");
 		}
 		vehiclesList.remove(findVehicle(plate));
 	}
-	
+
 	/**
 	 * get vehicle list
+	 * 
 	 * @return lista de veiculos
 	 */
 	public Collection<Vehicle> getVehiclesList() {
 		return this.vehiclesList;
 	}
-	
+
 	/**
 	 * Procura uma placa no array de veiculos
+	 * 
 	 * @param plate
 	 * @return
 	 */
-	private Vehicle findVehicle(String plate){
-		Iterator <Vehicle> it = vehiclesList.iterator();
-		while(it.hasNext()){
+	private Vehicle findVehicle(String plate) {
+		Iterator<Vehicle> it = vehiclesList.iterator();
+		while (it.hasNext()) {
 			Vehicle veiculo = it.next();
-			if (veiculo.getPlate().equalsIgnoreCase(plate)){
+			if (veiculo.getPlate().equalsIgnoreCase(plate)) {
 				return veiculo;
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * get lista dos anos dos carros cadastrados no sistema
+	 * 
 	 * @return lista dos anos dos carros cadastrados no sistema
 	 */
-	public List<Integer> getListOfCarsYear(){
+	public List<Integer> getListOfCarsYear() {
 		List<Integer> list = new ArrayList<Integer>();
 		Iterator<Vehicle> it = vehiclesList.iterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			Vehicle vehicle = it.next();
 			if (!list.contains(vehicle.getYear()))
-					list.add(vehicle.getYear());
+				list.add(vehicle.getYear());
 		}
 		sortByYear(list);
 		return list;
 	}
-	
+
 	/**
 	 * Ordenar por ano
+	 * 
 	 * @param year
 	 */
-	private void sortByYear(List<Integer> year){
+	private void sortByYear(List<Integer> year) {
 		Collections.sort(year);
 	}
-	
+
 	/**
 	 * Zera lista
 	 */
 	public void emptyList() {
 		this.vehiclesList = new ArrayList<Vehicle>();
 	}
-	
+
 	/**
 	 * toString
 	 */
-	public String toString(){
+	public String toString() {
 		String output = "";
-		for (Vehicle vehicle: vehiclesList) {
+		for (Vehicle vehicle : vehiclesList) {
 			output += vehicle.toString();
 		}
 		return output;
 	}
-	
+
 	/**
 	 * Retorna um iterador da lista de veiculos
+	 * 
 	 * @return iterador da lista de veiculos
 	 */
 	public Iterator<Vehicle> iterator() {
