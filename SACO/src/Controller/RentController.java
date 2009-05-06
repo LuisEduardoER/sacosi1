@@ -102,9 +102,10 @@ public class RentController {
 			PhoneException, CustomerAlreadyExistException,
 			InvalidFieldException {
 
-		if (!this.correctPeriod(initialDate, finalDate))
+		if (!this.validateRegisterLateRent(finalDate)) {
 			throw new InvalidDateException(
 					"error: end date is greater than today date!");
+		}
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
 				rent.setRentSituation("late");
@@ -266,36 +267,28 @@ public class RentController {
 	}
 
 	/**
-	 * Verifica se o periodo esta correto, ou seja, se a data final � maior
-	 * que a data inicial
+	 * Verifica se uma data final de entrega de veiculo eh maior que a data
+	 * atual, para que seja registrado um aluguel atrasado.
 	 * 
-	 * @param init
 	 * @param end
-	 * @return true se o periodo for correto e false caso contrario
+	 *            a data final de entrega
+	 * @return true se a data for valida (nao excedeu o dia de entrega), false
+	 *         caso contrario
 	 */
-	private boolean correctPeriod(String init, String end) {
-		int day1 = Integer.valueOf(init.substring(0, 2));
+	private boolean validateRegisterLateRent(String end) {
+
 		int day2 = Integer.valueOf(end.substring(0, 2));
-		int month1 = Integer.valueOf(init.substring(3, 5));
 		int month2 = Integer.valueOf(end.substring(3, 5));
-		int year1 = Integer.valueOf(init.substring(6, 8));
 		int year2 = Integer.valueOf(end.substring(6, 8));
-		if (year1 <= year2) {
-			if (year1 == year2) {
-				if (month1 <= month2) {
-					if (month1 == month2) {
-						if (day1 <= day2) {
-							return true;
-						}
-					} else
-						return true;
-				}
-			} else
-				return true;
+		year2 += 2000;
+		month2 = month2 - 1;
+		Calendar hoje = Calendar.getInstance();
+		Calendar entrega = Calendar.getInstance();
+		entrega.set(year2, month2, day2);
+		if (entrega.after(hoje)) {
+			return false;
 		}
-
-		return false;
-
+		return true;
 	}
 
 	/**
