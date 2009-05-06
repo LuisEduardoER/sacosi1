@@ -1,5 +1,7 @@
 # US04 - Remover usuario
 
+cleanDB
+
 expect 0 getAllUsers
 
 expectError "error: there is no users on database" removeUser key="xpto"

@@ -35,7 +35,7 @@ import Exceptions.UserNotFoundException;
 import Exceptions.YearException;
 
 /**
- * Esta classe é uma fachada para as classes UserController, VehiclesController
+ * Esta classe ï¿½ uma fachada para as classes UserController, VehiclesController
  * e RentController
  * 
  * @author Filipe
@@ -67,7 +67,7 @@ public class Facade {
 	}
 
 	/**
-	 * Este metodo remove um veículo da lista de veículos
+	 * Este metodo remove um veï¿½culo da lista de veï¿½culos
 	 * 
 	 * @param plate
 	 * @throws NoSuchVehicleException
@@ -180,7 +180,7 @@ public class Facade {
 	}
 
 	/**
-	 * Este metodo adiciona um novo veículo no sistema.
+	 * Este metodo adiciona um novo veï¿½culo no sistema.
 	 * 
 	 * @param type
 	 *            o tipo do veiculo
@@ -389,7 +389,7 @@ public class Facade {
 	 * 
 	 * @throws FileNotFoundException
 	 */
-	public void emptyXML() throws FileNotFoundException {
+	public void cleanDB() throws FileNotFoundException {
 		this.reController.emptyXML();
 		this.vehController.emptyXML();
 		this.userController.emptyXML();

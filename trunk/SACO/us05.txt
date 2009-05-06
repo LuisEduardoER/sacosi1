@@ -1,5 +1,7 @@
 # US05 - Adicionar veículo
 
+cleanDB
+
 expect 0 getAllVehicles
 
 addVehicle type="motorcycle" model="titan" color="black" plate="ABC1234" year=2007 price=35

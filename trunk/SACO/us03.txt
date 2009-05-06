@@ -1,6 +1,8 @@
 # US03 - Remover cliente
 # US19 - Remocao de cliente
 
+cleanDB
+
 expect 0 getAllCustomers
 
 expectError "error: there is no customers on database" removeCustomer key="xpto"

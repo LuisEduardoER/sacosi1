@@ -7,6 +7,8 @@
 # chamado e nao lanca nenhuma excecao. Para isso, o metodo releaseVehicle deve retornar um boolean. Na correcao, eu verificarei se o e-mail esta
 # mesmo sendo mandado :)
 
+cleanDB
+
 expect 0 getAllVehicles
 
 addVehicle type="motorcycle" model="titan" color="black" plate="ABC1234" year=2007 price=35
