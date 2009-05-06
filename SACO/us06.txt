@@ -1,5 +1,7 @@
 # US06 - Remover veiculo
 
+cleanDB
+
 expect 0 getAllVehicles
 
 expectError "error: there is no vehicles on database" removeVehicle key="xpt123"

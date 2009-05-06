@@ -1,6 +1,8 @@
 # US2 - Adicionar cliente
 # US17 - Cadastro de cliente
 
+cleanDB
+
 expect 0 getAllCustomers
 
 addCustomer name="foo bar" email="foo@bar.com" phone="6666666666"

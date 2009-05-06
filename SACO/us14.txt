@@ -1,4 +1,9 @@
-# US14 - Consultar situação de veículo
+# US14 - Consultar situaca�o de veiculo
+
+cleanDB
+
+addCustomer name="foo bar" email="foo@bar.com" phone="6666666666"
+addCustomer name="moo" email="moo@xpto.com.br" phone="8388888888"
 
 expect 0 getAllVehicles
 
