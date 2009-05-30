@@ -26,22 +26,24 @@ import Exceptions.PhoneException;
  */
 public class CustomerCollection {
 
+	private static CustomerCollection instance;
 	private List<Customer> customerList;
 
 	/**
 	 * Construtor principal da classe.
 	 */
-	public CustomerCollection() {
+	private CustomerCollection() {
 		this.customerList = new ArrayList<Customer>();
 	}
 
 	/**
-	 * Construtor
-	 * 
-	 * @param customers
+	 * Metodo que retorna a instancia da classe.
+	 * @return a instancia da classe.
 	 */
-	public CustomerCollection(ArrayList<Customer> customers) {
-		this.customerList = customers;
+	public static synchronized CustomerCollection getInstance() {
+		if (instance == null)
+			return instance = new CustomerCollection();
+		return instance;
 	}
 
 	/**
@@ -135,6 +137,20 @@ public class CustomerCollection {
 	 */
 	public void emptyList() {
 		this.customerList = new ArrayList<Customer>();
+	}
+	
+	/**
+	 * Metodo para busca do cliente com determinado email
+	 * @param email email do cliente
+	 * @return cliente com o email ou null caso cliente nao exista
+	 */
+	public Customer getCustomer(String email) {
+		for (Customer customer : customerList) {
+			if (customer.getEmail().equals(email)) {
+				return customer;
+			}
+		}
+		return null;
 	}
 
 }

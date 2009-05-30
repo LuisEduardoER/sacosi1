@@ -36,16 +36,14 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * 
  */
 public class VehiclesController {
-	/***/
+	
 	private static VehiclesController instance;
-	/***/
 	private VehiclesCollection registeredVehicles;
-
 	private FieldSystemVerification verification;
 	private static final String VEHICLES_FILE = "Vehicles.xml";
 
 	private VehiclesController() throws Exception {
-		registeredVehicles = new VehiclesCollection();
+		registeredVehicles = VehiclesCollection.getInstance();
 		verification = new FieldSystemVerification();
 		this.readVehicles();
 	}
@@ -56,7 +54,7 @@ public class VehiclesController {
 	 * @return uma unica instancia da classe
 	 * @throws Exception
 	 */
-	public static VehiclesController getInstance() throws Exception {
+	public static synchronized VehiclesController getInstance() throws Exception {
 		if (instance == null) {
 			instance = new VehiclesController();
 		}

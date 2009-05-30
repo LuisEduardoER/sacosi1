@@ -50,8 +50,8 @@ public class UserController {
 	 * Construtor privado. Serve para o padrao Singleton.
 	 */
 	private UserController() throws Exception {
-		registeredCustomers = new CustomerCollection();
-		registeredFunctionaries = new FunctionariesCollection();
+		registeredCustomers = CustomerCollection.getInstance();
+		registeredFunctionaries = FunctionariesCollection.getInstance();
 		verification = new FieldSystemVerification();
 		this.readCostumers();
 		this.readFunctionaries();
@@ -63,7 +63,7 @@ public class UserController {
 	 * @return UserController a instancia da classe.
 	 * @throws Exception
 	 */
-	public static UserController getInstance() throws Exception {
+	public static synchronized UserController getInstance() throws Exception {
 		return instance == null ? instance = new UserController() : instance;
 	}
 
