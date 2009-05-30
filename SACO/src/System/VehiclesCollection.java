@@ -33,15 +33,27 @@ import Vehicles.Vehicle;
  * 
  */
 public class VehiclesCollection {
+	
+	private static VehiclesCollection instance;
 	private List<Vehicle> vehiclesList;
 
 	/**
 	 * Construtor da classe
 	 */
-	public VehiclesCollection() {
+	private VehiclesCollection() {
 		vehiclesList = new ArrayList<Vehicle>();
 	}
 
+	/**
+	 * Metodo que retorna a instancia da classe
+	 * @return a instancia da classe
+	 */
+	public static synchronized VehiclesCollection getInstance() {
+		if (instance == null)
+			return instance = new VehiclesCollection();
+		return instance;
+	}
+	
 	/**
 	 * Metodo que retorna a quantidade de veiculos adicionada ao sistema
 	 * 

@@ -15,16 +15,28 @@ import java.util.List;
  * 
  */
 public class RequestRentCollection {
-
+	
+	
+	private static RequestRentCollection instance;
 	private List<RequestObject> requestList;
 
 	/**
 	 * Construtor
 	 */
-	public RequestRentCollection() {
+	private RequestRentCollection() {
 		requestList = new ArrayList<RequestObject>();
 	}
 
+	/**
+	 * Metodo que retorna a instancia da classe
+	 * @return a instancia da classe
+	 */
+	public static synchronized RequestRentCollection getInstance() {
+		if (instance == null)
+			return instance = new RequestRentCollection();
+		return instance;
+	}
+	
 	/**
 	 * Zera a lista
 	 */

@@ -25,15 +25,25 @@ import Exceptions.UserNotFoundException;
  */
 public class FunctionariesCollection {
 
+	private static FunctionariesCollection instance;
 	private List<User> usersList;
 
 	/**
 	 * Construtor da classe.
 	 */
-	public FunctionariesCollection() {
+	private FunctionariesCollection() {
 		usersList = new ArrayList<User>();
 	}
 
+	/**
+	 * Metodo que retorna a instancia da classe
+	 * @return a instancia da classe
+	 */
+	public static synchronized FunctionariesCollection getInstance() {
+		if (instance == null)
+			return instance = new FunctionariesCollection();
+		return instance;
+	}
 	/**
 	 * Adiciona um funcionario ao sistema.
 	 * 
@@ -56,7 +66,7 @@ public class FunctionariesCollection {
 	}
 
 	/**
-	 * Verifica se o funcionario já existe no sistema
+	 * Verifica se o funcionario jï¿½ existe no sistema
 	 * 
 	 * @param email
 	 * @return true se existir ou false caso contrario
