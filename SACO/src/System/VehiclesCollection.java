@@ -145,16 +145,8 @@ public class VehiclesCollection {
 		}
 		vehiclesList.remove(findVehicle(plate));
 	}
-
-	/**
-	 * get vehicle list
-	 * 
-	 * @return lista de veiculos
-	 */
-	public Collection<Vehicle> getVehiclesList() {
-		return this.vehiclesList;
-	}
-
+	
+	
 	/**
 	 * Procura uma placa no array de veiculos
 	 * 

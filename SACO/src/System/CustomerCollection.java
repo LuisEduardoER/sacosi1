@@ -1,9 +1,8 @@
 package System;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
-import Users.Customer;
 
 import Exceptions.ClientNotRegisteredException;
 import Exceptions.CustomerAlreadyExistException;
@@ -13,6 +12,7 @@ import Exceptions.InvalidNameException;
 import Exceptions.InvalidParameterException;
 import Exceptions.NoCustomerOnDatabaseException;
 import Exceptions.PhoneException;
+import Users.Customer;
 
 /**
  * Classe que armazena todos os clientes cadastrados no sistema.
@@ -46,14 +46,6 @@ public class CustomerCollection {
 		return instance;
 	}
 
-	/**
-	 * get Customer List
-	 * 
-	 * @return Customer List
-	 */
-	public List<Customer> getCustomerList() {
-		return this.customerList;
-	}
 
 	/**
 	 * Retorna a quantidade de clientes adicionados ao sistema.
@@ -63,7 +55,15 @@ public class CustomerCollection {
 	public int size() {
 		return customerList.size();
 	}
-
+	
+	/**
+	 * get Iterador da lista de clientes
+	 * @return
+	 */
+	public Iterator <Customer> iterator() {
+		return this.customerList.iterator();
+	}
+	
 	/**
 	 * Adiciona um cliente ao sistema.
 	 * 

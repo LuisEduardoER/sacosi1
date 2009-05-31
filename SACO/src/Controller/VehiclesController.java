@@ -4,7 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import Exceptions.ColorException;
@@ -18,7 +18,6 @@ import Exceptions.PlateException;
 import Exceptions.PriceException;
 import Exceptions.TypeException;
 import Exceptions.YearException;
-import System.CustomerCollection;
 import System.FieldSystemVerification;
 import System.VehiclesCollection;
 import Vehicles.Vehicle;
@@ -62,12 +61,12 @@ public class VehiclesController {
 	}
 
 	/**
-	 * Retorna todos os veiculos registrados
+	 * Retorna um iterador de todos os veiculos registrados
 	 * 
-	 * @return uma colecao de todos os veiculos registrados
+	 * @return um iterador de todos os veiculos registrados
 	 */
-	public Collection<Vehicle> getRegisteredVehicles() {
-		return this.registeredVehicles.getVehiclesList();
+	public Iterator<Vehicle> iterator() {
+		return this.registeredVehicles.iterator();
 	}
 
 	/**
