@@ -5,15 +5,14 @@ import java.util.Calendar;
 
 import javax.security.auth.login.LoginException;
 
-import Users.Alugadores;
-
 import Controller.RentController;
 import Controller.UserController;
 import Controller.VehiclesController;
 import Exceptions.AlreadyExistException;
-import Exceptions.InvalidFieldException;
 import Exceptions.EmptyFieldException;
+import Exceptions.InvalidFieldException;
 import Exceptions.NotExistException;
+import Users.Alugadores;
 
 /**
  * Esta classe � uma fachada para as classes UserController, VehiclesController
