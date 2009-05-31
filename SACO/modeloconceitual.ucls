@@ -1,0 +1,371 @@
+<class-diagram version="0.9.82" automaticImage="PNG" icons="true" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class corner="BOTTOM_RIGHT" language="java" name="Commands.Facade" project="SACO" 
+    file="/SACO/src/Commands/Facade.java" binary="false">    
+    <position x="269" y="156" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Controller.RentController" project="SACO" 
+    file="/SACO/src/Controller/RentController.java" binary="false">    
+    <position x="46" y="303" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Controller.UserController" project="SACO" 
+    file="/SACO/src/Controller/UserController.java" binary="false">    
+    <position x="48" y="156" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Controller.VehiclesController" project="SACO" 
+    file="/SACO/src/Controller/VehiclesController.java" binary="false">    
+    <position x="277" y="304" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="LogicalSystem.LogicOfTheAdmin" project="SACO" 
+    file="/SACO/src/LogicalSystem/LogicOfTheAdmin.java" binary="false">    
+    <position x="498" y="156" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="LogicalSystem.LogicOfTheCustomer" project="SACO" 
+    file="/SACO/src/LogicalSystem/LogicOfTheCustomer.java" binary="false">    
+    <position x="272" y="14" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="LogicalSystem.LogicOfTheUser" project="SACO" 
+    file="/SACO/src/LogicalSystem/LogicOfTheUser.java" binary="false">    
+    <position x="498" y="21" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.Rent" project="SACO" file="/SACO/src/System/Rent.java" 
+    binary="false">    
+    <position x="44" y="434" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.FunctionariesCollection" project="SACO" 
+    file="/SACO/src/System/FunctionariesCollection.java" binary="false">    
+    <position x="-182" y="304" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.CustomerCollection" project="SACO" 
+    file="/SACO/src/System/CustomerCollection.java" binary="false">    
+    <position x="-185" y="158" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.RentList" project="SACO" 
+    file="/SACO/src/System/RentList.java" binary="false">    
+    <position x="223" y="435" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Users.Administrator" project="SACO" 
+    file="/SACO/src/Users/Administrator.java" binary="false">    
+    <position x="562" y="472" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="Users.Alugadores" project="SACO" 
+    file="/SACO/src/Users/Alugadores.java" binary="false">    
+    <position x="562" y="302" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Users.Customer" project="SACO" file="/SACO/src/Users/Customer.java" 
+    binary="false">    
+    <position x="677" y="406" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Users.Person" project="SACO" file="/SACO/src/Users/Person.java" 
+    binary="false">    
+    <position x="561" y="405" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Users.User" project="SACO" file="/SACO/src/Users/User.java" 
+    binary="false">    
+    <position x="447" y="400" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="Vehicles.Alugavel" project="SACO" 
+    file="/SACO/src/Vehicles/Alugavel.java" binary="false">    
+    <position x="840" y="151" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Vehicles.Car" project="SACO" file="/SACO/src/Vehicles/Car.java" 
+    binary="false">    
+    <position x="840" y="297" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Vehicles.Motorcycle" project="SACO" 
+    file="/SACO/src/Vehicles/Motorcycle.java" binary="false">    
+    <position x="716" y="225" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Vehicles.Vehicle" project="SACO" 
+    file="/SACO/src/Vehicles/Vehicle.java" binary="false">    
+    <position x="839" y="222" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="customerCollection"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.CustomerCollection" file="/SACO/src/System/CustomerCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="false">      
+      <attribute name="reController"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="LogicalSystem.LogicOfTheAdmin" file="/SACO/src/LogicalSystem/LogicOfTheAdmin.java" 
+      binary="false" navigable="false">      
+      <attribute name="facade"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="System.RentList" file="/SACO/src/System/RentList.java" binary="false" navigable="false">      
+      <attribute name="rentList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="System.Rent" file="/SACO/src/System/Rent.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Vehicles.Motorcycle" file="/SACO/src/Vehicles/Motorcycle.java" binary="false"/>    
+    <target project="SACO" name="Vehicles.Vehicle" file="/SACO/src/Vehicles/Vehicle.java" binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="SACO" name="Vehicles.Car" file="/SACO/src/Vehicles/Car.java" binary="false"/>    
+    <target project="SACO" name="Vehicles.Vehicle" file="/SACO/src/Vehicles/Vehicle.java" binary="false"/>  
+  </generalization>  
+  <realization>    
+    <source project="SACO" name="Users.Person" file="/SACO/src/Users/Person.java" binary="false"/>    
+    <target project="SACO" name="Users.Alugadores" file="/SACO/src/Users/Alugadores.java" binary="false"/>  
+  </realization>  
+  <association>    
+    <source project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="false">      
+      <attribute name="userController"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Users.Administrator" file="/SACO/src/Users/Administrator.java" binary="false"/>    
+    <target project="SACO" name="Users.Person" file="/SACO/src/Users/Person.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="vehicleCollection"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="false">      
+      <attribute name="vehController"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="userController"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="functionariesCollection"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.FunctionariesCollection" file="/SACO/src/System/FunctionariesCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Users.Customer" file="/SACO/src/Users/Customer.java" binary="false"/>    
+    <target project="SACO" name="Users.Person" file="/SACO/src/Users/Person.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="SACO" name="System.RentList" file="/SACO/src/System/RentList.java" binary="false" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.RentList" file="/SACO/src/System/RentList.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization>    
+    <source project="SACO" name="Vehicles.Vehicle" file="/SACO/src/Vehicles/Vehicle.java" binary="false"/>    
+    <target project="SACO" name="Vehicles.Alugavel" file="/SACO/src/Vehicles/Alugavel.java" binary="false"/>  
+  </realization>  
+  <association>    
+    <source project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="LogicalSystem.LogicOfTheCustomer" 
+      file="/SACO/src/LogicalSystem/LogicOfTheCustomer.java" binary="false" navigable="false">      
+      <attribute name="facade"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="false">      
+      <attribute name="registeredFunctionaries"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.FunctionariesCollection" file="/SACO/src/System/FunctionariesCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Users.User" file="/SACO/src/Users/User.java" binary="false"/>    
+    <target project="SACO" name="Users.Person" file="/SACO/src/Users/Person.java" binary="false"/>  
+  </generalization>  
+  <generalization>    
+    <source project="SACO" name="LogicalSystem.LogicOfTheAdmin" file="/SACO/src/LogicalSystem/LogicOfTheAdmin.java" 
+      binary="false"/>    
+    <target project="SACO" name="LogicalSystem.LogicOfTheUser" file="/SACO/src/LogicalSystem/LogicOfTheUser.java" 
+      binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="SACO" name="LogicalSystem.LogicOfTheUser" file="/SACO/src/LogicalSystem/LogicOfTheUser.java" 
+      binary="false" navigable="false">      
+      <attribute name="facade"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="false">      
+      <attribute name="registeredCustomers"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.CustomerCollection" file="/SACO/src/System/CustomerCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="rents"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="System.Rent" file="/SACO/src/System/Rent.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false"/>    
+    <operations public="false" package="false" protected="false" private="false"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

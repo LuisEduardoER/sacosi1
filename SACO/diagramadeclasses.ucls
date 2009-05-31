@@ -1,0 +1,752 @@
+<class-diagram version="0.9.82" automaticImage="PNG" icons="true" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class corner="BOTTOM_RIGHT" language="java" name="Commands.Facade" project="SACO" 
+    file="/SACO/src/Commands/Facade.java" binary="false">    
+    <position x="965" y="-945" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Controller.RentController" project="SACO" 
+    file="/SACO/src/Controller/RentController.java" binary="false">    
+    <position x="162" y="-89" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Controller.UserController" project="SACO" 
+    file="/SACO/src/Controller/UserController.java" binary="false">    
+    <position x="563" y="806" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Controller.VehiclesController" project="SACO" 
+    file="/SACO/src/Controller/VehiclesController.java" binary="false">    
+    <position x="627" y="-524" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="LogicalSystem.LogicOfTheAdmin" project="SACO" 
+    file="/SACO/src/LogicalSystem/LogicOfTheAdmin.java" binary="false">    
+    <position x="1351" y="-941" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="LogicalSystem.LogicOfTheCustomer" project="SACO" 
+    file="/SACO/src/LogicalSystem/LogicOfTheCustomer.java" binary="false">    
+    <position x="652" y="-945" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="LogicalSystem.LogicOfTheUser" project="SACO" 
+    file="/SACO/src/LogicalSystem/LogicOfTheUser.java" binary="false">    
+    <position x="1319" y="-547" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.CustomerCollection" project="SACO" 
+    file="/SACO/src/System/CustomerCollection.java" binary="false">    
+    <position x="144" y="521" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.FieldSystemVerification" project="SACO" 
+    file="/SACO/src/System/FieldSystemVerification.java" binary="false">    
+    <position x="580" y="65" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.FunctionariesCollection" project="SACO" 
+    file="/SACO/src/System/FunctionariesCollection.java" binary="false">    
+    <position x="166" y="808" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.Rent" project="SACO" file="/SACO/src/System/Rent.java" 
+    binary="false">    
+    <position x="-174" y="-127" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.RentList" project="SACO" 
+    file="/SACO/src/System/RentList.java" binary="false">    
+    <position x="-486" y="219" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.RentSystem" project="SACO" 
+    file="/SACO/src/System/RentSystem.java" binary="false">    
+    <position x="-205" y="390" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.RequestObject" project="SACO" 
+    file="/SACO/src/System/RequestObject.java" binary="false">    
+    <position x="-207" y="736" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.RequestRentCollection" project="SACO" 
+    file="/SACO/src/System/RequestRentCollection.java" binary="false">    
+    <position x="-479" y="497" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="System.VehiclesCollection" project="SACO" 
+    file="/SACO/src/System/VehiclesCollection.java" binary="false">    
+    <position x="1052" y="-160" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Users.Administrator" project="SACO" 
+    file="/SACO/src/Users/Administrator.java" binary="false">    
+    <position x="-411" y="-687" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="Users.Alugadores" project="SACO" 
+    file="/SACO/src/Users/Alugadores.java" binary="false">    
+    <position x="-129" y="-489" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Users.Customer" project="SACO" file="/SACO/src/Users/Customer.java" 
+    binary="false">    
+    <position x="-37" y="-683" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Users.Person" project="SACO" file="/SACO/src/Users/Person.java" 
+    binary="false">    
+    <position x="-398" y="-484" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Users.User" project="SACO" file="/SACO/src/Users/User.java" 
+    binary="false">    
+    <position x="-511" y="-246" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface corner="BOTTOM_RIGHT" language="java" name="Vehicles.Alugavel" project="SACO" 
+    file="/SACO/src/Vehicles/Alugavel.java" binary="false">    
+    <position x="1036" y="788" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Vehicles.Car" project="SACO" file="/SACO/src/Vehicles/Car.java" 
+    binary="false">    
+    <position x="1328" y="76" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Vehicles.Motorcycle" project="SACO" 
+    file="/SACO/src/Vehicles/Motorcycle.java" binary="false">    
+    <position x="1680" y="428" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Vehicles.Vehicle" project="SACO" 
+    file="/SACO/src/Vehicles/Vehicle.java" binary="false">    
+    <position x="1308" y="508" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.ClientNotRegisteredException" project="SACO" 
+    file="/SACO/src/Exceptions/ClientNotRegisteredException.java" binary="false">    
+    <position x="1844" y="-1128" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.ColorException" project="SACO" 
+    file="/SACO/src/Exceptions/ColorException.java" binary="false">    
+    <position x="1816" y="-244" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.CustomerAlreadyExistException" project="SACO" 
+    file="/SACO/src/Exceptions/CustomerAlreadyExistException.java" binary="false">    
+    <position x="1864" y="-116" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.EmailException" project="SACO" 
+    file="/SACO/src/Exceptions/EmailException.java" binary="false">    
+    <position x="1812" y="-1004" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.InvalidDateException" project="SACO" 
+    file="/SACO/src/Exceptions/InvalidDateException.java" binary="false">    
+    <position x="1824" y="-880" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.InvalidFieldException" project="SACO" 
+    file="/SACO/src/Exceptions/InvalidFieldException.java" binary="false">    
+    <position x="1824" y="-612" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.InvalidLoginException" project="SACO" 
+    file="/SACO/src/Exceptions/InvalidLoginException.java" binary="false">    
+    <position x="1828" y="-748" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.InvalidNameException" project="SACO" 
+    file="/SACO/src/Exceptions/InvalidNameException.java" binary="false">    
+    <position x="1828" y="-480" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.InvalidParameterException" project="SACO" 
+    file="/SACO/src/Exceptions/InvalidParameterException.java" binary="false">    
+    <position x="1836" y="-360" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.ModelException" project="SACO" 
+    file="/SACO/src/Exceptions/ModelException.java" binary="false">    
+    <position x="1828" y="40" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.YearException" project="SACO" 
+    file="/SACO/src/Exceptions/YearException.java" binary="false">    
+    <position x="2080" y="-1132" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.NoFieldException" project="SACO" 
+    file="/SACO/src/Exceptions/NoFieldException.java" binary="false">    
+    <position x="2079" y="-992" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.PriceException" project="SACO" 
+    file="/SACO/src/Exceptions/PriceException.java" binary="false">    
+    <position x="2075" y="-852" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.NoSuchVehicleException" project="SACO" 
+    file="/SACO/src/Exceptions/NoSuchVehicleException.java" binary="false">    
+    <position x="2094" y="-728" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.PlateDoesNotExistsException" project="SACO" 
+    file="/SACO/src/Exceptions/PlateDoesNotExistsException.java" binary="false">    
+    <position x="2115" y="-608" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.NoUserOnDatabaseException" project="SACO" 
+    file="/SACO/src/Exceptions/NoUserOnDatabaseException.java" binary="false">    
+    <position x="2124" y="-476" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.NoVehicleOnDatabaseException" project="SACO" 
+    file="/SACO/src/Exceptions/NoVehicleOnDatabaseException.java" binary="false">    
+    <position x="2132" y="-360" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.VehicleAlreadyExistsException" project="SACO" 
+    file="/SACO/src/Exceptions/VehicleAlreadyExistsException.java" binary="false">    
+    <position x="2132" y="-224" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.PlateException" project="SACO" 
+    file="/SACO/src/Exceptions/PlateException.java" binary="false">    
+    <position x="2093" y="-104" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.PlateAlreadyExistsException" project="SACO" 
+    file="/SACO/src/Exceptions/PlateAlreadyExistsException.java" binary="false">    
+    <position x="2156" y="24" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.UserNotFoundException" project="SACO" 
+    file="/SACO/src/Exceptions/UserNotFoundException.java" binary="false">    
+    <position x="2161" y="148" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.NoCustomerOnDatabaseException" project="SACO" 
+    file="/SACO/src/Exceptions/NoCustomerOnDatabaseException.java" binary="false">    
+    <position x="2169" y="296" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.UserAlreadyExistException" project="SACO" 
+    file="/SACO/src/Exceptions/UserAlreadyExistException.java" binary="false">    
+    <position x="2145" y="420" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.PhoneException" project="SACO" 
+    file="/SACO/src/Exceptions/PhoneException.java" binary="false">    
+    <position x="2122" y="660" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class corner="BOTTOM_RIGHT" language="java" name="Exceptions.TypeException" project="SACO" 
+    file="/SACO/src/Exceptions/TypeException.java" binary="false">    
+    <position x="2121" y="544" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association>    
+    <bendpoint x="-105" y="274"/>    
+    <bendpoint x="-322" y="300"/>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="requestList"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.RequestRentCollection" file="/SACO/src/System/RequestRentCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <bendpoint x="-28" y="606"/>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="functionariesCollection"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.FunctionariesCollection" file="/SACO/src/System/FunctionariesCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="false">      
+      <attribute name="verification"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.FieldSystemVerification" file="/SACO/src/System/FieldSystemVerification.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="userController"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <bendpoint x="815" y="-313"/>    
+    <source project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="false">      
+      <attribute name="vehController"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <bendpoint x="-54" y="604"/>    
+    <bendpoint x="-43" y="377"/>    
+    <source project="SACO" name="System.FunctionariesCollection" file="/SACO/src/System/FunctionariesCollection.java" 
+      binary="false" navigable="false">      
+      <attribute name="usersList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="Users.User" file="/SACO/src/Users/User.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="false">      
+      <attribute name="verification"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.FieldSystemVerification" file="/SACO/src/System/FieldSystemVerification.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="System.RentList" file="/SACO/src/System/RentList.java" binary="false" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.RentList" file="/SACO/src/System/RentList.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Users.User" file="/SACO/src/Users/User.java" binary="false"/>    
+    <target project="SACO" name="Users.Person" file="/SACO/src/Users/Person.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="SACO" name="System.RentList" file="/SACO/src/System/RentList.java" binary="false" navigable="false">      
+      <attribute name="rentList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="System.Rent" file="/SACO/src/System/Rent.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Users.Administrator" file="/SACO/src/Users/Administrator.java" binary="false"/>    
+    <target project="SACO" name="Users.Person" file="/SACO/src/Users/Person.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="SACO" name="System.Rent" file="/SACO/src/System/Rent.java" binary="false" navigable="false">      
+      <attribute name="costumer"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Users.Alugadores" file="/SACO/src/Users/Alugadores.java" binary="false" 
+      navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <bendpoint x="328" y="412"/>    
+    <source project="SACO" name="System.Rent" file="/SACO/src/System/Rent.java" binary="false" navigable="false">      
+      <attribute name="vehicle"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Vehicles.Alugavel" file="/SACO/src/Vehicles/Alugavel.java" binary="false" 
+      navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization>    
+    <source project="SACO" name="Users.Person" file="/SACO/src/Users/Person.java" binary="false"/>    
+    <target project="SACO" name="Users.Alugadores" file="/SACO/src/Users/Alugadores.java" binary="false"/>  
+  </realization>  
+  <association>    
+    <source project="SACO" name="LogicalSystem.LogicOfTheCustomer" 
+      file="/SACO/src/LogicalSystem/LogicOfTheCustomer.java" binary="false" navigable="false">      
+      <attribute name="facade"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="LogicalSystem.LogicOfTheAdmin" file="/SACO/src/LogicalSystem/LogicOfTheAdmin.java" 
+      binary="false" navigable="false">      
+      <attribute name="facade"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Users.Customer" file="/SACO/src/Users/Customer.java" binary="false"/>    
+    <target project="SACO" name="Users.Person" file="/SACO/src/Users/Person.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <bendpoint x="781" y="449"/>    
+    <source project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="false">      
+      <attribute name="userController"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="vehicleCollection"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Vehicles.Car" file="/SACO/src/Vehicles/Car.java" binary="false"/>    
+    <target project="SACO" name="Vehicles.Vehicle" file="/SACO/src/Vehicles/Vehicle.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <bendpoint x="276" y="274"/>    
+    <bendpoint x="301" y="280"/>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="System.RentSystem" file="/SACO/src/System/RentSystem.java" binary="false" 
+      navigable="false">      
+      <attribute name="listOfVehicles"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="Vehicles.Vehicle" file="/SACO/src/Vehicles/Vehicle.java" binary="false" 
+      navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="LogicalSystem.LogicOfTheUser" file="/SACO/src/LogicalSystem/LogicOfTheUser.java" 
+      binary="false" navigable="false">      
+      <attribute name="facade"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="Vehicles.Motorcycle" file="/SACO/src/Vehicles/Motorcycle.java" binary="false"/>    
+    <target project="SACO" name="Vehicles.Vehicle" file="/SACO/src/Vehicles/Vehicle.java" binary="false"/>  
+  </generalization>  
+  <association>    
+    <source project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="false">      
+      <attribute name="registeredFunctionaries"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.FunctionariesCollection" file="/SACO/src/System/FunctionariesCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="rents"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="System.Rent" file="/SACO/src/System/Rent.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="System.VehiclesCollection" file="/SACO/src/System/VehiclesCollection.java" 
+      binary="false" navigable="false">      
+      <attribute name="vehiclesList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="Vehicles.Vehicle" file="/SACO/src/Vehicles/Vehicle.java" binary="false" 
+      navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <bendpoint x="780" y="-315"/>    
+    <bendpoint x="398" y="-313"/>    
+    <source project="SACO" name="Commands.Facade" file="/SACO/src/Commands/Facade.java" binary="false" navigable="false">      
+      <attribute name="reController"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <bendpoint x="-424" y="113"/>    
+    <source project="SACO" name="System.RentSystem" file="/SACO/src/System/RentSystem.java" binary="false" 
+      navigable="false">      
+      <attribute name="listOfUsers"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="Users.User" file="/SACO/src/Users/User.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.UserController" file="/SACO/src/Controller/UserController.java" 
+      binary="false" navigable="false">      
+      <attribute name="registeredCustomers"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.CustomerCollection" file="/SACO/src/System/CustomerCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="System.RequestRentCollection" file="/SACO/src/System/RequestRentCollection.java" 
+      binary="false" navigable="false">      
+      <attribute name="requestList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="System.RequestObject" file="/SACO/src/System/RequestObject.java" binary="false" 
+      navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="customerCollection"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.CustomerCollection" file="/SACO/src/System/CustomerCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <source project="SACO" name="Controller.RentController" file="/SACO/src/Controller/RentController.java" 
+      binary="false" navigable="false">      
+      <attribute name="verification"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.FieldSystemVerification" file="/SACO/src/System/FieldSystemVerification.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization>    
+    <source project="SACO" name="LogicalSystem.LogicOfTheAdmin" file="/SACO/src/LogicalSystem/LogicOfTheAdmin.java" 
+      binary="false"/>    
+    <target project="SACO" name="LogicalSystem.LogicOfTheUser" file="/SACO/src/LogicalSystem/LogicOfTheUser.java" 
+      binary="false"/>  
+  </generalization>  
+  <realization>    
+    <source project="SACO" name="Vehicles.Vehicle" file="/SACO/src/Vehicles/Vehicle.java" binary="false"/>    
+    <target project="SACO" name="Vehicles.Alugavel" file="/SACO/src/Vehicles/Alugavel.java" binary="false"/>  
+  </realization>  
+  <association>    
+    <source project="SACO" name="Controller.VehiclesController" file="/SACO/src/Controller/VehiclesController.java" 
+      binary="false" navigable="false">      
+      <attribute name="registeredVehicles"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </source>    
+    <target project="SACO" name="System.VehiclesCollection" file="/SACO/src/System/VehiclesCollection.java" 
+      binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <bendpoint x="364" y="112"/>    
+    <bendpoint x="330" y="-372"/>    
+    <bendpoint x="199" y="-598"/>    
+    <source project="SACO" name="System.CustomerCollection" file="/SACO/src/System/CustomerCollection.java" 
+      binary="false" navigable="false">      
+      <attribute name="customerList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </source>    
+    <target project="SACO" name="Users.Customer" file="/SACO/src/Users/Customer.java" binary="false" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
