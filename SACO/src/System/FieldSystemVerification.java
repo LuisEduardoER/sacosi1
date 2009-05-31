@@ -1,5 +1,7 @@
 package System;
 
+import java.util.Calendar;
+
 /**
  * Esta classe é responsavel por verificar a validade dos campos de alguns
  * metodos.
@@ -166,6 +168,34 @@ public class FieldSystemVerification {
 			return false;
 		return true;
 	}
+	
+	/**
+	 * Verifica se uma data final de entrega de veiculo eh maior que a data
+	 * atual, para que seja registrado um aluguel atrasado.
+	 * 
+	 * @param end
+	 *            a data final de entrega
+	 * @return true se a data for valida (nao excedeu o dia de entrega), false
+	 *         caso contrario
+	 */
+	public boolean validateRegisterLateRent(String end) {
+
+		int day2 = Integer.valueOf(end.substring(0, 2));
+		int month2 = Integer.valueOf(end.substring(3, 5));
+		int year2 = Integer.valueOf(end.substring(6, 8));
+		year2 += 2000;
+		month2 = month2 - 1;
+		Calendar hoje = Calendar.getInstance();
+		Calendar entrega = Calendar.getInstance();
+		entrega.set(year2, month2, day2);
+		if (entrega.after(hoje)) {
+			return false;
+		}
+		return true;
+	}
+	
+
+
 
 	/**
 	 * Verifica se os tres primeiros 'chars' sao letras
