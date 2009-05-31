@@ -10,29 +10,10 @@ import Users.Alugadores;
 import Controller.RentController;
 import Controller.UserController;
 import Controller.VehiclesController;
-import Exceptions.ClientNotRegisteredException;
-import Exceptions.ColorException;
-import Exceptions.CustomerAlreadyExistException;
-import Exceptions.EmailException;
-import Exceptions.InvalidDateException;
+import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
-import Exceptions.InvalidLoginException;
-import Exceptions.InvalidNameException;
-import Exceptions.InvalidParameterException;
-import Exceptions.ModelException;
-import Exceptions.NoCustomerOnDatabaseException;
-import Exceptions.NoFieldException;
-import Exceptions.NoSuchVehicleException;
-import Exceptions.NoUserOnDatabaseException;
-import Exceptions.NoVehicleOnDatabaseException;
-import Exceptions.PhoneException;
-import Exceptions.PlateAlreadyExistsException;
-import Exceptions.PlateException;
-import Exceptions.PriceException;
-import Exceptions.TypeException;
-import Exceptions.UserAlreadyExistException;
-import Exceptions.UserNotFoundException;
-import Exceptions.YearException;
+import Exceptions.EmptyFieldException;
+import Exceptions.NotExistException;
 
 /**
  * Esta classe � uma fachada para as classes UserController, VehiclesController
@@ -70,11 +51,9 @@ public class Facade {
 	 * Este metodo remove um ve�culo da lista de ve�culos
 	 * 
 	 * @param plate
-	 * @throws NoSuchVehicleException
-	 * @throws NoVehicleOnDatabaseException
+	 * @throws NotExistException
 	 */
-	public void removeVehicle(String plate) throws NoSuchVehicleException,
-			NoVehicleOnDatabaseException {
+	public void removeVehicle(String plate) throws NotExistException {
 		vehController.removeVehicle(plate);
 		this.vehController.writeVehicles();
 	}
@@ -99,16 +78,12 @@ public class Facade {
 	 *            o email do funcionario
 	 * @param phone
 	 *            o telefone do funcionario
-	 * @throws InvalidLoginException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws UserAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws EmptyFieldException 
 	 */
 	public void addUser(String login, String name, String email, String phone)
-			throws InvalidLoginException, EmailException, InvalidNameException,
-			PhoneException, UserAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 		userController.addUser(login, name, email, phone);
 		this.userController.writeXML();
 	}
@@ -127,13 +102,11 @@ public class Facade {
 	 * 
 	 * @param email
 	 *            o email do cliente
-	 * @throws ClientNotRegisteredException
-	 * @throws NoCustomerOnDatabaseException
-	 * @throws InvalidParameterException
+	 * @throws NotExistException
+	 * @throws InvalidFieldException
 	 */
 	public void removeCustomer(String email)
-			throws ClientNotRegisteredException, NoCustomerOnDatabaseException,
-			InvalidParameterException {
+			throws NotExistException, InvalidFieldException {
 		userController.removeCustomer(email);
 		this.userController.writeXML();
 	}
@@ -144,14 +117,11 @@ public class Facade {
 	 * @param emailOrLogin
 	 *            o email ou login do funcionario
 	 * @throws LoginException
-	 * @throws UserNotFoundException
-	 * @throws EmailException
-	 * @throws NoUserOnDatabaseException
-	 * @throws InvalidParameterException
+	 * @throws NotExistException
+	 * @throws InvalidFieldException
 	 */
-	public void removeUser(String emailOrLogin) throws LoginException,
-			UserNotFoundException, EmailException, NoUserOnDatabaseException,
-			InvalidParameterException {
+	public void removeUser(String emailOrLogin) throws LoginException,NotExistException,
+			InvalidFieldException {
 		userController.removeUser(emailOrLogin);
 		this.userController.writeXML();
 	}
@@ -165,15 +135,12 @@ public class Facade {
 	 *            o email do cliente
 	 * @param phone
 	 *            o telefone do cliente
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws EmptyFieldException 
 	 */
 	public void addCustomer(String name, String email, String phone)
-			throws EmailException, InvalidNameException, PhoneException,
-			CustomerAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 
 		this.userController.addCustomer(name, email, phone);
 		this.userController.writeXML();
@@ -195,20 +162,12 @@ public class Facade {
 	 * @param price
 	 *            o preco de aluguel do veiculo
 	 * @throws InvalidFieldException
-	 * @throws NoFieldException
-	 * @throws TypeException
-	 * @throws ModelException
-	 * @throws ColorException
-	 * @throws PlateException
-	 * @throws PriceException
-	 * @throws YearException
-	 * @throws PlateAlreadyExistsException
+	 * @throws EmptyFieldException
+	 * @throws AlreadyExistException
 	 */
 	public void addVehicle(String type, String model, String color,
 			String plate, String year, String price)
-			throws InvalidFieldException, NoFieldException, TypeException,
-			ModelException, ColorException, PlateException, PriceException,
-			YearException, PlateAlreadyExistsException {
+			throws InvalidFieldException, EmptyFieldException, AlreadyExistException {
 		this.vehController.addVehicle(type, model, color, plate, year, price);
 		this.vehController.writeVehicles();
 	}
@@ -224,19 +183,13 @@ public class Facade {
 	 *            a data do aluguel
 	 * @param finalDate
 	 *            a data de entrega
-	 * @throws InvalidParameterException
-	 * @throws InvalidDateException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws EmptyFieldException 
 	 */
 	public void registerRent(String plate, String email, String initialDate,
-			String finalDate) throws InvalidParameterException,
-			InvalidDateException, EmailException, InvalidNameException,
-			PhoneException, CustomerAlreadyExistException,
-			InvalidFieldException {
+			String finalDate) throws AlreadyExistException,
+			InvalidFieldException, EmptyFieldException {
 		this.reController.registerRent(plate, email, initialDate, finalDate);
 		this.reController.writeXML();
 	}
@@ -252,18 +205,11 @@ public class Facade {
 	 *            a data do aluguel
 	 * @param finalDate
 	 *            a data de entrega
-	 * @throws InvalidDateException
-	 * @throws InvalidParameterException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
 	 */
 	public void registerLateRent(String plate, String email,
-			String initialDate, String finalDate) throws InvalidDateException,
-			InvalidParameterException, EmailException, InvalidNameException,
-			PhoneException, CustomerAlreadyExistException,
+			String initialDate, String finalDate) throws AlreadyExistException,
 			InvalidFieldException {
 		this.reController
 				.registerLateRent(plate, email, initialDate, finalDate);
@@ -367,10 +313,10 @@ public class Facade {
 	 * @param clientEmail
 	 * @param plate
 	 *            a placa do veiculo
-	 * @throws InvalidParameterException
+	 * @throws EmptyFieldException 
 	 */
 	public void requestRent(String clientEmail, String plate)
-			throws InvalidParameterException {
+			throws EmptyFieldException {
 		this.reController.requestRent(clientEmail, plate);
 		this.reController.writeXML();
 	}
@@ -450,18 +396,12 @@ public class Facade {
 	 * @param plates
 	 *            as placas dos carros que o cliente deseja alugar
 	 * @throws InvalidFieldException
-	 * @throws CustomerAlreadyExistException
-	 * @throws PhoneException
-	 * @throws InvalidNameException
-	 * @throws EmailException
-	 * @throws InvalidDateException
-	 * @throws InvalidParameterException
-	 */
+	 * @throws AlreadyExistException
+	 * @throws EmptyFieldException 
+	  */
 	public void addManyRents(Alugadores customer, String[] plates,
 			String[] initialDates, String[] devolutionDates)
-			throws InvalidParameterException, InvalidDateException,
-			EmailException, InvalidNameException, PhoneException,
-			CustomerAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 		this.reController.addManyRents(customer, plates, initialDates,
 				devolutionDates);
 	}

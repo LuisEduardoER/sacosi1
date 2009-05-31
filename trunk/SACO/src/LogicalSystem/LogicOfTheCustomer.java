@@ -1,14 +1,10 @@
 package LogicalSystem;
 
 import Commands.Facade;
-import Exceptions.ClientNotRegisteredException;
-import Exceptions.CustomerAlreadyExistException;
-import Exceptions.EmailException;
+import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
-import Exceptions.InvalidNameException;
-import Exceptions.InvalidParameterException;
-import Exceptions.NoCustomerOnDatabaseException;
-import Exceptions.PhoneException;
+import Exceptions.NotExistException;
+import Exceptions.EmptyFieldException;
 
 /**
  * Logica do cliente
@@ -37,15 +33,11 @@ public class LogicOfTheCustomer {
 	 * @param name
 	 * @param email
 	 * @param phone
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
 	 */
 	public void addCustomer(String name, String email, String phone)
-			throws EmailException, InvalidNameException, PhoneException,
-			CustomerAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 		facade.addCustomer(name, email, phone);
 	}
 
@@ -53,13 +45,11 @@ public class LogicOfTheCustomer {
 	 * Remove cliente
 	 * 
 	 * @param email
-	 * @throws ClientNotRegisteredException
-	 * @throws NoCustomerOnDatabaseException
-	 * @throws InvalidParameterException
+	 * @throws NotExistException
+	 * @throws InvalidFieldException
 	 */
 	public void removeCustomer(String email)
-			throws ClientNotRegisteredException, NoCustomerOnDatabaseException,
-			InvalidParameterException {
+			throws NotExistException, InvalidFieldException {
 		facade.removeCustomer(email);
 	}
 

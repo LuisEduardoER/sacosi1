@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import Exceptions.ClientNotRegisteredException;
-import Exceptions.CustomerAlreadyExistException;
-import Exceptions.EmailException;
+import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
-import Exceptions.InvalidNameException;
-import Exceptions.InvalidParameterException;
-import Exceptions.NoCustomerOnDatabaseException;
-import Exceptions.PhoneException;
+import Exceptions.NotExistException;
 import Users.Customer;
 
 /**
@@ -67,19 +62,14 @@ public class CustomerCollection {
 	/**
 	 * Adiciona um cliente ao sistema.
 	 * 
-	 * @throws PhoneException
-	 *             excecao lancada ao tentar adicionar um usuario sem o numero
-	 *             do seu telefone
-	 * @throws InvalidNameException
-	 *             excecao lancada ao tentar adicionar um usuario sem o seu nome
-	 * @throws EmailException
-	 *             excecao lancada ao tentar adicionar um usuario sem o email
+	 * @throws AlreadyExistException
+	 *             excecao lancada ao tentar adicionar um usuario que ja existe
 	 * @throws InvalidFieldException
 	 */
 	public void add(String name, String email, String phone)
-			throws CustomerAlreadyExistException {
+			throws AlreadyExistException {
 		if (customerAlreadyExist(email))
-			throw new CustomerAlreadyExistException(
+			throw new AlreadyExistException(
 					"error: customer already exists!");
 		customerList.add(new Customer(name, email, phone));
 	}
@@ -116,20 +106,18 @@ public class CustomerCollection {
 	 * 
 	 * @param email
 	 *            o email do cliente a ser removido.
-	 * @throws ClientNotRegisteredException
+	 * @throws NotExistException
 	 *             cliente nao registrado no sistema.
-	 * @throws NoCustomerOnDatabaseException
-	 * @throws InvalidParameterException
+	 * @throws InvalidFieldException
 	 */
-	public void remove(String email) throws ClientNotRegisteredException,
-			NoCustomerOnDatabaseException, InvalidParameterException {
+	public void remove(String email) throws NotExistException, InvalidFieldException {
 		if (customerList.size() == 0)
-			throw new NoCustomerOnDatabaseException(
+			throw new NotExistException(
 					"error: there is no customers on database");
 		if (email == null || email.equals(""))
-			throw new InvalidParameterException("error: invalid parameter!");
+			throw new InvalidFieldException("error: invalid parameter!");
 		if (!customerList.remove(customerNotRegistered(email)))
-			throw new ClientNotRegisteredException("error: no such customer!");
+			throw new NotExistException("error: no such customer!");
 	}
 
 	/**

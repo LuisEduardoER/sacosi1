@@ -6,11 +6,9 @@ import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
-import Exceptions.EmailException;
-import Exceptions.InvalidParameterException;
-import Exceptions.NoUserOnDatabaseException;
-import Exceptions.UserAlreadyExistException;
-import Exceptions.UserNotFoundException;
+import Exceptions.InvalidFieldException;
+import Exceptions.NotExistException;
+import Exceptions.AlreadyExistException;
 import Users.User;
 
 /**
@@ -55,12 +53,12 @@ public class FunctionariesCollection {
 	 *            o email do usuario;
 	 * @param phone
 	 *            o telefone do usuario;
-	 * @throws UserAlreadyExistException
+	 * @throws AlreadyExistException
 	 */
 	public void add(String login, String name, String email, String phone)
-			throws UserAlreadyExistException {
+			throws AlreadyExistException {
 		if (findUserByLogin(login) != null || findUserByEmail(email) != null)
-			throw new UserAlreadyExistException("error: user already exists!");
+			throw new AlreadyExistException("error: user already exists!");
 		usersList.add(new User(login, name, email, phone));
 
 	}
@@ -110,24 +108,21 @@ public class FunctionariesCollection {
 	 * 
 	 * @param email
 	 *            o email do funcionario.
-	 * @throws UserNotFoundException
+	 * @throws NotExistException
 	 *             funcionario nao encontrado.
 	 * @throws LoginException
-	 * @throws EmailException
-	 * @throws NoUserOnDatabaseException
-	 * @throws InvalidParameterException
+	 * @throws InvalidFieldException
 	 */
-	public void remove(String loginOrEmail) throws UserNotFoundException,
-			LoginException, EmailException, NoUserOnDatabaseException,
-			InvalidParameterException {
+	public void remove(String loginOrEmail) throws LoginException, 
+			NotExistException, InvalidFieldException {
 		if (usersList.size() == 0)
-			throw new NoUserOnDatabaseException(
+			throw new NotExistException(
 					"error: there is no users on database");
 		if (loginOrEmail == null || loginOrEmail.equals(""))
-			throw new InvalidParameterException("error: invalid parameter!");
+			throw new InvalidFieldException("error: invalid parameter!");
 		if (!usersList.remove(findUserByLogin(loginOrEmail))
 				&& !usersList.remove(findUserByEmail(loginOrEmail)))
-			throw new UserNotFoundException("error: no such user!");
+			throw new NotExistException("error: no such user!");
 	}
 
 	/**

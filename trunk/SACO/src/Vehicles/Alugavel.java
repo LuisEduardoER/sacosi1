@@ -1,11 +1,6 @@
 package Vehicles;
 
-import Exceptions.ColorException;
-import Exceptions.ModelException;
-import Exceptions.PlateException;
-import Exceptions.PriceException;
-import Exceptions.TypeException;
-import Exceptions.YearException;
+import Exceptions.InvalidFieldException;
 
 /**
  * Esta interface representa um veiculo no sistema
@@ -25,7 +20,7 @@ public interface Alugavel {
 	 * @param type
 	 * @throws TypeException
 	 */
-	public void setType(String type) throws TypeException;
+	public void setType(String type) throws InvalidFieldException;
 
 	/**
 	 * get Type
@@ -40,7 +35,7 @@ public interface Alugavel {
 	 * @param year
 	 * @throws YearException
 	 */
-	public void setYear(int year) throws YearException;
+	public void setYear(int year) throws InvalidFieldException;
 
 	/**
 	 * get year
@@ -55,7 +50,7 @@ public interface Alugavel {
 	 * @param model
 	 * @throws ModelException
 	 */
-	public void setModel(String model) throws ModelException;
+	public void setModel(String model) throws InvalidFieldException;
 
 	/**
 	 * get model
@@ -70,7 +65,7 @@ public interface Alugavel {
 	 * @param color
 	 * @throws ColorException
 	 */
-	public void setColor(String color) throws ColorException;
+	public void setColor(String color) throws InvalidFieldException;
 
 	/**
 	 * get color
@@ -85,7 +80,7 @@ public interface Alugavel {
 	 * @param price
 	 * @throws PriceException
 	 */
-	public void setPrice(Double price) throws PriceException;
+	public void setPrice(Double price) throws InvalidFieldException;
 
 	/**
 	 * get price
@@ -100,7 +95,7 @@ public interface Alugavel {
 	 * @param plate
 	 * @throws PlateException
 	 */
-	public void setPlate(String plate) throws PlateException;
+	public void setPlate(String plate) throws InvalidFieldException;
 
 	/**
 	 * get plate

@@ -3,28 +3,10 @@ package LogicalSystem;
 import javax.security.auth.login.LoginException;
 
 import Commands.Facade;
-import Exceptions.ClientNotRegisteredException;
-import Exceptions.ColorException;
-import Exceptions.CustomerAlreadyExistException;
-import Exceptions.EmailException;
+import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
-import Exceptions.InvalidLoginException;
-import Exceptions.InvalidNameException;
-import Exceptions.InvalidParameterException;
-import Exceptions.ModelException;
-import Exceptions.NoCustomerOnDatabaseException;
-import Exceptions.NoFieldException;
-import Exceptions.NoSuchVehicleException;
-import Exceptions.NoUserOnDatabaseException;
-import Exceptions.NoVehicleOnDatabaseException;
-import Exceptions.PhoneException;
-import Exceptions.PlateAlreadyExistsException;
-import Exceptions.PlateException;
-import Exceptions.PriceException;
-import Exceptions.TypeException;
-import Exceptions.UserAlreadyExistException;
-import Exceptions.UserNotFoundException;
-import Exceptions.YearException;
+import Exceptions.NotExistException;
+import Exceptions.EmptyFieldException;
 
 /**
  * Logica do administrador
@@ -56,16 +38,12 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * @param name
 	 * @param email
 	 * @param phone
-	 * @throws InvalidLoginException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
 	 * @throws InvalidFieldException
-	 * @throws UserAlreadyExistException
+	 * @throws AlreadyExistException
+	 * @throws EmptyFieldException 
 	 */
 	public void addUser(String login, String name, String email, String phone)
-			throws InvalidLoginException, EmailException, InvalidNameException,
-			PhoneException, InvalidFieldException, UserAlreadyExistException {
+			throws InvalidFieldException, AlreadyExistException, EmptyFieldException {
 		facade.addUser(login, name, email, phone);
 	}
 
@@ -75,15 +53,12 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * @param name
 	 * @param email
 	 * @param phone
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws EmptyFieldException 
 	 */
 	public void addCustomer(String name, String email, String phone)
-			throws EmailException, InvalidNameException, PhoneException,
-			CustomerAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 		facade.addCustomer(name, email, phone);
 	}
 
@@ -91,13 +66,11 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * Remove cliente
 	 * 
 	 * @param email
-	 * @throws ClientNotRegisteredException
-	 * @throws NoCustomerOnDatabaseException
-	 * @throws InvalidParameterException
+	 * @throws NotExistException
+	 * @throws InvalidFieldException
 	 */
 	public void removeCustomer(String email)
-			throws ClientNotRegisteredException, NoCustomerOnDatabaseException,
-			InvalidParameterException {
+			throws NotExistException, InvalidFieldException {
 		facade.removeCustomer(email);
 	}
 
@@ -106,14 +79,11 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * 
 	 * @param emailOrLogin
 	 * @throws LoginException
-	 * @throws UserNotFoundException
-	 * @throws EmailException
-	 * @throws NoUserOnDatabaseException
-	 * @throws InvalidParameterException
+	 * @throws NotExistException
+	 * @throws InvalidFieldException
 	 */
 	public void removeUser(String emailOrLogin) throws LoginException,
-			UserNotFoundException, EmailException, NoUserOnDatabaseException,
-			InvalidParameterException {
+			NotExistException, InvalidFieldException {
 		facade.removeUser(emailOrLogin);
 	}
 
@@ -127,20 +97,12 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * @param plate
 	 * @param price
 	 * @throws InvalidFieldException
-	 * @throws NoFieldException
-	 * @throws TypeException
-	 * @throws ModelException
-	 * @throws ColorException
-	 * @throws PlateException
-	 * @throws PriceException
-	 * @throws YearException
-	 * @throws PlateAlreadyExistsException
+	 * @throws EmptyFieldException
+	 * @throws AlreadyExistsException
 	 */
 	public void addVehicle(String type, String model, String color,
 			String year, String plate, String price)
-			throws InvalidFieldException, NoFieldException, TypeException,
-			ModelException, ColorException, PlateException, PriceException,
-			YearException, PlateAlreadyExistsException {
+			throws InvalidFieldException, EmptyFieldException, AlreadyExistException {
 		facade.addVehicle(type, model, color, plate, year, price);
 	}
 
@@ -148,11 +110,9 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * remove veiculo
 	 * 
 	 * @param plate
-	 * @throws NoSuchVehicleException
-	 * @throws NoVehicleOnDatabaseException
+	 * @throws NotExistException
 	 */
-	public void removeVehicle(String plate) throws NoSuchVehicleException,
-			NoVehicleOnDatabaseException {
+	public void removeVehicle(String plate) throws NotExistException{
 		facade.removeVehicle(plate);
 	}
 }

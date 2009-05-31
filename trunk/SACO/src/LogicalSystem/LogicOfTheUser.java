@@ -3,13 +3,9 @@ package LogicalSystem;
 import java.util.Calendar;
 
 import Commands.Facade;
-import Exceptions.CustomerAlreadyExistException;
-import Exceptions.EmailException;
-import Exceptions.InvalidDateException;
+import Exceptions.AlreadyExistException;
+import Exceptions.EmptyFieldException;
 import Exceptions.InvalidFieldException;
-import Exceptions.InvalidNameException;
-import Exceptions.InvalidParameterException;
-import Exceptions.PhoneException;
 import Users.Alugadores;
 
 /**
@@ -49,19 +45,13 @@ public class LogicOfTheUser {
 	 * @param plate
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws InvalidParameterException
-	 * @throws InvalidDateException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws EmptyFieldException 
 	 */
 	public void addRent(String email, String plate, String initialDate,
-			String finalDate) throws InvalidParameterException,
-			InvalidDateException, EmailException, InvalidNameException,
-			PhoneException, CustomerAlreadyExistException,
-			InvalidFieldException {
+			String finalDate) throws AlreadyExistException,
+			InvalidFieldException, EmptyFieldException {
 		facade.registerRent(plate, email, initialDate, finalDate);
 	}
 
@@ -72,19 +62,13 @@ public class LogicOfTheUser {
 	 * @param plates
 	 * @param initialDates
 	 * @param devolutionDates
-	 * @throws InvalidParameterException
-	 * @throws InvalidDateException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws EmptyFieldException 
 	 */
 	public void addManyRents(Alugadores customer, String[] plates,
 			String[] initialDates, String[] devolutionDates)
-			throws InvalidParameterException, InvalidDateException,
-			EmailException, InvalidNameException, PhoneException,
-			CustomerAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 		facade.addManyRents(customer, plates, initialDates, devolutionDates);
 	}
 
@@ -113,18 +97,11 @@ public class LogicOfTheUser {
 	 * @param plate
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws InvalidDateException
-	 * @throws InvalidParameterException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
 	 */
 	public void registerLateRent(String email, String plate,
-			String initialDate, String finalDate) throws InvalidDateException,
-			InvalidParameterException, EmailException, InvalidNameException,
-			PhoneException, CustomerAlreadyExistException,
+			String initialDate, String finalDate) throws AlreadyExistException,
 			InvalidFieldException {
 		facade.registerLateRent(plate, email, initialDate, finalDate);
 	}

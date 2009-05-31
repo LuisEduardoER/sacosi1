@@ -7,17 +7,10 @@ import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.List;
 
-import Exceptions.ColorException;
+import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
-import Exceptions.ModelException;
-import Exceptions.NoFieldException;
-import Exceptions.NoSuchVehicleException;
-import Exceptions.NoVehicleOnDatabaseException;
-import Exceptions.PlateAlreadyExistsException;
-import Exceptions.PlateException;
-import Exceptions.PriceException;
-import Exceptions.TypeException;
-import Exceptions.YearException;
+import Exceptions.EmptyFieldException;
+import Exceptions.NotExistException;
 import System.FieldSystemVerification;
 import System.VehiclesCollection;
 import Vehicles.Vehicle;
@@ -79,43 +72,22 @@ public class VehiclesController {
 	 * @param year
 	 * @param price
 	 * @throws InvalidFieldException
-	 * @throws PlateAlreadyExistsException
-	 * @throws YearException
-	 * @throws PriceException
-	 * @throws PlateException
-	 * @throws ColorException
-	 * @throws ModelException
-	 * @throws TypeException
-	 * @throws NoFieldException
-	 * @throws NoFieldException
-	 * @throws TypeException
-	 * @throws ModelException
-	 * @throws ColorException
-	 * @throws PlateException
-	 * @throws PriceException
-	 * @throws YearException
-	 * @throws PlateAlreadyExistsException
+	 * @throws EmptyFieldException
+	 * @throws AlreadyExistException
 	 */
 	public void addVehicle(String type, String model, String color,
 			String plate, String year, String price)
-			throws InvalidFieldException, NoFieldException, TypeException,
-			ModelException, ColorException, PlateException, PriceException,
-			YearException, PlateAlreadyExistsException {
+			throws InvalidFieldException, EmptyFieldException, AlreadyExistException {
 
 		if (verification.allShitVehiclesFieldsInvalids(type, model, color,
 				plate, year, price))
 			throw new InvalidFieldException("error: all fields are mandatory!");
-		if (!verification.validateType(type))
-			throw new InvalidFieldException("error: invalid field!");
-		if (!verification.validateModel(model))
-			throw new InvalidFieldException("error: invalid field!");
-		if (!verification.validateColor(color))
-			throw new InvalidFieldException("error: invalid field!");
-		if (!verification.validatePlate(plate))
-			throw new InvalidFieldException("error: invalid field!");
-		if (!verification.validateYear(year))
-			throw new InvalidFieldException("error: invalid field!");
-		if (!verification.validatePrice(price))
+		if (!verification.validateType(type)
+				|| !verification.validateModel(model)
+				|| !verification.validateColor(color)
+				|| !verification.validatePlate(plate)
+				|| !verification.validateYear(year)
+				|| !verification.validatePrice(price))
 			throw new InvalidFieldException("error: invalid field!");
 		registeredVehicles.add(type, model, color, plate, year, price);
 	}
@@ -133,11 +105,9 @@ public class VehiclesController {
 	 * Remove um veiculo, atraves da placa, do sistema de controle
 	 * 
 	 * @param plate
-	 * @throws NoSuchVehicleException
-	 * @throws NoVehicleOnDatabaseException
+	 * @throws NotExistException
 	 */
-	public void removeVehicle(String plate) throws NoSuchVehicleException,
-			NoVehicleOnDatabaseException {
+	public void removeVehicle(String plate) throws NotExistException {
 		registeredVehicles.remove(plate);
 	}
 
