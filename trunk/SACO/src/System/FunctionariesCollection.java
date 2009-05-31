@@ -1,17 +1,17 @@
 package System;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.security.auth.login.LoginException;
-
-import Users.User;
 
 import Exceptions.EmailException;
 import Exceptions.InvalidParameterException;
 import Exceptions.NoUserOnDatabaseException;
 import Exceptions.UserAlreadyExistException;
 import Exceptions.UserNotFoundException;
+import Users.User;
 
 /**
  * Classe que armazena todos os funcionarios cadastrados no sistema.
@@ -142,7 +142,15 @@ public class FunctionariesCollection {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * get iterator da lista de usuarios
+	 * @return
+	 */
+	public Iterator <User>iterator() {
+		return this.usersList.iterator();
+	}
+	
 	/**
 	 * Zera Lista
 	 */

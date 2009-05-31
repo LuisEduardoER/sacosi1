@@ -4,7 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.List;
+import java.util.Iterator;
 
 import javax.security.auth.login.LoginException;
 
@@ -234,8 +234,8 @@ public class UserController {
 	 * @return colecao de todos os clientes.
 	 * 
 	 */
-	public List<Customer> getCustomerList() {
-		return this.registeredCustomers.getCustomerList();
+	public Iterator<Customer> iterator() {
+		return this.registeredCustomers.iterator();
 	}
 
 	/**

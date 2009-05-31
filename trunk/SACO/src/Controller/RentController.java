@@ -174,23 +174,27 @@ public class RentController {
 		if (!this.vehicleIsRent(plate)) {
 			if (!this.userExists(email))
 				this.userController.addCustomer("name", email, "8388888888");
-			Collection<Vehicle> vehicleList = this.vehicleCollection
-					.getRegisteredVehicles();
+			Iterator<Vehicle> vehicleList = this.vehicleCollection
+					.iterator();
 			Vehicle rentVehicle = null;
-			for (Vehicle vehicle : vehicleList) {
+			while (vehicleList.hasNext()) {
+				Vehicle vehicle = vehicleList.next();
 				if (vehicle.getPlate().equalsIgnoreCase(plate)) {
 					rentVehicle = vehicle;
 					break;
 				}
 			}
-			List<Customer> customers = userController.getCustomerList();
+			
+			Iterator <Customer>customers = userController.iterator();
 			Customer rentCustomer = null;
-			for (Customer customer : customers) {
+			while(customers.hasNext()) {
+				Customer customer = customers.next();
 				if (customer.getEmail().equals(email)) {
 					rentCustomer = customer;
 					break;
 				}
 			}
+			
 			try {
 				this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,
 						finalDate, rentSituation));
@@ -407,8 +411,7 @@ public class RentController {
 	 */
 	public void seeCars() {
 		List<Vehicle> list = new ArrayList<Vehicle>();
-		Iterator<Vehicle> it = vehicleCollection.getRegisteredVehicles()
-				.iterator();
+		Iterator<Vehicle> it = vehicleCollection.iterator();
 		while (it.hasNext()) {
 			Vehicle vehicle = it.next();
 			if (!vehicleIsRent(vehicle.getPlate()))
@@ -525,8 +528,7 @@ public class RentController {
 	 */
 	public String getAllVehiclesSituation() {
 		String output = "";
-		Iterator<Vehicle> it = vehicleCollection.getRegisteredVehicles()
-				.iterator();
+		Iterator<Vehicle> it = vehicleCollection.iterator();
 		while (it.hasNext()) {
 			Vehicle vehicle = it.next();
 			output += vehicle.toString() + "\n"

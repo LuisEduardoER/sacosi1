@@ -2,6 +2,7 @@ package System;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -45,13 +46,11 @@ public class RequestRentCollection {
 	}
 
 	/**
-	 * Retorna a lista de requisicoes do sistema.
-	 * 
-	 * @return
-	 * 
+	 * get iterador da requestList
+	 * @return iterador
 	 */
-	public List<RequestObject> getRequestRentCollection() {
-		return this.requestList;
+	public Iterator<RequestObject> iterator() {
+		return this.requestList.iterator();
 	}
 
 	/**
