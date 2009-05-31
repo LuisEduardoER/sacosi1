@@ -8,18 +8,10 @@ import java.util.Iterator;
 
 import javax.security.auth.login.LoginException;
 
-import Exceptions.ClientNotRegisteredException;
-import Exceptions.CustomerAlreadyExistException;
-import Exceptions.EmailException;
+import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
-import Exceptions.InvalidLoginException;
-import Exceptions.InvalidNameException;
-import Exceptions.InvalidParameterException;
-import Exceptions.NoCustomerOnDatabaseException;
-import Exceptions.NoUserOnDatabaseException;
-import Exceptions.PhoneException;
-import Exceptions.UserAlreadyExistException;
-import Exceptions.UserNotFoundException;
+import Exceptions.NotExistException;
+import Exceptions.EmptyFieldException;
 import System.CustomerCollection;
 import System.FieldSystemVerification;
 import System.FunctionariesCollection;
@@ -77,33 +69,26 @@ public class UserController {
 	 *            o email do cliente;
 	 * @param phone
 	 *            o telefone do cliente;
-	 * @throws PhoneException
-	 *             caso o telefone do cliente esteja vazio;
-	 * @throws InvalidNameException
-	 *             caso o nome do cliente esteja vazio;
-	 * @throws EmailException
-	 *             caso o email do cliente esteja vazio.
-	 * @throws CustomerAlreadyExistException
 	 * @throws InvalidFieldException
+	 *             caso o campo seja invalido ou vazio;
+	 * @throws AlreadyExistException
+	 * @throws EmptyFieldException
 	 */
 	public void addCustomer(String name, String email, String phone)
-			throws EmailException, InvalidNameException, PhoneException,
-			CustomerAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 		if (verification.allCustomerFieldsInvalids(name, email, phone))
-			throw new InvalidFieldException("error: all fields are mandatory!");
+			throw new EmptyFieldException("error: all fields are mandatory!");
 		if (!verification.nameIsAMandatoryField(name))
-			throw new InvalidFieldException("error: name is a mandatory field!");
-		if (!verification.validateName(name))
-			throw new InvalidNameException("error: invalid field!");
+			throw new EmptyFieldException("error: name is a mandatory field!");
 		if (!verification.emailIsAMandatoryField(email))
-			throw new EmailException("error: e-mail is a mandatory field!");
-		if (!verification.validateEmail(email))
-			throw new EmailException("error: invalid field!");
+			throw new EmptyFieldException("error: e-mail is a mandatory field!");
 		if (!verification.phoneNumberIsAMandatoryField(phone))
-			throw new PhoneException(
+			throw new EmptyFieldException(
 					"error: phone number is a mandatory field!");
-		if (!verification.validatePhoneNumber(phone))
-			throw new PhoneException("error: invalid field!");
+		if (!verification.validateName(name)
+				|| !verification.validateEmail(email)
+				|| !verification.validatePhoneNumber(phone))
+			throw new InvalidFieldException("error: invalid field!");
 		registeredCustomers.add(name, email, phone);
 	}
 
@@ -122,14 +107,12 @@ public class UserController {
 	 * 
 	 * @param email
 	 *            o email do cliente a ser removido do sistema.
-	 * @throws ClientNotRegisteredException
+	 * @throws NotExistException
 	 *             cliente nao registrado no sistema.
-	 * @throws NoCustomerOnDatabaseException
-	 * @throws InvalidParameterException
+	 * @throws InvalidFieldException
 	 */
 	public void removeCustomer(String email)
-			throws ClientNotRegisteredException, NoCustomerOnDatabaseException,
-			InvalidParameterException {
+			throws InvalidFieldException, NotExistException {
 		registeredCustomers.remove(email);
 	}
 
@@ -144,39 +127,29 @@ public class UserController {
 	 *            o email do usuario;
 	 * @param phone
 	 *            o telefone do usuario;
-	 * @throws PhoneException
-	 *             telefone invalido;
-	 * @throws InvalidNameException
-	 *             nome invalido;
-	 * @throws EmailException
-	 *             email invalido;
-	 * @throws LoginException
-	 *             login invalido.
 	 * @throws InvalidFieldException
-	 * @throws UserAlreadyExistException
+	 *             campo invalido ou vazio;
+	 * @throws AlreadyExistException
+	 * @throws EmptyFieldException
 	 */
 	public void addUser(String login, String name, String email, String phone)
-			throws InvalidLoginException, EmailException, InvalidNameException,
-			PhoneException, InvalidFieldException, UserAlreadyExistException {
+			throws InvalidFieldException, AlreadyExistException, EmptyFieldException {
 		if (verification.allUserFieldsInvalids(login, name, email, phone))
-			throw new InvalidFieldException("error: all fields are mandatory!");
+			throw new EmptyFieldException("error: all fields are mandatory!");
 		if (!verification.loginIsAMandatoryField(login))
-			throw new InvalidLoginException(
+			throw new EmptyFieldException(
 					"error: login is a mandatory field!");
-		if (!verification.validateLogin(login))
-			throw new InvalidFieldException("error: invalid field!");
 		if (!verification.nameIsAMandatoryField(name))
-			throw new InvalidFieldException("error: name is a mandatory field!");
-		if (!verification.validateName(name))
-			throw new InvalidNameException("error: invalid field!");
+			throw new EmptyFieldException("error: name is a mandatory field!");
 		if (!verification.emailIsAMandatoryField(email))
-			throw new EmailException("error: e-mail is a mandatory field!");
-		if (!verification.validateEmail(email))
-			throw new InvalidFieldException("error: invalid field!");
+			throw new EmptyFieldException("error: e-mail is a mandatory field!");
 		if (!verification.phoneNumberIsAMandatoryField(phone))
-			throw new PhoneException(
+			throw new EmptyFieldException(
 					"error: phone number is a mandatory field!");
-		if (!verification.validatePhoneNumber(phone))
+		if (!verification.validateLogin(login)
+				|| !verification.validateName(name)
+				|| !verification.validateEmail(email)
+				|| !verification.validatePhoneNumber(phone))
 			throw new InvalidFieldException("error: invalid field!");
 		registeredFunctionaries.add(login, name, email, phone);
 	}
@@ -196,16 +169,14 @@ public class UserController {
 	 * 
 	 * @param emailOrLogin
 	 *            o email ou login do funcionario.
-	 * @throws UserNotFoundException
+	 * @throws NotExistException
 	 *             funcionario nao encontrado.
-	 * @throws EmailException
 	 * @throws LoginException
-	 * @throws InvalidParameterException
-	 * @throws NoUserOnDatabaseException
+	 * @throws InvalidFieldException
+	 * @throws NotExistException 
 	 */
-	public void removeUser(String emailOrLogin) throws UserNotFoundException,
-			LoginException, EmailException, NoUserOnDatabaseException,
-			InvalidParameterException {
+	public void removeUser(String emailOrLogin) throws LoginException, 
+			InvalidFieldException, NotExistException {
 		registeredFunctionaries.remove(emailOrLogin);
 	}
 

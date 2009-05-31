@@ -1,8 +1,6 @@
 package Users;
 
-import Exceptions.EmailException;
-import Exceptions.InvalidNameException;
-import Exceptions.PhoneException;
+import Exceptions.InvalidFieldException;
 
 /**
  * 
@@ -28,7 +26,7 @@ public interface Alugadores {
 	 * @param nome
 	 * @throws InvalidNameException
 	 */
-	public void setName(String nome) throws InvalidNameException;
+	public void setName(String nome) throws InvalidFieldException;
 
 	/**
 	 * get email
@@ -43,7 +41,7 @@ public interface Alugadores {
 	 * @param email
 	 * @throws EmailException
 	 */
-	public void setEmail(String email) throws EmailException;
+	public void setEmail(String email) throws InvalidFieldException;
 
 	/**
 	 * get phone
@@ -58,7 +56,7 @@ public interface Alugadores {
 	 * @param phone
 	 * @throws PhoneException
 	 */
-	public void setPhone(String phone) throws PhoneException;
+	public void setPhone(String phone) throws InvalidFieldException;
 
 	/**
 	 * toString

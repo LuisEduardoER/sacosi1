@@ -7,17 +7,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import Exceptions.ColorException;
 import Exceptions.InvalidFieldException;
-import Exceptions.ModelException;
-import Exceptions.NoFieldException;
-import Exceptions.NoSuchVehicleException;
-import Exceptions.NoVehicleOnDatabaseException;
-import Exceptions.PlateAlreadyExistsException;
-import Exceptions.PlateException;
-import Exceptions.PriceException;
-import Exceptions.TypeException;
-import Exceptions.YearException;
+import Exceptions.EmptyFieldException;
+import Exceptions.NotExistException;
+import Exceptions.AlreadyExistException;
 import Vehicles.Car;
 import Vehicles.Motorcycle;
 import Vehicles.Vehicle;
@@ -74,24 +67,16 @@ public class VehiclesCollection {
 	 * @param price
 	 * @throws InvalidFieldException
 	 * @throws NoFieldException
-	 * @throws TypeException
-	 * @throws ModelException
-	 * @throws ColorException
-	 * @throws PlateException
-	 * @throws PriceException
-	 * @throws YearException
-	 * @throws PlateAlreadyExistsException
+	 * @throws AlreadyExistException
 	 */
 	public void add(String type, String model, String color, String plate,
 			String year, String price) throws InvalidFieldException,
-			NoFieldException, TypeException, ModelException, ColorException,
-			PlateException, PriceException, YearException,
-			PlateAlreadyExistsException {
+			EmptyFieldException, AlreadyExistException {
 
 		if (type.equals("car")) {
 			Car carro = new Car(type, model, color, plate, year, price);
 			if (plateAlreadyExists(plate)) {
-				throw new PlateAlreadyExistsException(
+				throw new AlreadyExistException(
 						"error: this vehicle already exists!");
 			}
 			vehiclesList.add(carro);
@@ -99,7 +84,7 @@ public class VehiclesCollection {
 			Motorcycle moto = new Motorcycle(type, model, color, plate, year,
 					price);
 			if (plateAlreadyExists(plate)) {
-				throw new PlateAlreadyExistsException(
+				throw new AlreadyExistException(
 						"error: this vehicle already exists!");
 			}
 			vehiclesList.add(moto);
@@ -128,20 +113,18 @@ public class VehiclesCollection {
 	 * Remove um veiculo do sistema
 	 * 
 	 * @param plate
-	 * @throws NoSuchVehicleException
-	 * @throws NoVehicleOnDatabaseException
+	 * @throws NotExistException
 	 */
-	public void remove(String plate) throws NoSuchVehicleException,
-			NoVehicleOnDatabaseException {
+	public void remove(String plate) throws NotExistException {
 		if (size() == 0) {
-			throw new NoVehicleOnDatabaseException(
+			throw new NotExistException(
 					"error: there is no vehicles on database");
 		}
 		if (plate == null || plate.equals("")) {
 			throw new InvalidParameterException("error: invalid parameter!");
 		}
 		if (findVehicle(plate) == null) {
-			throw new NoSuchVehicleException("error: no such vehicle!");
+			throw new NotExistException("error: no such vehicle!");
 		}
 		vehiclesList.remove(findVehicle(plate));
 	}

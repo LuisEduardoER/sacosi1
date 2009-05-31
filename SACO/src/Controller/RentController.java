@@ -10,13 +10,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import Exceptions.CustomerAlreadyExistException;
-import Exceptions.EmailException;
-import Exceptions.InvalidDateException;
+import Exceptions.AlreadyExistException;
+import Exceptions.EmptyFieldException;
 import Exceptions.InvalidFieldException;
-import Exceptions.InvalidNameException;
-import Exceptions.InvalidParameterException;
-import Exceptions.PhoneException;
 import System.CustomerCollection;
 import System.FieldSystemVerification;
 import System.FunctionariesCollection;
@@ -88,22 +84,15 @@ public class RentController {
 	 * @param email
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws InvalidDateException
-	 * @throws InvalidParameterException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
 	 */
 	public void registerLateRent(String plate, String email,
-			String initialDate, String finalDate) throws InvalidDateException,
-			InvalidParameterException, EmailException, InvalidNameException,
-			PhoneException, CustomerAlreadyExistException,
+			String initialDate, String finalDate) throws AlreadyExistException,
 			InvalidFieldException {
 
 		if (!this.verification.validateRegisterLateRent(finalDate)) {
-			throw new InvalidDateException(
+			throw new InvalidFieldException(
 					"error: end date is greater than today date!");
 		}
 		for (Rent rent : rents) {
@@ -121,19 +110,13 @@ public class RentController {
 	 * @param email
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws InvalidParameterException
-	 * @throws InvalidDateException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws EmptyFieldException 
 	 */
 	public void registerRent(String plate, String email, String initialDate,
-			String finalDate) throws InvalidParameterException,
-			InvalidDateException, EmailException, InvalidNameException,
-			PhoneException, CustomerAlreadyExistException,
-			InvalidFieldException {
+			String finalDate) throws AlreadyExistException,
+			InvalidFieldException, EmptyFieldException {
 		this.register(plate, email, initialDate, finalDate, "active");
 	}
 
@@ -145,31 +128,25 @@ public class RentController {
 	 * @param initialDate
 	 * @param finalDate
 	 * @param rentSituation
-	 * @throws InvalidParameterException
-	 * @throws InvalidDateException
-	 * @throws EmailException
-	 * @throws InvalidNameException
-	 * @throws PhoneException
-	 * @throws CustomerAlreadyExistException
+	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws EmptyFieldException 
 	 */
 	public void register(String plate, String email, String initialDate,
 			String finalDate, String rentSituation)
-			throws InvalidParameterException, InvalidDateException,
-			EmailException, InvalidNameException, PhoneException,
-			CustomerAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 
 		if (!this.verification.plateIsAMandatoryField(plate)
 				|| !this.verification.emailIsAMandatoryField(email)
 				|| !this.verification.dateIsMandatoryField(initialDate)
 				|| !this.verification.dateIsMandatoryField(finalDate))
-			throw new InvalidParameterException(
+			throw new InvalidFieldException(
 					"error: all parameters are mandatory!");
 
 		if (!this.verification.validateEmail(email)
 				|| !this.verification.isValidPlate(plate)
 				|| this.vehicleIsRent(plate))
-			throw new InvalidParameterException("error: invalid parameter(s)");
+			throw new InvalidFieldException("error: invalid parameter(s)");
 
 		if (!this.vehicleIsRent(plate)) {
 			if (!this.userExists(email))
@@ -386,13 +363,13 @@ public class RentController {
 	 * 
 	 * @param clientEmail
 	 * @param plate
-	 * @throws InvalidParameterException
+	 * @throws InvalidFieldException
 	 */
 	public void requestRent(String clientEmail, String plate)
-			throws InvalidParameterException {
+			throws EmptyFieldException {
 		if (!verification.emailIsAMandatoryField(clientEmail)
 				|| !verification.plateIsAMandatoryField(plate))
-			throw new InvalidParameterException(
+			throw new EmptyFieldException(
 					"error: all fields are mandatory!");
 		requestList.add(clientEmail, plate, calendar.getTime());
 	}
@@ -546,18 +523,12 @@ public class RentController {
 	 * @param plates
 	 *            as placas dos carros que o cliente deseja alugar
 	 * @throws InvalidFieldException
-	 * @throws CustomerAlreadyExistException
-	 * @throws PhoneException
-	 * @throws InvalidNameException
-	 * @throws EmailException
-	 * @throws InvalidDateException
-	 * @throws InvalidParameterException
+	 * @throws AlreadyExistException
+	 * @throws EmptyFieldException 
 	 */
 	public void addManyRents(Alugadores customer, String[] plates,
 			String[] initialDates, String[] devolutionDates)
-			throws InvalidParameterException, InvalidDateException,
-			EmailException, InvalidNameException, PhoneException,
-			CustomerAlreadyExistException, InvalidFieldException {
+			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
 		for (int i = 0; i < plates.length; i++) {
 			this.registerRent(plates[i], customer.getEmail(), initialDates[i],
 					devolutionDates[i]);

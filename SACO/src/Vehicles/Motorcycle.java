@@ -1,13 +1,7 @@
 package Vehicles;
 
 import Exceptions.InvalidFieldException;
-import Exceptions.NoFieldException;
-import Exceptions.PriceException;
-import Exceptions.ColorException;
-import Exceptions.PlateException;
-import Exceptions.TypeException;
-import Exceptions.YearException;
-import Exceptions.ModelException;
+import Exceptions.EmptyFieldException;
 
 /**
  * Esta classe representa uma moto no sistema
@@ -32,17 +26,10 @@ public class Motorcycle extends Vehicle {
 	 * @param price
 	 * @throws InvalidFieldException
 	 * @throws NoFieldException
-	 * @throws TypeException
-	 * @throws ModelException
-	 * @throws ColorException
-	 * @throws PlateException
-	 * @throws PriceException
-	 * @throws YearException
 	 */
 	public Motorcycle(String type, String model, String color, String plate,
 			String year, String price) throws InvalidFieldException,
-			NoFieldException, TypeException, ModelException, ColorException,
-			PlateException, PriceException, YearException {
+			EmptyFieldException {
 		super(type, model, color, plate, year, price);
 
 	}

@@ -5,13 +5,8 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-import Exceptions.CustomerAlreadyExistException;
-import Exceptions.EmailException;
-import Exceptions.InvalidDateException;
+import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
-import Exceptions.InvalidNameException;
-import Exceptions.InvalidParameterException;
-import Exceptions.PhoneException;
 
 public class RentCollection {
 
@@ -53,9 +48,7 @@ public class RentCollection {
 	}
 
 	public void registerLateRent(String plate, String email,
-			String initialDate, String finalDate) throws InvalidDateException,
-			InvalidParameterException, EmailException, InvalidNameException,
-			PhoneException, CustomerAlreadyExistException,
+			String initialDate, String finalDate) throws AlreadyExistException,
 			InvalidFieldException {
 
 		for (Rent rent : rents) {

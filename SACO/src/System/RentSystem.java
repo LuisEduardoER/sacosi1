@@ -36,13 +36,10 @@ public class RentSystem {
 	 * Adiciona um usuario
 	 * 
 	 * @param user
-	 * @throws InvalidNameException
-	 * @throws EmailException
+	 * @throws InvalidFieldException
 	 * @throws LoginException
-	 * @throws PhoneException
 	 */
-	public void addUser(User user) throws InvalidNameException, EmailException,
-			LoginException, PhoneException {
+	public void addUser(User user) throws InvalidFieldException, LoginException {
 		listOfUsers.add(user);
 	}
 
