@@ -76,7 +76,7 @@ public class RentController {
 		this.customerCollection = this.userController.getCustomerCollection();
 		this.vehicleCollection = VehiclesController.getInstance();
 		this.verification = new FieldSystemVerification();
-		this.requestList = new RequestRentCollection();
+		this.requestList = RequestRentCollection.getInstance();
 		this.readRents();
 		this.readRequestRents();
 	}
