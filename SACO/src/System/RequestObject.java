@@ -51,6 +51,13 @@ public class RequestObject {
 	}
 
 	/**
+	 * Metodo que obtem a data da reserva.
+	 * @return
+	 */
+	public Date getDate(){
+		return this.date;
+	}
+	/**
 	 * toString do aluguel
 	 */
 	public String toString() {
