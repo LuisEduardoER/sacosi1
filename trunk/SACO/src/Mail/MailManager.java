@@ -1,7 +1,6 @@
 package Mail;
 
 import java.security.Security;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -19,7 +18,14 @@ public class MailManager {
 	private static final String emailFromAddress = "rentSystem@gmail.com";
 	private static final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 	private static final String SUBJECT = "[Rent System] Your Reservation has been descarted.";
-
+	private static MailManager mg;
+	
+	public static MailManager getInstanceOf(){
+		if (mg == null){
+			mg = new MailManager();
+		}
+		return mg;
+	}
 	//Soh pra dizer como envia... passa um array de emails e a mensagem, tirem o comentario /* */
 	/*public static void main(String args[]) throws Exception {
 		String []vetor = {"luizinho16@gmail.com", "anata.hoshii@gmail.com", "melmongiovi@gmail.com", "raissa_mds@gmail.com", "s.costa.filipe@gmail.com"};
@@ -38,7 +44,7 @@ public class MailManager {
 	 * @throws MessagingException
 	 * 				caso a mensagem nao possa ser enviada
 	 */
-	public void sendEmail(ArrayList<String> listOfEmailsTo, String message) throws MessagingException{
+	public void sendEmail(String listOfEmailsTo[], String message) throws MessagingException{
 		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 		new MailManager().sendMessage(listOfEmailsTo, SUBJECT, message,
 				emailFromAddress);
@@ -52,7 +58,7 @@ public class MailManager {
 	 * @param from
 	 * @throws MessagingException
 	 */
-	private void sendMessage(ArrayList<String>listOfEmailsTo, String subject,
+	private void sendMessage(String listOfEmailsTo[], String subject,
 			String message, String from) throws MessagingException {
 		boolean debug = true;
 
@@ -81,9 +87,9 @@ public class MailManager {
 		InternetAddress addressFrom = new InternetAddress(from);
 		msg.setFrom(addressFrom);
 
-		InternetAddress[] addressTo = new InternetAddress[listOfEmailsTo.size()];
-		for (int i = 0; i < listOfEmailsTo.size(); i++) {
-			addressTo[i] = new InternetAddress(listOfEmailsTo.get(i));
+		InternetAddress[] addressTo = new InternetAddress[listOfEmailsTo.length];
+		for (int i = 0; i < listOfEmailsTo.length; i++) {
+			addressTo[i] = new InternetAddress(listOfEmailsTo[i]);
 		}
 		msg.setRecipients(Message.RecipientType.TO, addressTo);
 

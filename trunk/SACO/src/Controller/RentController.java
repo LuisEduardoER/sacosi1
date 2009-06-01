@@ -50,7 +50,6 @@ public class RentController {
 	private RequestRentCollection requestList;
 	private static RentController instance;
 	private Calendar calendar;
-	private MailManager mailManager;
 	private static final String REQUEST_RENTS_FILE = "RequestRents.xml";
 	private static final String RENTS_FILE = "Rents.xml";
 	private static final long QUARENTA_E_OITO_HORAS = 172800000;
@@ -561,8 +560,12 @@ public class RentController {
 			}
 		}
 		if (adressForEmail.size() > 0) {
+			String [] sendTo = new String[adressForEmail.size()];
+			for (int i = 0; i < adressForEmail.size(); i++){
+				sendTo[i] = adressForEmail.get(i);
+			}
 			String message = "The vehicle you requested is available for rent.";
-			mailManager.sendEmail(adressForEmail, message);
+			MailManager.getInstanceOf().sendEmail(sendTo, message);
 		}
 	}
 
@@ -575,10 +578,9 @@ public class RentController {
 	 */
 	private void notifyCostumerAboutLateRent(String email)
 			throws MessagingException {
-		ArrayList<String> sendTo = new ArrayList<String>();
-		sendTo.add(email);
+		String [] sendTo = {email};
 		String message = "The rental of your vehicle is late. The fine will be charged uppon their return.";
-		mailManager.sendEmail(sendTo, message);
+		MailManager.getInstanceOf().sendEmail(sendTo, message);
 	}
 	
 	/**
@@ -597,8 +599,12 @@ public class RentController {
 			}
 		}
 		if (sendTo.size() > 0){
+			String [] sendTo2 = new String[sendTo.size()];
+			for (int i = 0; i < sendTo.size(); i++){
+				sendTo2[i] = sendTo.get(i);
+			}
 			String message = "Your request was release, because 48h passed.";
-			mailManager.sendEmail(sendTo, message);
+			MailManager.getInstanceOf().sendEmail(sendTo2, message);
 		}
 	}
 	
