@@ -7,16 +7,21 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import Exceptions.AlreadyExistException;
 import Exceptions.EmptyFieldException;
 import Exceptions.InvalidFieldException;
+import Mail.MailManager;
 import System.CustomerCollection;
 import System.FieldSystemVerification;
 import System.FunctionariesCollection;
 import System.Rent;
+import System.RequestObject;
 import System.RequestRentCollection;
 import Users.Alugadores;
 import Users.Customer;
@@ -45,8 +50,10 @@ public class RentController {
 	private RequestRentCollection requestList;
 	private static RentController instance;
 	private Calendar calendar;
+	private MailManager mailManager;
 	private static final String REQUEST_RENTS_FILE = "RequestRents.xml";
 	private static final String RENTS_FILE = "Rents.xml";
+	private static final long QUARENTA_E_OITO_HORAS = 172800000;
 
 	/**
 	 * 
@@ -86,10 +93,11 @@ public class RentController {
 	 * @param finalDate
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws MessagingException
 	 */
 	public void registerLateRent(String plate, String email,
 			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException {
+			InvalidFieldException, MessagingException {
 
 		if (!this.verification.validateRegisterLateRent(finalDate)) {
 			throw new InvalidFieldException(
@@ -98,6 +106,7 @@ public class RentController {
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
 				rent.setRentSituation("late");
+				notifyCostumerAboutLateRent(email);
 				break;
 			}
 		}
@@ -112,7 +121,7 @@ public class RentController {
 	 * @param finalDate
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException 
+	 * @throws EmptyFieldException
 	 */
 	public void registerRent(String plate, String email, String initialDate,
 			String finalDate) throws AlreadyExistException,
@@ -130,11 +139,12 @@ public class RentController {
 	 * @param rentSituation
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException 
+	 * @throws EmptyFieldException
 	 */
 	public void register(String plate, String email, String initialDate,
 			String finalDate, String rentSituation)
-			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
+			throws AlreadyExistException, InvalidFieldException,
+			EmptyFieldException {
 
 		if (!this.verification.plateIsAMandatoryField(plate)
 				|| !this.verification.emailIsAMandatoryField(email)
@@ -151,8 +161,7 @@ public class RentController {
 		if (!this.vehicleIsRent(plate)) {
 			if (!this.userExists(email))
 				this.userController.addCustomer("name", email, "8388888888");
-			Iterator<Vehicle> vehicleList = this.vehicleCollection
-					.iterator();
+			Iterator<Vehicle> vehicleList = this.vehicleCollection.iterator();
 			Vehicle rentVehicle = null;
 			while (vehicleList.hasNext()) {
 				Vehicle vehicle = vehicleList.next();
@@ -161,17 +170,17 @@ public class RentController {
 					break;
 				}
 			}
-			
-			Iterator <Customer>customers = userController.iterator();
+
+			Iterator<Customer> customers = userController.iterator();
 			Customer rentCustomer = null;
-			while(customers.hasNext()) {
+			while (customers.hasNext()) {
 				Customer customer = customers.next();
 				if (customer.getEmail().equals(email)) {
 					rentCustomer = customer;
 					break;
 				}
 			}
-			
+
 			try {
 				this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,
 						finalDate, rentSituation));
@@ -247,7 +256,6 @@ public class RentController {
 
 	}
 
-	
 	/**
 	 * Verifica se o email existe no sistema.
 	 * 
@@ -369,8 +377,7 @@ public class RentController {
 			throws EmptyFieldException {
 		if (!verification.emailIsAMandatoryField(clientEmail)
 				|| !verification.plateIsAMandatoryField(plate))
-			throw new EmptyFieldException(
-					"error: all fields are mandatory!");
+			throw new EmptyFieldException("error: all fields are mandatory!");
 		requestList.add(clientEmail, plate, calendar.getTime());
 	}
 
@@ -524,14 +531,76 @@ public class RentController {
 	 *            as placas dos carros que o cliente deseja alugar
 	 * @throws InvalidFieldException
 	 * @throws AlreadyExistException
-	 * @throws EmptyFieldException 
+	 * @throws EmptyFieldException
 	 */
 	public void addManyRents(Alugadores customer, String[] plates,
 			String[] initialDates, String[] devolutionDates)
-			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
+			throws AlreadyExistException, InvalidFieldException,
+			EmptyFieldException {
 		for (int i = 0; i < plates.length; i++) {
 			this.registerRent(plates[i], customer.getEmail(), initialDates[i],
 					devolutionDates[i]);
 		}
 	}
+
+	/**
+	 * Metodo que, apos constatacao de que o veiculo foi liberado para aluguel,
+	 * envia email para o (os) cliente(s) que estao interessados em aluga-lo.
+	 * 
+	 * @param plate
+	 * @throws MessagingException
+	 */
+	public void notifyCostumerAboutRelease(String plate)
+			throws MessagingException {
+		Iterator<RequestObject> it = this.requestList.iterator();
+		ArrayList<String> adressForEmail = new ArrayList<String>();
+		while (it.hasNext()) {
+			RequestObject requestObject = (RequestObject) it.next();
+			if (requestObject.getPlate().equals(plate)) {
+				adressForEmail.add(requestObject.getEmail());
+			}
+		}
+		if (adressForEmail.size() > 0) {
+			String message = "The vehicle you requested is available for rent.";
+			mailManager.sendEmail(adressForEmail, message);
+		}
+	}
+
+	/**
+	 * Metodo que apos constatacao de que o veiculo esta com o aluguel atrasado,
+	 * envia para o email do cliente uma mensagem de atraso.
+	 * 
+	 * @param email
+	 * @throws MessagingException
+	 */
+	private void notifyCostumerAboutLateRent(String email)
+			throws MessagingException {
+		ArrayList<String> sendTo = new ArrayList<String>();
+		sendTo.add(email);
+		String message = "The rental of your vehicle is late. The fine will be charged uppon their return.";
+		mailManager.sendEmail(sendTo, message);
+	}
+	
+	/**
+	 * Metodo que apos constatacao de que a requisicao do aluguel esta 48 horas atrasada,
+	 * notificando via email aos clientes que a requisicao foi cancelada.
+	 * @throws MessagingException
+	 */
+	public void notifyAboutRequestRelease() throws MessagingException{
+		Date data = new Date();
+		Iterator<RequestObject> it = requestList.iterator();
+		ArrayList<String> sendTo = new ArrayList<String>();
+		while (it.hasNext()){
+			RequestObject requestObject = (RequestObject)it.next();
+			if (requestObject.getDate().getTime() - data.getTime() == QUARENTA_E_OITO_HORAS){
+				sendTo.add(requestObject.getEmail());
+			}
+		}
+		if (sendTo.size() > 0){
+			String message = "Your request was release, because 48h passed.";
+			mailManager.sendEmail(sendTo, message);
+		}
+	}
+	
+	
 }

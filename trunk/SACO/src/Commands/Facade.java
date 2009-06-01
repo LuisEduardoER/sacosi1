@@ -3,6 +3,7 @@ package Commands;
 import java.io.FileNotFoundException;
 import java.util.Calendar;
 
+import javax.mail.MessagingException;
 import javax.security.auth.login.LoginException;
 
 import Controller.RentController;
@@ -15,8 +16,8 @@ import Exceptions.NotExistException;
 import Users.Alugadores;
 
 /**
- * Esta classe � uma fachada para as classes UserController, VehiclesController
- * e RentController
+ * Esta classe � uma fachada para as classes UserController,
+ * VehiclesController e RentController
  * 
  * @author Filipe
  * @author Melina
@@ -79,10 +80,11 @@ public class Facade {
 	 *            o telefone do funcionario
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException 
+	 * @throws EmptyFieldException
 	 */
 	public void addUser(String login, String name, String email, String phone)
-			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
+			throws AlreadyExistException, InvalidFieldException,
+			EmptyFieldException {
 		userController.addUser(login, name, email, phone);
 		this.userController.writeXML();
 	}
@@ -104,8 +106,8 @@ public class Facade {
 	 * @throws NotExistException
 	 * @throws InvalidFieldException
 	 */
-	public void removeCustomer(String email)
-			throws NotExistException, InvalidFieldException {
+	public void removeCustomer(String email) throws NotExistException,
+			InvalidFieldException {
 		userController.removeCustomer(email);
 		this.userController.writeXML();
 	}
@@ -119,8 +121,8 @@ public class Facade {
 	 * @throws NotExistException
 	 * @throws InvalidFieldException
 	 */
-	public void removeUser(String emailOrLogin) throws LoginException,NotExistException,
-			InvalidFieldException {
+	public void removeUser(String emailOrLogin) throws LoginException,
+			NotExistException, InvalidFieldException {
 		userController.removeUser(emailOrLogin);
 		this.userController.writeXML();
 	}
@@ -136,10 +138,11 @@ public class Facade {
 	 *            o telefone do cliente
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException 
+	 * @throws EmptyFieldException
 	 */
 	public void addCustomer(String name, String email, String phone)
-			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
+			throws AlreadyExistException, InvalidFieldException,
+			EmptyFieldException {
 
 		this.userController.addCustomer(name, email, phone);
 		this.userController.writeXML();
@@ -166,7 +169,8 @@ public class Facade {
 	 */
 	public void addVehicle(String type, String model, String color,
 			String plate, String year, String price)
-			throws InvalidFieldException, EmptyFieldException, AlreadyExistException {
+			throws InvalidFieldException, EmptyFieldException,
+			AlreadyExistException {
 		this.vehController.addVehicle(type, model, color, plate, year, price);
 		this.vehController.writeVehicles();
 	}
@@ -184,7 +188,7 @@ public class Facade {
 	 *            a data de entrega
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException 
+	 * @throws EmptyFieldException
 	 */
 	public void registerRent(String plate, String email, String initialDate,
 			String finalDate) throws AlreadyExistException,
@@ -206,10 +210,11 @@ public class Facade {
 	 *            a data de entrega
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws MessagingException 
 	 */
 	public void registerLateRent(String plate, String email,
 			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException {
+			InvalidFieldException, MessagingException {
 		this.reController
 				.registerLateRent(plate, email, initialDate, finalDate);
 		this.reController.writeXML();
@@ -288,10 +293,14 @@ public class Facade {
 	 * @param plate
 	 *            a placa do veiculo
 	 * @return uma confirmacao da liberacao
+	 * @throws MessagingException 
 	 */
-	public boolean releaseVehicle(String plate) {
+	public boolean releaseVehicle(String plate) throws MessagingException {
 		boolean result = this.reController.releaseVehicle(plate);
 		this.reController.writeXML();
+		if (result == true) {
+			this.reController.notifyCostumerAboutRelease(plate);
+		}
 		return result;
 	}
 
@@ -312,7 +321,7 @@ public class Facade {
 	 * @param clientEmail
 	 * @param plate
 	 *            a placa do veiculo
-	 * @throws EmptyFieldException 
+	 * @throws EmptyFieldException
 	 */
 	public void requestRent(String clientEmail, String plate)
 			throws EmptyFieldException {
@@ -396,13 +405,22 @@ public class Facade {
 	 *            as placas dos carros que o cliente deseja alugar
 	 * @throws InvalidFieldException
 	 * @throws AlreadyExistException
-	 * @throws EmptyFieldException 
-	  */
+	 * @throws EmptyFieldException
+	 */
 	public void addManyRents(Alugadores customer, String[] plates,
 			String[] initialDates, String[] devolutionDates)
-			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
+			throws AlreadyExistException, InvalidFieldException,
+			EmptyFieldException {
 		this.reController.addManyRents(customer, plates, initialDates,
 				devolutionDates);
+	}
+
+	/**
+	 * Notifica o cliente sobre o cancelamento da requisicao
+	 * @throws MessagingException
+	 */
+	public void notifyAboutRequestRelease() throws MessagingException {
+		this.reController.notifyAboutRequestRelease();
 	}
 
 }

@@ -2,6 +2,8 @@ package LogicalSystem;
 
 import java.util.Calendar;
 
+import javax.mail.MessagingException;
+
 import Commands.Facade;
 import Exceptions.AlreadyExistException;
 import Exceptions.EmptyFieldException;
@@ -76,18 +78,10 @@ public class LogicOfTheUser {
 	 * Libera aluguel
 	 * 
 	 * @param plate
+	 * @throws MessagingException 
 	 */
-	public void releaseRent(String plate) {
+	public void releaseRent(String plate) throws MessagingException {
 		facade.releaseVehicle(plate);
-	}
-
-	/**
-	 * Notifica liberação de aluguel
-	 * 
-	 * @param plate
-	 */
-	public void notifyRelease(String plate) {
-		System.out.println("Email com confirmacao de liberacao enviado!");
 	}
 
 	/**
@@ -99,18 +93,12 @@ public class LogicOfTheUser {
 	 * @param finalDate
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws MessagingException 
 	 */
 	public void registerLateRent(String email, String plate,
 			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException {
+			InvalidFieldException, MessagingException {
 		facade.registerLateRent(plate, email, initialDate, finalDate);
-	}
-
-	/**
-	 * Notifica aluguel atrasado
-	 */
-	public void notifyLateRent() {
-		System.out.println("Email com notificacao sobre atraso no aluguel");
 	}
 
 	/**
@@ -145,5 +133,9 @@ public class LogicOfTheUser {
 	 */
 	public void seeLateRent(Calendar date) {
 		facade.listAllPendingRents(date);
+	}
+	
+	public void notifyAboutRequestRelease() throws MessagingException{
+		facade.notifyAboutRequestRelease();
 	}
 }
