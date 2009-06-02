@@ -17,7 +17,7 @@ public class MailManager {
 	private static final String SMTP_PORT = "465";
 	private static final String emailFromAddress = "rentSystem@gmail.com";
 	private static final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-	private static final String SUBJECT = "[Rent System] Your Reservation has been descarted.";
+	private static final String SUBJECT = "[Rent System] New Advise";
 	private static MailManager mg;
 	
 	public static MailManager getInstanceOf(){
