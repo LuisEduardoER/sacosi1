@@ -8,6 +8,7 @@ import javax.mail.MessagingException;
 
 import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
+import Mail.MailManager;
 
 /**
  * 
@@ -82,15 +83,17 @@ public class RentCollection {
 	 * @param finalDate
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
+	 * @throws MessagingException 
 	 * @throws MessagingException
 	 */
 	public void registerLateRent(String plate, String email,
 			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException {
+			InvalidFieldException, MessagingException {
 
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
 				rent.setRentSituation("late");
+				notifyCostumerAboutLateRent(email);
 				break;
 			}
 		}
@@ -245,5 +248,19 @@ public class RentCollection {
 	 */
 	public void add(Rent rent) {
 		this.rents.add(rent);
+	}
+	
+	/**
+	 * Metodo que apos constatacao de que o veiculo esta com o aluguel atrasado,
+	 * envia para o email do cliente uma mensagem de atraso.
+	 * 
+	 * @param email
+	 * @throws MessagingException
+	 */
+	private void notifyCostumerAboutLateRent(String email)
+			throws MessagingException {
+		String [] sendTo = {email};
+		String message = "The rental of your vehicle is late. The fine will be charged uppon their return.";
+		MailManager.getInstanceOf().sendEmail(sendTo, message);
 	}
 }
