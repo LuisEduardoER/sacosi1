@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +20,7 @@ import System.CustomerCollection;
 import System.FieldSystemVerification;
 import System.FunctionariesCollection;
 import System.Rent;
+import System.RentCollection;
 import System.RequestObject;
 import System.RequestRentCollection;
 import Users.Alugadores;
@@ -41,7 +41,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  */
 public class RentController {
 
-	private Collection<Rent> rents;
+	private RentCollection rents;
 	private UserController userController;
 	private CustomerCollection customerCollection;
 	private FunctionariesCollection functionariesCollection;
@@ -71,7 +71,7 @@ public class RentController {
 	 */
 	private RentController() throws Exception {
 		calendar = Calendar.getInstance();
-		this.rents = new ArrayList<Rent>();
+		this.rents = RentCollection.getInstance();
 		this.userController = UserController.getInstance();
 		this.functionariesCollection = this.userController
 				.getFunctionariesCollection();
@@ -102,13 +102,7 @@ public class RentController {
 			throw new InvalidFieldException(
 					"error: end date is greater than today date!");
 		}
-		for (Rent rent : rents) {
-			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
-				rent.setRentSituation("late");
-				notifyCostumerAboutLateRent(email);
-				break;
-			}
-		}
+		this.rents.registerLateRent(plate, email, initialDate, finalDate);
 	}
 
 	/**
@@ -197,13 +191,7 @@ public class RentController {
 	 * @return uma confirmacao
 	 */
 	public boolean releaseVehicle(String plate) {
-		for (Rent rent : rents) {
-			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
-				rents.remove(rent);
-				return true;
-			}
-		}
-		return false;
+		return this.rents.releaseVehicle(plate);
 	}
 
 	/**
@@ -212,13 +200,7 @@ public class RentController {
 	 * @return quantidade de algueis ativos
 	 */
 	public int getAllActiveRents() {
-		int cont = 0;
-		for (Rent rent : rents) {
-			if (rent.getRentSituation().equals("active")) {
-				cont++;
-			}
-		}
-		return cont;
+		return this.rents.getAllActiveRents();
 	}
 
 	/**
@@ -228,11 +210,7 @@ public class RentController {
 	 * @return situacao do veiculo.
 	 */
 	public String getVehicleSituation(String plate) {
-		for (Rent rent : rents) {
-			if (rent.getVehiclePlate().equalsIgnoreCase(plate))
-				return "unavailable";
-		}
-		return "available";
+		return this.rents.getVehicleSituation(plate);
 	}
 
 	/**
@@ -246,13 +224,7 @@ public class RentController {
 	 */
 	public String getRentSituation(String email, String plate,
 			String inicialDate, String finalDate) {
-		for (Rent rent : rents) {
-			if (rent.getCostumer().getEmail().equals(email)
-					&& rent.getVehiclePlate().equals(plate))
-				return rent.getRentSituation();
-		}
-		return null;
-
+		return this.rents.getRentSituation(email, plate, inicialDate, finalDate);
 	}
 
 	/**
@@ -275,12 +247,7 @@ public class RentController {
 	 * @return toString de todos os alugueis pendentes
 	 */
 	public String listAllPendingRents(Calendar date) {
-		String output = "";
-		for (Rent rent : rents) {
-			if (rent.compareTo(date) < 1)
-				output += rent.toString();
-		}
-		return output;
+		return this.rents.listAllPendingRents(date);
 	}
 
 	/**
@@ -290,12 +257,7 @@ public class RentController {
 	 * @return toString de todos os alugueis nao pendentes
 	 */
 	public String listAllNonPendingRents(Calendar date) {
-		String output = "";
-		for (Rent rent : rents) {
-			if (rent.compareTo(date) >= 1)
-				output += rent.toString();
-		}
-		return output;
+		return this.rents.listAllNonPendingRents(date);
 	}
 
 	/**
@@ -314,14 +276,7 @@ public class RentController {
 	 * @return quantidade de alugueis por cliente
 	 */
 	public int getRentsByCustomer(String email) {
-		int cont = 0;
-		if (rents != null)
-			for (Rent rent : rents) {
-				if (rent.getCostumer().getEmail().equals(email)) {
-					cont++;
-				}
-			}
-		return cont;
+		return this.rents.getRentsByCustomer(email);
 	}
 
 	/**
@@ -331,14 +286,7 @@ public class RentController {
 	 * @return Quantidade de alugueis por veiculo
 	 */
 	public int getRentsByVehicle(String plate) {
-		int cont = 0;
-		if (rents != null)
-			for (Rent rent : rents) {
-				if (rent.getVehiclePlate().equals(plate)) {
-					cont++;
-				}
-			}
-		return cont;
+		return this.rents.getRentsByVehicle(plate);
 	}
 
 	/**
@@ -348,12 +296,7 @@ public class RentController {
 	 * @return true se estiver alugado ou false caso contrario
 	 */
 	public boolean vehicleIsRent(String plate) {
-		for (Rent rent : rents) {
-			if (rent.getVehiclePlate().equals(plate)) {
-				return true;
-			}
-		}
-		return false;
+		return this.rents.vehicleIsRent(plate);
 	}
 
 	/**
@@ -444,7 +387,7 @@ public class RentController {
 		} else if (file.available() != 0) {
 
 			XStream xmlDecoder = new XStream(new DomDriver());
-			Collection<Rent> rentsArchive = (Collection<Rent>) xmlDecoder
+			RentCollection rentsArchive = (RentCollection) xmlDecoder
 					.fromXML(new BufferedInputStream(file));
 
 			rents = rentsArchive;
@@ -460,7 +403,7 @@ public class RentController {
 		FileOutputStream rentsWriter = new FileOutputStream(RENTS_FILE);
 		FileOutputStream requesListWriter = new FileOutputStream(
 				REQUEST_RENTS_FILE);
-		this.rents = new ArrayList<Rent>();
+		this.rents.emptyList();
 		this.requestList.emptyList();
 	}
 

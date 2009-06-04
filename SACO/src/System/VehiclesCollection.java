@@ -2,15 +2,14 @@ package System;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import Exceptions.InvalidFieldException;
-import Exceptions.EmptyFieldException;
-import Exceptions.NotExistException;
 import Exceptions.AlreadyExistException;
+import Exceptions.EmptyFieldException;
+import Exceptions.InvalidFieldException;
+import Exceptions.NotExistException;
 import Vehicles.Car;
 import Vehicles.Motorcycle;
 import Vehicles.Vehicle;
