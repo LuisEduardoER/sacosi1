@@ -511,20 +511,6 @@ public class RentController {
 			MailManager.getInstanceOf().sendEmail(sendTo, message);
 		}
 	}
-
-	/**
-	 * Metodo que apos constatacao de que o veiculo esta com o aluguel atrasado,
-	 * envia para o email do cliente uma mensagem de atraso.
-	 * 
-	 * @param email
-	 * @throws MessagingException
-	 */
-	private void notifyCostumerAboutLateRent(String email)
-			throws MessagingException {
-		String [] sendTo = {email};
-		String message = "The rental of your vehicle is late. The fine will be charged uppon their return.";
-		MailManager.getInstanceOf().sendEmail(sendTo, message);
-	}
 	
 	/**
 	 * Metodo que apos constatacao de que a requisicao do aluguel esta 48 horas atrasada,
