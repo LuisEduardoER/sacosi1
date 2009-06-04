@@ -2,31 +2,52 @@ package System;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
+
+/**
+ * 
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ * 
+ */
 
 public class RentCollection {
 
 	private static RentCollection instance;
 	private List<Rent> rents;
 
+	/**
+	 * Construtor privado da classe
+	 */
 	private RentCollection() {
 		rents = new ArrayList<Rent>();
 	}
 
+	/**
+	 * Metodo que retorna a unica instancia da classe
+	 * @return a unica instancia da classe
+	 */
 	public static synchronized RentCollection getInstance() {
 		if (instance == null)
 			return instance = new RentCollection();
 		return instance;
 	}
 
-	public void add() {
-
-	}
-
+	/**
+	 * Faz um pedido de aluguel
+	 * 
+	 * @param clientEmail
+	 * @param plate
+	 * @throws InvalidFieldException
+	 */
 	public boolean removeRent(String plate) {
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
@@ -37,6 +58,11 @@ public class RentCollection {
 		return false;
 	}
 
+	/**
+	 * Retorna a quantidade de algueis ativos
+	 * 
+	 * @return quantidade de algueis ativos
+	 */
 	public int getAllActiveRents() {
 		int cont = 0;
 		for (Rent rent : rents) {
@@ -47,6 +73,17 @@ public class RentCollection {
 		return cont;
 	}
 
+	/**
+	 * Registra um aluguel atrasado
+	 * 
+	 * @param plate
+	 * @param email
+	 * @param initialDate
+	 * @param finalDate
+	 * @throws AlreadyExistException
+	 * @throws InvalidFieldException
+	 * @throws MessagingException
+	 */
 	public void registerLateRent(String plate, String email,
 			String initialDate, String finalDate) throws AlreadyExistException,
 			InvalidFieldException {
@@ -59,6 +96,12 @@ public class RentCollection {
 		}
 	}
 
+	/**
+	 * Retorna a situacao do veiculo.
+	 * 
+	 * @param plate
+	 * @return situacao do veiculo.
+	 */
 	public String getVehicleSituation(String plate) {
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate))
@@ -87,6 +130,11 @@ public class RentCollection {
 
 	}
 
+	/**
+	 * Lista todos os alugueis pendentes
+	 * 
+	 * @return toString de todos os alugueis pendentes
+	 */
 	public String listAllPendingRents(Calendar date) {
 		String output = "";
 		for (Rent rent : rents) {
@@ -96,6 +144,12 @@ public class RentCollection {
 		return output;
 	}
 
+	/**
+	 * Lista todos os alugueis nao pendentes
+	 * 
+	 * @param date
+	 * @return toString de todos os alugueis nao pendentes
+	 */
 	public String listAllNonPendingRents(Calendar date) {
 		String output = "";
 		for (Rent rent : rents) {
@@ -105,6 +159,12 @@ public class RentCollection {
 		return output;
 	}
 
+	/**
+	 * Quantidade de alugueis por cliente
+	 * 
+	 * @param email
+	 * @return quantidade de alugueis por cliente
+	 */
 	public int getRentsByCustomer(String email) {
 		int cont = 0;
 		if (rents != null)
@@ -116,6 +176,12 @@ public class RentCollection {
 		return cont;
 	}
 
+	/**
+	 * Quantidade de alugueis por veiculo
+	 * 
+	 * @param plate
+	 * @return Quantidade de alugueis por veiculo
+	 */
 	public int getRentsByVehicle(String plate) {
 		int cont = 0;
 		if (rents != null)
@@ -126,7 +192,29 @@ public class RentCollection {
 			}
 		return cont;
 	}
+	
+	/**
+	 * LIbera um veiculo
+	 * 
+	 * @param plate
+	 * @return uma confirmacao
+	 */
+	public boolean releaseVehicle(String plate) {
+		for (Rent rent : rents) {
+			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
+				rents.remove(rent);
+				return true;
+			}
+		}
+		return false;
+	}
 
+	/**
+	 * Verifica se um veiculo esta alugado.
+	 * 
+	 * @param plate
+	 * @return true se estiver alugado ou false caso contrario
+	 */
 	public boolean vehicleIsRent(String plate) {
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equals(plate)) {
@@ -136,22 +224,25 @@ public class RentCollection {
 		return false;
 	}
 
-	public void remove(Rent rent) {
-		this.rents.remove(rent);
-	}
-
-	public Iterator<Rent> iterator() {
-		return rents.iterator();
-	}
-
+	/**
+	 * Cria uma nova Lista para limpar os registros do programa
+	 */
 	public void emptyList() {
 		this.rents = new ArrayList<Rent>();
 	}
 
+	/**
+	 * Retorna a quantidade de alugueis na lista
+	 * @return a quantidade de alugueis na lista
+	 */
 	public int size() {
 		return rents.size();
 	}
 
+	/**
+	 * Adiciona um novo aluguel a lista
+	 * @param rent novo aluguel
+	 */
 	public void add(Rent rent) {
 		this.rents.add(rent);
 	}
