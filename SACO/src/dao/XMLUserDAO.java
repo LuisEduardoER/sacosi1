@@ -1,4 +1,4 @@
-package Controller;
+package dao;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -30,9 +30,9 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * @author Ramon
  * 
  */
-public class UserController {
+public class XMLUserDAO implements UserDAO{
 
-	private static UserController instance;
+	private static XMLUserDAO instance;
 	private CustomerCollection registeredCustomers;
 	private FunctionariesCollection registeredFunctionaries;
 	private FieldSystemVerification verification;
@@ -43,7 +43,7 @@ public class UserController {
 	/*
 	 * Construtor privado. Serve para o padrao Singleton.
 	 */
-	private UserController() throws Exception {
+	private XMLUserDAO() throws Exception {
 		admin = new Administrator("Admin", "anata.hoshii@gmail.com", "8888888888", "Admin");
 		registeredCustomers = CustomerCollection.getInstance();
 		registeredFunctionaries = FunctionariesCollection.getInstance();
@@ -58,8 +58,8 @@ public class UserController {
 	 * @return UserController a instancia da classe.
 	 * @throws Exception
 	 */
-	public static synchronized UserController getInstance() throws Exception {
-		return instance == null ? instance = new UserController() : instance;
+	public static synchronized XMLUserDAO getInstance() throws Exception {
+		return instance == null ? instance = new XMLUserDAO() : instance;
 	}
 
 	/**
@@ -93,6 +93,7 @@ public class UserController {
 				|| !verification.validatePhoneNumber(phone))
 			throw new InvalidFieldException("error: invalid field!");
 		registeredCustomers.add(name, email, phone);
+		this.writeXML();
 	}
 
 	/**
@@ -117,6 +118,7 @@ public class UserController {
 	public void removeCustomer(String email)
 			throws InvalidFieldException, NotExistException {
 		registeredCustomers.remove(email);
+		this.writeXML();
 	}
 
 	/**
@@ -155,6 +157,7 @@ public class UserController {
 				|| !verification.validatePhoneNumber(phone))
 			throw new InvalidFieldException("error: invalid field!");
 		registeredFunctionaries.add(login, name, email, phone);
+		this.writeXML();
 	}
 
 	/**
@@ -181,6 +184,7 @@ public class UserController {
 	public void removeUser(String emailOrLogin) throws LoginException, 
 			InvalidFieldException, NotExistException {
 		registeredFunctionaries.remove(emailOrLogin);
+		this.writeXML();
 	}
 
 	/**
@@ -266,7 +270,7 @@ public class UserController {
 	 * 
 	 * @throws FileNotFoundException
 	 */
-	public void emptyXML() throws FileNotFoundException {
+	public void cleanXML() throws FileNotFoundException {
 		FileOutputStream customersWriter = new FileOutputStream(CUSTOMERS_FILE);
 		FileOutputStream functionariesWriter = new FileOutputStream(
 				FUNCTIONARIES_FILE);

@@ -1,4 +1,4 @@
-package Controller;
+package dao;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -27,14 +27,14 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * @author Melina
  * 
  */
-public class VehiclesController {
+public class XMLVehiclesDAO implements VehiclesDAO{
 	
-	private static VehiclesController instance;
+	private static XMLVehiclesDAO instance;
 	private VehiclesCollection registeredVehicles;
 	private FieldSystemVerification verification;
 	private static final String VEHICLES_FILE = "Vehicles.xml";
 
-	private VehiclesController() throws Exception {
+	private XMLVehiclesDAO() throws Exception {
 		registeredVehicles = VehiclesCollection.getInstance();
 		verification = new FieldSystemVerification();
 		this.readVehicles();
@@ -46,9 +46,9 @@ public class VehiclesController {
 	 * @return uma unica instancia da classe
 	 * @throws Exception
 	 */
-	public static synchronized VehiclesController getInstance() throws Exception {
+	public static synchronized XMLVehiclesDAO getInstance() throws Exception {
 		if (instance == null) {
-			instance = new VehiclesController();
+			instance = new XMLVehiclesDAO();
 		}
 		return instance;
 	}
@@ -90,6 +90,7 @@ public class VehiclesController {
 				|| !verification.validatePrice(price))
 			throw new InvalidFieldException("error: invalid field!");
 		registeredVehicles.add(type, model, color, plate, year, price);
+		this.writeVehicles();
 	}
 
 	/**
@@ -109,6 +110,7 @@ public class VehiclesController {
 	 */
 	public void removeVehicle(String plate) throws NotExistException {
 		registeredVehicles.remove(plate);
+		this.writeVehicles();
 	}
 
 	/**
@@ -161,7 +163,7 @@ public class VehiclesController {
 	 * 
 	 * @throws FileNotFoundException
 	 */
-	public void emptyXML() throws FileNotFoundException {
+	public void cleanXML() throws FileNotFoundException {
 		FileOutputStream vehiclesWriter = new FileOutputStream(VEHICLES_FILE);
 		this.registeredVehicles.emptyList();
 	}

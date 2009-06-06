@@ -1,4 +1,4 @@
-package Controller;
+package dao;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -39,16 +39,16 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * @author Ramon
  * 
  */
-public class RentController {
+public class XMLRentDAO implements RentDAO{
 
 	private RentCollection rents;
-	private UserController userController;
+	private XMLUserDAO userController;
 	private CustomerCollection customerCollection;
 	private FunctionariesCollection functionariesCollection;
 	private FieldSystemVerification verification;
-	private VehiclesController vehicleCollection;
+	private XMLVehiclesDAO vehicleCollection;
 	private RequestRentCollection requestList;
-	private static RentController instance;
+	private static XMLRentDAO instance;
 	private Calendar calendar;
 	private static final String REQUEST_RENTS_FILE = "RequestRents.xml";
 	private static final String RENTS_FILE = "Rents.xml";
@@ -59,8 +59,8 @@ public class RentController {
 	 * @return uma unica instancia da classe
 	 * @throws Exception
 	 */
-	public static RentController getInstance() throws Exception {
-		return instance == null ? instance = new RentController() : instance;
+	public static XMLRentDAO getInstance() throws Exception {
+		return instance == null ? instance = new XMLRentDAO() : instance;
 	}
 
 	/**
@@ -69,14 +69,14 @@ public class RentController {
 	 * @throws Exception
 	 * 
 	 */
-	private RentController() throws Exception {
+	private XMLRentDAO() throws Exception {
 		calendar = Calendar.getInstance();
 		this.rents = RentCollection.getInstance();
-		this.userController = UserController.getInstance();
+		this.userController = XMLUserDAO.getInstance();
 		this.functionariesCollection = this.userController
 				.getFunctionariesCollection();
 		this.customerCollection = this.userController.getCustomerCollection();
-		this.vehicleCollection = VehiclesController.getInstance();
+		this.vehicleCollection = XMLVehiclesDAO.getInstance();
 		this.verification = new FieldSystemVerification();
 		this.requestList = RequestRentCollection.getInstance();
 		this.readRents();
@@ -103,6 +103,7 @@ public class RentController {
 					"error: end date is greater than today date!");
 		}
 		this.rents.registerLateRent(plate, email, initialDate, finalDate);
+		this.writeXML();
 	}
 
 	/**
@@ -120,6 +121,7 @@ public class RentController {
 			String finalDate) throws AlreadyExistException,
 			InvalidFieldException, EmptyFieldException {
 		this.register(plate, email, initialDate, finalDate, "active");
+		this.writeXML();
 	}
 
 	/**
@@ -134,7 +136,7 @@ public class RentController {
 	 * @throws InvalidFieldException
 	 * @throws EmptyFieldException
 	 */
-	public void register(String plate, String email, String initialDate,
+	private void register(String plate, String email, String initialDate,
 			String finalDate, String rentSituation)
 			throws AlreadyExistException, InvalidFieldException,
 			EmptyFieldException {
@@ -191,10 +193,12 @@ public class RentController {
 	 * @return uma confirmacao
 	 */
 	public boolean releaseVehicle(String plate) {
-		return this.rents.releaseVehicle(plate);
+		boolean release = this.rents.releaseVehicle(plate); 
+		this.writeXML();
+		return release;
 	}
 
-	/**
+	/*
 	 * Retorna a quantidade de algueis ativos
 	 * 
 	 * @return quantidade de algueis ativos
@@ -321,6 +325,7 @@ public class RentController {
 				|| !verification.plateIsAMandatoryField(plate))
 			throw new EmptyFieldException("error: all fields are mandatory!");
 		requestList.add(clientEmail, plate, calendar.getTime());
+		this.writeXML();
 	}
 
 	/**
@@ -399,7 +404,7 @@ public class RentController {
 	 * 
 	 * @throws FileNotFoundException
 	 */
-	public void emptyXML() throws FileNotFoundException {
+	public void cleanBD() throws FileNotFoundException {
 		FileOutputStream rentsWriter = new FileOutputStream(RENTS_FILE);
 		FileOutputStream requesListWriter = new FileOutputStream(
 				REQUEST_RENTS_FILE);
