@@ -1,0 +1,14 @@
+<System.RentCollection>
+  <rents>
+    <System.Rent>
+      <devolutionDate>11/05/2009</devolutionDate>
+      <rentDate>10/04/2009</rentDate>
+      <rentSituation>active</rentSituation>
+      <diasAtraso>0</diasAtraso>
+      <calendar>
+        <time>1244306908937</time>
+        <timezone>GMT-03:00</timezone>
+      </calendar>
+    </System.Rent>
+  </rents>
+</System.RentCollection>

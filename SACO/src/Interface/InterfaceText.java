@@ -25,7 +25,7 @@ public class InterfaceText {
 	public static final int ALUGUEIS_REGISTRADOS = 2;
 	public static final int CONSULTA_SITUACAO = 3;
 	public static final int RESERVA_ALUGUEL = 4;
-	public static final int ALUGUEL_VIGENTE = 5;
+	public static final int ALUGUEL_VIGENTE = 4;
 	public static final int ALUGUEL_ATRASADO = 6;
 	public static final int INTERESSE_CARRO = 7;
 	public static final int SAIR = 0;	
@@ -117,7 +117,7 @@ public class InterfaceText {
 	}
 
 
-	public int exibeMenuDoFuncionario() throws IOException {
+	public static int exibeMenuDoFuncionario() throws IOException {
 
 		System.out.println("----------------------------------------------------------");
 		System.out.println("Opções: ");
@@ -125,8 +125,8 @@ public class InterfaceText {
 		System.out.println(REGISTRA_ALUGUEL + " - Registrar Aluguel");
 		System.out.println(ALUGUEIS_REGISTRADOS + " - Ver Alugueis Registrados ");
 		System.out.println(CONSULTA_SITUACAO + " - Consultar Situacao de um veiculo");
-		System.out.println(ADICIONAR_VEICULO + " - Adicionar Veiculo");
 		System.out.println(ALUGUEL_VIGENTE + " - Ver Alugueis Vigentes");
+		System.out.println(ADICIONAR_VEICULO + " - Adicionar Veiculo");
 		System.out.println(ALUGUEL_ATRASADO + " - Ver Alugueis Atrasados");
 		System.out.println(SAIR + " - Sair");
 		System.out.println();
@@ -245,5 +245,52 @@ public class InterfaceText {
 		return data;
 	}
 
+	public static String[] dadosDoAluguel(){
+		System.out.println("Digite a placa do veiculo (ex: aaa000): ");
+		String placa = leDados();
+		System.out.println("Digite o seu email: ");
+		String email = leDados();
+		System.out.println("Digite a data inicial de aluguel (ex:10/04/2009): ");
+		String dataInicial = leDados();
+		System.out.println("Digite a data final de aluguel (ex:10/04/2009): ");
+		String dataFinal = leDados();
+		return new String[] {placa, email, dataInicial, dataFinal};
+	}
+	
+	public static void numeroDeAlugueis(int valor){
+		System.out.println("Alugueis Registrados no momento:");
+		System.out.println("---------------------------------");
+		System.out.println(valor);
+	}
+	
+	public static String[]getRentSituation(){
+		System.out.println("Digite o seu email: ");
+		String email = leDados();
+		System.out.println("Digite a placa do veiculo (ex: aaa000): ");
+		String placa = leDados();
+		System.out.println("Digite a data inicial de aluguel (ex:10/04/2009): ");
+		String dataInicial = leDados();
+		System.out.println("Digite a data final de aluguel (ex:10/04/2009): ");
+		String dataFinal = leDados();
+		return new String[] {placa, email, dataInicial, dataFinal};
+	}
 
+	public static void alugueisVigentes(int valor){
+		System.out.println("Alugueis Vigentes:");
+		System.out.println("---------------------------------");
+		System.out.println(valor);
+	}
+
+	public static String[] registerLateRent() {
+		System.out.println("Digite a placa do veiculo (ex: aaa000): ");
+		String placa = leDados();
+		System.out.println("Digite o seu email: ");
+		String email = leDados();
+		System.out.println("Digite a data inicial de aluguel (ex:10/04/2009): ");
+		String dataInicial = leDados();
+		System.out.println("Digite a data final de aluguel (ex:10/04/2009): ");
+		String dataFinal = leDados();
+		return new String[] {placa, email, dataInicial, dataFinal};
+	}
+	
 }
