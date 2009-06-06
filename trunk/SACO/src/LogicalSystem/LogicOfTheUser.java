@@ -32,6 +32,12 @@ public class LogicOfTheUser {
 	public LogicOfTheUser() throws Exception {
 		this.facade = new Facade();
 	}
+	
+	
+	//FIXME o mesmo que deve-se fazer em LogicOfTheAdmin
+	public void inicia() {
+		
+	}
 
 	/**
 	 * Visualiza requisições

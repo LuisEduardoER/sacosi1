@@ -26,6 +26,14 @@ public class LogicOfTheCustomer {
 	public LogicOfTheCustomer() throws Exception {
 		facade = new Facade();
 	}
+	
+	
+	//FIXME colocar todo o procedimento igual ao que foi feito em LogicOfTheAdmin
+	// Em cada metodo utiliza a interface para ler os dados, e aqui nesse metodo
+	// fica um case para as opçoes do menu
+	public void inicia() {
+		
+	}
 
 	/**
 	 * Adiciona cliente
