@@ -1,10 +1,13 @@
 package LogicalSystem;
 
+import java.io.IOException;
+
 import Commands.Facade;
 import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
 import Exceptions.NotExistException;
 import Exceptions.EmptyFieldException;
+import Interface.InterfaceText;
 
 /**
  * Logica do cliente
@@ -26,12 +29,12 @@ public class LogicOfTheCustomer {
 	public LogicOfTheCustomer() throws Exception {
 		facade = new Facade();
 	}
-	
-	
-	//FIXME colocar todo o procedimento igual ao que foi feito em LogicOfTheAdmin
+
+	// FIXME colocar todo o procedimento igual ao que foi feito em
+	// LogicOfTheAdmin
 	// Em cada metodo utiliza a interface para ler os dados, e aqui nesse metodo
 	// fica um case para as opçoes do menu
-	public void inicia() {
+	public void inicia() throws IOException {
 		
 	}
 
@@ -45,7 +48,8 @@ public class LogicOfTheCustomer {
 	 * @throws InvalidFieldException
 	 */
 	public void addCustomer(String name, String email, String phone)
-			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
+			throws AlreadyExistException, InvalidFieldException,
+			EmptyFieldException {
 		facade.addCustomer(name, email, phone);
 	}
 
@@ -56,8 +60,8 @@ public class LogicOfTheCustomer {
 	 * @throws NotExistException
 	 * @throws InvalidFieldException
 	 */
-	public void removeCustomer(String email)
-			throws NotExistException, InvalidFieldException {
+	public void removeCustomer(String email) throws NotExistException,
+			InvalidFieldException {
 		facade.removeCustomer(email);
 	}
 
