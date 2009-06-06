@@ -6,9 +6,13 @@ import java.util.Calendar;
 import javax.mail.MessagingException;
 import javax.security.auth.login.LoginException;
 
-import Controller.RentController;
-import Controller.UserController;
-import Controller.VehiclesController;
+import dao.RentDAO;
+import dao.UserDAO;
+import dao.VehiclesDAO;
+import dao.XMLRentDAO;
+import dao.XMLUserDAO;
+import dao.XMLVehiclesDAO;
+
 import Exceptions.AlreadyExistException;
 import Exceptions.EmptyFieldException;
 import Exceptions.InvalidFieldException;
@@ -28,9 +32,9 @@ import Users.Alugadores;
  */
 public class Facade {
 
-	private UserController userController;
-	private VehiclesController vehController;
-	private RentController reController;
+	private UserDAO userController;
+	private VehiclesDAO vehController;
+	private RentDAO reController;
 
 	/**
 	 * Construtor
@@ -38,10 +42,10 @@ public class Facade {
 	 * @throws Exception
 	 */
 	public Facade() throws Exception {
-		this.userController = UserController.getInstance();
-		this.vehController = VehiclesController.getInstance();
+		this.userController = XMLUserDAO.getInstance();
+		this.vehController = XMLVehiclesDAO.getInstance();
 		try {
-			this.reController = RentController.getInstance();
+			this.reController = XMLRentDAO.getInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,7 +59,6 @@ public class Facade {
 	 */
 	public void removeVehicle(String plate) throws NotExistException {
 		vehController.removeVehicle(plate);
-		this.vehController.writeVehicles();
 	}
 
 	/**
@@ -86,7 +89,6 @@ public class Facade {
 			throws AlreadyExistException, InvalidFieldException,
 			EmptyFieldException {
 		userController.addUser(login, name, email, phone);
-		this.userController.writeXML();
 	}
 
 	/**
@@ -109,7 +111,6 @@ public class Facade {
 	public void removeCustomer(String email) throws NotExistException,
 			InvalidFieldException {
 		userController.removeCustomer(email);
-		this.userController.writeXML();
 	}
 
 	/**
@@ -124,7 +125,6 @@ public class Facade {
 	public void removeUser(String emailOrLogin) throws LoginException,
 			NotExistException, InvalidFieldException {
 		userController.removeUser(emailOrLogin);
-		this.userController.writeXML();
 	}
 
 	/**
@@ -145,7 +145,6 @@ public class Facade {
 			EmptyFieldException {
 
 		this.userController.addCustomer(name, email, phone);
-		this.userController.writeXML();
 	}
 
 	/**
@@ -172,7 +171,6 @@ public class Facade {
 			throws InvalidFieldException, EmptyFieldException,
 			AlreadyExistException {
 		this.vehController.addVehicle(type, model, color, plate, year, price);
-		this.vehController.writeVehicles();
 	}
 
 	/**
@@ -194,7 +192,7 @@ public class Facade {
 			String finalDate) throws AlreadyExistException,
 			InvalidFieldException, EmptyFieldException {
 		this.reController.registerRent(plate, email, initialDate, finalDate);
-		this.reController.writeXML();
+		
 	}
 
 	/**
@@ -217,7 +215,6 @@ public class Facade {
 			InvalidFieldException, MessagingException {
 		this.reController
 				.registerLateRent(plate, email, initialDate, finalDate);
-		this.reController.writeXML();
 	}
 
 	/**
@@ -297,7 +294,6 @@ public class Facade {
 	 */
 	public boolean releaseVehicle(String plate) throws MessagingException {
 		boolean result = this.reController.releaseVehicle(plate);
-		this.reController.writeXML();
 		if (result == true) {
 			this.reController.notifyCostumerAboutRelease(plate);
 		}
@@ -326,7 +322,7 @@ public class Facade {
 	public void requestRent(String clientEmail, String plate)
 			throws EmptyFieldException {
 		this.reController.requestRent(clientEmail, plate);
-		this.reController.writeXML();
+		
 	}
 
 	/**
@@ -344,9 +340,9 @@ public class Facade {
 	 * @throws FileNotFoundException
 	 */
 	public void cleanDB() throws FileNotFoundException {
-		this.reController.emptyXML();
-		this.vehController.emptyXML();
-		this.userController.emptyXML();
+		this.reController.cleanBD();
+		this.vehController.cleanXML();
+		this.userController.cleanXML();
 	}
 
 	/**
