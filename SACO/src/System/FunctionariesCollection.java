@@ -85,7 +85,7 @@ public class FunctionariesCollection {
 	 * @return usuario
 	 * @throws EmailException
 	 */
-	private User findUserByEmail(String email) {
+	public User findUserByEmail(String email) {
 		for (User user : usersList) {
 			if (user.getEmail().equalsIgnoreCase(email)
 					|| user.getLogin().equalsIgnoreCase(email))
@@ -129,7 +129,7 @@ public class FunctionariesCollection {
 	 * Encontra um funcionario no sistema utilizando como base de pesquisa seu
 	 * email ou login. Retorna null caso nao o encontre.
 	 */
-	private User findUserByLogin(String login) {
+	public User findUserByLogin(String login) {
 		for (User user : usersList) {
 			if (user.getEmail().equalsIgnoreCase(login)
 					|| user.getLogin().equalsIgnoreCase(login))
@@ -152,4 +152,5 @@ public class FunctionariesCollection {
 	public void emptyList() {
 		this.usersList = new ArrayList<User>();
 	}
+
 }

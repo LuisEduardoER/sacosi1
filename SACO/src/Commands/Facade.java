@@ -423,4 +423,13 @@ public class Facade {
 		this.reController.notifyAboutRequestRelease();
 	}
 
+	/**
+	 * 
+	 * @param dataOne
+	 * @param dataTwo
+	 */
+	public boolean validateLogin(String dataOne, String dataTwo) {
+		return userController.find(dataOne, dataTwo);
+	}
+
 }

@@ -9,12 +9,13 @@ import java.util.Iterator;
 import javax.security.auth.login.LoginException;
 
 import Exceptions.AlreadyExistException;
+import Exceptions.EmptyFieldException;
 import Exceptions.InvalidFieldException;
 import Exceptions.NotExistException;
-import Exceptions.EmptyFieldException;
 import System.CustomerCollection;
 import System.FieldSystemVerification;
 import System.FunctionariesCollection;
+import Users.Administrator;
 import Users.Customer;
 
 import com.thoughtworks.xstream.XStream;
@@ -37,11 +38,13 @@ public class UserController {
 	private FieldSystemVerification verification;
 	private static final String FUNCTIONARIES_FILE = "Functionaries.xml";
 	private static final String CUSTOMERS_FILE = "Customers.xml";
+	private Administrator admin;
 
 	/*
 	 * Construtor privado. Serve para o padrao Singleton.
 	 */
 	private UserController() throws Exception {
+		admin = new Administrator("Admin", "anata.hoshii@gmail.com", "8888888888", "Admin");
 		registeredCustomers = CustomerCollection.getInstance();
 		registeredFunctionaries = FunctionariesCollection.getInstance();
 		verification = new FieldSystemVerification();
@@ -311,6 +314,22 @@ public class UserController {
 
 			registeredFunctionaries = functionariesArchive;
 		}
+	}
+
+	/**
+	 * 
+	 * @param dataOne
+	 * @param dataTwo
+	 * @return
+	 */
+	public boolean find(String dataOne, String dataTwo) {
+		if (admin.getLogin().equalsIgnoreCase(dataOne) && admin.getEmail().equalsIgnoreCase(dataTwo))
+			return true;
+		if (registeredCustomers.getCustomer(dataTwo) != null) return true;
+		if (registeredFunctionaries.findUserByLogin(dataOne) != null &&
+				registeredFunctionaries.findUserByEmail(dataTwo) != null) 
+			return true;
+		return false;
 	}
 
 }

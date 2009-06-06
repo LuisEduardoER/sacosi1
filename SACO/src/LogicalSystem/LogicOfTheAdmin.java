@@ -1,5 +1,7 @@
 package LogicalSystem;
 
+import java.io.IOException;
+
 import javax.security.auth.login.LoginException;
 
 import Commands.Facade;
@@ -7,6 +9,7 @@ import Exceptions.AlreadyExistException;
 import Exceptions.InvalidFieldException;
 import Exceptions.NotExistException;
 import Exceptions.EmptyFieldException;
+import Interface.InterfaceText;
 
 /**
  * Logica do administrador
@@ -19,7 +22,8 @@ import Exceptions.EmptyFieldException;
  * 
  * 
  */
-public class LogicOfTheAdmin extends LogicOfTheUser {
+public class LogicOfTheAdmin {
+	
 	private Facade facade;
 
 	/**
@@ -29,6 +33,40 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 */
 	public LogicOfTheAdmin() throws Exception {
 		this.facade = new Facade();
+	}
+	
+	public void inicia() throws InvalidFieldException, AlreadyExistException, 
+						EmptyFieldException, NotExistException, LoginException, IOException {
+		int opcao = InterfaceText.exibeMenuDoAdministrador();
+		switch (opcao) {
+		case InterfaceText.ADICIONAR_USUARIO:
+			addUser();
+			System.out.println(getAllUsers());
+			inicia();
+			break;
+		case InterfaceText.ADICIONAR_CLIENTE:
+			addCustomer();
+			inicia();
+			break;
+		case InterfaceText.ADICIONAR_VEICULO:
+			addVehicle();
+			inicia();
+			break;
+		case InterfaceText.REMOVER_CLIENTE:
+			removeCustomer();
+			inicia();
+			break;
+		case InterfaceText.REMOVER_USUARIO:
+			removeUser();
+			inicia();
+			break;
+		case InterfaceText.REMOVER_VEICULO:
+			removeVehicle();
+			inicia();
+			break;
+		case InterfaceText.SAIR:
+			break;
+		}
 	}
 
 	/**
@@ -42,9 +80,10 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * @throws AlreadyExistException
 	 * @throws EmptyFieldException 
 	 */
-	public void addUser(String login, String name, String email, String phone)
+	private void addUser()
 			throws InvalidFieldException, AlreadyExistException, EmptyFieldException {
-		facade.addUser(login, name, email, phone);
+		String[] data = InterfaceText.DadosDoUsuario();
+		facade.addUser(data[0], data[1], data[2], data[3]);
 	}
 
 	/**
@@ -57,21 +96,21 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * @throws InvalidFieldException
 	 * @throws EmptyFieldException 
 	 */
-	public void addCustomer(String name, String email, String phone)
+	public void addCustomer()
 			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
-		facade.addCustomer(name, email, phone);
+		String[] data = InterfaceText.DadosDoUsuario();
+		facade.addCustomer(data[1], data[2], data[3]);
 	}
 
 	/**
 	 * Remove cliente
 	 * 
-	 * @param email
 	 * @throws NotExistException
 	 * @throws InvalidFieldException
 	 */
-	public void removeCustomer(String email)
+	public void removeCustomer()
 			throws NotExistException, InvalidFieldException {
-		facade.removeCustomer(email);
+		facade.removeCustomer(InterfaceText.menuRemocaoCliente());
 	}
 
 	/**
@@ -82,9 +121,9 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * @throws NotExistException
 	 * @throws InvalidFieldException
 	 */
-	public void removeUser(String emailOrLogin) throws LoginException,
+	public void removeUser() throws LoginException,
 			NotExistException, InvalidFieldException {
-		facade.removeUser(emailOrLogin);
+		facade.removeUser(InterfaceText.menuRemocaoDoFuncionario());
 	}
 
 	/**
@@ -100,10 +139,10 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * @throws EmptyFieldException
 	 * @throws AlreadyExistsException
 	 */
-	public void addVehicle(String type, String model, String color,
-			String year, String plate, String price)
-			throws InvalidFieldException, EmptyFieldException, AlreadyExistException {
-		facade.addVehicle(type, model, color, plate, year, price);
+	public void addVehicle() throws InvalidFieldException, EmptyFieldException, AlreadyExistException {
+		String[] vehicleData = InterfaceText.DadosDoVeiculo();
+		facade.addVehicle(vehicleData[0], vehicleData[1], vehicleData[2], 
+				vehicleData[3], vehicleData[4], vehicleData[5]);
 	}
 
 	/**
@@ -112,7 +151,25 @@ public class LogicOfTheAdmin extends LogicOfTheUser {
 	 * @param plate
 	 * @throws NotExistException
 	 */
-	public void removeVehicle(String plate) throws NotExistException{
-		facade.removeVehicle(plate);
+	public void removeVehicle() throws NotExistException{
+		facade.removeVehicle(InterfaceText.menuRemocaoDeVeiculo());
+	}
+
+	/**
+	 * 
+	 * @param dataOne
+	 * @param dataTwo
+	 * @return
+	 */
+	public boolean validateLogin(String dataOne, String dataTwo) {
+		return facade.validateLogin(dataOne, dataTwo);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getAllUsers() {
+		return facade.getAllUsers();
 	}
 }
