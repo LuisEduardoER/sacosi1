@@ -35,7 +35,6 @@ public class LogicOfTheUser {
 		this.facade = new Facade();
 	}
 
-	// FIXME o mesmo que deve-se fazer em LogicOfTheAdmin
 	public void inicia() throws AlreadyExistException, InvalidFieldException,
 			MessagingException, EmptyFieldException, IOException {
 		int opcao = InterfaceText.exibeMenuDoFuncionario();
@@ -91,30 +90,90 @@ public class LogicOfTheUser {
 
 	private void consultaNaoAtrasados() {
 		Calendar date = InterfaceText.menuEscolherData();
-		InterfaceText.listAllNonPendingRents(facade.listAllNonPendingRents(date));
-		
+		try {
+			String impressao = facade.listAllNonPendingRents(date);
+			InterfaceText.listAllNonPendingRents(impressao);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private void consultaAtrasados() {
 		Calendar date = InterfaceText.menuEscolherData();
-		InterfaceText.listAllPendingRents(facade.listAllPendingRents(date));
-		
+		try {
+			String impressao = facade.listAllPendingRents(date);
+			InterfaceText.listAllPendingRents(impressao);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private void consultaReservas() {
-		InterfaceText.printRequestList(facade.printRequestList());
-		
+		try {
+			String impressao = facade.printRequestList();
+			InterfaceText.printRequestList(impressao);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	private void releaseRent() throws MessagingException {
+	private void releaseRent() {
 		String placa = InterfaceText.releaseVehicle();
-		facade.releaseVehicle(placa);
-		
+		try {
+			facade.releaseVehicle(placa);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	private void addManyRents() throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
-		String [][] ManyRentsData = InterfaceText.adicionaVariosAlugueis();
-		facade.addManyRents(ManyRentsData[1][0], ManyRentsData[0], ManyRentsData[2], ManyRentsData[3]);
+	private void addManyRents() {
+		String[][] ManyRentsData = InterfaceText.adicionaVariosAlugueis();
+		try {
+			facade.addManyRents(ManyRentsData[1][0], ManyRentsData[0],
+					ManyRentsData[2], ManyRentsData[3]);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void addVehicle() throws InvalidFieldException, EmptyFieldException,
@@ -124,26 +183,56 @@ public class LogicOfTheUser {
 				vehicleData[3], vehicleData[4], vehicleData[5]);
 	}
 
-	private void lateRent() throws AlreadyExistException,
-			InvalidFieldException, MessagingException {
+	private void lateRent() {
 		String[] atraso = InterfaceText.registerLateRent();
-		facade.registerLateRent(atraso[0], atraso[1], atraso[2], atraso[3]);
+		try {
+			facade.registerLateRent(atraso[0], atraso[1], atraso[2], atraso[3]);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private void consultaVigente() {
-		InterfaceText.alugueisVigentes(facade.getAllActiveRents());
+		try {
+			int quantidade = facade.getAllActiveRents();
+			InterfaceText.alugueisVigentes(quantidade);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	private void consultaSituacao() {
-		String[] consulta = InterfaceText.getRentSituation();
-		String situacao = facade.getRentSituation(consulta[0], consulta[1], consulta[2],
-				consulta[3]);
-		System.out.println("--------------------------------------------------");
-		if (situacao.equalsIgnoreCase("active")){
-			System.out.println("O veiculo de placa " + consulta[1] + " esta atualmente alugado.");
-		}
-		else{
-			System.out.println("O veiculo de placa " + consulta[1] + " esta atualmente disponivel.");
+	private void consultaSituacao()  {
+		String placa = InterfaceText.getVehicleSituation();
+		String situacao;
+		try {
+			situacao = facade.getVehicleSituation(placa);
+			InterfaceText.showSituation(situacao, placa);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -151,9 +240,22 @@ public class LogicOfTheUser {
 		InterfaceText.numeroDeAlugueis(facade.getAllRents());
 	}
 
-	private void registraAluguel() throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
+	private void registraAluguel() {
 		String[] dadosAluguel = InterfaceText.dadosDoAluguel();
-		facade.registerRent(dadosAluguel[0], dadosAluguel[1], dadosAluguel[2], dadosAluguel[3]);
+		try {
+			facade.registerRent(dadosAluguel[0], dadosAluguel[1],
+					dadosAluguel[2], dadosAluguel[3]);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -173,11 +275,24 @@ public class LogicOfTheUser {
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
 	 * @throws EmptyFieldException
+	 * @throws IOException
+	 * @throws MessagingException
 	 */
 	public void addRent(String email, String plate, String initialDate,
-			String finalDate) throws AlreadyExistException,
-			InvalidFieldException, EmptyFieldException {
-		facade.registerRent(plate, email, initialDate, finalDate);
+			String finalDate) {
+		try {
+			facade.registerRent(plate, email, initialDate, finalDate);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -190,12 +305,24 @@ public class LogicOfTheUser {
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
 	 * @throws EmptyFieldException
+	 * @throws IOException
+	 * @throws MessagingException
 	 */
 	public void addManyRents(String email, String[] plates,
-			String[] initialDates, String[] devolutionDates)
-			throws AlreadyExistException, InvalidFieldException,
-			EmptyFieldException {
-		facade.addManyRents(email, plates, initialDates, devolutionDates);
+			String[] initialDates, String[] devolutionDates) {
+		try {
+			facade.addManyRents(email, plates, initialDates, devolutionDates);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -203,9 +330,25 @@ public class LogicOfTheUser {
 	 * 
 	 * @param plate
 	 * @throws MessagingException
+	 * @throws IOException
+	 * @throws EmptyFieldException
+	 * @throws InvalidFieldException
+	 * @throws AlreadyExistException
 	 */
-	public void releaseRent(String plate) throws MessagingException {
-		facade.releaseVehicle(plate);
+	public void releaseRent(String plate) {
+		try {
+			facade.releaseVehicle(plate);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -215,48 +358,138 @@ public class LogicOfTheUser {
 	 * @param plate
 	 * @param initialDate
 	 * @param finalDate
+	 * @throws IOException
+	 * @throws EmptyFieldException
+	 * @throws MessagingException
+	 * @throws InvalidFieldException
+	 * @throws AlreadyExistException
+	 * @throws IOException
+	 * @throws EmptyFieldException
+	 * @throws MessagingException
+	 * @throws InvalidFieldException
+	 * @throws AlreadyExistException
 	 * @throws AlreadyExistException
 	 * @throws InvalidFieldException
 	 * @throws MessagingException
 	 */
 	public void registerLateRent(String email, String plate,
-			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException, MessagingException {
-		facade.registerLateRent(plate, email, initialDate, finalDate);
+			String initialDate, String finalDate) {
+		try {
+			facade.registerLateRent(plate, email, initialDate, finalDate);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
 	 * obtem situação do veiculo
 	 * 
 	 * @param plate
+	 * @throws IOException
+	 * @throws EmptyFieldException
+	 * @throws MessagingException
+	 * @throws InvalidFieldException
+	 * @throws AlreadyExistException
 	 */
 	public void getVehicleSituation(String plate) {
-		facade.getVehicleSituation(plate);
+		try {
+			facade.getVehicleSituation(plate);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
 	 * obtem situação de todos os veiculos
+	 * 
+	 * @throws IOException
+	 * @throws EmptyFieldException
+	 * @throws MessagingException
+	 * @throws InvalidFieldException
+	 * @throws AlreadyExistException
 	 */
 	public void getAllVehiclesSituation() {
-		facade.getAllVehiclesSituation();
+		try {
+			facade.getAllVehiclesSituation();
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
 	 * Visualiza aluguel corrente
 	 * 
 	 * @param date
+	 * @throws IOException
+	 * @throws EmptyFieldException
+	 * @throws MessagingException
+	 * @throws InvalidFieldException
+	 * @throws AlreadyExistException
 	 */
 	public void seeCurrentRent(Calendar date) {
-		facade.listAllNonPendingRents(date);
+		try {
+			facade.listAllNonPendingRents(date);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
 	 * Visualiza aluguel atrasado
 	 * 
 	 * @param date
+	 * @throws IOException
+	 * @throws EmptyFieldException
+	 * @throws MessagingException
+	 * @throws InvalidFieldException
+	 * @throws AlreadyExistException
 	 */
 	public void seeLateRent(Calendar date) {
-		facade.listAllPendingRents(date);
+		try {
+			facade.listAllPendingRents(date);
+		} catch (AlreadyExistException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyFieldException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void notifyAboutRequestRelease() throws MessagingException {

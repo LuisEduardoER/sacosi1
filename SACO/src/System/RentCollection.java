@@ -47,9 +47,13 @@ public class RentCollection {
 	 * 
 	 * @param clientEmail
 	 * @param plate
+	 * @throws Exception 
 	 * @throws InvalidFieldException
 	 */
-	public boolean removeRent(String plate) {
+	public boolean removeRent(String plate) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
 				rents.remove(rent);
@@ -63,8 +67,12 @@ public class RentCollection {
 	 * Retorna a quantidade de algueis ativos
 	 * 
 	 * @return quantidade de algueis ativos
+	 * @throws Exception 
 	 */
-	public int getAllActiveRents() {
+	public int getAllActiveRents() throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		int cont = 0;
 		for (Rent rent : rents) {
 			if (rent.getRentSituation().equals("active")) {
@@ -81,15 +89,15 @@ public class RentCollection {
 	 * @param email
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws AlreadyExistException
-	 * @throws InvalidFieldException
-	 * @throws MessagingException 
 	 * @throws MessagingException
+	 * @throws Exception 
 	 */
 	public void registerLateRent(String plate, String email,
-			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException, MessagingException {
+			String initialDate, String finalDate) throws Exception {
 
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
 				rent.setRentSituation("late");
@@ -104,8 +112,12 @@ public class RentCollection {
 	 * 
 	 * @param plate
 	 * @return situacao do veiculo.
+	 * @throws Exception 
 	 */
-	public String getVehicleSituation(String plate) {
+	public String getVehicleSituation(String plate) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate))
 				return "unavailable";
@@ -121,9 +133,13 @@ public class RentCollection {
 	 * @param inicialDate
 	 * @param finalDate
 	 * @return situcao do aluguel
+	 * @throws Exception 
 	 */
 	public String getRentSituation(String email, String plate,
-			String inicialDate, String finalDate) {
+			String inicialDate, String finalDate) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		for (Rent rent : rents) {
 			if (rent.getCostumer().getEmail().equals(email)
 					&& rent.getVehiclePlate().equals(plate))
@@ -137,8 +153,12 @@ public class RentCollection {
 	 * Lista todos os alugueis pendentes
 	 * 
 	 * @return toString de todos os alugueis pendentes
+	 * @throws Exception 
 	 */
-	public String listAllPendingRents(Calendar date) {
+	public String listAllPendingRents(Calendar date) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		String output = "";
 		for (Rent rent : rents) {
 			if (rent.compareTo(date) < 1)
@@ -153,7 +173,10 @@ public class RentCollection {
 	 * @param date
 	 * @return toString de todos os alugueis nao pendentes
 	 */
-	public String listAllNonPendingRents(Calendar date) {
+	public String listAllNonPendingRents(Calendar date) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		String output = "";
 		for (Rent rent : rents) {
 			if (rent.compareTo(date) >= 1)
@@ -167,8 +190,12 @@ public class RentCollection {
 	 * 
 	 * @param email
 	 * @return quantidade de alugueis por cliente
+	 * @throws Exception 
 	 */
-	public int getRentsByCustomer(String email) {
+	public int getRentsByCustomer(String email) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis do cliente esta vazia.");
+		}
 		int cont = 0;
 		if (rents != null)
 			for (Rent rent : rents) {
@@ -184,8 +211,12 @@ public class RentCollection {
 	 * 
 	 * @param plate
 	 * @return Quantidade de alugueis por veiculo
+	 * @throws Exception 
 	 */
-	public int getRentsByVehicle(String plate) {
+	public int getRentsByVehicle(String plate) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis de veiculos esta vazia.");
+		}
 		int cont = 0;
 		if (rents != null)
 			for (Rent rent : rents) {
@@ -201,8 +232,12 @@ public class RentCollection {
 	 * 
 	 * @param plate
 	 * @return uma confirmacao
+	 * @throws Exception 
 	 */
-	public boolean releaseVehicle(String plate) {
+	public boolean releaseVehicle(String plate) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equalsIgnoreCase(plate)) {
 				rents.remove(rent);
@@ -217,8 +252,12 @@ public class RentCollection {
 	 * 
 	 * @param plate
 	 * @return true se estiver alugado ou false caso contrario
+	 * @throws Exception 
 	 */
-	public boolean vehicleIsRent(String plate) {
+	public boolean vehicleIsRent(String plate) throws Exception {
+		if (rents.size() == 0){
+			throw new Exception("A lista de alugueis esta vazia.");
+		}
 		for (Rent rent : rents) {
 			if (rent.getVehiclePlate().equals(plate)) {
 				return true;

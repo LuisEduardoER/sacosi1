@@ -90,13 +90,10 @@ public class XMLRentDAO implements RentDAO{
 	 * @param email
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws AlreadyExistException
-	 * @throws InvalidFieldException
-	 * @throws MessagingException
+	 * @throws Exception 
 	 */
 	public void registerLateRent(String plate, String email,
-			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException, MessagingException {
+			String initialDate, String finalDate) throws Exception {
 
 		if (!this.verification.validateRegisterLateRent(finalDate)) {
 			throw new InvalidFieldException(
@@ -113,13 +110,10 @@ public class XMLRentDAO implements RentDAO{
 	 * @param email
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws AlreadyExistException
-	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException
+	 * @throws Exception 
 	 */
 	public void registerRent(String plate, String email, String initialDate,
-			String finalDate) throws AlreadyExistException,
-			InvalidFieldException, EmptyFieldException {
+			String finalDate) throws Exception {
 		this.register(plate, email, initialDate, finalDate, "active");
 		this.writeXML();
 	}
@@ -132,14 +126,11 @@ public class XMLRentDAO implements RentDAO{
 	 * @param initialDate
 	 * @param finalDate
 	 * @param rentSituation
-	 * @throws AlreadyExistException
-	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException
+	 * @throws Exception 
 	 */
 	private void register(String plate, String email, String initialDate,
 			String finalDate, String rentSituation)
-			throws AlreadyExistException, InvalidFieldException,
-			EmptyFieldException {
+			throws Exception {
 
 		if (!this.verification.plateIsAMandatoryField(plate)
 				|| !this.verification.emailIsAMandatoryField(email)
@@ -191,8 +182,9 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param plate
 	 * @return uma confirmacao
+	 * @throws Exception 
 	 */
-	public boolean releaseVehicle(String plate) {
+	public boolean releaseVehicle(String plate) throws Exception {
 		boolean release = this.rents.releaseVehicle(plate); 
 		this.writeXML();
 		return release;
@@ -203,7 +195,7 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @return quantidade de algueis ativos
 	 */
-	public int getAllActiveRents() {
+	public int getAllActiveRents() throws Exception {
 		return this.rents.getAllActiveRents();
 	}
 
@@ -212,8 +204,9 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param plate
 	 * @return situacao do veiculo.
+	 * @throws Exception 
 	 */
-	public String getVehicleSituation(String plate) {
+	public String getVehicleSituation(String plate) throws Exception {
 		return this.rents.getVehicleSituation(plate);
 	}
 
@@ -225,9 +218,10 @@ public class XMLRentDAO implements RentDAO{
 	 * @param inicialDate
 	 * @param finalDate
 	 * @return situcao do aluguel
+	 * @throws Exception 
 	 */
 	public String getRentSituation(String email, String plate,
-			String inicialDate, String finalDate) {
+			String inicialDate, String finalDate) throws Exception {
 		return this.rents.getRentSituation(email, plate, inicialDate, finalDate);
 	}
 
@@ -249,8 +243,9 @@ public class XMLRentDAO implements RentDAO{
 	 * Lista todos os alugueis pendentes
 	 * 
 	 * @return toString de todos os alugueis pendentes
+	 * @throws Exception 
 	 */
-	public String listAllPendingRents(Calendar date) {
+	public String listAllPendingRents(Calendar date) throws Exception {
 		return this.rents.listAllPendingRents(date);
 	}
 
@@ -259,8 +254,9 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param date
 	 * @return toString de todos os alugueis nao pendentes
+	 * @throws Exception 
 	 */
-	public String listAllNonPendingRents(Calendar date) {
+	public String listAllNonPendingRents(Calendar date) throws Exception {
 		return this.rents.listAllNonPendingRents(date);
 	}
 
@@ -278,8 +274,9 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param email
 	 * @return quantidade de alugueis por cliente
+	 * @throws Exception 
 	 */
-	public int getRentsByCustomer(String email) {
+	public int getRentsByCustomer(String email) throws Exception {
 		return this.rents.getRentsByCustomer(email);
 	}
 
@@ -288,8 +285,9 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param plate
 	 * @return Quantidade de alugueis por veiculo
+	 * @throws Exception 
 	 */
-	public int getRentsByVehicle(String plate) {
+	public int getRentsByVehicle(String plate) throws Exception {
 		return this.rents.getRentsByVehicle(plate);
 	}
 
@@ -298,8 +296,9 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param plate
 	 * @return true se estiver alugado ou false caso contrario
+	 * @throws Exception 
 	 */
-	public boolean vehicleIsRent(String plate) {
+	public boolean vehicleIsRent(String plate) throws Exception {
 		return this.rents.vehicleIsRent(plate);
 	}
 
@@ -339,8 +338,9 @@ public class XMLRentDAO implements RentDAO{
 
 	/**
 	 * Visualiza todos os carros
+	 * @throws Exception 
 	 */
-	public void seeCars() {
+	public void seeCars() throws Exception {
 		List<Vehicle> list = new ArrayList<Vehicle>();
 		Iterator<Vehicle> it = vehicleCollection.iterator();
 		while (it.hasNext()) {
@@ -456,8 +456,9 @@ public class XMLRentDAO implements RentDAO{
 	 * Retorna a situacao vigente de todos os veiculos cadastrados.
 	 * 
 	 * @return a situacao dos veiculos
+	 * @throws Exception 
 	 */
-	public String getAllVehiclesSituation() {
+	public String getAllVehiclesSituation() throws Exception {
 		String output = "";
 		Iterator<Vehicle> it = vehicleCollection.iterator();
 		while (it.hasNext()) {
@@ -476,14 +477,11 @@ public class XMLRentDAO implements RentDAO{
 	 *            o alugador
 	 * @param plates
 	 *            as placas dos carros que o cliente deseja alugar
-	 * @throws InvalidFieldException
-	 * @throws AlreadyExistException
-	 * @throws EmptyFieldException
+	 * @throws Exception 
 	 */
 	public void addManyRents(String email, String[] plates,
 			String[] initialDates, String[] devolutionDates)
-			throws AlreadyExistException, InvalidFieldException,
-			EmptyFieldException {
+			throws Exception {
 		for (int i = 0; i < plates.length; i++) {
 			this.registerRent(plates[i], email, initialDates[i],
 					devolutionDates[i]);

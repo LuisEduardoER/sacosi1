@@ -184,13 +184,10 @@ public class Facade {
 	 *            a data do aluguel
 	 * @param finalDate
 	 *            a data de entrega
-	 * @throws AlreadyExistException
-	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException
+	 * @throws Exception 
 	 */
 	public void registerRent(String plate, String email, String initialDate,
-			String finalDate) throws AlreadyExistException,
-			InvalidFieldException, EmptyFieldException {
+			String finalDate) throws Exception {
 		this.reController.registerRent(plate, email, initialDate, finalDate);
 		
 	}
@@ -206,13 +203,10 @@ public class Facade {
 	 *            a data do aluguel
 	 * @param finalDate
 	 *            a data de entrega
-	 * @throws AlreadyExistException
-	 * @throws InvalidFieldException
-	 * @throws MessagingException 
+	 * @throws Exception 
 	 */
 	public void registerLateRent(String plate, String email,
-			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException, MessagingException {
+			String initialDate, String finalDate) throws Exception {
 		this.reController
 				.registerLateRent(plate, email, initialDate, finalDate);
 	}
@@ -229,9 +223,10 @@ public class Facade {
 	 * @param finalDate
 	 *            data da entrega
 	 * @return
+	 * @throws Exception 
 	 */
 	public String getRentSituation(String email, String plate,
-			String inicialDate, String finalDate) {
+			String inicialDate, String finalDate) throws Exception {
 		return this.reController.getRentSituation(email, plate, inicialDate,
 				finalDate);
 	}
@@ -250,8 +245,9 @@ public class Facade {
 	 * 
 	 * @param email
 	 * @return quantidade de algueis de um cliente
+	 * @throws Exception 
 	 */
-	public int getRentsByCustomer(String email) {
+	public int getRentsByCustomer(String email) throws Exception {
 		return this.reController.getRentsByCustomer(email);
 	}
 
@@ -261,8 +257,9 @@ public class Facade {
 	 * @param plate
 	 *            a placa do veiculo
 	 * @return quantidade de algueis por veiculo
+	 * @throws Exception 
 	 */
-	public int getRentsByVehicle(String plate) {
+	public int getRentsByVehicle(String plate) throws Exception {
 		return this.reController.getRentsByVehicle(plate);
 	}
 
@@ -279,8 +276,9 @@ public class Facade {
 	 * Este metodo retorna a quantidade de alugueis ativos
 	 * 
 	 * @return quantidade de alugueis ativos
+	 * @throws Exception 
 	 */
-	public int getAllActiveRents() {
+	public int getAllActiveRents() throws Exception {
 		return this.reController.getAllActiveRents();
 	}
 
@@ -290,9 +288,9 @@ public class Facade {
 	 * @param plate
 	 *            a placa do veiculo
 	 * @return uma confirmacao da liberacao
-	 * @throws MessagingException 
+	 * @throws Exception 
 	 */
-	public boolean releaseVehicle(String plate) throws MessagingException {
+	public boolean releaseVehicle(String plate) throws Exception {
 		boolean result = this.reController.releaseVehicle(plate);
 		if (result == true) {
 			this.reController.notifyCostumerAboutRelease(plate);
@@ -306,8 +304,9 @@ public class Facade {
 	 * @param plate
 	 *            a placa do veiculo
 	 * @return situcao do veiculo.
+	 * @throws Exception 
 	 */
-	public String getVehicleSituation(String plate) {
+	public String getVehicleSituation(String plate) throws Exception {
 		return this.reController.getVehicleSituation(plate);
 	}
 
@@ -347,8 +346,9 @@ public class Facade {
 
 	/**
 	 * Este metodo permite a visualizacao no console de todos os carros.
+	 * @throws Exception 
 	 */
-	public void seeCars() {
+	public void seeCars() throws Exception {
 		this.reController.seeCars();
 
 	}
@@ -366,8 +366,9 @@ public class Facade {
 	 * 
 	 * @param date
 	 *            a data de atual
+	 * @throws Exception 
 	 */
-	public String listAllNonPendingRents(Calendar date) {
+	public String listAllNonPendingRents(Calendar date) throws Exception {
 		return this.reController.listAllNonPendingRents(date);
 
 	}
@@ -377,8 +378,9 @@ public class Facade {
 	 * 
 	 * @param date
 	 *            a data atual
+	 * @throws Exception 
 	 */
-	public String listAllPendingRents(Calendar date) {
+	public String listAllPendingRents(Calendar date) throws Exception {
 		return this.reController.listAllPendingRents(date);
 
 	}
@@ -387,8 +389,9 @@ public class Facade {
 	 * Este metodo permite a visualizacao da situacao de todos os veiculos.
 	 * 
 	 * @return a situacao de todos os veiculos
+	 * @throws Exception 
 	 */
-	public String getAllVehiclesSituation() {
+	public String getAllVehiclesSituation() throws Exception {
 		return this.reController.getAllVehiclesSituation();
 	}
 
@@ -399,14 +402,11 @@ public class Facade {
 	 *            o alugador
 	 * @param plates
 	 *            as placas dos carros que o cliente deseja alugar
-	 * @throws InvalidFieldException
-	 * @throws AlreadyExistException
-	 * @throws EmptyFieldException
+	 * @throws Exception 
 	 */
 	public void addManyRents(String email, String[] plates,
 			String[] initialDates, String[] devolutionDates)
-			throws AlreadyExistException, InvalidFieldException,
-			EmptyFieldException {
+			throws Exception {
 		this.reController.addManyRents(email, plates, initialDates,
 				devolutionDates);
 	}
@@ -428,7 +428,7 @@ public class Facade {
 		return userController.find(dataOne, dataTwo);
 	}
 
-	public String printRequestList(){
+	public String printRequestList() throws Exception{
 		return this.reController.printRequestList();
 	}
 }
