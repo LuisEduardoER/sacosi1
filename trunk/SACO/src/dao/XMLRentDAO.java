@@ -480,12 +480,12 @@ public class XMLRentDAO implements RentDAO{
 	 * @throws AlreadyExistException
 	 * @throws EmptyFieldException
 	 */
-	public void addManyRents(Alugadores customer, String[] plates,
+	public void addManyRents(String email, String[] plates,
 			String[] initialDates, String[] devolutionDates)
 			throws AlreadyExistException, InvalidFieldException,
 			EmptyFieldException {
 		for (int i = 0; i < plates.length; i++) {
-			this.registerRent(plates[i], customer.getEmail(), initialDates[i],
+			this.registerRent(plates[i], email, initialDates[i],
 					devolutionDates[i]);
 		}
 	}
@@ -540,6 +540,10 @@ public class XMLRentDAO implements RentDAO{
 			String message = "Your request was release, because 48h passed.";
 			MailManager.getInstanceOf().sendEmail(sendTo2, message);
 		}
+	}
+	
+	public String printRequestList(){
+		return this.requestList.toString();
 	}
 	
 	

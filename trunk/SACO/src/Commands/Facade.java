@@ -367,8 +367,8 @@ public class Facade {
 	 * @param date
 	 *            a data de atual
 	 */
-	public void listAllNonPendingRents(Calendar date) {
-		this.reController.listAllNonPendingRents(date);
+	public String listAllNonPendingRents(Calendar date) {
+		return this.reController.listAllNonPendingRents(date);
 
 	}
 
@@ -378,8 +378,8 @@ public class Facade {
 	 * @param date
 	 *            a data atual
 	 */
-	public void listAllPendingRents(Calendar date) {
-		this.reController.listAllPendingRents(date);
+	public String listAllPendingRents(Calendar date) {
+		return this.reController.listAllPendingRents(date);
 
 	}
 
@@ -403,11 +403,11 @@ public class Facade {
 	 * @throws AlreadyExistException
 	 * @throws EmptyFieldException
 	 */
-	public void addManyRents(Alugadores customer, String[] plates,
+	public void addManyRents(String email, String[] plates,
 			String[] initialDates, String[] devolutionDates)
 			throws AlreadyExistException, InvalidFieldException,
 			EmptyFieldException {
-		this.reController.addManyRents(customer, plates, initialDates,
+		this.reController.addManyRents(email, plates, initialDates,
 				devolutionDates);
 	}
 
@@ -428,4 +428,7 @@ public class Facade {
 		return userController.find(dataOne, dataTwo);
 	}
 
+	public String printRequestList(){
+		return this.reController.printRequestList();
+	}
 }

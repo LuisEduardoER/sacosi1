@@ -64,9 +64,57 @@ public class LogicOfTheUser {
 			addVehicle();
 			inicia();
 			break;
+		case InterfaceText.ADICIONA_VARIOS_ALUGUEIS:
+			addManyRents();
+			inicia();
+			break;
+		case InterfaceText.REMOVER_ALUGUEL:
+			releaseRent();
+			inicia();
+			break;
+		case InterfaceText.CONSULTAR_RESERVAS:
+			consultaReservas();
+			inicia();
+			break;
+		case InterfaceText.CONSULTAR_ALUGUEIS_ATRASADOS:
+			consultaAtrasados();
+			inicia();
+			break;
+		case InterfaceText.CONSULTAR_ALUGUEIS_NAO_ATRASADOS:
+			consultaNaoAtrasados();
+			inicia();
+			break;
 		case InterfaceText.SAIR:
 			break;
 		}
+	}
+
+	private void consultaNaoAtrasados() {
+		Calendar date = InterfaceText.menuEscolherData();
+		InterfaceText.listAllNonPendingRents(facade.listAllNonPendingRents(date));
+		
+	}
+
+	private void consultaAtrasados() {
+		Calendar date = InterfaceText.menuEscolherData();
+		InterfaceText.listAllPendingRents(facade.listAllPendingRents(date));
+		
+	}
+
+	private void consultaReservas() {
+		InterfaceText.printRequestList(facade.printRequestList());
+		
+	}
+
+	private void releaseRent() throws MessagingException {
+		String placa = InterfaceText.releaseVehicle();
+		facade.releaseVehicle(placa);
+		
+	}
+
+	private void addManyRents() throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
+		String [][] ManyRentsData = InterfaceText.adicionaVariosAlugueis();
+		facade.addManyRents(ManyRentsData[1][0], ManyRentsData[0], ManyRentsData[2], ManyRentsData[3]);
 	}
 
 	public void addVehicle() throws InvalidFieldException, EmptyFieldException,
@@ -88,8 +136,15 @@ public class LogicOfTheUser {
 
 	private void consultaSituacao() {
 		String[] consulta = InterfaceText.getRentSituation();
-		facade.getRentSituation(consulta[0], consulta[1], consulta[2],
+		String situacao = facade.getRentSituation(consulta[0], consulta[1], consulta[2],
 				consulta[3]);
+		System.out.println("--------------------------------------------------");
+		if (situacao.equalsIgnoreCase("active")){
+			System.out.println("O veiculo de placa " + consulta[1] + " esta atualmente alugado.");
+		}
+		else{
+			System.out.println("O veiculo de placa " + consulta[1] + " esta atualmente disponivel.");
+		}
 	}
 
 	private void alugueisRegistrados() {
@@ -136,11 +191,11 @@ public class LogicOfTheUser {
 	 * @throws InvalidFieldException
 	 * @throws EmptyFieldException
 	 */
-	public void addManyRents(Alugadores customer, String[] plates,
+	public void addManyRents(String email, String[] plates,
 			String[] initialDates, String[] devolutionDates)
 			throws AlreadyExistException, InvalidFieldException,
 			EmptyFieldException {
-		facade.addManyRents(customer, plates, initialDates, devolutionDates);
+		facade.addManyRents(email, plates, initialDates, devolutionDates);
 	}
 
 	/**
