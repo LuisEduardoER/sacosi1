@@ -94,15 +94,15 @@ public class LogicOfTheUser {
 			String impressao = facade.listAllNonPendingRents(date);
 			InterfaceText.listAllNonPendingRents(impressao);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -112,15 +112,15 @@ public class LogicOfTheUser {
 			String impressao = facade.listAllPendingRents(date);
 			InterfaceText.listAllPendingRents(impressao);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -129,15 +129,15 @@ public class LogicOfTheUser {
 			String impressao = facade.printRequestList();
 			InterfaceText.printRequestList(impressao);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -146,15 +146,15 @@ public class LogicOfTheUser {
 		try {
 			facade.releaseVehicle(placa);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -164,15 +164,15 @@ public class LogicOfTheUser {
 			facade.addManyRents(ManyRentsData[1][0], ManyRentsData[0],
 					ManyRentsData[2], ManyRentsData[3]);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -188,15 +188,15 @@ public class LogicOfTheUser {
 		try {
 			facade.registerLateRent(atraso[0], atraso[1], atraso[2], atraso[3]);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -205,15 +205,15 @@ public class LogicOfTheUser {
 			int quantidade = facade.getAllActiveRents();
 			InterfaceText.alugueisVigentes(quantidade);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -224,15 +224,15 @@ public class LogicOfTheUser {
 			situacao = facade.getVehicleSituation(placa);
 			InterfaceText.showSituation(situacao, placa);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -246,15 +246,15 @@ public class LogicOfTheUser {
 			facade.registerRent(dadosAluguel[0], dadosAluguel[1],
 					dadosAluguel[2], dadosAluguel[3]);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -283,15 +283,15 @@ public class LogicOfTheUser {
 		try {
 			facade.registerRent(plate, email, initialDate, finalDate);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -313,15 +313,15 @@ public class LogicOfTheUser {
 		try {
 			facade.addManyRents(email, plates, initialDates, devolutionDates);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -339,15 +339,15 @@ public class LogicOfTheUser {
 		try {
 			facade.releaseVehicle(plate);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -377,15 +377,15 @@ public class LogicOfTheUser {
 		try {
 			facade.registerLateRent(plate, email, initialDate, finalDate);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -403,15 +403,15 @@ public class LogicOfTheUser {
 		try {
 			facade.getVehicleSituation(plate);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -428,15 +428,15 @@ public class LogicOfTheUser {
 		try {
 			facade.getAllVehiclesSituation();
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -454,15 +454,15 @@ public class LogicOfTheUser {
 		try {
 			facade.listAllNonPendingRents(date);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
@@ -480,15 +480,15 @@ public class LogicOfTheUser {
 		try {
 			facade.listAllPendingRents(date);
 		} catch (AlreadyExistException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (InvalidFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (EmptyFieldException e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
