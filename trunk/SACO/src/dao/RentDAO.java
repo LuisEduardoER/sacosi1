@@ -15,34 +15,34 @@ public interface RentDAO {
 	
 	public void registerLateRent(String plate, String email,
 			String initialDate, String finalDate) throws AlreadyExistException,
-			InvalidFieldException, MessagingException;
+			InvalidFieldException, MessagingException, Exception;
 	
 	public void registerRent(String plate, String email, String initialDate,
 			String finalDate) throws AlreadyExistException,
-			InvalidFieldException, EmptyFieldException;
+			InvalidFieldException, EmptyFieldException, Exception;
 	
-	public boolean releaseVehicle(String plate);
+	public boolean releaseVehicle(String plate) throws Exception;
 	
 	public String getRentSituation(String email, String plate,
-			String inicialDate, String finalDate);
+			String inicialDate, String finalDate) throws Exception;
 	
-	public int getAllActiveRents();
+	public int getAllActiveRents() throws Exception;
 	
-	public String getVehicleSituation(String plate);
+	public String getVehicleSituation(String plate) throws Exception;
 	
 	public void cleanBD() throws FileNotFoundException;
 	
-	public void seeCars();
+	public void seeCars() throws Exception;
 	
-	public String listAllPendingRents(Calendar date);
+	public String listAllPendingRents(Calendar date) throws Exception;
 	
-	public String listAllNonPendingRents(Calendar date);
+	public String listAllNonPendingRents(Calendar date) throws Exception;
 	
 	public int getAllRents();
 	
-	public int getRentsByCustomer(String email);
+	public int getRentsByCustomer(String email) throws Exception;
 	
-	public int getRentsByVehicle(String plate);
+	public int getRentsByVehicle(String plate) throws Exception;
 	
 	public int getAllPendentRentRequests();
 	
@@ -51,19 +51,19 @@ public interface RentDAO {
 	
 	public String listAllRequests();
 	
-	public String getAllVehiclesSituation();
+	public String getAllVehiclesSituation() throws Exception;
 	
 	public void addManyRents(String email, String[] plates,
 			String[] initialDates, String[] devolutionDates)
 			throws AlreadyExistException, InvalidFieldException,
-			EmptyFieldException;
+			EmptyFieldException, Exception;
 	
 	public void notifyCostumerAboutRelease(String plate)
 	throws MessagingException;
 	
 	public void notifyAboutRequestRelease() throws MessagingException;
 
-	public String printRequestList();
+	public String printRequestList() throws Exception;
 	
 	
 }

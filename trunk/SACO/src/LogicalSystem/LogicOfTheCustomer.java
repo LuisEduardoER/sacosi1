@@ -67,8 +67,9 @@ public class LogicOfTheCustomer {
 
 	/**
 	 * Visualiza carros
+	 * @throws Exception 
 	 */
-	public void seeCars() {
+	public void seeCars() throws Exception {
 		facade.seeCars();
 	}
 }
