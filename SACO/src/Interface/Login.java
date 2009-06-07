@@ -60,6 +60,9 @@ public abstract class Login {
 			case InterfaceText.CLIENTE:;
 				logic = new LogicOfTheCustomer();
 				break;
+			case InterfaceText.SAIR:
+				logic = null;
+				break;
 			}
 		} else {
 			InterfaceText.menuInsucesso();
