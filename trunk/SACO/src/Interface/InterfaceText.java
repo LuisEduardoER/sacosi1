@@ -275,16 +275,10 @@ public class InterfaceText {
 		System.out.println(valor);
 	}
 	
-	public static String[] getRentSituation(){
-		System.out.println("Digite o seu email: ");
-		String email = sc.nextLine();
+	public static String getVehicleSituation(){
 		System.out.println("Digite a placa do veiculo (ex: aaa0000): ");
 		String placa = sc.nextLine();
-		System.out.println("Digite a data inicial de aluguel (ex:10/04/09): ");
-		String dataInicial = sc.nextLine();
-		System.out.println("Digite a data final de aluguel (ex:10/04/09): ");
-		String dataFinal = sc.nextLine();
-		return new String[] {email, placa, dataInicial, dataFinal};
+		return placa;
 	}
 
 	public static void alugueisVigentes(int valor){
@@ -366,6 +360,17 @@ public class InterfaceText {
 
 	public static void listAllNonPendingRents(String listAllNonPendingRents) {
 		System.out.println(listAllNonPendingRents);
+	}
+
+	public static void showSituation(String situacao, String placa) {
+		System.out.println("--------------------------------------------------");
+		if (situacao.equalsIgnoreCase("active")){
+			System.out.println("O veiculo de placa " + placa + " esta atualmente alugado.");
+		}
+		else{
+			System.out.println("O veiculo de placa " + placa + " esta atualmente disponivel.");
+		}
+		
 	}
 	
 }
