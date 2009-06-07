@@ -53,7 +53,7 @@ public interface RentDAO {
 	
 	public String getAllVehiclesSituation();
 	
-	public void addManyRents(Alugadores customer, String[] plates,
+	public void addManyRents(String email, String[] plates,
 			String[] initialDates, String[] devolutionDates)
 			throws AlreadyExistException, InvalidFieldException,
 			EmptyFieldException;
@@ -62,6 +62,8 @@ public interface RentDAO {
 	throws MessagingException;
 	
 	public void notifyAboutRequestRelease() throws MessagingException;
+
+	public String printRequestList();
 	
 	
 }

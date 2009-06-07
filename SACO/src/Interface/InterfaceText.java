@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class InterfaceText {
@@ -28,6 +31,11 @@ public class InterfaceText {
 	public static final int ALUGUEL_VIGENTE = 4;
 	public static final int ALUGUEL_ATRASADO = 6;
 	public static final int INTERESSE_CARRO = 7;
+	public static final int ADICIONA_VARIOS_ALUGUEIS = 7;
+	public static final int REMOVER_ALUGUEL = 8;
+	public static final int CONSULTAR_RESERVAS = 9;
+	public static final int CONSULTAR_ALUGUEIS_NAO_ATRASADOS = 10;
+	public static final int CONSULTAR_ALUGUEIS_ATRASADOS = 11;
 	public static final int SAIR = 0;	
 
 
@@ -128,6 +136,10 @@ public class InterfaceText {
 		System.out.println(ALUGUEL_VIGENTE + " - Ver Alugueis Vigentes");
 		System.out.println(ADICIONAR_VEICULO + " - Adicionar Veiculo");
 		System.out.println(ALUGUEL_ATRASADO + " - Ver Alugueis Atrasados");
+		System.out.println(ADICIONA_VARIOS_ALUGUEIS + " - Adiciona Varios Alugueis");
+		System.out.println(REMOVER_ALUGUEL + " - Remover Aluguel");
+		System.out.println(CONSULTAR_ALUGUEIS_NAO_ATRASADOS + " - Listar alugueis nao atrasados");
+		System.out.println(CONSULTAR_ALUGUEIS_ATRASADOS + " - Listar alugueis atrasados");
 		System.out.println(SAIR + " - Sair");
 		System.out.println();
 		System.out.print("Escolha uma opção: ");
@@ -246,14 +258,14 @@ public class InterfaceText {
 	}
 
 	public static String[] dadosDoAluguel(){
-		System.out.println("Digite a placa do veiculo (ex: aaa000): ");
-		String placa = leDados();
+		System.out.println("Digite a placa do veiculo (ex: aaa0000): ");
+		String placa = sc.nextLine();
 		System.out.println("Digite o seu email: ");
-		String email = leDados();
-		System.out.println("Digite a data inicial de aluguel (ex:10/04/2009): ");
-		String dataInicial = leDados();
-		System.out.println("Digite a data final de aluguel (ex:10/04/2009): ");
-		String dataFinal = leDados();
+		String email = sc.nextLine();
+		System.out.println("Digite a data inicial de aluguel (ex:10/04/09): ");
+		String dataInicial = sc.nextLine();
+		System.out.println("Digite a data final de aluguel (ex:10/04/09): ");
+		String dataFinal = sc.nextLine();
 		return new String[] {placa, email, dataInicial, dataFinal};
 	}
 	
@@ -263,16 +275,16 @@ public class InterfaceText {
 		System.out.println(valor);
 	}
 	
-	public static String[]getRentSituation(){
+	public static String[] getRentSituation(){
 		System.out.println("Digite o seu email: ");
-		String email = leDados();
-		System.out.println("Digite a placa do veiculo (ex: aaa000): ");
-		String placa = leDados();
-		System.out.println("Digite a data inicial de aluguel (ex:10/04/2009): ");
-		String dataInicial = leDados();
-		System.out.println("Digite a data final de aluguel (ex:10/04/2009): ");
-		String dataFinal = leDados();
-		return new String[] {placa, email, dataInicial, dataFinal};
+		String email = sc.nextLine();
+		System.out.println("Digite a placa do veiculo (ex: aaa0000): ");
+		String placa = sc.nextLine();
+		System.out.println("Digite a data inicial de aluguel (ex:10/04/09): ");
+		String dataInicial = sc.nextLine();
+		System.out.println("Digite a data final de aluguel (ex:10/04/09): ");
+		String dataFinal = sc.nextLine();
+		return new String[] {email, placa, dataInicial, dataFinal};
 	}
 
 	public static void alugueisVigentes(int valor){
@@ -282,15 +294,78 @@ public class InterfaceText {
 	}
 
 	public static String[] registerLateRent() {
-		System.out.println("Digite a placa do veiculo (ex: aaa000): ");
-		String placa = leDados();
+		System.out.println("Digite a placa do veiculo (ex: aaa0000): ");
+		String placa = sc.nextLine();
 		System.out.println("Digite o seu email: ");
-		String email = leDados();
-		System.out.println("Digite a data inicial de aluguel (ex:10/04/2009): ");
-		String dataInicial = leDados();
-		System.out.println("Digite a data final de aluguel (ex:10/04/2009): ");
-		String dataFinal = leDados();
+		String email = sc.nextLine();
+		System.out.println("Digite a data inicial de aluguel (ex:10/04/09): ");
+		String dataInicial = sc.nextLine();
+		System.out.println("Digite a data final de aluguel (ex:10/04/09): ");
+		String dataFinal = sc.nextLine();
 		return new String[] {placa, email, dataInicial, dataFinal};
+	}
+
+	public static String[][] adicionaVariosAlugueis() {
+		System.out.println("Quantos alugueis serao feitos: ");
+		String tamanhoString = sc.nextLine();
+		int tamanho = Integer.parseInt(tamanhoString);
+		String[] placas = new String[tamanho];
+		String[] datasIniciais = new String[tamanho];
+		String[] datasFinais = new String[tamanho];
+		int i = 0;
+		while (i < tamanho) {
+			System.out.println("Digite a placa do veiculo (ex: aaa0000): ");
+			String placa = sc.nextLine();
+			placas[i] = placa;
+			System.out.println("Digite a data inicial de aluguel (ex:10/04/09): ");
+			String dataInicial = sc.nextLine();
+			datasIniciais[i] = dataInicial;
+			System.out.println("Digite a data final de aluguel (ex:10/04/09): ");
+			String dataFinal = sc.nextLine();
+			datasFinais[i] = dataFinal;
+			i++;
+		}
+		System.out.println("Digite o seu email: ");
+		String email = sc.nextLine();
+		String[] emails = {email};
+		return new String[][] {placas, emails, datasIniciais, datasFinais};
+	}
+
+	public static String releaseVehicle() {
+		System.out.println("Digite a placa do veiculo que deseja remover(ex: aaa0000): ");
+		String plate = sc.nextLine();
+		return plate;
+	}
+
+	public static void printRequestList(String printRequestList) {
+		System.out.println("------------------------------------------------------");
+		System.out.println(printRequestList);
+		
+	}
+
+	@SuppressWarnings("deprecation")
+	public static Calendar menuEscolherData() {
+		System.out.println("Digite o dia: ");
+		String dia = sc.nextLine();
+		System.out.println("Digite o mes: ");
+		String mes = sc.nextLine();
+		System.out.println("Digite o ano(ex: 09 para 2009): ");
+		String ano = sc.nextLine();
+		ano = "20" + ano;
+		int mesCorreto = Integer.parseInt(mes);
+		mesCorreto -= 1;
+		Calendar calendario = Calendar.getInstance();
+		calendario.setTime(new Date(Integer.parseInt(ano), mesCorreto, Integer.parseInt(dia)));
+		return calendario;
+	}
+
+	public static void listAllPendingRents(String listAllPendingRents) {
+		System.out.println(listAllPendingRents);
+		
+	}
+
+	public static void listAllNonPendingRents(String listAllNonPendingRents) {
+		System.out.println(listAllNonPendingRents);
 	}
 	
 }
