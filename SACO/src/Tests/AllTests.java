@@ -24,7 +24,9 @@ public class AllTests {
 		files.add("us14.txt");
 
 		Facade test = new Facade();
-
+		
+		test.cleanDB();
+		
 		EasyAcceptFacade eaFacade = new EasyAcceptFacade(test, files);
 
 		eaFacade.executeTests();
