@@ -119,12 +119,14 @@ public class XMLVehiclesDAO implements VehiclesDAO{
 	 * @param vehicles
 	 * @param year
 	 */
-	public void printCarsByYear(List<Vehicle> vehicles, int year) {
+	public String printCarsByYear(List<Vehicle> vehicles, int year) {
+		String output = "";
 		for (int i = 0; i < vehicles.size(); i++) {
 			if (vehicles.get(i).getYear() == year) {
-				System.out.println(vehicles.get(i).toString());
+				output += vehicles.get(i).toString();
 			}
 		}
+		return output;
 	}
 
 	/**

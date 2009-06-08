@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -27,7 +26,7 @@ public class InterfaceText {
 	public static final int REGISTRA_ALUGUEL = 1;
 	public static final int ALUGUEIS_REGISTRADOS = 2;
 	public static final int CONSULTA_SITUACAO = 3;
-	public static final int RESERVA_ALUGUEL = 4;
+	public static final int RESERVA_ALUGUEL = 2;
 	public static final int ALUGUEL_VIGENTE = 4;
 	public static final int ALUGUEL_ATRASADO = 6;
 	public static final int INTERESSE_CARRO = 7;
@@ -36,7 +35,11 @@ public class InterfaceText {
 	public static final int CONSULTAR_RESERVAS = 9;
 	public static final int CONSULTAR_ALUGUEIS_NAO_ATRASADOS = 10;
 	public static final int CONSULTAR_ALUGUEIS_ATRASADOS = 11;
-	public static final int SAIR = 0;	
+	public static final int SAIR = 0;
+
+	public static final int REGISTRAR_SE = 4;
+
+	public static final int CONSULTAR_DISPONIVEIS = 3;	
 
 
 	private static StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
@@ -47,16 +50,6 @@ public class InterfaceText {
 		return (int)in.nval;
 	}
 	
-	private static String nextString() throws IOException {
-		in.nextToken();
-		return (String) in.sval;
-	}
-
-	private void run() throws IOException {
-		out.flush();
-	}
-
-
 	public void imprimeMensagemInicial() {
 		System.out.println("----------------------------------------------------------");
 		System.out.println("Bem vindo ao Sistema de Alugar Carros e Outros!");
@@ -80,13 +73,14 @@ public class InterfaceText {
 		System.out.println(ADMINISTRADOR + " - Administrador ");
 		System.out.println(FUNCIONARIO + " - Funcionario");
 		System.out.println(CLIENTE + " - Cliente");
+		System.out.println(REGISTRAR_SE + " - Registrar-se");
 		System.out.println(SAIR + " - Sair");
 		System.out.println();
 		System.out.print("Escolha uma opção: ");
 		
 		int opcao = nextInt();
 		
-		if (opcao < SAIR || opcao > CLIENTE) {
+		if (opcao < SAIR || opcao > REGISTRAR_SE) {
 			exibeMenuDeIdentificacao();
 		}
 
@@ -95,10 +89,10 @@ public class InterfaceText {
 
 	public static String[] exibeLogar() throws IOException {
 		System.out.println("----------------------------------------------------------");
-		System.out.print("Digite seu login: ");
+		System.out.print("Digite seu login (nome se for cliente): ");
 		String login = sc.nextLine();
 
-		System.out.print("Digite sua senha: ");
+		System.out.print("Digite seu email: ");
 		String senha = sc.nextLine();
 		
 		System.out.println(login + " " + senha);
@@ -154,15 +148,14 @@ public class InterfaceText {
 
 	}
 
-	public int exibeMenuDoCliente() throws IOException {
+	public static int exibeMenuDoCliente() throws IOException {
 
 		System.out.println("----------------------------------------------------------");
 		System.out.println("Opções: ");
 		System.out.println();
-		System.out.println(ADICIONAR_CLIENTE + " - Adicionar Cliente");
-		System.out.println(REMOVER_CLIENTE + " - Remover Cliente");
-		System.out.println(CONSULTA_SITUACAO + " - Consultar Situacao de um veiculo");
 		System.out.println(RESERVA_ALUGUEL + " - Fazer Reserva de Aluguel");
+		System.out.println(CONSULTAR_DISPONIVEIS + " - Consultar veiculos disponiveis para aluguel");
+		System.out.println(REMOVER_CLIENTE + " - Remover Cliente");
 		System.out.println(INTERESSE_CARRO + " - Mostrar interesse em um Carro Alugado");
 		System.out.println(SAIR + " - Sair");
 		System.out.println();
@@ -362,6 +355,22 @@ public class InterfaceText {
 		System.out.println(listAllNonPendingRents);
 	}
 
+	public static String[] DadosDoCliente() {
+		System.out.println("----------------------------------------------------------");
+		System.out.println();
+
+		System.out.println("Digite o nome: ");
+		String name = leDados();
+
+		System.out.println("Digite o email: ");
+		String email = leDados();
+
+		System.out.println("Digite o telefone: ");
+		String phone = leDados();	
+		
+		return new String[] {name, email, phone};
+	}
+
 	public static void showSituation(String situacao, String placa) {
 		System.out.println("--------------------------------------------------");
 		if (situacao.equalsIgnoreCase("active")){
@@ -375,6 +384,14 @@ public class InterfaceText {
 
 	public static void printError(String message) {
 		System.out.println(message);
+	}
+
+	public static String[] menuReservarVeiculo() {
+		System.out.println("Digite o seu email: ");
+		String email = sc.nextLine();
+		System.out.println("Digite a placa do veiculo (ex: aaa0000): ");
+		String placa = sc.nextLine();
+		return new String[] {email, placa};
 	}
 	
 }
