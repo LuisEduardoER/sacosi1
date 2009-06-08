@@ -35,95 +35,108 @@ public class LogicOfTheAdmin {
 		this.facade = new Facade();
 	}
 	
-	public void inicia() throws InvalidFieldException, AlreadyExistException, 
-						EmptyFieldException, NotExistException, LoginException, IOException {
-		int opcao = InterfaceText.exibeMenuDoAdministrador();
-		switch (opcao) {
-		case InterfaceText.ADICIONAR_USUARIO:
-			addUser();
-			System.out.println(getAllUsers());
-			inicia();
-			break;
-		case InterfaceText.ADICIONAR_CLIENTE:
-			addCustomer();
-			inicia();
-			break;
-		case InterfaceText.ADICIONAR_VEICULO:
-			addVehicle();
-			inicia();
-			break;
-		case InterfaceText.REMOVER_CLIENTE:
-			removeCustomer();
-			inicia();
-			break;
-		case InterfaceText.REMOVER_USUARIO:
-			removeUser();
-			inicia();
-			break;
-		case InterfaceText.REMOVER_VEICULO:
-			removeVehicle();
-			inicia();
-			break;
-		case InterfaceText.SAIR:
-			break;
+	public void inicia() {
+		int opcao;
+		try {
+			opcao = InterfaceText.exibeMenuDoAdministrador();
+			switch (opcao) {
+			case InterfaceText.ADICIONAR_USUARIO:
+				addUser();
+				inicia();
+				break;
+			case InterfaceText.ADICIONAR_CLIENTE:
+				addCustomer();
+				inicia();
+				break;
+			case InterfaceText.ADICIONAR_VEICULO:
+				addVehicle();
+				inicia();
+				break;
+			case InterfaceText.REMOVER_CLIENTE:
+				removeCustomer();
+				inicia();
+				break;
+			case InterfaceText.REMOVER_USUARIO:
+				removeUser();
+				inicia();
+				break;
+			case InterfaceText.REMOVER_VEICULO:
+				removeVehicle();
+				inicia();
+				break;
+			case InterfaceText.SAIR:
+				break;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 		
+	}
+
+	/**
+	 * Adiciona usuario ao sistema. Para isso eh necessario ler todos os dados 
+	 * (nome, login, email e telefone) sem que nenhum desses campos esteja em 
+	 * formato incorreto (invalido, nulo). Nao se pode adicionar mais de um 
+	 * usuario com o mesmo email.
+	 */
+	private void addUser() {
+		String[] data = InterfaceText.DadosDoUsuario();
+		try {
+			facade.addUser(data[0], data[1], data[2], data[3]);
+		} catch (AlreadyExistException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (InvalidFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (EmptyFieldException e) {
+			InterfaceText.printError(e.getMessage());
 		}
 	}
 
 	/**
-	 * Adiciona usuario
-	 * 
-	 * @param login
-	 * @param name
-	 * @param email
-	 * @param phone
-	 * @throws InvalidFieldException
-	 * @throws AlreadyExistException
-	 * @throws EmptyFieldException 
+	 * Adiciona cliente ao sistema, para isso eh necessario  o seu nome, email 
+	 * e telefone. Nenhum desses dados devem ser invalidos ou nulos. Clientes
+	 * com emails duplicados nao serao cadastrados ao sistema.
 	 */
-	private void addUser()
-			throws InvalidFieldException, AlreadyExistException, EmptyFieldException {
-		String[] data = InterfaceText.DadosDoUsuario();
-		facade.addUser(data[0], data[1], data[2], data[3]);
-	}
-
-	/**
-	 * Adiciona cliente
-	 * 
-	 * @param name
-	 * @param email
-	 * @param phone
-	 * @throws AlreadyExistException
-	 * @throws InvalidFieldException
-	 * @throws EmptyFieldException 
-	 */
-	public void addCustomer()
-			throws AlreadyExistException, InvalidFieldException, EmptyFieldException {
-		String[] data = InterfaceText.DadosDoUsuario();
-		facade.addCustomer(data[1], data[2], data[3]);
+	public void addCustomer() {
+		String[] data = InterfaceText.DadosDoCliente();
+		try {
+			facade.addCustomer(data[0], data[1], data[2]);
+		} catch (AlreadyExistException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (InvalidFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (EmptyFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		}
 	}
 
 	/**
 	 * Remove cliente
 	 * 
-	 * @throws NotExistException
-	 * @throws InvalidFieldException
 	 */
-	public void removeCustomer()
-			throws NotExistException, InvalidFieldException {
-		facade.removeCustomer(InterfaceText.menuRemocaoCliente());
+	public void removeCustomer() {
+		try {
+			facade.removeCustomer(InterfaceText.menuRemocaoCliente());
+		} catch (NotExistException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (InvalidFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		}
 	}
 
 	/**
 	 * Remove usuario
 	 * 
-	 * @param emailOrLogin
-	 * @throws LoginException
-	 * @throws NotExistException
-	 * @throws InvalidFieldException
 	 */
-	public void removeUser() throws LoginException,
-			NotExistException, InvalidFieldException {
-		facade.removeUser(InterfaceText.menuRemocaoDoFuncionario());
+	public void removeUser() {
+		try {
+			facade.removeUser(InterfaceText.menuRemocaoDoFuncionario());
+		} catch (LoginException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (NotExistException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (InvalidFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		}
 	}
 
 	/**
@@ -139,20 +152,31 @@ public class LogicOfTheAdmin {
 	 * @throws EmptyFieldException
 	 * @throws AlreadyExistsException
 	 */
-	public void addVehicle() throws InvalidFieldException, EmptyFieldException, AlreadyExistException {
+	public void addVehicle() {
 		String[] vehicleData = InterfaceText.DadosDoVeiculo();
-		facade.addVehicle(vehicleData[0], vehicleData[1], vehicleData[2], 
-				vehicleData[3], vehicleData[4], vehicleData[5]);
+		try {
+			facade.addVehicle(vehicleData[0], vehicleData[1], vehicleData[2], 
+					vehicleData[3], vehicleData[4], vehicleData[5]);
+		} catch (InvalidFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (EmptyFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (AlreadyExistException e) {
+			InterfaceText.printError(e.getMessage());
+		}
 	}
 
 	/**
 	 * remove veiculo
 	 * 
-	 * @param plate
-	 * @throws NotExistException
 	 */
-	public void removeVehicle() throws NotExistException{
-		facade.removeVehicle(InterfaceText.menuRemocaoDeVeiculo());
+	public void removeVehicle() {
+		String dado = InterfaceText.menuRemocaoDeVeiculo();
+		try {
+			facade.removeVehicle(dado);
+		} catch (NotExistException e) {
+			InterfaceText.printError(e.getMessage());
+		}
 	}
 
 	/**

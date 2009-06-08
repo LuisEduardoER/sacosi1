@@ -32,8 +32,6 @@ public interface RentDAO {
 	
 	public void cleanBD() throws FileNotFoundException;
 	
-	public void seeCars() throws Exception;
-	
 	public String listAllPendingRents(Calendar date) throws Exception;
 	
 	public String listAllNonPendingRents(Calendar date) throws Exception;
@@ -51,7 +49,7 @@ public interface RentDAO {
 	
 	public String listAllRequests();
 	
-	public String getAllVehiclesSituation() throws Exception;
+	public String getAllAvailablesVehicles() throws Exception;
 	
 	public void addManyRents(String email, String[] plates,
 			String[] initialDates, String[] devolutionDates)

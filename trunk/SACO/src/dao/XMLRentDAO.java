@@ -8,11 +8,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.mail.MessagingException;
 
-import Exceptions.AlreadyExistException;
 import Exceptions.EmptyFieldException;
 import Exceptions.InvalidFieldException;
 import Mail.MailManager;
@@ -23,7 +21,7 @@ import System.Rent;
 import System.RentCollection;
 import System.RequestObject;
 import System.RequestRentCollection;
-import Users.Alugadores;
+import System.VehiclesCollection;
 import Users.Customer;
 import Vehicles.Vehicle;
 
@@ -42,11 +40,10 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class XMLRentDAO implements RentDAO{
 
 	private RentCollection rents;
-	private XMLUserDAO userController;
 	private CustomerCollection customerCollection;
+	private VehiclesCollection vehiclesCollection;
 	private FunctionariesCollection functionariesCollection;
 	private FieldSystemVerification verification;
-	private XMLVehiclesDAO vehicleCollection;
 	private RequestRentCollection requestList;
 	private static XMLRentDAO instance;
 	private Calendar calendar;
@@ -71,12 +68,10 @@ public class XMLRentDAO implements RentDAO{
 	 */
 	private XMLRentDAO() throws Exception {
 		calendar = Calendar.getInstance();
+		vehiclesCollection = VehiclesCollection.getInstance();
 		this.rents = RentCollection.getInstance();
-		this.userController = XMLUserDAO.getInstance();
-		this.functionariesCollection = this.userController
-				.getFunctionariesCollection();
-		this.customerCollection = this.userController.getCustomerCollection();
-		this.vehicleCollection = XMLVehiclesDAO.getInstance();
+		this.functionariesCollection = FunctionariesCollection.getInstance();
+		this.customerCollection = CustomerCollection.getInstance();
 		this.verification = new FieldSystemVerification();
 		this.requestList = RequestRentCollection.getInstance();
 		this.readRents();
@@ -136,8 +131,7 @@ public class XMLRentDAO implements RentDAO{
 				|| !this.verification.emailIsAMandatoryField(email)
 				|| !this.verification.dateIsMandatoryField(initialDate)
 				|| !this.verification.dateIsMandatoryField(finalDate))
-			throw new InvalidFieldException(
-					"error: all parameters are mandatory!");
+			throw new InvalidFieldException("error: all parameters are mandatory!");
 
 		if (!this.verification.validateEmail(email)
 				|| !this.verification.isValidPlate(plate)
@@ -146,33 +140,12 @@ public class XMLRentDAO implements RentDAO{
 
 		if (!this.vehicleIsRent(plate)) {
 			if (!this.userExists(email))
-				this.userController.addCustomer("name", email, "8388888888");
-			Iterator<Vehicle> vehicleList = this.vehicleCollection.iterator();
-			Vehicle rentVehicle = null;
-			while (vehicleList.hasNext()) {
-				Vehicle vehicle = vehicleList.next();
-				if (vehicle.getPlate().equalsIgnoreCase(plate)) {
-					rentVehicle = vehicle;
-					break;
-				}
-			}
+				customerCollection.add("name", email, "8388888888");
+			
+			Vehicle rentVehicle = this.vehiclesCollection.findVehicle(plate);
+			Customer rentCustomer = this.customerCollection.getCustomer(email);
 
-			Iterator<Customer> customers = userController.iterator();
-			Customer rentCustomer = null;
-			while (customers.hasNext()) {
-				Customer customer = customers.next();
-				if (customer.getEmail().equals(email)) {
-					rentCustomer = customer;
-					break;
-				}
-			}
-
-			try {
-				this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,
-						finalDate, rentSituation));
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
+			this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,	finalDate, rentSituation));
 		}
 
 	}
@@ -320,8 +293,7 @@ public class XMLRentDAO implements RentDAO{
 	 */
 	public void requestRent(String clientEmail, String plate)
 			throws EmptyFieldException {
-		if (!verification.emailIsAMandatoryField(clientEmail)
-				|| !verification.plateIsAMandatoryField(plate))
+		if (!verification.emailIsAMandatoryField(clientEmail) || !verification.plateIsAMandatoryField(plate))
 			throw new EmptyFieldException("error: all fields are mandatory!");
 		requestList.add(clientEmail, plate, calendar.getTime());
 		this.writeXML();
@@ -336,22 +308,6 @@ public class XMLRentDAO implements RentDAO{
 		return requestList.toString();
 	}
 
-	/**
-	 * Visualiza todos os carros
-	 * @throws Exception 
-	 */
-	public void seeCars() throws Exception {
-		List<Vehicle> list = new ArrayList<Vehicle>();
-		Iterator<Vehicle> it = vehicleCollection.iterator();
-		while (it.hasNext()) {
-			Vehicle vehicle = it.next();
-			if (!vehicleIsRent(vehicle.getPlate()))
-				list.add(vehicle);
-		}
-		List<Integer> listOfYears = vehicleCollection.getListOfYears();
-		for (int i = 0; i < list.size(); i++)
-			vehicleCollection.printCarsByYear(list, listOfYears.get(i));
-	}
 
 	/**
 	 *Escreve os alugueis e os pedidos de aluguel em um arquivo .xml
@@ -405,9 +361,6 @@ public class XMLRentDAO implements RentDAO{
 	 * @throws FileNotFoundException
 	 */
 	public void cleanBD() throws FileNotFoundException {
-		FileOutputStream rentsWriter = new FileOutputStream(RENTS_FILE);
-		FileOutputStream requesListWriter = new FileOutputStream(
-				REQUEST_RENTS_FILE);
 		this.rents.emptyList();
 		this.requestList.emptyList();
 	}
@@ -458,14 +411,13 @@ public class XMLRentDAO implements RentDAO{
 	 * @return a situacao dos veiculos
 	 * @throws Exception 
 	 */
-	public String getAllVehiclesSituation() throws Exception {
+	public String getAllAvailablesVehicles() throws Exception {
 		String output = "";
-		Iterator<Vehicle> it = vehicleCollection.iterator();
+		Iterator<Vehicle> it = vehiclesCollection.iterator();
 		while (it.hasNext()) {
 			Vehicle vehicle = it.next();
 			output += vehicle.toString() + "\n"
 					+ this.getVehicleSituation(vehicle.getPlate());
-			output += "================================================\n";
 		}
 		return output;
 	}

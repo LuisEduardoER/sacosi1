@@ -19,6 +19,7 @@ import Interface.InterfaceText;
  * @author Ramon
  */
 public class LogicOfTheCustomer {
+	
 	Facade facade;
 
 	/**
@@ -26,31 +27,48 @@ public class LogicOfTheCustomer {
 	 * 
 	 * @throws Exception
 	 */
-	public LogicOfTheCustomer() throws Exception {
-		facade = new Facade();
+	public LogicOfTheCustomer() {
+		try {
+			facade = new Facade();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// FIXME colocar todo o procedimento igual ao que foi feito em
 	// LogicOfTheAdmin
 	// Em cada metodo utiliza a interface para ler os dados, e aqui nesse metodo
 	// fica um case para as opçoes do menu
-	public void inicia() throws IOException {
-		
+	public void inicia() {
+		int opcao;
+		try {
+			opcao = InterfaceText.exibeMenuDoCliente();
+			switch (opcao) {
+			case InterfaceText.REMOVER_CLIENTE:
+				removeCustomer();
+				break;
+			case InterfaceText.CONSULTAR_DISPONIVEIS:
+				getAllAvailableVehicles();
+				inicia();
+				break;
+			case InterfaceText.RESERVA_ALUGUEL:
+				break;
+			}
+		} catch (IOException e) {
+			inicia();
+		}
 	}
 
+
 	/**
-	 * Adiciona cliente
 	 * 
-	 * @param name
-	 * @param email
-	 * @param phone
-	 * @throws AlreadyExistException
-	 * @throws InvalidFieldException
 	 */
-	public void addCustomer(String name, String email, String phone)
-			throws AlreadyExistException, InvalidFieldException,
-			EmptyFieldException {
-		facade.addCustomer(name, email, phone);
+	private void getAllAvailableVehicles() {
+		try {
+			InterfaceText.printRequestList(facade.getAllAvailablesVehicles());
+		} catch (Exception e) {
+			InterfaceText.printError(e.getMessage());
+		}
 	}
 
 	/**
@@ -60,16 +78,45 @@ public class LogicOfTheCustomer {
 	 * @throws NotExistException
 	 * @throws InvalidFieldException
 	 */
-	public void removeCustomer(String email) throws NotExistException,
-			InvalidFieldException {
-		facade.removeCustomer(email);
+	public void removeCustomer() {
+		try {
+			facade.removeCustomer(InterfaceText.leDados());
+		} catch (NotExistException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (InvalidFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public void vehicleSituation() {
+		try {
+			facade.getVehicleSituation(InterfaceText.leDados());
+		} catch (Exception e) {
+			InterfaceText.printError(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	public void reserveAVehicle() {
+		String[] dados = InterfaceText.menuReservarVeiculo();
+		try {
+			facade.requestRent(dados[0], dados[1]);
+		} catch (EmptyFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	public void showInterestOnAVehicle() {
+		
 	}
 
-	/**
-	 * Visualiza carros
-	 * @throws Exception 
-	 */
-	public void seeCars() throws Exception {
-		facade.seeCars();
-	}
 }

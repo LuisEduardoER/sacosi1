@@ -135,7 +135,7 @@ public class VehiclesCollection {
 	 * @param plate
 	 * @return
 	 */
-	private Vehicle findVehicle(String plate) {
+	public Vehicle findVehicle(String plate) {
 		Iterator<Vehicle> it = vehiclesList.iterator();
 		while (it.hasNext()) {
 			Vehicle veiculo = it.next();

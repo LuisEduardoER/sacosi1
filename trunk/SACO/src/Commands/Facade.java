@@ -318,8 +318,7 @@ public class Facade {
 	 *            a placa do veiculo
 	 * @throws EmptyFieldException
 	 */
-	public void requestRent(String clientEmail, String plate)
-			throws EmptyFieldException {
+	public void requestRent(String clientEmail, String plate) throws EmptyFieldException {
 		this.reController.requestRent(clientEmail, plate);
 		
 	}
@@ -342,15 +341,6 @@ public class Facade {
 		this.reController.cleanBD();
 		this.vehController.cleanXML();
 		this.userController.cleanXML();
-	}
-
-	/**
-	 * Este metodo permite a visualizacao no console de todos os carros.
-	 * @throws Exception 
-	 */
-	public void seeCars() throws Exception {
-		this.reController.seeCars();
-
 	}
 
 	/**
@@ -392,7 +382,7 @@ public class Facade {
 	 * @throws Exception 
 	 */
 	public String getAllVehiclesSituation() throws Exception {
-		return this.reController.getAllVehiclesSituation();
+		return this.reController.getAllAvailablesVehicles();
 	}
 
 	/**
@@ -428,7 +418,21 @@ public class Facade {
 		return userController.find(dataOne, dataTwo);
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String printRequestList() throws Exception{
 		return this.reController.printRequestList();
+	}
+
+	/**
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getAllAvailablesVehicles() throws Exception {
+		return this.reController.getAllAvailablesVehicles();
 	}
 }
