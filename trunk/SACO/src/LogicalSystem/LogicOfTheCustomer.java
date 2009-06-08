@@ -18,7 +18,7 @@ import Interface.InterfaceText;
  * @author Raissa
  * @author Ramon
  */
-public class LogicOfTheCustomer {
+public class LogicOfTheCustomer implements LogicalInterface {
 	
 	Facade facade;
 
@@ -102,7 +102,7 @@ public class LogicOfTheCustomer {
 	 * @throws NotExistException
 	 * @throws InvalidFieldException
 	 */
-	public void removeCustomer() {
+	private void removeCustomer() {
 		try {
 			facade.removeCustomer(InterfaceText.leDados());
 		} catch (NotExistException e) {
@@ -116,7 +116,7 @@ public class LogicOfTheCustomer {
 	/**
 	 * 
 	 */
-	public void vehicleSituation() {
+	private void vehicleSituation() {
 		try {
 			facade.getVehicleSituation(InterfaceText.leDados());
 		} catch (Exception e) {
@@ -127,7 +127,7 @@ public class LogicOfTheCustomer {
 	/**
 	 * 
 	 */
-	public void reserveAVehicle() {
+	private void reserveAVehicle() {
 		String[] dados = InterfaceText.menuReservarVeiculo();
 		try {
 			facade.requestRent(dados[0], dados[1]);
@@ -139,7 +139,7 @@ public class LogicOfTheCustomer {
 	/**
 	 * 
 	 */
-	public void showInterestOnAVehicle() {
+	private void showInterestOnAVehicle() {
 		
 	}
 

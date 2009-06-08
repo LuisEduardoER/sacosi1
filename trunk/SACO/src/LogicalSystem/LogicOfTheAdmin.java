@@ -22,7 +22,7 @@ import Interface.InterfaceText;
  * 
  * 
  */
-public class LogicOfTheAdmin {
+public class LogicOfTheAdmin implements LogicalInterface {
 	
 	private Facade facade;
 
@@ -96,7 +96,7 @@ public class LogicOfTheAdmin {
 	 * e telefone. Nenhum desses dados devem ser invalidos ou nulos. Clientes
 	 * com emails duplicados nao serao cadastrados ao sistema.
 	 */
-	public void addCustomer() {
+	private void addCustomer() {
 		String[] data = InterfaceText.DadosDoCliente();
 		try {
 			facade.addCustomer(data[0], data[1], data[2]);
@@ -113,7 +113,7 @@ public class LogicOfTheAdmin {
 	 * Remove cliente
 	 * 
 	 */
-	public void removeCustomer() {
+	private void removeCustomer() {
 		try {
 			facade.removeCustomer(InterfaceText.menuRemocaoCliente());
 		} catch (NotExistException e) {
@@ -127,7 +127,7 @@ public class LogicOfTheAdmin {
 	 * Remove usuario
 	 * 
 	 */
-	public void removeUser() {
+	private void removeUser() {
 		try {
 			facade.removeUser(InterfaceText.menuRemocaoDoFuncionario());
 		} catch (LoginException e) {
@@ -152,7 +152,7 @@ public class LogicOfTheAdmin {
 	 * @throws EmptyFieldException
 	 * @throws AlreadyExistsException
 	 */
-	public void addVehicle() {
+	private void addVehicle() {
 		String[] vehicleData = InterfaceText.DadosDoVeiculo();
 		try {
 			facade.addVehicle(vehicleData[0], vehicleData[1], vehicleData[2], 
@@ -170,7 +170,7 @@ public class LogicOfTheAdmin {
 	 * remove veiculo
 	 * 
 	 */
-	public void removeVehicle() {
+	private void removeVehicle() {
 		String dado = InterfaceText.menuRemocaoDeVeiculo();
 		try {
 			facade.removeVehicle(dado);
@@ -185,7 +185,7 @@ public class LogicOfTheAdmin {
 	 * @param dataTwo
 	 * @return
 	 */
-	public boolean validateLogin(String dataOne, String dataTwo) {
+	private boolean validateLogin(String dataOne, String dataTwo) {
 		return facade.validateLogin(dataOne, dataTwo);
 	}
 	
@@ -193,7 +193,7 @@ public class LogicOfTheAdmin {
 	 * 
 	 * @return
 	 */
-	public int getAllUsers() {
+	private int getAllUsers() {
 		return facade.getAllUsers();
 	}
 }

@@ -2,19 +2,21 @@ package Interface;
 
 import java.io.IOException;
 
+import Commands.Facade;
 import LogicalSystem.LogicOfTheAdmin;
 import LogicalSystem.LogicOfTheCustomer;
 import LogicalSystem.LogicOfTheUser;
+import LogicalSystem.LogicalInterface;
 
 public abstract class Login {
 
 	protected int choice;
 	private String[] dataLogin;
 	private Object logic;
-	private LogicOfTheAdmin adminsLogic;
+	private Facade facade;
 
 	protected Login() throws Exception {
-		adminsLogic = new LogicOfTheAdmin();
+		facade = new Facade();
 	}
 
 	/**
@@ -33,27 +35,30 @@ public abstract class Login {
 	 * 
 	 */
 	protected boolean success(String[] dataLogin) {
-		return adminsLogic.validateLogin(dataLogin[0], dataLogin[1]);
+		return facade.validateLogin(dataLogin[0], dataLogin[1]);
 	}
 
 	//TODO metodo fabrica pra fazer new da logica
 	private void usersChoice() throws Exception {
 		System.out.println(choice);
 		if (choice == InterfaceText.REGISTRAR_SE) {
-			adminsLogic.addCustomer();
-			logic = new LogicOfTheCustomer();
+			
+			String[] dados = InterfaceText.DadosDoCliente();
+			facade.addCustomer(dados[0], dados[1], dados[2]);
+			logic = logicalCreator();
+			
 		} else {
 			dataLogin = autenticate();
 			if (success(dataLogin)) {
 				switch(choice) {
 				case InterfaceText.ADMINISTRADOR:
-					logic = new LogicOfTheAdmin();
+					logic = logicalCreator();
 					break;
 				case InterfaceText.FUNCIONARIO:
-					logic = new LogicOfTheUser();
+					logic = logicalCreator();
 					break;
 				case InterfaceText.CLIENTE:;
-				logic = new LogicOfTheCustomer();
+				logic = logicalCreator();
 				break;
 				case InterfaceText.SAIR:
 					logic = null;
@@ -80,5 +85,16 @@ public abstract class Login {
 		usersChoice();
 		visualWarning();
 		return logic;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	private LogicalInterface logicalCreator() throws Exception {
+		if (choice == InterfaceText.ADMINISTRADOR) return new LogicOfTheAdmin();
+		if (choice == InterfaceText.FUNCIONARIO) return new LogicOfTheUser();
+		else return new LogicOfTheCustomer();
 	}
 }
