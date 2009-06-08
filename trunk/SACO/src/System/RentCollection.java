@@ -141,7 +141,8 @@ public class RentCollection {
 	public String listAllPendingRents(Calendar date) {
 		String output = "";
 		for (Rent rent : rents) {
-			if (rent.compareTo(date) < 1)
+			if (rent.getInitial().compareTo(date) <= 0)
+			if (rent.compareTo(date) > 0)
 				output += rent.toString();
 		}
 		return output;
@@ -156,7 +157,8 @@ public class RentCollection {
 	public String listAllNonPendingRents(Calendar date) {
 		String output = "";
 		for (Rent rent : rents) {
-			if (rent.compareTo(date) >= 1)
+			if (rent.getInitial().compareTo(date) <= 0)
+			if (rent.compareTo(date) <= 0)
 				output += rent.toString();
 		}
 		return output;

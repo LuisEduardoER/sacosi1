@@ -1,6 +1,7 @@
 package System;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import Users.Alugadores;
@@ -16,7 +17,7 @@ import Vehicles.Alugavel;
  * @author Ramon
  * 
  */
-public class Rent implements Comparable<Calendar> {
+public class Rent {
 
 	private Alugavel vehicle;
 	private Alugadores costumer;
@@ -25,6 +26,7 @@ public class Rent implements Comparable<Calendar> {
 	private String rentSituation;
 	private int diasAtraso;
 	private Calendar calendar;
+	private Calendar initial;
 
 	/**
 	 * Construtor
@@ -44,6 +46,18 @@ public class Rent implements Comparable<Calendar> {
 		this.rentSituation = status;
 		this.diasAtraso = 0;
 		this.calendar = GregorianCalendar.getInstance();
+		this.initial = GregorianCalendar.getInstance();
+		this.setCalendarDate(devolutionDate);
+		this.setInitial(initialDate);
+	}
+
+	@SuppressWarnings("deprecation")
+	private void setInitial(String initialDate) {
+		initial.clear();
+		Date data = new Date(this.getYear(initialDate), this.getMonth(initialDate), this
+				.getDay(initialDate));
+		this.initial.setTime(data);
+		
 	}
 
 	/**
@@ -53,7 +67,7 @@ public class Rent implements Comparable<Calendar> {
 	 * @return dia
 	 */
 	private int getDay(String date) {
-		return Integer.valueOf(date.substring(0, 2));
+		return Integer.parseInt(date.substring(0, 2));
 	}
 
 	/**
@@ -63,7 +77,10 @@ public class Rent implements Comparable<Calendar> {
 	 * @return mês
 	 */
 	private int getMonth(String date) {
-		return Integer.valueOf(date.substring(3, 5));
+		String month = date.substring(3, 5);
+		int month2 = Integer.parseInt(month);
+		month2 -= 1;
+		return month2;
 	}
 
 	/**
@@ -73,7 +90,7 @@ public class Rent implements Comparable<Calendar> {
 	 * @return ano
 	 */
 	private int getYear(String date) {
-		return Integer.valueOf("20" + date.substring(6, 8));
+		return Integer.parseInt("1" + date.substring(6, 8));
 	}
 
 	/**
@@ -81,10 +98,12 @@ public class Rent implements Comparable<Calendar> {
 	 * 
 	 * @param date
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings("deprecation")
 	private void setCalendarDate(String date) {
-		this.calendar.set(this.getYear(date), this.getMonth(date), this
+		calendar.clear();
+		Date data = new Date(this.getYear(date), this.getMonth(date), this
 				.getDay(date));
+		this.calendar.setTime(data);
 	}
 
 	/**
@@ -204,8 +223,9 @@ public class Rent implements Comparable<Calendar> {
 	/**
 	 * Compara as datas
 	 */
-	public int compareTo(Calendar o) {
-		return this.getCalendar().compareTo(o);
+	public long compareTo(Calendar o) {
+		System.out.println("TEMPO EM MILI: " + o.getTimeInMillis() +" : "+ this.getCalendar().getTimeInMillis() + " : " + getInitial().getTimeInMillis());
+		return (o.getTimeInMillis() - this.getCalendar().getTimeInMillis());
 	}
 
 	/**
@@ -217,4 +237,7 @@ public class Rent implements Comparable<Calendar> {
 		return this.calendar;
 	}
 
+	public Calendar getInitial(){
+		return this.initial;
+	}
 }
