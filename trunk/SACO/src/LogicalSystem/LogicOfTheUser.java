@@ -232,9 +232,8 @@ public class LogicOfTheUser {
 
 	private void consultaSituacao() {
 		String placa = InterfaceText.getVehicleSituation();
-		String situacao;
 		try {
-			situacao = facade.getVehicleSituation(placa);
+			String situacao = facade.getVehicleSituation(placa);
 			InterfaceText.showSituation(situacao, placa);
 		} catch (AlreadyExistException e) {
 			InterfaceText.printError(e.getMessage());
@@ -412,7 +411,7 @@ public class LogicOfTheUser {
 	 * @throws InvalidFieldException
 	 * @throws AlreadyExistException
 	 */
-	public void getVehicleSituation(String plate) {
+/*	public void getVehicleSituation(String plate) {
 		try {
 			facade.getVehicleSituation(plate);
 		} catch (AlreadyExistException e) {
@@ -426,7 +425,7 @@ public class LogicOfTheUser {
 		} catch (Exception e) {
 			InterfaceText.printError(e.getMessage());
 		}
-	}
+	}*/
 
 	/**
 	 * obtem situação de todos os veiculos

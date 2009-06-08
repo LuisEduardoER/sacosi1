@@ -125,8 +125,8 @@ public class RentCollection {
 	public String getRentSituation(String email, String plate,
 			String inicialDate, String finalDate) {
 		for (Rent rent : rents) {
-			if (rent.getCostumer().getEmail().equals(email)
-					&& rent.getVehiclePlate().equals(plate))
+			if (rent.getCostumer().getEmail().equalsIgnoreCase(email)
+					&& rent.getVehiclePlate().equalsIgnoreCase(plate))
 				return rent.getRentSituation();
 		}
 		return null;

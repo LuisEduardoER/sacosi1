@@ -36,6 +36,7 @@ public abstract class Login {
 		return adminsLogic.validateLogin(dataLogin[0], dataLogin[1]);
 	}
 
+	//TODO metodo fabrica pra fazer new da logica
 	private void usersChoice() throws Exception {
 		System.out.println(choice);
 		if (choice == InterfaceText.REGISTRAR_SE) {
