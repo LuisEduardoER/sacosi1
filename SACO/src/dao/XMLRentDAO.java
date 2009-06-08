@@ -37,7 +37,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * @author Ramon
  * 
  */
-public class XMLRentDAO implements RentDAO{
+public class XMLRentDAO implements RentDAO {
 
 	private RentCollection rents;
 	private CustomerCollection customerCollection;
@@ -85,7 +85,7 @@ public class XMLRentDAO implements RentDAO{
 	 * @param email
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void registerLateRent(String plate, String email,
 			String initialDate, String finalDate) throws Exception {
@@ -105,7 +105,7 @@ public class XMLRentDAO implements RentDAO{
 	 * @param email
 	 * @param initialDate
 	 * @param finalDate
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void registerRent(String plate, String email, String initialDate,
 			String finalDate) throws Exception {
@@ -121,17 +121,17 @@ public class XMLRentDAO implements RentDAO{
 	 * @param initialDate
 	 * @param finalDate
 	 * @param rentSituation
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private void register(String plate, String email, String initialDate,
-			String finalDate, String rentSituation)
-			throws Exception {
+			String finalDate, String rentSituation) throws Exception {
 
 		if (!this.verification.plateIsAMandatoryField(plate)
 				|| !this.verification.emailIsAMandatoryField(email)
 				|| !this.verification.dateIsMandatoryField(initialDate)
 				|| !this.verification.dateIsMandatoryField(finalDate))
-			throw new InvalidFieldException("error: all parameters are mandatory!");
+			throw new InvalidFieldException(
+					"error: all parameters are mandatory!");
 
 		if (!this.verification.validateEmail(email)
 				|| !this.verification.isValidPlate(plate)
@@ -141,11 +141,12 @@ public class XMLRentDAO implements RentDAO{
 		if (!this.vehicleIsRent(plate)) {
 			if (!this.userExists(email))
 				customerCollection.add("name", email, "8388888888");
-			
+
 			Vehicle rentVehicle = this.vehiclesCollection.findVehicle(plate);
 			Customer rentCustomer = this.customerCollection.getCustomer(email);
 
-			this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,	finalDate, rentSituation));
+			this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,
+					finalDate, rentSituation));
 		}
 
 	}
@@ -155,10 +156,10 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param plate
 	 * @return uma confirmacao
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public boolean releaseVehicle(String plate) throws Exception {
-		boolean release = this.rents.releaseVehicle(plate); 
+		boolean release = this.rents.releaseVehicle(plate);
 		this.writeXML();
 		return release;
 	}
@@ -177,7 +178,7 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param plate
 	 * @return situacao do veiculo.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public String getVehicleSituation(String plate) throws Exception {
 		return this.rents.getVehicleSituation(plate);
@@ -191,11 +192,12 @@ public class XMLRentDAO implements RentDAO{
 	 * @param inicialDate
 	 * @param finalDate
 	 * @return situcao do aluguel
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public String getRentSituation(String email, String plate,
 			String inicialDate, String finalDate) throws Exception {
-		return this.rents.getRentSituation(email, plate, inicialDate, finalDate);
+		return this.rents
+				.getRentSituation(email, plate, inicialDate, finalDate);
 	}
 
 	/**
@@ -216,7 +218,7 @@ public class XMLRentDAO implements RentDAO{
 	 * Lista todos os alugueis pendentes
 	 * 
 	 * @return toString de todos os alugueis pendentes
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public String listAllPendingRents(Calendar date) throws Exception {
 		return this.rents.listAllPendingRents(date);
@@ -227,7 +229,7 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param date
 	 * @return toString de todos os alugueis nao pendentes
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public String listAllNonPendingRents(Calendar date) throws Exception {
 		return this.rents.listAllNonPendingRents(date);
@@ -247,7 +249,7 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param email
 	 * @return quantidade de alugueis por cliente
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public int getRentsByCustomer(String email) throws Exception {
 		return this.rents.getRentsByCustomer(email);
@@ -258,7 +260,7 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param plate
 	 * @return Quantidade de alugueis por veiculo
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public int getRentsByVehicle(String plate) throws Exception {
 		return this.rents.getRentsByVehicle(plate);
@@ -269,7 +271,7 @@ public class XMLRentDAO implements RentDAO{
 	 * 
 	 * @param plate
 	 * @return true se estiver alugado ou false caso contrario
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public boolean vehicleIsRent(String plate) throws Exception {
 		return this.rents.vehicleIsRent(plate);
@@ -293,7 +295,8 @@ public class XMLRentDAO implements RentDAO{
 	 */
 	public void requestRent(String clientEmail, String plate)
 			throws EmptyFieldException {
-		if (!verification.emailIsAMandatoryField(clientEmail) || !verification.plateIsAMandatoryField(plate))
+		if (!verification.emailIsAMandatoryField(clientEmail)
+				|| !verification.plateIsAMandatoryField(plate))
 			throw new EmptyFieldException("error: all fields are mandatory!");
 		requestList.add(clientEmail, plate, calendar.getTime());
 		this.writeXML();
@@ -307,7 +310,6 @@ public class XMLRentDAO implements RentDAO{
 	public String listAllRequests() {
 		return requestList.toString();
 	}
-
 
 	/**
 	 *Escreve os alugueis e os pedidos de aluguel em um arquivo .xml
@@ -409,15 +411,27 @@ public class XMLRentDAO implements RentDAO{
 	 * Retorna a situacao vigente de todos os veiculos cadastrados.
 	 * 
 	 * @return a situacao dos veiculos
-	 * @throws Exception 
+	 * @throws Exception
 	 */
+	public String getAllVehiclesSituation() throws Exception {
+		String output = "";
+		Iterator<Vehicle> it = vehiclesCollection.iterator();
+		while (it.hasNext()) {
+			Vehicle vehicle = it.next();
+			output += (vehicle.toString() + "\n" + "Situacao do veiculo: "
+					+ this.rents.getVehicleSituation(vehicle.getPlate() + "\n"));
+		}
+		return output;
+	}
+
 	public String getAllAvailablesVehicles() throws Exception {
 		String output = "";
 		Iterator<Vehicle> it = vehiclesCollection.iterator();
 		while (it.hasNext()) {
 			Vehicle vehicle = it.next();
-			output += vehicle.toString() + "\n"
-					+ this.getVehicleSituation(vehicle.getPlate());
+			if (!vehicleIsRent(vehicle.getPlate()))
+				output += (vehicle.toString() + "\n" + "Situacao do veiculo: "
+						+ this.rents.getVehicleSituation(vehicle.getPlate() + "\n"));
 		}
 		return output;
 	}
@@ -429,11 +443,10 @@ public class XMLRentDAO implements RentDAO{
 	 *            o alugador
 	 * @param plates
 	 *            as placas dos carros que o cliente deseja alugar
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void addManyRents(String email, String[] plates,
-			String[] initialDates, String[] devolutionDates)
-			throws Exception {
+			String[] initialDates, String[] devolutionDates) throws Exception {
 		for (int i = 0; i < plates.length; i++) {
 			this.registerRent(plates[i], email, initialDates[i],
 					devolutionDates[i]);
@@ -458,43 +471,44 @@ public class XMLRentDAO implements RentDAO{
 			}
 		}
 		if (adressForEmail.size() > 0) {
-			String [] sendTo = new String[adressForEmail.size()];
-			for (int i = 0; i < adressForEmail.size(); i++){
+			String[] sendTo = new String[adressForEmail.size()];
+			for (int i = 0; i < adressForEmail.size(); i++) {
 				sendTo[i] = adressForEmail.get(i);
 			}
 			String message = "The vehicle you requested is available for rent.";
 			MailManager.getInstanceOf().sendEmail(sendTo, message);
 		}
 	}
-	
+
 	/**
-	 * Metodo que apos constatacao de que a requisicao do aluguel esta 48 horas atrasada,
-	 * notificando via email aos clientes que a requisicao foi cancelada.
+	 * Metodo que apos constatacao de que a requisicao do aluguel esta 48 horas
+	 * atrasada, notificando via email aos clientes que a requisicao foi
+	 * cancelada.
+	 * 
 	 * @throws MessagingException
 	 */
-	public void notifyAboutRequestRelease() throws MessagingException{
+	public void notifyAboutRequestRelease() throws MessagingException {
 		Date data = new Date();
 		Iterator<RequestObject> it = requestList.iterator();
 		ArrayList<String> sendTo = new ArrayList<String>();
-		while (it.hasNext()){
-			RequestObject requestObject = (RequestObject)it.next();
-			if (requestObject.getDate().getTime() - data.getTime() == QUARENTA_E_OITO_HORAS){
+		while (it.hasNext()) {
+			RequestObject requestObject = (RequestObject) it.next();
+			if (requestObject.getDate().getTime() - data.getTime() == QUARENTA_E_OITO_HORAS) {
 				sendTo.add(requestObject.getEmail());
 			}
 		}
-		if (sendTo.size() > 0){
-			String [] sendTo2 = new String[sendTo.size()];
-			for (int i = 0; i < sendTo.size(); i++){
+		if (sendTo.size() > 0) {
+			String[] sendTo2 = new String[sendTo.size()];
+			for (int i = 0; i < sendTo.size(); i++) {
 				sendTo2[i] = sendTo.get(i);
 			}
 			String message = "Your request was release, because 48h passed.";
 			MailManager.getInstanceOf().sendEmail(sendTo2, message);
 		}
 	}
-	
-	public String printRequestList(){
+
+	public String printRequestList() {
 		return this.requestList.toString();
 	}
-	
-	
+
 }

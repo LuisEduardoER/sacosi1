@@ -382,7 +382,7 @@ public class Facade {
 	 * @throws Exception 
 	 */
 	public String getAllVehiclesSituation() throws Exception {
-		return this.reController.getAllAvailablesVehicles();
+		return this.reController.getAllVehiclesSituation();
 	}
 
 	/**

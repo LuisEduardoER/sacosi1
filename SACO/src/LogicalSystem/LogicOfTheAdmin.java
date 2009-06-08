@@ -40,27 +40,27 @@ public class LogicOfTheAdmin {
 		try {
 			opcao = InterfaceText.exibeMenuDoAdministrador();
 			switch (opcao) {
-			case InterfaceText.ADICIONAR_USUARIO:
+			case InterfaceText.ADICIONAR_USUARIO_ADMIN:
 				addUser();
 				inicia();
 				break;
-			case InterfaceText.ADICIONAR_CLIENTE:
+			case InterfaceText.ADICIONAR_CLIENTE_ADMIN:
 				addCustomer();
 				inicia();
 				break;
-			case InterfaceText.ADICIONAR_VEICULO:
+			case InterfaceText.ADICIONAR_VEICULO_ADMIN:
 				addVehicle();
 				inicia();
 				break;
-			case InterfaceText.REMOVER_CLIENTE:
+			case InterfaceText.REMOVER_CLIENTE_ADMIN:
 				removeCustomer();
 				inicia();
 				break;
-			case InterfaceText.REMOVER_USUARIO:
+			case InterfaceText.REMOVER_USUARIO_ADMIN:
 				removeUser();
 				inicia();
 				break;
-			case InterfaceText.REMOVER_VEICULO:
+			case InterfaceText.REMOVER_VEICULO_ADMIN:
 				removeVehicle();
 				inicia();
 				break;

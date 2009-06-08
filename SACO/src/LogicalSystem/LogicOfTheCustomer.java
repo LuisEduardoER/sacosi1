@@ -44,14 +44,14 @@ public class LogicOfTheCustomer {
 		try {
 			opcao = InterfaceText.exibeMenuDoCliente();
 			switch (opcao) {
-			case InterfaceText.REMOVER_CLIENTE:
+			case InterfaceText.REMOVER_CLIENTE_CUSTOMER:
 				removeCustomer();
 				break;
-			case InterfaceText.CONSULTAR_DISPONIVEIS:
+			case InterfaceText.CONSULTAR_DISPONIVEIS_CUSTOMER:
 				getAllAvailableVehicles();
 				inicia();
 				break;
-			case InterfaceText.RESERVA_ALUGUEL:
+			case InterfaceText.RESERVA_ALUGUEL_CUSTOMER:
 				break;
 			}
 		} catch (IOException e) {

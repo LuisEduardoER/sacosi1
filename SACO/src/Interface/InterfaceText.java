@@ -17,29 +17,34 @@ public class InterfaceText {
 	public static final int ADMINISTRADOR = 1;
 	public static final int FUNCIONARIO = 2;
 	public static final int CLIENTE = 3;
-	public static final int ADICIONAR_USUARIO = 1;
-	public static final int ADICIONAR_CLIENTE = 2;
-	public static final int REMOVER_USUARIO = 3;
-	public static final int REMOVER_CLIENTE = 4;
-	public static final int ADICIONAR_VEICULO = 5;
-	public static final int REMOVER_VEICULO = 6;
-	public static final int REGISTRA_ALUGUEL = 1;
-	public static final int ALUGUEIS_REGISTRADOS = 2;
-	public static final int CONSULTA_SITUACAO = 3;
-	public static final int RESERVA_ALUGUEL = 2;
-	public static final int ALUGUEL_VIGENTE = 4;
-	public static final int ALUGUEL_ATRASADO = 6;
-	public static final int INTERESSE_CARRO = 7;
-	public static final int ADICIONA_VARIOS_ALUGUEIS = 7;
-	public static final int REMOVER_ALUGUEL = 8;
-	public static final int CONSULTAR_RESERVAS = 9;
-	public static final int CONSULTAR_ALUGUEIS_NAO_ATRASADOS = 10;
-	public static final int CONSULTAR_ALUGUEIS_ATRASADOS = 11;
+	//MENU DO ADMINISTRADOR
+	public static final int ADICIONAR_USUARIO_ADMIN = 1;
+	public static final int ADICIONAR_CLIENTE_ADMIN = 2;
+	public static final int ADICIONAR_VEICULO_ADMIN = 3;
+	public static final int REMOVER_USUARIO_ADMIN = 4;
+	public static final int REMOVER_CLIENTE_ADMIN = 5;
+	public static final int REMOVER_VEICULO_ADMIN = 6;
+	//MENU DO FUNCIONARIO
+	public static final int REGISTRA_ALUGUEL_EMPLOYEE = 1;
+	public static final int ADICIONA_VARIOS_ALUGUEIS_EMPLOYEE = 2;
+	public static final int ALUGUEL_ATRASADO_EMPLOYEE = 3;
+	public static final int REMOVER_ALUGUEL_EMPLOYEE = 4;
+	public static final int CONSULTA_SITUACAO_ALL_VEHICLES_EMPLOYEE = 5;
+	public static final int CONSULTA_SITUACAO_EMPLOYEE = 6;
+	public static final int ALUGUEIS_REGISTRADOS_EMPLOYEE = 7;
+	public static final int ALUGUEL_VIGENTE_EMPLOYEE = 8;
+	public static final int CONSULTAR_RESERVAS_EMPLOYEE = 9;
+	public static final int CONSULTAR_ALUGUEIS_NAO_ATRASADOS_EMPLOYEE = 10;
+	public static final int CONSULTAR_ALUGUEIS_ATRASADOS_EMPLOYEE = 11;
+	//MENU DO CLIENTE
+	public static final int RESERVA_ALUGUEL_CUSTOMER = 1;
+	public static final int CONSULTAR_DISPONIVEIS_CUSTOMER = 2;
+	public static final int REMOVER_CLIENTE_CUSTOMER = 3;
+	public static final int INTERESSE_CARRO_CUSTOMER = 4;
 	public static final int SAIR = 0;
 
 	public static final int REGISTRAR_SE = 4;
 
-	public static final int CONSULTAR_DISPONIVEIS = 3;	
 
 
 	private static StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
@@ -105,11 +110,12 @@ public class InterfaceText {
 		System.out.println("----------------------------------------------------------");
 		System.out.println("Opções: ");
 		System.out.println();
-		System.out.println(ADICIONAR_USUARIO + " - Adicionar Usuario");
-		System.out.println(ADICIONAR_CLIENTE + " - Adicionar Cliente");
-		System.out.println(REMOVER_USUARIO + " - Remover Usuario");
-		System.out.println(ADICIONAR_VEICULO + " - Adicionar Veiculo");
-		System.out.println(REMOVER_VEICULO + " - Remover Veiculo");
+		System.out.println(ADICIONAR_USUARIO_ADMIN + " - Adicionar Usuario");
+		System.out.println(ADICIONAR_CLIENTE_ADMIN + " - Adicionar Cliente");
+		System.out.println(ADICIONAR_VEICULO_ADMIN + " - Adicionar Veiculo");
+		System.out.println(REMOVER_USUARIO_ADMIN + " - Remover Usuario");
+		System.out.println(REMOVER_CLIENTE_ADMIN + " - Remover Cliente");
+		System.out.println(REMOVER_VEICULO_ADMIN + " - Remover Veiculo");
 		System.out.println(SAIR + " - Sair");
 		System.out.println();
 		System.out.print("Escolha uma opção: ");
@@ -124,16 +130,17 @@ public class InterfaceText {
 		System.out.println("----------------------------------------------------------");
 		System.out.println("Opções: ");
 		System.out.println();
-		System.out.println(REGISTRA_ALUGUEL + " - Registrar Aluguel");
-		System.out.println(ALUGUEIS_REGISTRADOS + " - Ver Alugueis Registrados ");
-		System.out.println(CONSULTA_SITUACAO + " - Consultar Situacao de um veiculo");
-		System.out.println(ALUGUEL_VIGENTE + " - Ver Alugueis Vigentes");
-		System.out.println(ADICIONAR_VEICULO + " - Adicionar Veiculo");
-		System.out.println(ALUGUEL_ATRASADO + " - Setar Alugueis Atrasados");
-		System.out.println(ADICIONA_VARIOS_ALUGUEIS + " - Adiciona Varios Alugueis");
-		System.out.println(REMOVER_ALUGUEL + " - Remover Aluguel");
-		System.out.println(CONSULTAR_ALUGUEIS_NAO_ATRASADOS + " - Listar alugueis nao atrasados");
-		System.out.println(CONSULTAR_ALUGUEIS_ATRASADOS + " - Listar alugueis atrasados");
+		System.out.println(REGISTRA_ALUGUEL_EMPLOYEE + " - Registrar Aluguel");
+		System.out.println(ADICIONA_VARIOS_ALUGUEIS_EMPLOYEE + " - Adiciona Varios Alugueis");
+		System.out.println(ALUGUEL_ATRASADO_EMPLOYEE + " - Setar Alugueis Atrasados");
+		System.out.println(REMOVER_ALUGUEL_EMPLOYEE + " - Remover Aluguel");
+		System.out.println(CONSULTA_SITUACAO_ALL_VEHICLES_EMPLOYEE + " - Consulta Situacao de Todos os Veiculos");
+		System.out.println(CONSULTA_SITUACAO_EMPLOYEE + " - Consultar Situacao de um veiculo");
+		System.out.println(ALUGUEIS_REGISTRADOS_EMPLOYEE + " - Ver Alugueis Registrados ");
+		System.out.println(ALUGUEL_VIGENTE_EMPLOYEE + " - Ver Alugueis Vigentes");
+		System.out.println(CONSULTAR_RESERVAS_EMPLOYEE + " - Consultar Reservas de Aluguel");
+		System.out.println(CONSULTAR_ALUGUEIS_NAO_ATRASADOS_EMPLOYEE + " - Listar alugueis nao atrasados");
+		System.out.println(CONSULTAR_ALUGUEIS_ATRASADOS_EMPLOYEE + " - Listar alugueis atrasados");
 		System.out.println(SAIR + " - Sair");
 		System.out.println();
 		System.out.print("Escolha uma opção: ");
@@ -153,10 +160,10 @@ public class InterfaceText {
 		System.out.println("----------------------------------------------------------");
 		System.out.println("Opções: ");
 		System.out.println();
-		System.out.println(RESERVA_ALUGUEL + " - Fazer Reserva de Aluguel");
-		System.out.println(CONSULTAR_DISPONIVEIS + " - Consultar veiculos disponiveis para aluguel");
-		System.out.println(REMOVER_CLIENTE + " - Remover Cliente");
-		System.out.println(INTERESSE_CARRO + " - Mostrar interesse em um Carro Alugado");
+		System.out.println(RESERVA_ALUGUEL_CUSTOMER + " - Fazer Reserva de Aluguel");
+		System.out.println(CONSULTAR_DISPONIVEIS_CUSTOMER + " - Consultar veiculos disponiveis para aluguel");
+		System.out.println(REMOVER_CLIENTE_CUSTOMER + " - Remover Cliente");
+		System.out.println(INTERESSE_CARRO_CUSTOMER + " - Mostrar interesse em um Carro Alugado");
 		System.out.println(SAIR + " - Sair");
 		System.out.println();
 		System.out.print("Escolha uma opção: ");
@@ -175,7 +182,7 @@ public class InterfaceText {
 		System.out.println("----------------------------------------------------------");
 		System.out.println();
 
-		System.out.print("Digite o tipo do veiculo (car/motocycle): ");
+		System.out.print("Digite o tipo do veiculo (car/motorcycle): ");
 		String type = leDados();
 
 		System.out.print("Digite modelo do veiculo: ");
@@ -253,7 +260,7 @@ public class InterfaceText {
 	public static String[] dadosDoAluguel(){
 		System.out.println("Digite a placa do veiculo (ex: aaa0000): ");
 		String placa = sc.nextLine();
-		System.out.println("Digite o seu email: ");
+		System.out.println("Digite o email do cliente: ");
 		String email = sc.nextLine();
 		System.out.println("Digite a data inicial de aluguel (ex:10/04/09): ");
 		String dataInicial = sc.nextLine();
@@ -355,6 +362,10 @@ public class InterfaceText {
 		System.out.println(listAllNonPendingRents);
 	}
 
+	public static void listAllVehiclesSituation(String impressao){
+		System.out.println("=========================================");
+		System.out.println(impressao);
+	}
 	public static String[] DadosDoCliente() {
 		System.out.println("----------------------------------------------------------");
 		System.out.println();

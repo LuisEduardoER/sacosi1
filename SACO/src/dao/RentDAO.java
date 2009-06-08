@@ -49,6 +49,8 @@ public interface RentDAO {
 	
 	public String listAllRequests();
 	
+	public String getAllVehiclesSituation() throws Exception;
+	
 	public String getAllAvailablesVehicles() throws Exception;
 	
 	public void addManyRents(String email, String[] plates,
