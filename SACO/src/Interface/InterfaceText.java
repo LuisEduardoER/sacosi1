@@ -129,7 +129,7 @@ public class InterfaceText {
 		System.out.println(CONSULTA_SITUACAO + " - Consultar Situacao de um veiculo");
 		System.out.println(ALUGUEL_VIGENTE + " - Ver Alugueis Vigentes");
 		System.out.println(ADICIONAR_VEICULO + " - Adicionar Veiculo");
-		System.out.println(ALUGUEL_ATRASADO + " - Ver Alugueis Atrasados");
+		System.out.println(ALUGUEL_ATRASADO + " - Setar Alugueis Atrasados");
 		System.out.println(ADICIONA_VARIOS_ALUGUEIS + " - Adiciona Varios Alugueis");
 		System.out.println(REMOVER_ALUGUEL + " - Remover Aluguel");
 		System.out.println(CONSULTAR_ALUGUEIS_NAO_ATRASADOS + " - Listar alugueis nao atrasados");
@@ -338,11 +338,11 @@ public class InterfaceText {
 		String mes = sc.nextLine();
 		System.out.println("Digite o ano(ex: 09 para 2009): ");
 		String ano = sc.nextLine();
-		ano = "20" + ano;
+		ano = "1" + ano;
 		int mesCorreto = Integer.parseInt(mes);
 		mesCorreto -= 1;
 		Calendar calendario = Calendar.getInstance();
-		calendario.setTime(new Date(Integer.parseInt(ano), mesCorreto, Integer.parseInt(dia)));
+		calendario.setTime(new Date(Integer.parseInt(ano), mesCorreto, Integer.valueOf(dia)));
 		return calendario;
 	}
 
