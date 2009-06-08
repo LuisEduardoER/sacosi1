@@ -11,6 +11,8 @@ import java.util.Iterator;
 
 import javax.mail.MessagingException;
 
+import org.omg.CORBA.Request;
+
 import Exceptions.EmptyFieldException;
 import Exceptions.InvalidFieldException;
 import Mail.MailManager;
@@ -41,7 +43,8 @@ public class XMLRentDAO implements RentDAO {
 
 	private RentCollection rents;
 	private CustomerCollection customerCollection;
-	private VehiclesCollection vehiclesCollection;
+	private XMLUserDAO userController;
+	private XMLVehiclesDAO vehiclesCollection;
 	private FunctionariesCollection functionariesCollection;
 	private FieldSystemVerification verification;
 	private RequestRentCollection requestList;
@@ -67,8 +70,9 @@ public class XMLRentDAO implements RentDAO {
 	 * 
 	 */
 	private XMLRentDAO() throws Exception {
+		userController = XMLUserDAO.getInstance();
 		calendar = Calendar.getInstance();
-		vehiclesCollection = VehiclesCollection.getInstance();
+		vehiclesCollection = XMLVehiclesDAO.getInstance();
 		this.rents = RentCollection.getInstance();
 		this.functionariesCollection = FunctionariesCollection.getInstance();
 		this.customerCollection = CustomerCollection.getInstance();
@@ -110,6 +114,7 @@ public class XMLRentDAO implements RentDAO {
 	public void registerRent(String plate, String email, String initialDate,
 			String finalDate) throws Exception {
 		this.register(plate, email, initialDate, finalDate, "active");
+		this.requestList.remove(new RequestObject(email, plate));
 		this.writeXML();
 	}
 
@@ -138,19 +143,39 @@ public class XMLRentDAO implements RentDAO {
 				|| this.vehicleIsRent(plate))
 			throw new InvalidFieldException("error: invalid parameter(s)");
 
-		Vehicle rentVehicle = this.vehiclesCollection.findVehicle(plate);
-		if (rentVehicle != null && !this.vehicleIsRent(plate)) {
+		
+		if (!this.vehicleIsRent(plate)) {
 			if (!this.userExists(email))
 				customerCollection.add("name", email, "8388888888");
 
-			Customer rentCustomer = this.customerCollection.getCustomer(email);
+			Iterator<Vehicle> vehicleList = this.vehiclesCollection.iterator();
+			Vehicle rentVehicle = null;
+			while (vehicleList.hasNext()) {
+				Vehicle vehicle = vehicleList.next();
+				if (vehicle.getPlate().equalsIgnoreCase(plate)) {
+					rentVehicle = vehicle;
+					break;
+				}
+			}
 
-			this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,
-					finalDate, rentSituation));
+			Iterator<Customer> customers = userController.iterator();
+			Customer rentCustomer = null;
+			while (customers.hasNext()) {
+				Customer customer = customers.next();
+				if (customer.getEmail().equals(email)) {
+					rentCustomer = customer;
+					break;
+				}
+			}
+
+			try {
+				this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,
+						finalDate, rentSituation));
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
-		else {
-			System.out.println(rentVehicle == null ? "Veiculo nao existe" : "Veiculo esta alugado");
-		}
+
 	}
 
 	/**
@@ -183,10 +208,7 @@ public class XMLRentDAO implements RentDAO {
 	 * @throws Exception
 	 */
 	public String getVehicleSituation(String plate) throws Exception {
-		if (vehiclesCollection.findVehicle(plate) == null){
-			return "Nao existe veiculo com essa placa";
-		}
-		return this.rents.getVehicleSituation(plate);
+		return rents.getVehicleSituation(plate);
 	}
 
 	/**
@@ -303,7 +325,7 @@ public class XMLRentDAO implements RentDAO {
 		if (!verification.emailIsAMandatoryField(clientEmail)
 				|| !verification.plateIsAMandatoryField(plate))
 			throw new EmptyFieldException("error: all fields are mandatory!");
-		requestList.add(clientEmail, plate, calendar.getTime());
+		requestList.add(clientEmail, plate);
 		this.writeXML();
 	}
 
@@ -500,7 +522,7 @@ public class XMLRentDAO implements RentDAO {
 		ArrayList<String> sendTo = new ArrayList<String>();
 		while (it.hasNext()) {
 			RequestObject requestObject = (RequestObject) it.next();
-			if (requestObject.getDate().getTime() - data.getTime() == QUARENTA_E_OITO_HORAS) {
+			if (requestObject.getDate().getTimeInMillis() - data.getTime() == QUARENTA_E_OITO_HORAS) {
 				sendTo.add(requestObject.getEmail());
 			}
 		}
