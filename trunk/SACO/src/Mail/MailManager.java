@@ -60,7 +60,7 @@ public class MailManager {
 	 */
 	private void sendMessage(String listOfEmailsTo[], String subject,
 			String message, String from) throws MessagingException {
-		boolean debug = true;
+		boolean debug = false;
 
 		Properties props = new Properties();
 		props.put("mail.smtp.host", SMTP_HOST_NAME);
