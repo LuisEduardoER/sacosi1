@@ -1,0 +1,12 @@
+<System.VehiclesCollection>
+  <vehiclesList>
+    <Vehicles.Car>
+      <year>1990</year>
+      <price>1.0</price>
+      <type>car</type>
+      <model>corsa</model>
+      <color>preto</color>
+      <plate>xmn1234</plate>
+    </Vehicles.Car>
+  </vehiclesList>
+</System.VehiclesCollection>
