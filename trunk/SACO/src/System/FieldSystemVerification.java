@@ -367,7 +367,7 @@ public class FieldSystemVerification {
 	 * @param price
 	 * @return true se sao validos ou false caso contrario
 	 */
-	public boolean allShitVehiclesFieldsInvalids(String type, String model,
+	public boolean allVehiclesFieldsInvalids(String type, String model,
 			String color, String plate, String year, String price) {
 		return !typeIsAMandatoryField(type) || !modelIsAMandatoryField(model)
 				|| !colorIsAMandatoryField(color)

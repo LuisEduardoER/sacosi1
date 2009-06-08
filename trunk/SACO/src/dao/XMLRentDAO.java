@@ -138,17 +138,19 @@ public class XMLRentDAO implements RentDAO {
 				|| this.vehicleIsRent(plate))
 			throw new InvalidFieldException("error: invalid parameter(s)");
 
-		if (!this.vehicleIsRent(plate)) {
+		Vehicle rentVehicle = this.vehiclesCollection.findVehicle(plate);
+		if (rentVehicle != null && !this.vehicleIsRent(plate)) {
 			if (!this.userExists(email))
 				customerCollection.add("name", email, "8388888888");
 
-			Vehicle rentVehicle = this.vehiclesCollection.findVehicle(plate);
 			Customer rentCustomer = this.customerCollection.getCustomer(email);
 
 			this.rents.add(new Rent(rentVehicle, rentCustomer, initialDate,
 					finalDate, rentSituation));
 		}
-
+		else {
+			System.out.println(rentVehicle == null ? "Veiculo nao existe" : "Veiculo esta alugado");
+		}
 	}
 
 	/**
@@ -181,6 +183,9 @@ public class XMLRentDAO implements RentDAO {
 	 * @throws Exception
 	 */
 	public String getVehicleSituation(String plate) throws Exception {
+		if (vehiclesCollection.findVehicle(plate) == null){
+			return "Nao existe veiculo com essa placa";
+		}
 		return this.rents.getVehicleSituation(plate);
 	}
 
@@ -363,6 +368,8 @@ public class XMLRentDAO implements RentDAO {
 	 * @throws FileNotFoundException
 	 */
 	public void cleanBD() throws FileNotFoundException {
+		FileOutputStream rentWriter = new FileOutputStream(RENTS_FILE);
+		FileOutputStream requestRentWriter = new FileOutputStream(REQUEST_RENTS_FILE);
 		this.rents.emptyList();
 		this.requestList.emptyList();
 	}

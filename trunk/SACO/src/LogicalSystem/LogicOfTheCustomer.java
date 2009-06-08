@@ -52,6 +52,12 @@ public class LogicOfTheCustomer {
 				inicia();
 				break;
 			case InterfaceText.RESERVA_ALUGUEL_CUSTOMER:
+				reservaAluguel();
+				inicia();
+				break;
+			case InterfaceText.INTERESSE_CARRO_CUSTOMER:
+				mostraInteresse();
+				inicia();
 				break;
 			}
 		} catch (IOException e) {
@@ -59,6 +65,24 @@ public class LogicOfTheCustomer {
 		}
 	}
 
+
+	private void mostraInteresse() {
+		String [] dados = InterfaceText.menuReservarVeiculo();
+		try {
+			facade.requestRent(dados[0], dados[1]);
+		} catch (EmptyFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		}
+	}
+
+	private void reservaAluguel() {
+		String [] dados = InterfaceText.menuReservarVeiculo();
+		try {
+			facade.requestRent(dados[0], dados[1]);
+		} catch (EmptyFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		}
+	}
 
 	/**
 	 * 
