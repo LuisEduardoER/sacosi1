@@ -50,20 +50,7 @@ public abstract class Login {
 		} else {
 			dataLogin = autenticate();
 			if (success(dataLogin)) {
-				switch(choice) {
-				case InterfaceText.ADMINISTRADOR:
-					logic = logicalCreator();
-					break;
-				case InterfaceText.FUNCIONARIO:
-					logic = logicalCreator();
-					break;
-				case InterfaceText.CLIENTE:;
 				logic = logicalCreator();
-				break;
-				case InterfaceText.SAIR:
-					logic = null;
-					break;
-				}
 			} else {
 				InterfaceText.menuInsucesso();
 				login();
@@ -95,6 +82,8 @@ public abstract class Login {
 	private LogicalInterface logicalCreator() throws Exception {
 		if (choice == InterfaceText.ADMINISTRADOR) return new LogicOfTheAdmin();
 		if (choice == InterfaceText.FUNCIONARIO) return new LogicOfTheUser();
-		else return new LogicOfTheCustomer();
+		if (choice == InterfaceText.CLIENTE) return new LogicOfTheCustomer();
+		if (choice == InterfaceText.REGISTRAR_SE) return new LogicOfTheCustomer();
+		else return null;
 	}
 }
