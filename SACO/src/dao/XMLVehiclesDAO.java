@@ -49,6 +49,7 @@ public class XMLVehiclesDAO implements VehiclesDAO{
 	public static synchronized XMLVehiclesDAO getInstance() throws Exception {
 		if (instance == null) {
 			instance = new XMLVehiclesDAO();
+			return instance;
 		}
 		return instance;
 	}

@@ -73,8 +73,8 @@ public class RequestRentCollection {
 	 * @param date
 	 *            a data atual
 	 */
-	public void add(String clientEmail, String plate, Date date) {
-		requestList.add(new RequestObject(clientEmail, plate, date));
+	public void add(String clientEmail, String plate) {
+		requestList.add(new RequestObject(clientEmail, plate));
 	}
 
 	/**
@@ -86,7 +86,8 @@ public class RequestRentCollection {
 	 *            a requisicao a ser removida.
 	 */
 	public void remove(RequestObject request) {
-		requestList.remove(request);
+		RequestObject that = getRequest(request.getEmail(), request.getPlate());
+		requestList.remove(that);
 	}
 
 	/**
@@ -98,5 +99,15 @@ public class RequestRentCollection {
 			output += request.toString();
 		}
 		return output;
+	}
+	
+	private RequestObject getRequest(String email, String plate){
+		Iterator <RequestObject> it = requestList.iterator();
+		while(it.hasNext()){
+			RequestObject request = it.next();
+			if (request.getEmail().equalsIgnoreCase(email) && request.getPlate().equalsIgnoreCase(plate))
+				return request;
+		}
+		return null;
 	}
 }
