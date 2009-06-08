@@ -224,7 +224,6 @@ public class Rent {
 	 * Compara as datas
 	 */
 	public long compareTo(Calendar o) {
-		System.out.println("TEMPO EM MILI: " + o.getTimeInMillis() +" : "+ this.getCalendar().getTimeInMillis() + " : " + getInitial().getTimeInMillis());
 		return (o.getTimeInMillis() - this.getCalendar().getTimeInMillis());
 	}
 

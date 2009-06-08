@@ -35,56 +35,59 @@ public class LogicOfTheUser {
 		this.facade = new Facade();
 	}
 
-	public void inicia() throws AlreadyExistException, InvalidFieldException,
-			MessagingException, EmptyFieldException, IOException {
-		int opcao = InterfaceText.exibeMenuDoFuncionario();
-		switch (opcao) {
-		case InterfaceText.REGISTRA_ALUGUEL:
-			registraAluguel();
+	public void inicia() {
+		try {
+			int opcao = InterfaceText.exibeMenuDoFuncionario();
+			switch (opcao) {
+			case InterfaceText.REGISTRA_ALUGUEL_EMPLOYEE:
+				registraAluguel();
+				inicia();
+				break;
+			case InterfaceText.ALUGUEIS_REGISTRADOS_EMPLOYEE:
+				alugueisRegistrados();
+				inicia();
+				break;
+			case InterfaceText.CONSULTA_SITUACAO_EMPLOYEE:
+				consultaSituacao();
+				inicia();
+				break;
+			case InterfaceText.ALUGUEL_VIGENTE_EMPLOYEE:
+				consultaVigente();
+				inicia();
+				break;
+			case InterfaceText.CONSULTA_SITUACAO_ALL_VEHICLES_EMPLOYEE:
+				listAllVehiclesSituation();
+				inicia();
+				break;
+			case InterfaceText.ALUGUEL_ATRASADO_EMPLOYEE:
+				lateRent();
+				inicia();
+				break;
+			case InterfaceText.ADICIONA_VARIOS_ALUGUEIS_EMPLOYEE:
+				addManyRents();
+				inicia();
+				break;
+			case InterfaceText.REMOVER_ALUGUEL_EMPLOYEE:
+				releaseRent();
+				inicia();
+				break;
+			case InterfaceText.CONSULTAR_RESERVAS_EMPLOYEE:
+				consultaReservas();
+				inicia();
+				break;
+			case InterfaceText.CONSULTAR_ALUGUEIS_ATRASADOS_EMPLOYEE:
+				consultaAtrasados();
+				inicia();
+				break;
+			case InterfaceText.CONSULTAR_ALUGUEIS_NAO_ATRASADOS_EMPLOYEE:
+				consultaNaoAtrasados();
+				inicia();
+				break;
+			case InterfaceText.SAIR:
+				break;
+			}
+		} catch (IOException e) {
 			inicia();
-			break;
-		case InterfaceText.ALUGUEIS_REGISTRADOS:
-			alugueisRegistrados();
-			inicia();
-			break;
-		case InterfaceText.CONSULTA_SITUACAO:
-			consultaSituacao();
-			inicia();
-			break;
-		case InterfaceText.ALUGUEL_VIGENTE:
-			consultaVigente();
-			inicia();
-			break;
-		case InterfaceText.ALUGUEL_ATRASADO:
-			lateRent();
-			inicia();
-			break;
-		case InterfaceText.ADICIONAR_VEICULO:
-			addVehicle();
-			inicia();
-			break;
-		case InterfaceText.ADICIONA_VARIOS_ALUGUEIS:
-			addManyRents();
-			inicia();
-			break;
-		case InterfaceText.REMOVER_ALUGUEL:
-			releaseRent();
-			inicia();
-			break;
-		case InterfaceText.CONSULTAR_RESERVAS:
-			consultaReservas();
-			inicia();
-			break;
-		case InterfaceText.CONSULTAR_ALUGUEIS_ATRASADOS:
-			consultaAtrasados();
-			inicia();
-			break;
-		case InterfaceText.CONSULTAR_ALUGUEIS_NAO_ATRASADOS:
-			consultaNaoAtrasados();
-			inicia();
-			break;
-		case InterfaceText.SAIR:
-			break;
 		}
 	}
 
@@ -176,11 +179,21 @@ public class LogicOfTheUser {
 		}
 	}
 
-	public void addVehicle() throws InvalidFieldException, EmptyFieldException,
-			AlreadyExistException {
-		String[] vehicleData = InterfaceText.DadosDoVeiculo();
-		facade.addVehicle(vehicleData[0], vehicleData[1], vehicleData[2],
-				vehicleData[3], vehicleData[4], vehicleData[5]);
+	public void listAllVehiclesSituation() {
+		try {
+			String impressao = facade.getAllVehiclesSituation();
+			InterfaceText.listAllVehiclesSituation(impressao);
+		} catch (AlreadyExistException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (InvalidFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (MessagingException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (EmptyFieldException e) {
+			InterfaceText.printError(e.getMessage());
+		} catch (Exception e) {
+			InterfaceText.printError(e.getMessage());
+		}
 	}
 
 	private void lateRent() {
@@ -217,7 +230,7 @@ public class LogicOfTheUser {
 		}
 	}
 
-	private void consultaSituacao()  {
+	private void consultaSituacao() {
 		String placa = InterfaceText.getVehicleSituation();
 		String situacao;
 		try {
