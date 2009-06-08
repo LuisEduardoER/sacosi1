@@ -384,7 +384,7 @@ public class InterfaceText {
 
 	public static void showSituation(String situacao, String placa) {
 		System.out.println("--------------------------------------------------");
-		if (situacao.equalsIgnoreCase("active")){
+		if (situacao.equalsIgnoreCase("unavailable")){
 			System.out.println("O veiculo de placa " + placa + " esta atualmente alugado.");
 		}
 		else{
