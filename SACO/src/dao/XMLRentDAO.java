@@ -419,7 +419,7 @@ public class XMLRentDAO implements RentDAO {
 		while (it.hasNext()) {
 			Vehicle vehicle = it.next();
 			output += (vehicle.toString() + "\n" + "Situacao do veiculo: "
-					+ this.rents.getVehicleSituation(vehicle.getPlate() + "\n"));
+					+ this.rents.getVehicleSituation(vehicle.getPlate()) + "\n");
 		}
 		return output;
 	}
@@ -428,10 +428,10 @@ public class XMLRentDAO implements RentDAO {
 		String output = "";
 		Iterator<Vehicle> it = vehiclesCollection.iterator();
 		while (it.hasNext()) {
-			Vehicle vehicle = it.next();
+			Vehicle vehicle = (Vehicle) it.next();
 			if (!vehicleIsRent(vehicle.getPlate()))
 				output += (vehicle.toString() + "\n" + "Situacao do veiculo: "
-						+ this.rents.getVehicleSituation(vehicle.getPlate() + "\n"));
+						+ this.rents.getVehicleSituation(vehicle.getPlate()) + "\n");
 		}
 		return output;
 	}
