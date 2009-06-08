@@ -387,8 +387,11 @@ public class InterfaceText {
 		if (situacao.equalsIgnoreCase("unavailable")){
 			System.out.println("O veiculo de placa " + placa + " esta atualmente alugado.");
 		}
-		else{
+		else if (situacao.equalsIgnoreCase("available")){
 			System.out.println("O veiculo de placa " + placa + " esta atualmente disponivel.");
+		}
+		else {
+			System.out.println(situacao);
 		}
 		
 	}

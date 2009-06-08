@@ -79,7 +79,7 @@ public class XMLVehiclesDAO implements VehiclesDAO{
 			String plate, String year, String price)
 			throws InvalidFieldException, EmptyFieldException, AlreadyExistException {
 
-		if (verification.allShitVehiclesFieldsInvalids(type, model, color,
+		if (verification.allVehiclesFieldsInvalids(type, model, color,
 				plate, year, price))
 			throw new InvalidFieldException("error: all fields are mandatory!");
 		if (!verification.validateType(type)
