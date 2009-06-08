@@ -22,7 +22,7 @@ import Users.Alugadores;
  * @author Ramon
  * 
  */
-public class LogicOfTheUser {
+public class LogicOfTheUser implements LogicalInterface {
 
 	private Facade facade;
 

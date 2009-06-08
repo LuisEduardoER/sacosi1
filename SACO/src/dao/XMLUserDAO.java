@@ -271,9 +271,6 @@ public class XMLUserDAO implements UserDAO{
 	 * @throws FileNotFoundException
 	 */
 	public void cleanXML() throws FileNotFoundException {
-		FileOutputStream customersWriter = new FileOutputStream(CUSTOMERS_FILE);
-		FileOutputStream functionariesWriter = new FileOutputStream(
-				FUNCTIONARIES_FILE);
 		this.registeredCustomers.emptyList();
 		this.registeredFunctionaries.emptyList();
 	}
