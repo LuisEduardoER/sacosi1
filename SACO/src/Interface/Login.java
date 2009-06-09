@@ -8,13 +8,40 @@ import LogicalSystem.LogicOfTheCustomer;
 import LogicalSystem.LogicOfTheUser;
 import LogicalSystem.LogicalInterface;
 
+/**
+ * Classe do login
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public abstract class Login {
-
+	
+	/**
+	 * escolha
+	 */
 	protected int choice;
+	/**
+	 * logins
+	 */
 	private String[] dataLogin;
+	
+	/**
+	 * logica
+	 */
 	private Object logic;
+	
+	/**
+	 * objeto facade
+	 */
 	private Facade facade;
-
+	
+	/**
+	 * faz um login
+	 * @throws Exception
+	 */
 	protected Login() throws Exception {
 		facade = new Facade();
 	}
@@ -32,13 +59,16 @@ public abstract class Login {
 	protected abstract String[] autenticate() throws IOException;
 
 	/**
-	 * 
+	 * retorna sucesso
 	 */
 	protected boolean success(String[] dataLogin) {
 		return facade.validateLogin(dataLogin[0], dataLogin[1]);
 	}
 
-	//TODO metodo fabrica pra fazer new da logica
+	
+	/**
+	 *  metodo fabrica pra fazer new da logica
+	 */
 	private void usersChoice() throws Exception {
 		System.out.println(choice);
 		if (choice == InterfaceText.REGISTRAR_SE) {
@@ -59,7 +89,7 @@ public abstract class Login {
 	}
 
 	/**
-	 * 
+	 * visualiza warning
 	 */
 	protected abstract void visualWarning();
 

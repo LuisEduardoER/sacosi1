@@ -18,14 +18,45 @@ import Vehicles.Alugavel;
  * 
  */
 public class Rent {
-
+	
+	/**
+	 * interface alugavel
+	 */
 	private Alugavel vehicle;
+	
+	/**
+	 * interface alugadores
+	 */
 	private Alugadores costumer;
+	
+	/**
+	 * data de devolucao do veiculo
+	 */
 	private String devolutionDate;
+	
+	/**
+	 * data do aluguel
+	 */
 	private String rentDate;
+	
+	/**
+	 * situacao do aluguel
+	 */
 	private String rentSituation;
+	
+	/**
+	 * quantidade de dias de atraso
+	 */
 	private int diasAtraso;
+	
+	/**
+	 * calendario
+	 */
 	private Calendar calendar;
+	
+	/**
+	 * calendario inicial
+	 */
 	private Calendar initial;
 
 	/**
@@ -235,7 +266,11 @@ public class Rent {
 	private Calendar getCalendar() {
 		return this.calendar;
 	}
-
+	
+	/**
+	 * get initical
+	 * @return calendar
+	 */
 	public Calendar getInitial(){
 		return this.initial;
 	}

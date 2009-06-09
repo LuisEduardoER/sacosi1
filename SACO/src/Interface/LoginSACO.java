@@ -2,6 +2,15 @@ package Interface;
 
 import java.io.IOException;
 
+/**
+ * Classe do login
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class LoginSACO extends Login {
 	
 	public LoginSACO() throws Exception {

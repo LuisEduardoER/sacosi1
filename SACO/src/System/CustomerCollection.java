@@ -20,8 +20,15 @@ import Users.Customer;
  * 
  */
 public class CustomerCollection {
-
+	
+	/**
+	 * instancia da classe
+	 */
 	private static CustomerCollection instance;
+	
+	/**
+	 * lista de clientes
+	 */
 	private List<Customer> customerList;
 
 	/**

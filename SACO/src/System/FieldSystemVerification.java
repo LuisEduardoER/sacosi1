@@ -14,8 +14,14 @@ import java.util.Calendar;
  * 
  */
 public class FieldSystemVerification {
-
+	
+	/**
+	 * constante de posicao inicial
+	 */
 	private final int INITIAL_POSITION = 0;
+	/**
+	 * constante de quantidade de caracteres do telefone
+	 */
 	private static final int PHONE_CARACTERES = 10;
 
 	/**

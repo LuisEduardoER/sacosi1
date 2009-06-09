@@ -11,15 +11,47 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * Classe gerenciadora de emails
+ * @author Filipe
+ * @author Melina
+ * @author Luiz
+ * @author Raissa
+ * @author Ramon
+ *
+ */
 public class MailManager {
-
+	
+	/**
+	 * SMTP_HOST_NAME
+	 */
 	private static final String SMTP_HOST_NAME = "smtp.gmail.com";
+	/**
+	 * SMTP_PORT
+	 */
 	private static final String SMTP_PORT = "465";
+	/**
+	 * emailFromAddress
+	 */
 	private static final String emailFromAddress = "rentSystem@gmail.com";
+	/**
+	 * SSL_FACTORY
+	 */
 	private static final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+	/**
+	 * assunto
+	 */
 	private static final String SUBJECT = "[Rent System] New Advise";
+	
+	/**
+	 * mensagem
+	 */
 	private static MailManager mg;
 	
+	/**
+	 * retorna instancia da classe
+	 * @return
+	 */
 	public static MailManager getInstanceOf(){
 		if (mg == null){
 			mg = new MailManager();

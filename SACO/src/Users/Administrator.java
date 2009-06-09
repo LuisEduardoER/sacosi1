@@ -10,7 +10,10 @@ package Users;
  * 
  */
 public class Administrator extends Person {
-
+	
+	/**
+	 * login
+	 */
 	private String login;
 
 	/**

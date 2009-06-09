@@ -25,8 +25,14 @@ import Vehicles.Vehicle;
  * 
  */
 public class VehiclesCollection {
-	
+	/**
+	 * instancia da classe
+	 */
 	private static VehiclesCollection instance;
+	
+	/**
+	 * lista de veiculos
+	 */
 	private List<Vehicle> vehiclesList;
 
 	/**
