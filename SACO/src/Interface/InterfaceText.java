@@ -24,6 +24,7 @@ public class InterfaceText {
 	public static final int REMOVER_USUARIO_ADMIN = 4;
 	public static final int REMOVER_CLIENTE_ADMIN = 5;
 	public static final int REMOVER_VEICULO_ADMIN = 6;
+	public static final int LIMPAR_BD = 7;
 	//MENU DO FUNCIONARIO
 	public static final int REGISTRA_ALUGUEL_EMPLOYEE = 1;
 	public static final int ADICIONA_VARIOS_ALUGUEIS_EMPLOYEE = 2;
@@ -116,6 +117,7 @@ public class InterfaceText {
 		System.out.println(REMOVER_USUARIO_ADMIN + " - Remover Usuario");
 		System.out.println(REMOVER_CLIENTE_ADMIN + " - Remover Cliente");
 		System.out.println(REMOVER_VEICULO_ADMIN + " - Remover Veiculo");
+		System.out.println(LIMPAR_BD + " - Limpar o banco de dados.");
 		System.out.println(SAIR + " - Sair");
 		System.out.println();
 		System.out.print("Escolha uma opção: ");

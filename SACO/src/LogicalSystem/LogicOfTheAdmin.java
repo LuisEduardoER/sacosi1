@@ -1,5 +1,6 @@
 package LogicalSystem;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.security.auth.login.LoginException;
@@ -64,12 +65,27 @@ public class LogicOfTheAdmin implements LogicalInterface {
 				removeVehicle();
 				inicia();
 				break;
+			case InterfaceText.LIMPAR_BD:
+				cleanDB();
+				inicia();
+				break;
 			case InterfaceText.SAIR:
 				break;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 		
+	}
+
+	/**
+	 * 
+	 */
+	private void cleanDB() {
+		try {
+			facade.cleanDB();
+		} catch (FileNotFoundException e) {
+			InterfaceText.printError(e.getMessage());
+		}
 	}
 
 	/**
