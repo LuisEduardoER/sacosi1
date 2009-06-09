@@ -40,18 +40,57 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * 
  */
 public class XMLRentDAO implements RentDAO {
-
+	
+	/**
+	 * colecao de alugueis
+	 */
 	private RentCollection rents;
+	/**
+	 * colecao de clientes
+	 */
 	private CustomerCollection customerCollection;
+	/**
+	 * controle de usuarios
+	 */
 	private XMLUserDAO userController;
+	/**
+	 * controle de veiculos
+	 */
 	private XMLVehiclesDAO vehiclesCollection;
+	/**
+	 * colecao de funcionarios
+	 */
 	private FunctionariesCollection functionariesCollection;
+	/**
+	 * sistema de verificacao
+	 */
 	private FieldSystemVerification verification;
+	/**
+	 * lista de requisicao de aluguel
+	 */
 	private RequestRentCollection requestList;
+	/**
+	 * instancia da classe
+	 */
 	private static XMLRentDAO instance;
+	
+	/**
+	 * calendario
+	 */
 	private Calendar calendar;
+	/**
+	 * arquivo xml das requisicoes de alugueis
+	 */
 	private static final String REQUEST_RENTS_FILE = "RequestRents.xml";
+	
+	/**
+	 * arquivo xml dos alugueis
+	 */
 	private static final String RENTS_FILE = "Rents.xml";
+	
+	/**
+	 * constante que representa 48 horas
+	 */
 	private static final long QUARENTA_E_OITO_HORAS = 172800000;
 
 	/**

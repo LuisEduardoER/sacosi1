@@ -29,11 +29,27 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  */
 public class XMLVehiclesDAO implements VehiclesDAO{
 	
+	/**
+	 * instancia da classe
+	 */
 	private static XMLVehiclesDAO instance;
+	/**
+	 * lista dos veiculos registrados
+	 */
 	private VehiclesCollection registeredVehicles;
+	/**
+	 * sistema de verificacao
+	 */
 	private FieldSystemVerification verification;
+	/**
+	 * arquivo que grava os veiculos
+	 */
 	private static final String VEHICLES_FILE = "Vehicles.xml";
-
+	
+	/**
+	 * construtor privado da classe
+	 * @throws Exception
+	 */
 	private XMLVehiclesDAO() throws Exception {
 		registeredVehicles = VehiclesCollection.getInstance();
 		verification = new FieldSystemVerification();

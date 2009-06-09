@@ -15,9 +15,19 @@ import java.util.Date;
  * 
  */
 public class RequestObject {
-
+	
+	/**
+	 * email do cliente
+	 */
 	private String clientEmail;
+	/**
+	 * placa do veiculo
+	 */
 	private String plateOfVehicle;
+	
+	/**
+	 * calendario
+	 */
 	private Calendar calendario = Calendar.getInstance();
 
 	/**

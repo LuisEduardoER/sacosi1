@@ -20,8 +20,14 @@ import Exceptions.*;
  * 
  */
 public class RentSystem {
-
+	
+	/**
+	 * lista de usuarios
+	 */
 	private Collection<User> listOfUsers;
+	/**
+	 * lista de veiculos
+	 */
 	private Collection<Vehicle> listOfVehicles;
 
 	/**

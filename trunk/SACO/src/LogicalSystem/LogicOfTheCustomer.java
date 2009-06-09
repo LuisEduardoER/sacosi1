@@ -20,6 +20,9 @@ import Interface.InterfaceText;
  */
 public class LogicOfTheCustomer implements LogicalInterface {
 	
+	/**
+	 * objeto facade
+	 */
 	Facade facade;
 
 	/**
@@ -39,6 +42,10 @@ public class LogicOfTheCustomer implements LogicalInterface {
 	// LogicOfTheAdmin
 	// Em cada metodo utiliza a interface para ler os dados, e aqui nesse metodo
 	// fica um case para as opçoes do menu
+	
+	/**
+	 * inicia programa
+	 */
 	public void inicia() {
 		int opcao;
 		try {

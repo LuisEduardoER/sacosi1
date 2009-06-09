@@ -1,5 +1,4 @@
 package LogicalSystem;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -25,6 +24,9 @@ import Interface.InterfaceText;
  */
 public class LogicOfTheAdmin implements LogicalInterface {
 	
+	/**
+	 * objeto facade
+	 */
 	private Facade facade;
 
 	/**
@@ -36,6 +38,9 @@ public class LogicOfTheAdmin implements LogicalInterface {
 		this.facade = new Facade();
 	}
 	
+	/**
+	 * inicia programa
+	 */
 	public void inicia() {
 		int opcao;
 		try {
@@ -65,27 +70,12 @@ public class LogicOfTheAdmin implements LogicalInterface {
 				removeVehicle();
 				inicia();
 				break;
-			case InterfaceText.LIMPAR_BD:
-				cleanDB();
-				inicia();
-				break;
 			case InterfaceText.SAIR:
 				break;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 		
-	}
-
-	/**
-	 * 
-	 */
-	private void cleanDB() {
-		try {
-			facade.cleanDB();
-		} catch (FileNotFoundException e) {
-			InterfaceText.printError(e.getMessage());
-		}
 	}
 
 	/**

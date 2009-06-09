@@ -17,8 +17,13 @@ import java.util.List;
  */
 public class RequestRentCollection {
 	
-	
+	/**
+	 * instancia da classe
+	 */
 	private static RequestRentCollection instance;
+	/**
+	 * lista de requisicoes de alugueis
+	 */
 	private List<RequestObject> requestList;
 
 	/**
@@ -101,6 +106,12 @@ public class RequestRentCollection {
 		return output;
 	}
 	
+	/**
+	 * requisicao de aluguel
+	 * @param email
+	 * @param plate
+	 * @return
+	 */
 	private RequestObject getRequest(String email, String plate){
 		Iterator <RequestObject> it = requestList.iterator();
 		while(it.hasNext()){

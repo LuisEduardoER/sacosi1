@@ -21,8 +21,15 @@ import Mail.MailManager;
  */
 
 public class RentCollection {
-
+	
+	/**
+	 * instancia da classe
+	 */
 	private static RentCollection instance;
+	/**
+	 * lista de alugueis
+	 */
+	
 	private List<Rent> rents;
 
 	/**

@@ -24,6 +24,9 @@ import Users.Alugadores;
  */
 public class LogicOfTheUser implements LogicalInterface {
 
+	/**
+	 * objeto facade
+	 */
 	private Facade facade;
 
 	/**
@@ -34,7 +37,10 @@ public class LogicOfTheUser implements LogicalInterface {
 	public LogicOfTheUser() throws Exception {
 		this.facade = new Facade();
 	}
-
+	
+	/**
+	 * inicia programa
+	 */
 	public void inicia() {
 		try {
 			int opcao = InterfaceText.exibeMenuDoFuncionario();
@@ -90,7 +96,10 @@ public class LogicOfTheUser implements LogicalInterface {
 			inicia();
 		}
 	}
-
+	
+	/**
+	 * consulta alugueis em dia
+	 */
 	private void consultaNaoAtrasados() {
 		Calendar date = InterfaceText.menuEscolherData();
 		try {
@@ -108,7 +117,10 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * consulta alugueis atrasados
+	 */
 	private void consultaAtrasados() {
 		Calendar date = InterfaceText.menuEscolherData();
 		try {
@@ -126,7 +138,10 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * consulta reservas de veiculos
+	 */
 	private void consultaReservas() {
 		try {
 			String impressao = facade.printRequestList();
@@ -143,7 +158,9 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	/**
+	 * libera veiculo
+	 */
 	private void releaseRent() {
 		String placa = InterfaceText.releaseVehicle();
 		try {
@@ -160,7 +177,10 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * adiciona alugueis
+	 */
 	private void addManyRents() {
 		String[][] ManyRentsData = InterfaceText.adicionaVariosAlugueis();
 		try {
@@ -178,7 +198,10 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * lista situacoes de veiculos
+	 */
 	public void listAllVehiclesSituation() {
 		try {
 			String impressao = facade.getAllVehiclesSituation();
@@ -195,7 +218,9 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	/**
+	 * lista alugueis atrasados
+	 */
 	private void lateRent() {
 		String[] atraso = InterfaceText.registerLateRent();
 		try {
@@ -212,7 +237,10 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * consulta aluguel vigente
+	 */
 	private void consultaVigente() {
 		try {
 			int quantidade = facade.getAllActiveRents();
@@ -229,7 +257,10 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * consulta situacao
+	 */
 	private void consultaSituacao() {
 		String placa = InterfaceText.getVehicleSituation();
 		try {
@@ -247,11 +278,16 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * mostra alugueis atrasados
+	 */
 	private void alugueisRegistrados() {
 		InterfaceText.numeroDeAlugueis(facade.getAllRents());
 	}
-
+/**
+ * registra aluguel
+ */
 	private void registraAluguel() {
 		String[] dadosAluguel = InterfaceText.dadosDoAluguel();
 		try {
@@ -503,7 +539,11 @@ public class LogicOfTheUser implements LogicalInterface {
 			InterfaceText.printError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * notifica sobre requisicao de liberacao
+	 * @throws MessagingException
+	 */
 	public void notifyAboutRequestRelease() throws MessagingException {
 		facade.notifyAboutRequestRelease();
 	}

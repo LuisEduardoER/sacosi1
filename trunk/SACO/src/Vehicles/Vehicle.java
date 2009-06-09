@@ -11,17 +11,33 @@ package Vehicles;
  * 
  */
 public abstract class Vehicle implements Alugavel {
-
+	
+	/**
+	 * ano do veiculo
+	 */
 	private int year;
-
+	
+	/**
+	 * preco do aluguel
+	 */
 	private Double price;
-
+	
+	/**
+	 * tipo
+	 */
 	private String type;
-
+	
+	/**
+	 * modelo
+	 */
 	private String model;
-
+	/**
+	 * cor do veiculo
+	 */
 	private String color;
-
+	/**
+	 * placa
+	 */
 	private String plate;
 
 	/**

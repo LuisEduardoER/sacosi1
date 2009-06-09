@@ -10,7 +10,10 @@ package Users;
  * 
  */
 public class User extends Person {
-
+	
+	/**
+	 * login do usuario
+	 */
 	private String login;
 
 	/**

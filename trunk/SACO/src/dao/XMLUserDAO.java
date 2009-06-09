@@ -31,16 +31,39 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * 
  */
 public class XMLUserDAO implements UserDAO{
-
+	
+	/**
+	 * instancia da classe
+	 */
 	private static XMLUserDAO instance;
+	
+	/**
+	 * clientes registrados
+	 */
 	private CustomerCollection registeredCustomers;
+	
+	/**
+	 * lista de funcionarios registrados
+	 */
 	private FunctionariesCollection registeredFunctionaries;
+	/**
+	 * sistema de verificacao
+	 */
 	private FieldSystemVerification verification;
+	/**
+	 * arquivo que grava os funcionarios
+	 */
 	private static final String FUNCTIONARIES_FILE = "Functionaries.xml";
+	/**
+	 * arquivo que grava os clientes
+	 */
 	private static final String CUSTOMERS_FILE = "Customers.xml";
+	/**
+	 * administrador do sistema
+	 */
 	private Administrator admin;
 
-	/*
+	/**
 	 * Construtor privado. Serve para o padrao Singleton.
 	 */
 	private XMLUserDAO() throws Exception {

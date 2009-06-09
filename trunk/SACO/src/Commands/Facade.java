@@ -31,9 +31,20 @@ import Users.Alugadores;
  * 
  */
 public class Facade {
-
+	
+	/**
+	 * controle dos usuarios
+	 */
 	private UserDAO userController;
+	
+	/**
+	 * controle dos veiculos
+	 */
 	private VehiclesDAO vehController;
+	
+	/**
+	 * controle dos alugueis
+	 */
 	private RentDAO reController;
 
 	/**

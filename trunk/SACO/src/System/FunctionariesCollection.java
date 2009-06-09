@@ -22,8 +22,15 @@ import Users.User;
  * 
  */
 public class FunctionariesCollection {
-
+	
+	/**
+	 * instancia da classe
+	 */
 	private static FunctionariesCollection instance;
+	
+	/**
+	 * lista de usuarios
+	 */
 	private List<User> usersList;
 
 	/**

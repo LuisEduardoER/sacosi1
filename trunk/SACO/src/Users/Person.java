@@ -10,9 +10,20 @@ package Users;
  * 
  */
 public abstract class Person implements Alugadores {
-
+	
+	/**
+	 * nome da pessoa
+	 */
 	private String name;
+	
+	/**
+	 * email da pessoa
+	 */
 	private String email;
+	
+	/**
+	 * telefone da pessoa
+	 */
 	private String phone;
 
 	/**
